@@ -3,6 +3,7 @@ import "./Export.css"
 import Painel from "../../components/painel/Painel";
 import RequestAuth from "../../service/auth/RequestAuth";
 import { CSVLink } from "react-csv";
+import api from "../../service/api";
 
 function Export(props) {
     const [pacientes, setPacientes] = useState([]);
@@ -39,10 +40,12 @@ function Export(props) {
             const response = await fetch(url);
             const data = await response.json();
             setData(data);
-        };
+        }
+
+        const url = api;
 
         const fetchDataForExport = async () => {
-            await fetchData("http://localhost:3333/api/v1/pacientes", setPacientes);
+            await fetchData(`${url}/v1/pacientes`, setPacientes);
             await fetchData("http://localhost:3333/api/v1/familiares", setFamiliares);
             await fetchData("http://localhost:3333/api/v1/obitos", setObitos);
             await fetchData("http://localhost:3333/api/v1/avaliacoes", setMedicamentos);
