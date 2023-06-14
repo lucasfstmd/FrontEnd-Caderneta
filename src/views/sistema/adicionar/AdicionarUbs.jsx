@@ -85,7 +85,7 @@ function AdicionarUbs() {
                                 aria-describedby="alert-dialog-description"
                             >
                                 <DialogTitle id="alert-dialog-title">
-                                    {"Deseja realmente alterar esse Paciente"}
+                                    {"Sucesso!"}
                                 </DialogTitle>
                                 <DialogContent>
                                     <DialogContentText id="alert-dialog-description">
