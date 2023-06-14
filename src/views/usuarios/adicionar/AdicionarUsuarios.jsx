@@ -109,7 +109,7 @@ function AdicionarUsuarios() {
                             aria-describedby="alert-dialog-description"
                         >
                             <DialogTitle id="alert-dialog-title">
-                                {"Deseja realmente alterar esse Usuario"}
+                                {"Sucesso!"}
                             </DialogTitle>
                             <DialogContent>
                                 <DialogContentText id="alert-dialog-description">
