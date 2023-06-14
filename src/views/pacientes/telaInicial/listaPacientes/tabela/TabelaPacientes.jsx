@@ -7,8 +7,9 @@ import { AiOutlineEdit, AiOutlineSearch } from "react-icons/ai";
 import { IoMdRemoveCircleOutline } from "react-icons/io";
 
 import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";
+import {DialogContent, DialogContentText} from "@mui/material";
+import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 
 import {format} from "date-fns";
