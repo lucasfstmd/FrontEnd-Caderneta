@@ -31,8 +31,12 @@ function PacientesLinha({ paciente }) {
 
     const handleClickOpen = () => {
         setOpen(true);
-        handleDelet();
     };
+
+    const handleSalvar = () => {
+        setOpen(false);
+        handleDelet();
+    }
 
     const handleClose = () => {
         setOpen(false);
@@ -83,11 +87,17 @@ function PacientesLinha({ paciente }) {
                         aria-describedby="alert-dialog-description"
                     >
                         <DialogTitle id="alert-dialog-title">
-                            {"Paciente deletado com sucesso!"}
+                            {"Deseja realmente alterar esse Paciente"}
                         </DialogTitle>
+                        <DialogContent>
+                            <DialogContentText id="alert-dialog-description">
+                                Tem certeza que você deseja apagar os dados desse paciente?
+                            </DialogContentText>
+                        </DialogContent>
                         <DialogActions>
-                            <Button onClick={handleClose} autoFocus>
-                                Fechar.
+                            <Button onClick={handleClose}>Cancelar</Button>
+                            <Button onClick={handleSalvar} autoFocus>
+                                Sim
                             </Button>
                         </DialogActions>
                     </Dialog>
