@@ -3,7 +3,6 @@ import "./Export.css"
 import Painel from "../../components/painel/Painel";
 import RequestAuth from "../../service/auth/RequestAuth";
 import { CSVLink } from "react-csv";
-import api from "../../service/api";
 
 function Export(props) {
     const [pacientes, setPacientes] = useState([]);
@@ -42,37 +41,38 @@ function Export(props) {
             setData(data);
         }
 
-        const url = api;
+        const url = "https://back-cr.herokuapp.com/api";
 
         const fetchDataForExport = async () => {
             await fetchData(`${url}/v1/pacientes`, setPacientes);
-            await fetchData("http://localhost:3333/api/v1/familiares", setFamiliares);
-            await fetchData("http://localhost:3333/api/v1/obitos", setObitos);
-            await fetchData("http://localhost:3333/api/v1/avaliacoes", setMedicamentos);
-            await fetchData("http://localhost:3333/api/v1/polifarmacias", setPolifarmacias);
-            await fetchData("http://localhost:3333/api/v1/diagnosticos", setDiagnosticos);
-            await fetchData("http://localhost:3333/api/v1/antropometricos", setAntropometricos);
-            await fetchData("http://localhost:3333/api/v1/cirurgias", setCirurgias);
-            await fetchData("http://localhost:3333/api/v1/reacoes", setReacoes);
-            await fetchData("http://localhost:3333/api/v1/pesos", setPesos);
-            await fetchData("http://localhost:3333/api/v1/peso-perdas", setPesoPerdas);
-            await fetchData("http://localhost:3333/api/v1/vulnerabilidades", setVulnerabilidades);
-            await fetchData("http://localhost:3333/api/v1/ambientais", setAmbientais);
-            await fetchData("http://localhost:3333/api/v1/quedas", setQuedas);
-            await fetchData("http://localhost:3333/api/v1/cronicas", setCronicas);
-            await fetchData("http://localhost:3333/api/v1/intensidades", setIntensidades);
-            await fetchData("http://localhost:3333/api/v1/habitos", setHabitos);
-            await fetchData("http://localhost:3333/api/v1/pressao-controles", setControlePressao);
-            await fetchData("http://localhost:3333/api/v1/glicemia-controles", setGlicemia);
-            await fetchData("http://localhost:3333/api/v1/bucal-saudes", setSaudeBucal);
-            await fetchData("http://localhost:3333/api/v1/pcls", setPcls);
-            await fetchData("http://localhost:3333/api/v1/preensao-forcas", setForcaPreensao);
-            await fetchData("http://localhost:3333/api/v1/sppbs", setSppbs);
-            await fetchData("http://localhost:3333/api/v1/ivcfs", setIvcfs);
-            await fetchData("http://localhost:3333/api/v1/bioimpedancias", setBioimpedancias);
-            await fetchData("http://localhost:3333/api/v1/laboratorial-exames", setExameLabo);
-            await fetchData("http://localhost:3333/api/v1/fragilidades", setFragilidades);
-            await fetchData("http://localhost:3333/api/v1/frrisques", setFrrisques);
+            await fetchData(`${url}/v1/familiares`, setFamiliares);
+            await fetchData(`${url}/v1/obitos`, setObitos);
+            await fetchData(`${url}/v1/avaliacoes`, setMedicamentos);
+            await fetchData(`${url}/v1/polifarmacias`, setPolifarmacias);
+            await fetchData(`${url}/v1/diagnosticos`, setDiagnosticos);
+            await fetchData(`${url}/v1/antropometricos`, setAntropometricos);
+            await fetchData(`${url}/v1/cirurgias`, setCirurgias);
+            await fetchData(`${url}/v1/reacoes`, setReacoes);
+            await fetchData(`${url}/v1/pesos`, setPesos);
+            await fetchData(`${url}/v1/peso-perdas`, setPesoPerdas);
+            await fetchData(`${url}/v1/vulnerabilidades`, setVulnerabilidades);
+            await fetchData(`${url}/v1/ambientais`, setAmbientais);
+            await fetchData(`${url}/v1/quedas`, setQuedas);
+            await fetchData(`${url}/v1/cronicas`, setCronicas);
+            await fetchData(`${url}/v1/intensidades`, setIntensidades);
+            await fetchData(`${url}/v1/habitos`, setHabitos);
+            await fetchData(`${url}/v1/pressao-controles`, setControlePressao);
+            await fetchData(`${url}/v1/glicemia-controles`, setGlicemia);
+            await fetchData(`${url}/v1/bucal-saudes`, setSaudeBucal);
+            await fetchData(`${url}/v1/pcls`, setPcls);
+            await fetchData(`${url}/v1/preensao-forcas`, setForcaPreensao);
+            await fetchData(`${url}/v1/sppbs`, setSppbs);
+            await fetchData(`${url}/v1/ivcfs`, setIvcfs);
+            await fetchData(`${url}/v1/bioimpedancias`, setBioimpedancias);
+            await fetchData(`${url}/v1/laboratorial-exames`, setExameLabo);
+            await fetchData(`${url}/v1/fragilidades`, setFragilidades);
+            await fetchData(`${url}/v1/frrisques`, setFrrisques);
+
         };
 
         fetchDataForExport();
