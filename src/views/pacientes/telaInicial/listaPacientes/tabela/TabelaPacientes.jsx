@@ -24,7 +24,7 @@ function PacientesLinha({ paciente }) {
     async function handleDelet() {
         try {
             const response = await api.delete(`v1/pacientes/${paciente.id}`);
-            console.log(response.data);
+            window.location.reload();
         } catch (error) {
             console.log(error)
         }
@@ -37,7 +37,6 @@ function PacientesLinha({ paciente }) {
     const handleSalvar = () => {
         setOpen(false);
         handleDelet();
-        window.location.reload();
     }
 
     const handleClose = () => {
