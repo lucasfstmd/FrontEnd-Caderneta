@@ -1,0 +1,51 @@
+.EditarCronicas .BotaoForm {
+    margin-right: 3vh;
+    margin-bottom: 3vh;
+    display: flex;
+    justify-content: center;
+}
+
+.EditarCronicas  .botaoFormSalvar {
+    font-size: 15px;
+    padding: 7px 15px;
+    background-color: #3ab63a;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    margin-right: 1vh;
+}
+
+.EditarCronicas .botaoFormFechar {
+    font-size: 15px;
+    padding: 7px 15px;
+    background-color: #ff0000;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    margin-right: 1vh;
+}
+
+.EditarCronicas select, input {
+    margin-left: 1vh;
+}
+
+.EditarCronicas label {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 30vh;
+    margin: 1.3vh;
+    font-size: 0.8rem;
+}
+
+.EditarCronicas input {
+    width: 80%;
+    margin: 1vh;
+}
+
+.EditarCronicas select {
+    width: 80.8%;
+    height: auto;
+    display: flex;
+    margin: 1vh;
+}

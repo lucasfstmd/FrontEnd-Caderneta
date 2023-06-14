@@ -1,0 +1,31 @@
+.Ficha {
+    display: flex;
+    flex-direction: column;
+}
+
+.InformacoesPessoais {
+    display: flex;
+    width: 95vw;
+    height: 10vh;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    margin: 3vh 1vh 1vh;
+    border: 1px solid #00000020;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.InformacoesPessoais .Nome {
+    margin-left: 5vh;
+}
+
+.InformacoesPessoais .FichaPessoal {
+    margin-right: 5vh;
+}
+.ConteudoFicha {
+    display: flex;
+    height: auto;
+    justify-content: center;
+    margin-left: 1vh;
+}

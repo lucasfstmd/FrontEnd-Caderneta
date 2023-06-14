@@ -1,0 +1,10 @@
+.ContentFicha {
+    display: flex;
+    width: 64vw;
+    height: auto;
+    margin-right: 1vw;
+    margin-left: 1vw;
+    margin-bottom: 1vh;
+    flex-grow: 1;
+    justify-content: center;
+}

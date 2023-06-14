@@ -1,0 +1,44 @@
+.EditarPercaPeso .BotaoForm {
+    margin-right: 3vh;
+    margin-bottom: 3vh;
+    display: flex;
+    justify-content: center;
+}
+
+.EditarPercaPeso  .botaoFormSalvar {
+    font-size: 15px;
+    padding: 7px 15px;
+    background-color: #3ab63a;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    margin-right: 1vh;
+}
+
+.EditarPercaPeso .botaoFormFechar {
+    font-size: 15px;
+    padding: 7px 15px;
+    background-color: #ff0000;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    margin-right: 1vh;
+}
+
+.EditarPercaPeso input, select {
+    margin-left: 1vh;
+}
+
+.EditarPercaPeso label {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 25vh;
+    margin: 1.3vh;
+    font-size: 0.9rem;
+}
+
+.EditarPercaPeso input, select {
+    width: 80%;
+    margin: 1vh;
+}

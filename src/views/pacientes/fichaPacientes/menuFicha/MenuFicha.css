@@ -1,0 +1,51 @@
+.MenuFicha {
+    display: flex;
+    width: 30vw;
+    height: auto;
+}
+
+.MenuFicha .InformacoesFicha {
+    flex-grow: 1;
+    margin-bottom: 2vh;
+}
+
+.MenuFicha .InicioFicha, .AvaliacaoFicha, .OutrasAvaliacoes, .Adicionais {
+    background-color: #fff;
+    width: 28vw;
+    height: auto;
+    border: 1px solid #00000020;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.MenuFicha .AvaliacaoFicha, .OutrasAvaliacoes, .Adicionais {
+    margin-top: 1vh;
+}
+
+.MenuFicha .Titulo {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+.OpcaoFicha {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+.OpcaoFicha:hover {
+    background-color: #00000030;
+}
+
+.OpcaoFicha.Selecionado {
+    background-color: yellow;
+    color: black;
+}

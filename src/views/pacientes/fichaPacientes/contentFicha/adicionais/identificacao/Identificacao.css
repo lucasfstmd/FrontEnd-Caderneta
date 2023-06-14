@@ -1,0 +1,41 @@
+.Identificacao .BotaoForm {
+    margin-right: 3vh;
+    margin-bottom: 3vh;
+    display: flex;
+    justify-content: center;
+}
+
+.Identificacao  .botaoFormSalvar {
+    font-size: 15px;
+    padding: 7px 15px;
+    background-color: #3ab63a;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    margin-right: 1vh;
+}
+
+.Identificacao select, input {
+    margin-left: 1vh;
+}
+
+.Identificacao label {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 24vh;
+    margin: 1.3vh;
+    font-size: 0.8rem;
+}
+
+.Identificacao input {
+    width: 80%;
+    margin: 1vh;
+}
+
+.Identificacao select {
+    width: 80.8%;
+    height: auto;
+    display: flex;
+    margin: 1vh;
+}

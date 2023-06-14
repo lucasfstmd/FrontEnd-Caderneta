@@ -1,0 +1,24 @@
+.App {
+    display: flex;
+    flex-direction: column;
+}
+
+.App Menu  {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 6vh;
+}
+
+.App Content {
+    margin-top: 6vh;
+    height: calc(100vh - 50px);
+}
+
+input, select {
+    width: 80%;
+    padding: 4px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}

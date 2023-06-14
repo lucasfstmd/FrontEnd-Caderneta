@@ -1,0 +1,8 @@
+.InformacoesSociaisFamiliares {
+    display: flex;
+    flex-direction: column;
+}
+
+.InformacoesSociaisFamiliares .ConteudoFamiliares {
+    margin: 1vh;
+}

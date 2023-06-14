@@ -1,0 +1,122 @@
+.Cadastro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 1vh;
+}
+
+.Cadastro .FichaCadastro {
+    width: 35vw;
+    max-width: 50vw;
+    margin: 10vh;
+    border: 1px solid #00000020;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.Cadastro .Titulo {
+    display: flex;
+    justify-content: space-between;
+    margin: 1vh;
+}
+
+.Cadastro .Titulo button {
+    margin: 1.5vh;
+    background-color: dodgerblue;
+    border: none;
+    border-radius: 30px;
+    color: white;
+}
+
+.Cadastro .Titulo h1 {
+    font-size: 1.2rem;
+    margin: 2.3vh;
+    font-family: Roboto, sans-serif;
+    color: gray;
+}
+
+.Cadastro label {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 30vh;
+    margin: 1.3vh;
+    font-size: 0.8rem;
+}
+
+
+.Cadastro input {
+    width: 80%;
+    margin: 1vh;
+}
+
+
+.Cadastro select {
+    width: 80.8%;
+    height: auto;
+    display: flex;
+    margin: 1vh;
+}
+
+.Cadastro .dataNascimento {
+    width: 15vh;
+    display: flex;
+}
+
+.Cadastro .Documentos, .NascinoladidaUf, .NascimentoSexo, .NascionalidadePais, .SabeLerEscolaridade {
+    display: flex;
+    justify-content: flex-end;
+    width: auto;
+}
+
+.Cadastro .Cpf, .Municipio, .Nascionalidade, .SabeLer {
+    display: flex;
+    margin-left: 7.5vh;
+}
+
+.Cadastro .Nascimento  {
+    display: flex;
+}
+
+.Cadastro .Sexo {
+    margin-left: 16vh;
+}
+
+.Cadastro .Municipio label{
+    width: 40vh;
+    margin-right: 3vh;
+}
+
+
+.Cadastro .Identidade, .UfNascimento, .Sexo, .Pais, .Escolaridade {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.Cadastro .BotaoForm {
+    margin-right: 3vh;
+    margin-bottom: 3vh;
+    display: flex;
+    justify-content: center;
+}
+
+.Cadastro .botaoFormSalvar {
+    font-size: 15px;
+    padding: 7px 15px;
+    background-color: #3ab63a;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    margin-right: 1vh;
+}
+
+.Cadastro .botaoFormFechar {
+    font-size: 15px;
+    padding: 7px 15px;
+    background-color: #ff0000;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    margin-right: 1vh;
+}

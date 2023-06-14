@@ -1,0 +1,45 @@
+.AdicionarIvcf .Legenda {
+    margin: 3vh;
+    font-size: 0.9rem;
+}
+
+.AdicionarIvcf .InputRadio {
+    margin-left: 3vh;
+    padding: 1vh;
+}
+
+.AdicionarIvcf .BotaoForm {
+    margin-right: 3vh;
+    margin-bottom: 3vh;
+    display: flex;
+    justify-content: center;
+}
+
+.AdicionarIvcf .botaoFormSalvar {
+    font-size: 15px;
+    padding: 7px 15px;
+    background-color: #3ab63a;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    margin-right: 1vh;
+}
+
+.AdicionarIvcf .botaoFormFechar {
+    font-size: 15px;
+    padding: 7px 15px;
+    background-color: #ff0000;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    margin-right: 1vh;
+}
+
+.AdicionarIvcf input {
+    margin-left: 1vh;
+}
+
+.AdicionarIvcf input {
+    width: 80%;
+    margin: 1vh;
+}

@@ -1,0 +1,53 @@
+.AdicionarSarc .BotaoForm {
+    margin-right: 3vh;
+    margin-bottom: 3vh;
+    display: flex;
+    justify-content: center;
+}
+
+.AdicionarSarc  .botaoFormSalvar {
+    font-size: 15px;
+    padding: 7px 15px;
+    background-color: #3ab63a;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    margin-right: 1vh;
+}
+
+.AdicionarSarc .botaoFormFechar {
+    font-size: 15px;
+    padding: 7px 15px;
+    background-color: #ff0000;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    margin-right: 1vh;
+}
+
+.AdicionarSarc input, select {
+    margin-left: 1vh;
+}
+
+.AdicionarSarc label {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 80vh;
+    margin: 1.3vh;
+    font-size: 0.9rem;
+}
+
+.AdicionarSarc input, select {
+    width: 80%;
+    margin: 1vh;
+}
+
+.AdicionarSarc .TituloSarcf {
+    color: dodgerblue;
+    font-size: 1.2rem;
+    margin: 3vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

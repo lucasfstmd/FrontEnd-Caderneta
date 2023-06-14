@@ -1,0 +1,17 @@
+.Content {
+    padding-top: 8vh;
+    flex: 1;
+    background-color: #00000005;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 85vh;
+}
+
+.LabelInput {
+    display: flex;
+    margin: 1vh;
+    flex-direction: row;
+    align-items: center;
+}

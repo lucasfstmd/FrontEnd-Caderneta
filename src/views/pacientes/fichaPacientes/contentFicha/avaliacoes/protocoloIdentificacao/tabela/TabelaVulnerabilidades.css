@@ -1,0 +1,79 @@
+.TabelaVulnerabilidades {
+    width: 100%;
+    margin-bottom: 20px;
+    max-width: 100%;
+    background-color: transparent;
+    border-collapse: collapse;
+    border-spacing: 0;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.TabelaVulnerabilidades .Paginas {
+    padding-left: 1vh;
+    color: #00000030;
+    font-size: 0.9rem;
+    margin-top: 1vh;
+    display: flex;
+}
+
+
+.TabelaVulnerabilidades table {
+    width: 100%;
+}
+
+.TabelaVulnerabilidades .Colunas {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1vh;
+    border-bottom: 1px solid gray;
+}
+
+.TabelaVulnerabilidades .TextosTabela {
+    margin-bottom: 1vh;
+    margin-top: 1vh;
+    margin-left: 5vh;
+}
+
+.TabelaVulnerabilidades .VulnerabilidadesLinha {
+    display: flex;
+    justify-content: space-between;
+    margin: 1vh;
+    border-bottom: 1px solid #00000030;
+    width: 62.5vw;
+}
+
+.TabelaVulnerabilidades .Pergunta {
+    margin: 1vh;
+}
+
+.VulnerabilidadesLinha .ColunaInformacoes {
+    justify-content: flex-start;
+    margin-left: 1vh;
+}
+
+.VulnerabilidadesLinha .ColunaAcoes {
+    justify-content: flex-end;
+    margin-right: 1.5vh;
+}
+
+.VulnerabilidadesLinha .BotaoTabela button {
+    border-radius: 50px;
+    border: 1px solid #00000030;
+    margin: 1vh;
+}
+
+.VulnerabilidadesLinha .ButaoEditar {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.VulnerabilidadesLinha .ButaoRemover {
+    display: inline-block;
+}
+
+.VulnerabilidadesLinha .InfoObitos {
+    margin: 1vh;
+}

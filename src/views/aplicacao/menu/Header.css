@@ -1,0 +1,75 @@
+.Menu {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.Menu .Header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    display: flex;
+    background-color: dodgerblue;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Menu .Header h1 {
+    font-size: 1.5rem;
+    color: white;
+    padding-left: 2.4vh;
+    display: flex;
+    float: left;
+    margin-right: 2.4vh;
+}
+
+.Menu .Header nav {
+    float: left;
+    margin-top: 1.4vh;
+}
+
+.Menu .Header nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: right;
+}
+
+.Menu .Header nav li {
+    display: flex;
+    margin-left: 2.4vh;
+}
+
+.Menu .Header nav li .Opcao {
+    color: #fff;
+    font-size: 1rem;
+    margin-bottom: 1.2vh;
+    padding: 1.2vh;
+    text-decoration: none;
+}
+
+.Menu .Header nav li .Opcao:hover {
+    color: #00000060;
+}
+
+.Menu .Header .Usuario {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+
+
+.Menu .Header .Usuario button {
+    flex: 1 1 auto;
+    font-size: 1.0rem;
+    background-color: transparent;
+    border: none;
+    margin: 0 1.2vh;
+    padding: 0;
+    color: white;
+}
+
+.Menu .Header .Usuario button:hover {
+    color: #00000060;
+}

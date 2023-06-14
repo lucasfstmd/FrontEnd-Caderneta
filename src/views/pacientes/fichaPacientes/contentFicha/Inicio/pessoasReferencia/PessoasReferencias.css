@@ -1,0 +1,7 @@
+.PessoasReferencia {
+    display: flex;
+}
+
+.PessoasReferencia .ConteudoReferencia {
+    width: 100%;
+}

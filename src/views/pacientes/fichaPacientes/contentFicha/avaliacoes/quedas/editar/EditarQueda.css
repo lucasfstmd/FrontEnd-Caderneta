@@ -1,0 +1,51 @@
+.EditarQueda .BotaoForm {
+    margin-right: 3vh;
+    margin-bottom: 3vh;
+    display: flex;
+    justify-content: center;
+}
+
+.EditarQueda  .botaoFormSalvar {
+    font-size: 15px;
+    padding: 7px 15px;
+    background-color: #3ab63a;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    margin-right: 1vh;
+}
+
+.EditarQueda .botaoFormFechar {
+    font-size: 15px;
+    padding: 7px 15px;
+    background-color: #ff0000;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    margin-right: 1vh;
+}
+
+.EditarQueda select, input {
+    margin-left: 1vh;
+}
+
+.EditarQueda label {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 30vh;
+    margin: 1.3vh;
+    font-size: 0.8rem;
+}
+
+.EditarQueda input {
+    width: 80%;
+    margin: 1vh;
+}
+
+.EditarQueda select {
+    width: 80.8%;
+    height: auto;
+    display: flex;
+    margin: 1vh;
+}

@@ -1,0 +1,44 @@
+.EditarBioimpedancias .BotaoForm {
+    margin-right: 3vh;
+    margin-bottom: 3vh;
+    display: flex;
+    justify-content: center;
+}
+
+.EditarBioimpedancias  .botaoFormSalvar {
+    font-size: 15px;
+    padding: 7px 15px;
+    background-color: #3ab63a;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    margin-right: 1vh;
+}
+
+.EditarBioimpedancias .botaoFormFechar {
+    font-size: 15px;
+    padding: 7px 15px;
+    background-color: #ff0000;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    margin-right: 1vh;
+}
+
+.EditarBioimpedancias input {
+    margin-left: 1vh;
+}
+
+.EditarBioimpedancias label {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 35vh;
+    margin: 1.3vh;
+    font-size: 0.9rem;
+}
+
+.EditarBioimpedancias input {
+    width: 80%;
+    margin: 1vh;
+}

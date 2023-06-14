@@ -1,0 +1,11 @@
+.GraficoPeso {
+    display: flex;
+    width: 55vh;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    margin: 5vh;
+    border: 1px solid #00000020;
+    border-radius: 5px;
+    background-color: #fff;
+}
