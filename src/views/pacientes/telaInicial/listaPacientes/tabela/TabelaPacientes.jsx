@@ -23,7 +23,7 @@ function PacientesLinha({ paciente }) {
 
     async function handleDelet() {
         try {
-            const response = await api.delete(`v1/pacientes/${paciente.id}`);
+            await api.delete(`v1/pacientes/${paciente.id}`);
             window.location.reload();
         } catch (error) {
             console.log(error)
