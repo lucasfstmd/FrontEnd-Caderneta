@@ -37,6 +37,7 @@ function PacientesLinha({ paciente }) {
     const handleSalvar = () => {
         setOpen(false);
         handleDelet();
+        window.location.reload();
     }
 
     const handleClose = () => {
