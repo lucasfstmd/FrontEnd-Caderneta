@@ -25,7 +25,7 @@ function Header (props) {
                             </Link>
                         </li>
                         <li key={2}>
-                            { props.usuario === "admin" ?
+                            { props.type === "admin" ?
                                 null
                             :
 

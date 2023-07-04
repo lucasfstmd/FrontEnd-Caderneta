@@ -11,6 +11,7 @@ const RequestAuth = (props) => {
 
     const [user, setUser] = useState(null);
     const [sub, setSub] = useState(null);
+    const [type, setType] = useState(null);
     const [openErro400, setOpenErro400] = useState(false);
 
 
@@ -23,9 +24,9 @@ const RequestAuth = (props) => {
                         'Authorization': `Bearer ${storageData}`,
                     },
                 })
-                console.log(response)
-                setUser(response.data.usuario);
-                setSub(response.data.sub)
+                setUser(response.data.name);
+                setSub(response.data.sub);
+                setType(response.data.typeUser);
             } catch (error) {
                 if (error.response && error.response.status === 401) {
                     setOpenErro400(true);
@@ -48,7 +49,7 @@ const RequestAuth = (props) => {
             {isAuthenticated() && user ? (
                 <>
                     {React.Children.map(props.children, child => {
-                        return React.cloneElement(child, { user: user, sub: sub });
+                        return React.cloneElement(child, { user: user, sub: sub, type: type });
                     })}
                 </>
             ) : (
