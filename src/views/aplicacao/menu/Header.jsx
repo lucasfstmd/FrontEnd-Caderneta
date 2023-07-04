@@ -24,21 +24,20 @@ function Header (props) {
                                 </div>
                             </Link>
                         </li>
-                        <li key={2}>
                             { props.type === "admin" ?
-                                null
+                                <li key={2}>
+                                    <Link style={{textDecoration: 'none'}} to={'/caderneta/usuarios'}>
+                                        <div className="Opcao">
+                                            <FaUser/> Usuarios
+                                        </div>
+                                    </Link>
+                                </li>
                             :
-
-                                <Link style={{textDecoration: 'none'}} to={'/caderneta/usuarios'}>
-                                    <div className="Opcao">
-                                        <FaUser/> Usuarios
-                                    </div>
-                                </Link>
+                                <></>
                             }
-                        </li>
                         <li key={3}>
                             <Link style={{textDecoration: 'none'}} to={'/caderneta/export'}>
-                                <div className="Opcao">
+                                <div className="Opcao" >
                                     <BiExport/> Exportar Dados
                                 </div>
                             </Link>

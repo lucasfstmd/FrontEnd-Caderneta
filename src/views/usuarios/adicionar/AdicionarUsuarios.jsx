@@ -24,8 +24,6 @@ function AdicionarUsuarios() {
         tipo,
     }
 
-    console.log(Usuario)
-
     async function handleSalvarApi() {
         const storageData = localStorage.getItem(TOKEN_KEY);
         try {

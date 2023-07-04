@@ -54,6 +54,10 @@ function VulnerabilidadesLinha({ vulnerabilidades, onEditClick }) {
                     Classificação:
                     <strong> {Classificacao()}</strong>
                 </div>
+                <div className="Pergunta">
+                    Pontuação Total:
+                    <strong> {vulnerabilidades.pontuacao_total}</strong>
+                </div>
             </td>
             <td className="BotaoTabela">
                 <div className="ButaoEditar">
@@ -93,33 +97,17 @@ function VulnerabilidadesLinha({ vulnerabilidades, onEditClick }) {
 }
 
 function TabelaVulnerabilidades(props) {
-    const [vulnerabilidade, setVulnerabilidade] = useState([]);
     const [currentPage] = useState(1);
 
     const itemsPerPage = props.itemsPerPage;
 
 
-    useEffect(() => {
-        async function carregarVulnerabilidade() {
-            try {
-                const response = await api.get(
-                    `v1/vulnerabilidades/paciente/${props.pacienteId}`
-                );
-                setVulnerabilidade(response.data);
-            } catch (error) {
-                console.log(error);
-            }
-        }
-
-        carregarVulnerabilidade();
-    });
-
-    const totalPages = Math.ceil((vulnerabilidade?.length || 0) / itemsPerPage);
+    const totalPages = Math.ceil((props.data?.length || 0) / itemsPerPage);
 
     const getVulnerabilidadesPaginaAtual = () => {
         const inicio = (currentPage - 1) * itemsPerPage;
         const fim = inicio + itemsPerPage;
-        return vulnerabilidade?.slice(inicio, fim) || [];
+        return props.data?.slice(inicio, fim) || [];
     };
 
     const handleEditarClick = (vulnerabilidadeId) => {
@@ -137,7 +125,7 @@ function TabelaVulnerabilidades(props) {
 
     return (
         <div className="TabelaVulnerabilidades">
-            {vulnerabilidade.length === 0 ? (
+            {props.data.length === 0 ? (
                 <div className="InfoObitos">
                     <h1>Esse Paciente não possui dados Cadastrados.</h1>
                 </div>
@@ -145,7 +133,7 @@ function TabelaVulnerabilidades(props) {
                 <>
                     <div className="Paginas">
                         Pagina {currentPage} de {totalPages}, Total registros:{" "}
-                        {vulnerabilidade.length}.
+                        {props.data.length}.
                     </div>
                     <table>
                         <thead>
