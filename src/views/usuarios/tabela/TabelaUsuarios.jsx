@@ -43,6 +43,9 @@ function UsuarioLinha({ data }) {
                 <div className="NomeUsuario">
                     Email: <strong>{data.email}</strong>
                 </div>
+                <div className="NomeUsuario">
+                    Tipo: <strong>{data.tipo}</strong>
+                </div>
             </td>
             <td className="BotaoTabela">
                 <div className="ButaoEditar">

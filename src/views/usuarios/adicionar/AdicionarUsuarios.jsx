@@ -8,22 +8,33 @@ import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import {useNavigate} from "react-router-dom";
+import {TOKEN_KEY} from "../../../service/auth/auth";
 
 function AdicionarUsuarios() {
     const navigate = useNavigate();
     const [usuario, setUsuario] = useState("");
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
+    const [tipo, setTipo] = useState("");
 
     const Usuario = {
         usuario,
         email,
         senha,
+        tipo,
     }
 
+    console.log(Usuario)
+
     async function handleSalvarApi() {
+        const storageData = localStorage.getItem(TOKEN_KEY);
         try {
-            await api.post("v1/usuarios", Usuario);
+            await api.post("v1/usuarios", Usuario, {
+                headers: {
+                    'Authorization': `${storageData}`,
+                },
+            });
+
             setOpen(true);
         } catch (error) {
             setError(error.response.data.message);
@@ -98,6 +109,16 @@ function AdicionarUsuarios() {
                             onChange={(e) => setSenha(e.target.value)}
                             type="password"
                         />
+                    </div>
+                    <div className="LabelInput">
+                        <label>
+                            <strong>Tipo:</strong>
+                        </label>
+                        <select value={tipo} onChange={(e) => setTipo(e.target.value)}>
+                            <option value="">Selecinar</option>
+                            <option value="admin">Administrador</option>
+                            <option value="user">Usuario</option>
+                        </select>
                     </div>
                     <div className="BotaoForm">
                         <button onClick={handleClickOpen} className="botaoFormSalvar">Salvar</button>

@@ -9,6 +9,7 @@ import {logout} from "../../service/auth/auth";
 
 export default function BasicMenu(props) {
     const user = props.user;
+    const id = props.sub;
     const [anchorEl, setAnchorEl] = useState(null);
 
     const open = Boolean(anchorEl);
@@ -17,10 +18,14 @@ export default function BasicMenu(props) {
         setAnchorEl(event.currentTarget);
     };
 
-    const handleClose = () => {
+    const handleLogout = () => {
         logout();
         setAnchorEl(null);
     };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    }
 
     return (
         <div>
@@ -42,8 +47,10 @@ export default function BasicMenu(props) {
                     'aria-labelledby': 'basic-button',
                 }}
             >
-                <MenuItem onClick={handleClose}><CgLogOut style={{marginRight: '0.5vh', color: "red"}}/>
+                <MenuItem onClick={handleLogout}><CgLogOut style={{marginRight: '0.5vh', color: "red"}}/>
                     <Link style={{textDecoration: 'none', color: 'red'}} to={'/'}>Logout</Link></MenuItem>
+                <MenuItem onClick={handleClose}><CgLogOut style={{marginRight: '0.5vh', color: "red"}}/>
+                    <Link style={{textDecoration: 'none', color: 'red'}} to={`caderneta/usuarios/editar/${id}`}>Editar Usuario</Link></MenuItem>
             </Menu>
         </div>
     );

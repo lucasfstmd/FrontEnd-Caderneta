@@ -25,11 +25,16 @@ function Header (props) {
                             </Link>
                         </li>
                         <li key={2}>
-                            <Link style={{textDecoration: 'none'}} to={'/caderneta/usuarios'}>
-                                <div className="Opcao">
-                                    <FaUser/> Usuarios
-                                </div>
-                            </Link>
+                            { props.usuario === "admin" ?
+                                null
+                            :
+
+                                <Link style={{textDecoration: 'none'}} to={'/caderneta/usuarios'}>
+                                    <div className="Opcao">
+                                        <FaUser/> Usuarios
+                                    </div>
+                                </Link>
+                            }
                         </li>
                         <li key={3}>
                             <Link style={{textDecoration: 'none'}} to={'/caderneta/export'}>

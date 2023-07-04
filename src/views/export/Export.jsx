@@ -5,7 +5,7 @@ import RequestAuth from "../../service/auth/RequestAuth";
 import { CSVLink } from "react-csv";
 
 function Export() {
-    const [dataBase, setDataBase] = useState([]);
+    // const [dataBase, setDataBase] = useState([]);
     const [pacientes, setPacientes] = useState([]);
     const [familiares, setFamiliares] = useState([]);
     const [obitos, setObitos] = useState([]);
@@ -42,10 +42,10 @@ function Export() {
             setData(data);
         }
 
-        const url = "https://back-cr.herokuapp.com/api";
-
+        const url = process.env.BACK_END_PORT
+        console.log(url)
         const fetchDataForExport = async () => {
-            await fetchData(`${url}/v1/database`, setDataBase);
+            // await fetchData(`${url}/v1/database`, setDataBase);
             await fetchData(`${url}/v1/pacientes`, setPacientes);
             await fetchData(`${url}/v1/familiares`, setFamiliares);
             await fetchData(`${url}/v1/obitos`, setObitos);
@@ -85,11 +85,13 @@ function Export() {
             <div className="Export">
                 <Painel titulo="Exportar Dados">
                     <ul>
+                        {/*
                         <li>
                             <CSVLink style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }} data={dataBase} filename="banco_de_dados.csv">
                                 <strong>Banco de Dados</strong>
                             </CSVLink>
                         </li>
+                        */}
                         <li>
                             <CSVLink style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }} data={pacientes} filename="pacientes.csv">
                                 <strong>Pacientes</strong>

@@ -23,6 +23,7 @@ const RequestAuth = (props) => {
                         'Authorization': `Bearer ${storageData}`,
                     },
                 })
+                console.log(response)
                 setUser(response.data.usuario);
                 setSub(response.data.sub)
             } catch (error) {

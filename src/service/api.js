@@ -2,7 +2,7 @@ import axios from 'axios'
 import {getToken} from "./auth/auth";
 
 const api = axios.create({
-    baseURL: 'https://back-cr.herokuapp.com/api/'
+    baseURL: process.env.BACK_END_PORT || 'https://back-cr.herokuapp.com/api/'
 });
 
 api.interceptors.request.use(async config => {
