@@ -13,6 +13,7 @@ import EditarUsuario from "../../usuarios/editar/EditarUsuario";
 import AdicionarUsuarios from "../../usuarios/adicionar/AdicionarUsuarios";
 import EditarUbs from "../../sistema/editar/EditarUbs";
 import AdicionarUbs from "../../sistema/adicionar/AdicionarUbs";
+import NotFound from "../../notFound/NotFound";
 
 const Content = (props) => (
     <div className="Content">
@@ -29,6 +30,7 @@ const Content = (props) => (
             <Route path={'/caderneta/sistema/adicionar'} element={<AdicionarUbs/>}/>
             <Route path={'/caderneta/usuarios/editar/:user'} element={<EditarUsuario type={props.type}/>}/>
             <Route path={'/caderneta/usuarios/adicionar'} element={<AdicionarUsuarios/>}/>
+            <Route path={'*'} element={<NotFound/>}/>
         </Routes>
     </div>
 )
