@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import Chart from 'chart.js/auto';
 
-const GraficoVES = ({ data }) => {
+const GraficoVES = (props) => {
     useEffect(() => {
-        const ctx = document.getElementById('myChartVes').getContext('2d');
-        const labels = data.map((datas) => datas.ano);
-        const data = data.map((datas) => datas.pontuacao_total);
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const labels = props.data.map((datas) => datas.ano);
+        const data = props.data.map((datas) => datas.pontuacao_total);
 
         const myChart = new Chart(ctx, {
             type: 'line',
@@ -56,11 +56,11 @@ const GraficoVES = ({ data }) => {
                 },
             },
         });
-    }, [data]);
+    }, [props.data]);
 
     return (
         <div id="grafico_ves" className="pacientes index">
-            <canvas id="myChartVes" width="400" height="400"></canvas>
+            <canvas id="myChart" width="400" height="400"></canvas>
         </div>
     );
 };
