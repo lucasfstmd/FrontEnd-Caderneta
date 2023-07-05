@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "./EditarUsuario.css"
 import Painel from "../../../components/painel/Painel";
 import RequestAuth from "../../../service/auth/RequestAuth";
@@ -10,20 +10,48 @@ import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 
-function EditarUsuario() {
-    const {id} = useParams();
+function EditarUsuario(props) {
+    const {user} = useParams();
     const navigate = useNavigate();
+    const userType = props.type;
+    const [User, setUser] = useState()
+    const [id, setId] = useState();
     const [usuario, setUsuario] = useState("");
     const [email, setEmail] = useState("");
+    const [senha, setSenha] = useState("");
+    const [tipo, setTipo] = useState("");
 
+    useEffect(() => {
+        async function carregarUsuario() {
+            try {
+                const response = await api.get(`v1/usuarios/${user}`);
+                setUser(response.data);
+                setUsuario(response.data.usuario);
+                setId(response.data.id);
+                setEmail(response.data.email);
+                setTipo(response.data.tipo);
+                console.log(response.data)
+            } catch (error) {
+                setError(error.response.data.message);
+                if (error.response && error.response.status === 400) {
+                    setOpenErro400(true);
+                } else if (error.response && error.response.status === 500) {
+                    setOpenErro500(true);
+                }
+            }
+        }
+        carregarUsuario();
+    }, [user])
 
     const Usuario = {
         usuario,
         email,
+        senha,
+        tipo,
     }
 
     const handleFecharClick = () => {
-        navigate("/caderneta/usuarios")
+        navigate("/caderneta")
     }
 
     const handleEdit = async () => {
@@ -73,24 +101,47 @@ function EditarUsuario() {
                     <div className="EditarUsuario">
                         <div className="LabelInput">
                             <label>
-                                <strong>Novo Nome de Usuario:</strong>
+                                <strong>Nome de Usuario:</strong>
                             </label>
                             <input
-                                value={usuario}
+                                defaultValue={User ? User.usuario : ''}
                                 onChange={(e) => setUsuario(e.target.value)}
                                 type="text"
                             />
                         </div>
                         <div className="LabelInput">
                             <label>
-                                <strong>Novo Email:</strong>
+                                <strong>Email:</strong>
                             </label>
                             <input
-                                value={email}
+                                defaultValue={User ? User.email : ''}
                                 onChange={(e) => setEmail(e.target.value)}
                                 type="email"
                             />
                         </div>
+                        <div className="LabelInput">
+                            <label>
+                                <strong>Senha:</strong>
+                            </label>
+                            <input
+                                value={senha}
+                                onChange={(e) => setSenha(e.target.value)}
+                                type="password"
+                            />
+                        </div>
+                        {userType === "admin" ?
+                            <div className="LabelInput">
+                                <label>
+                                    <strong>Tipo:</strong>
+                                </label>
+                                <select value={tipo} onChange={(e) => setTipo(e.target.value)}>
+                                    <option value="">Selecinar</option>
+                                    <option value="admin">Administrador</option>
+                                    <option value="user">Usuario</option>
+                                </select>
+                            </div> :
+                            <></>
+                        }
                         <div className="BotaoForm">
                             <button onClick={handleClickOpen} className="botaoFormSalvar">Salvar</button>
                             <button onClick={handleFecharClick} className="botaoFormFechar">Fechar</button>

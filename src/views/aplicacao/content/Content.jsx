@@ -11,11 +11,10 @@ import Cadastro from "../../pacientes/cadastro/Cadastro";
 import Sistema from "../../sistema/Sistema";
 import EditarUsuario from "../../usuarios/editar/EditarUsuario";
 import AdicionarUsuarios from "../../usuarios/adicionar/AdicionarUsuarios";
-import EditarSenhaUsuario from "../../usuarios/editar/EditarSenhaUsuario";
 import EditarUbs from "../../sistema/editar/EditarUbs";
 import AdicionarUbs from "../../sistema/adicionar/AdicionarUbs";
 
-const Content = () => (
+const Content = (props) => (
     <div className="Content">
         <Routes>
             <Route path={'/'} element={<Pacientes/>}/>
@@ -28,8 +27,7 @@ const Content = () => (
             <Route path={'/caderneta/sistema'} element={<Sistema/>}/>
             <Route path={'/caderneta/sistema/editar/:id'} element={<EditarUbs/>}/>
             <Route path={'/caderneta/sistema/adicionar'} element={<AdicionarUbs/>}/>
-            <Route path={'/caderneta/usuarios/editar/senha/:id'} element={<EditarSenhaUsuario/>}/>
-            <Route path={'/caderneta/usuarios/editar/:id'} element={<EditarUsuario/>}/>
+            <Route path={'/caderneta/usuarios/editar/:user'} element={<EditarUsuario type={props.type}/>}/>
             <Route path={'/caderneta/usuarios/adicionar'} element={<AdicionarUsuarios/>}/>
         </Routes>
     </div>

@@ -7,10 +7,12 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { DialogContent, DialogContentText } from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
-import MenuEditarUsuario from "../../../components/menuEditarUsuario/MenuEditarUsuario";
+import {AiOutlineEdit} from "react-icons/ai";
+import {useNavigate} from "react-router-dom";
 
 function UsuarioLinha({ data }) {
     const [open, setOpen] = useState(false);
+    const navigate = useNavigate();
 
     async function handleDelet() {
         try {
@@ -34,6 +36,10 @@ function UsuarioLinha({ data }) {
         window.location.reload(true);
     }
 
+    const handleEdit = () => {
+        navigate(`editar/${data.usuario}`);
+    }
+
     return (
         <tr key={data.id} className="UsuarioLinha">
             <td className="TextosTabela">
@@ -49,12 +55,14 @@ function UsuarioLinha({ data }) {
             </td>
             <td className="BotaoTabela">
                 <div className="ButaoEditar">
-                    <MenuEditarUsuario usuarioId={data.id}/>
+                    <button onClick={handleEdit}>
+                        <AiOutlineEdit/>
+                    </button>
                 </div>
                 <div className="ButaoRemover">
-                    <Button onClick={handleClickOpen} style={{height: "20px", backgroundColor: "#00000010"}}>
+                    <button onClick={handleClickOpen} style={{backgroundColor: "#00000010"}}>
                         <IoMdRemoveCircleOutline />
-                    </Button>
+                    </button>
                     <Dialog
                         open={open}
                         onClose={handleClose}
