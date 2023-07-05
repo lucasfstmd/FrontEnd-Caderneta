@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react"
+import React, {useState} from "react"
 import "./TabelaVulnerabilidades.css"
 import api from "../../../../../../../service/api";
 import {AiOutlineEdit} from "react-icons/ai";

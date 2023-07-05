@@ -1,66 +1,74 @@
-import React, {useEffect} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Chart from 'chart.js/auto';
+import './GraficoVES.css';
 
 const GraficoVES = (props) => {
+    const chartRef = useRef(null);
+    const [chart, setChart] = useState(null);
+
     useEffect(() => {
-        const ctx = document.getElementById('myChart').getContext('2d');
+        const ctx = chartRef.current.getContext('2d');
         const labels = props.data.map((datas) => datas.ano);
         const data = props.data.map((datas) => datas.pontuacao_total);
 
-        const myChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels,
-                datasets: [
-                    {
-                        label: 'pontos',
-                        data,
-                        fill: false,
-                        pointRadius: 10,
-                        pointHoverRadius: 15,
-                        showLine: true,
-                        backgroundColor: 'rgba(255,255,255,0.7)',
-                    },
-                ],
-            },
-            options: {
-                legend: {
-                    labels: {
-                        fontColor: 'white',
-                    },
-                },
-                scales: {
-                    yAxes: [
+        if (chart) {
+            chart.data.labels = labels;
+            chart.data.datasets[0].data = data;
+            chart.update();
+        } else {
+            const newChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels,
+                    datasets: [
                         {
-                            ticks: {
-                                beginAtZero: true,
-                                min: 0,
-                                max: 10,
-                                reverse: true,
-                                fontColor: 'white',
-                            },
+                            label: 'PONTOS',
+                            data,
+                            fill: false,
+                            pointRadius: 10,
+                            pointHoverRadius: 15,
+                            showLine: true,
+                            backgroundColor: 'rgba(255,255,255,0.7)',
                         },
                     ],
-                    xAxes: [
-                        {
+                },
+                options: {
+                    legend: {
+                        labels: {
+                            fontColor: 'black',
+                        },
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            min: 0,
+                            max: 10,
+                            reverse: true,
                             ticks: {
                                 fontColor: 'white',
                             },
                         },
-                    ],
-                },
-                elements: {
-                    point: {
-                        pointStyle: 'circle',
+                        x: {
+                            ticks: {
+                                fontColor: 'white',
+                            },
+                        },
+                    },
+                    elements: {
+                        point: {
+                            pointStyle: 'circle',
+                        },
                     },
                 },
-            },
-        });
+            });
+
+            setChart(newChart);
+        }
     }, [props.data]);
 
     return (
         <div id="grafico_ves" className="pacientes index">
-            <canvas id="myChart" width="400" height="400"></canvas>
+            <canvas ref={chartRef} id="myChart" width="400" height="400"></canvas>
         </div>
     );
 };
