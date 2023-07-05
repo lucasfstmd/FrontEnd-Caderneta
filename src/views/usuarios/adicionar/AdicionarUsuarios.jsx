@@ -36,9 +36,9 @@ function AdicionarUsuarios() {
             setOpen(true);
         } catch (error) {
             setError(error.response.data.message);
-            if (error.response && error.response.status === 400) {
+            if (error.response.status >= 400 || error.response.status < 499) {
                 setOpenErro400(true);
-            } else if (error.response && error.response.status === 500) {
+            } else if (error.response.status >= 500 || error.response.status < 599) {
                 setOpenErro500(true);
             }
         }
