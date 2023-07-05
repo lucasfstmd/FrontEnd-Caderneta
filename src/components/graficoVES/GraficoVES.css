@@ -12,7 +12,5 @@
 
 #myChart {
     background-image: linear-gradient(green, yellow, red);
-    color: white;
-    border: 1px solid #00000020;
     border-radius: 5px;
 }

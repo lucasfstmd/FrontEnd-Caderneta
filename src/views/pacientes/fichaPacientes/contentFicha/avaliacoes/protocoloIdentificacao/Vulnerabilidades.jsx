@@ -7,11 +7,11 @@ import api from "../../../../../../service/api";
 import GraficoVES from "../../../../../../components/graficoVES/GraficoVES";
 
 function Vulnerabilidades(props) {
-    const [itemsPerPage] = useState(20);
-    const [currentPage] = useState(1);
+    const [itemsPerPage] = useState(4);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [vulnerabilidade, setVulnerabilidade] = useState([]);
     const [editarVulnerabilidadesId, setEditarVulnerabilidadesId] = useState(null);
     const [componenteAtivo, setComponenteAtivo] = useState('tabela');
-    const [vulnerabilidade, setVulnerabilidade] = useState([]);
 
     const handleEditarClick = (vulnerabilidadesId) => {
         setComponenteAtivo('editar');
@@ -42,13 +42,69 @@ function Vulnerabilidades(props) {
         carregarVulnerabilidade();
     });
 
+    const totalPages = Math.ceil((props.data?.length || 0) / itemsPerPage);
+    const pagesPerGroup = 10;
+    const currentPageGroup = Math.ceil(currentPage / pagesPerGroup);
+
+    const handlePageChange = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    };
+
+    const getVulnerabilidadesPaginaAtual = () => {
+        const inicio = (currentPage - 1) * itemsPerPage;
+        const fim = inicio + itemsPerPage;
+        return vulnerabilidade?.slice(inicio, fim) || [];
+    };
+
+    const renderGroups = () => {
+        const groups = [];
+
+        // Primeira página
+        groups.push(
+            <button
+                key={1000}
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+            >
+                Anterior
+            </button>
+        );
+
+        const startGroup = (currentPageGroup - 1) * pagesPerGroup + 1;
+        const endGroup = Math.min(startGroup + pagesPerGroup - 1, totalPages);
+
+        for (let i = startGroup; i <= endGroup; i++) {
+            groups.push(
+                <button
+                    key={i}
+                    onClick={() => handlePageChange(i)}
+                    className={currentPage === i ? "PaginaAtiva" : "PaginaInativa"}
+                >
+                    {i}
+                </button>
+            );
+        }
+
+        groups.push(
+            <button
+                key={1001}
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+            >
+                Próxima
+            </button>
+        );
+
+        return groups;
+    };
+
     return (
         <div className="ProtocoloIdentificacao">
             <PainelFicha titulo="2.6 Protocolo de Identificação do Idoso Vulnerável (VES-13)" botaoNew={true} onAdicionarClick={handleAdicionarClick}>
                 <div className="Conteudo">
                     {componenteAtivo === 'tabela' && (
                         <>
-                            <div className="Grafico">
+                            <div className="Grafico" style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                                 <GraficoVES data={vulnerabilidade}/>
                             </div>
                             <TabelaVulnerabilidades
@@ -56,8 +112,25 @@ function Vulnerabilidades(props) {
                                 currentPage={currentPage}
                                 onEditarClick={handleEditarClick}
                                 pacienteId={props.pacienteId}
-                                data={vulnerabilidade}
+                                data={getVulnerabilidadesPaginaAtual()}
                             />
+                            <div className="Paginacao">
+                                <button
+                                    key="primeira"
+                                    onClick={() => handlePageChange(1)}
+                                    disabled={currentPage === 1}
+                                >
+                                    Primeira
+                                </button>
+                                {renderGroups()}
+                                <button
+                                    key="ultima"
+                                    onClick={() => handlePageChange(totalPages)}
+                                    disabled={currentPage === totalPages}
+                                >
+                                    Última
+                                </button>
+                            </div>
                         </>
                     )}
                     {componenteAtivo === 'editar' && (

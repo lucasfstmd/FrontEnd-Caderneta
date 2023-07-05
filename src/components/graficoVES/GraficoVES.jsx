@@ -28,14 +28,14 @@ const GraficoVES = (props) => {
                             pointRadius: 10,
                             pointHoverRadius: 15,
                             showLine: true,
-                            backgroundColor: 'rgba(255,255,255,0.7)',
+                            backgroundColor: 'white',
                         },
                     ],
                 },
                 options: {
                     legend: {
                         labels: {
-                            fontColor: 'black',
+                            fontColor: 'white',
                         },
                     },
                     scales: {

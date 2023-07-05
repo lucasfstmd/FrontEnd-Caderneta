@@ -104,11 +104,7 @@ function TabelaVulnerabilidades(props) {
 
     const totalPages = Math.ceil((props.data?.length || 0) / itemsPerPage);
 
-    const getVulnerabilidadesPaginaAtual = () => {
-        const inicio = (currentPage - 1) * itemsPerPage;
-        const fim = inicio + itemsPerPage;
-        return props.data?.slice(inicio, fim) || [];
-    };
+
 
     const handleEditarClick = (vulnerabilidadeId) => {
         props.onEditarClick(vulnerabilidadeId);
@@ -118,7 +114,7 @@ function TabelaVulnerabilidades(props) {
         const startIndex = (currentPage - 1) * itemsPerPage;
         const endIndex = startIndex + itemsPerPage;
 
-        return getVulnerabilidadesPaginaAtual().slice(startIndex, endIndex).map((vulnerabilidades) => (
+        return props.data.slice(startIndex, endIndex).map((vulnerabilidades) => (
             <VulnerabilidadesLinha key={vulnerabilidades.id} vulnerabilidades={vulnerabilidades} onEditClick={handleEditarClick}/>
         ))
     }
