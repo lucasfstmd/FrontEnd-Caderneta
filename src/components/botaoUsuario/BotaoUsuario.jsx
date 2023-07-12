@@ -54,7 +54,7 @@ export default function BasicMenu(props) {
                 }}
             >
                 <MenuItem onClick={handleLogout} style={{color: "red"}}><CgLogOut style={{marginRight: '0.5vh', color: "red"}}/>
-                    Logout</MenuItem>
+                    Sair</MenuItem>
                 <MenuItem onClick={handleEdit}><AiOutlineEdit style={{marginRight: '0.5vh', color: "black"}}/>
                     Editar Usuario</MenuItem>
             </Menu>

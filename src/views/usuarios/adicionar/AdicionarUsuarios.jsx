@@ -25,14 +25,12 @@ function AdicionarUsuarios() {
     }
 
     async function handleSalvarApi() {
-        const storageData = localStorage.getItem(TOKEN_KEY);
         try {
             await api.post("v1/usuarios", Usuario, {
                 headers: {
-                    'Authorization': `${storageData}`,
+                    'Authorization' : `${localStorage.getItem(TOKEN_KEY)}`,
                 },
             });
-
             setOpen(true);
         } catch (error) {
             setError(error.response.data.message);

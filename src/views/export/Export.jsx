@@ -42,7 +42,7 @@ function Export() {
             setData(data);
         }
 
-        const url = process.env.BACK_END_PORT
+        const url = 'http://localhost:3333/api'
         console.log(url)
         const fetchDataForExport = async () => {
             // await fetchData(`${url}/v1/database`, setDataBase);

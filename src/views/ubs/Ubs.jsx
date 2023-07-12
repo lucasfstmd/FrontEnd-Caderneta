@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from "react";
-import "./Sistema.css"
+import "./Ubs.css"
 import RequestAuth from "../../service/auth/RequestAuth";
 import {Link} from "react-router-dom";
 import {FaHospitalSymbol} from "react-icons/fa";
 import api from "../../service/api";
 import TabelaUbs from "./tabela/TabelaUbs";
 
-function Sistema() {
+function Ubs() {
     const [itemsPerPage] = useState(20);
     const [currentPage] = useState(1);
     const [ubs, setUbs] = useState([])
@@ -37,12 +37,12 @@ function Sistema() {
         <RequestAuth>
             <div className="Sistema">
                 <div className="TituloSistema">
-                    <h1>Sistema</h1>
+                    <h1>Unidades Basicas de Saúde</h1>
                     <div className="BotaoAdicinar">
                         <button>
                             <Link
                                 style={{textDecoration: "none", color: "white"}}
-                                to={"/caderneta/sistema/adicionar"}
+                                to={"/caderneta/ubs/adicionar"}
                             >
                                 <FaHospitalSymbol/> Cadastrar Nova UBS
                             </Link>
@@ -63,4 +63,4 @@ function Sistema() {
     )
 }
 
-export default Sistema;
+export default Ubs;

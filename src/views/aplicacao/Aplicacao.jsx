@@ -7,7 +7,7 @@ import RequestAuth from "../../service/auth/RequestAuth";
 const Aplicacao = props => (
     <div className="Aplicacao">
         <RequestAuth>
-            <Header user={props.user} sub={props.sub} type={props.type}/>
+            <Header user={props.user} id={props.id} type={props.type}/>
             <Content type={props.type}/>
             <Footer/>
         </RequestAuth>

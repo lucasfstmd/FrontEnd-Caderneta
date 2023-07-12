@@ -1,7 +1,5 @@
-import React, {useState} from "react"
-import "./AdicionarUbs.css"
-import {useNavigate} from "react-router-dom";
-import api from "../../../service/api";
+import React, {useEffect, useState} from "react"
+import "./EditarUbs.css"
 import RequestAuth from "../../../service/auth/RequestAuth";
 import Painel from "../../../components/painel/Painel";
 import Dialog from "@mui/material/Dialog";
@@ -9,18 +7,40 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import api from "../../../service/api";
+import {useNavigate, useParams} from "react-router-dom";
 
-function AdicionarUbs() {
+function EditarUbs() {
+    const [ubs, setUbs] = useState();
     const [nome, setNome] = useState("");
+    const {id} = useParams();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        async function carregarUbs() {
+            try {
+                const response = await api.get(`v1/ubs/${id}`);
+                setUbs(response.data);
+                setNome(response.data.nome);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        carregarUbs();
+    }, [id]);
 
     const Ubs = {
         nome,
     }
 
-    async function handleSalvarApi() {
+    const handleFecharClick = () => {
+        navigate("/caderneta/ubs");
+    };
+
+    const handleEdit = async () => {
         try {
-            await api.post("v1/ubs", Ubs);
+            await api.patch(`v1/ubs/${id}`, Ubs);
             setOpen(true);
         } catch (error) {
             if (error.response && error.response.status === 400) {
@@ -44,7 +64,7 @@ function AdicionarUbs() {
     }
 
     const handleClickOpen = () => {
-        handleSalvarApi();
+        handleEdit();
     }
 
     const handleClose = () => {
@@ -53,24 +73,20 @@ function AdicionarUbs() {
 
     const handleSalvar = () => {
         setOpen(false);
-        navigate("/caderneta/sistema")
-    }
-
-    const handleFecharClick = () => {
-        navigate("/caderneta/sistema")
+        navigate("/caderneta/ubs");
     }
 
     return (
         <RequestAuth>
             <div>
-                <Painel titulo="Adicionar UBS">
-                    <div className="AdicionarUbs">
+                <Painel titulo="Editar UBS">
+                    <div className="EditarUbs">
                         <div className="LabelInput">
                             <label>
                                 <strong>Nome:</strong>
                             </label>
                             <input
-                                value={nome}
+                                defaultValue={ubs ? ubs.nome: ""}
                                 onChange={(e) => setNome(e.target.value)}
                                 type="text"
                             />
@@ -85,16 +101,17 @@ function AdicionarUbs() {
                                 aria-describedby="alert-dialog-description"
                             >
                                 <DialogTitle id="alert-dialog-title">
-                                    {"Sucesso!"}
+                                    {"Deseja realmente alterar essa UBS"}
                                 </DialogTitle>
                                 <DialogContent>
                                     <DialogContentText id="alert-dialog-description">
-                                        Informações salvas com sucesso!
+                                        Tem certeza que você deseja alterar os dados dessa UBS?
                                     </DialogContentText>
                                 </DialogContent>
                                 <DialogActions>
+                                    <Button onClick={handleClose}>Cancelar</Button>
                                     <Button onClick={handleSalvar} autoFocus>
-                                        Fechar
+                                        Salvar
                                     </Button>
                                 </DialogActions>
                             </Dialog>
@@ -146,4 +163,4 @@ function AdicionarUbs() {
     )
 }
 
-export default AdicionarUbs;
+export default EditarUbs;

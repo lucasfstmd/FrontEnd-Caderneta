@@ -10,7 +10,7 @@ import Dialog from "@mui/material/Dialog";
 const RequestAuth = (props) => {
 
     const [user, setUser] = useState(null);
-    const [sub, setSub] = useState(null);
+    const [id, setId] = useState(null);
     const [type, setType] = useState(null);
     const [openErro400, setOpenErro400] = useState(false);
 
@@ -25,7 +25,7 @@ const RequestAuth = (props) => {
                     },
                 })
                 setUser(response.data.name);
-                setSub(response.data.sub);
+                setId(response.data.id);
                 setType(response.data.typeUser);
             } catch (error) {
                 if (error.response && error.response.status === 401) {
@@ -49,7 +49,7 @@ const RequestAuth = (props) => {
             {isAuthenticated() && user ? (
                 <>
                     {React.Children.map(props.children, child => {
-                        return React.cloneElement(child, { user: user, sub: sub, type: type });
+                        return React.cloneElement(child, { user: user, id: id, type: type });
                     })}
                 </>
             ) : (

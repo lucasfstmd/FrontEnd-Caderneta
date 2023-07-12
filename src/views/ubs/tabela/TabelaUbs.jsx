@@ -46,7 +46,7 @@ function UbsLinha({ data }) {
             </td>
             <td className="BotaoTabela">
                 <div className="ButaoEditar">
-                    <button onClick={() => navigate(`/caderneta/sistema/editar/${data.id}`)}>
+                    <button onClick={() => navigate(`/caderneta/ubs/editar/${data.id}`)}>
                         <AiOutlineEdit/>
                     </button>
                 </div>

@@ -3,9 +3,8 @@ import { Link } from "react-router-dom";
 
 import './Header.css';
 
-import { FaUsers, FaUser } from 'react-icons/fa';
+import {FaUsers, FaUser, FaHospitalSymbol} from 'react-icons/fa';
 import { BiExport } from 'react-icons/bi'
-import { MdDashboardCustomize } from 'react-icons/md'
 
 import BotaoUsuario from "../../../components/botaoUsuario/BotaoUsuario";
 
@@ -43,16 +42,16 @@ function Header (props) {
                             </Link>
                         </li>
                         <li key={4}>
-                            <Link style={{textDecoration: 'none'}} to={'/caderneta/sistema'}>
+                            <Link style={{textDecoration: 'none'}} to={'/caderneta/ubs'}>
                                 <div className="Opcao">
-                                    <MdDashboardCustomize/> Sistema
+                                    <FaHospitalSymbol/> UBS
                                 </div>
                             </Link>
                         </li>
                     </ul>
                 </nav>
                 <div className="Usuario">
-                    <BotaoUsuario user={props.user} sub={props.sub}/>
+                    <BotaoUsuario user={props.user}/>
                 </div>
             </div>
         </aside>

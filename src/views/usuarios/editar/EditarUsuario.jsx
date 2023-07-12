@@ -51,7 +51,7 @@ function EditarUsuario(props) {
     }
 
     const handleFecharClick = () => {
-        navigate("/caderneta")
+        navigate("/caderneta/usuarios")
     }
 
     const handleEdit = async () => {
