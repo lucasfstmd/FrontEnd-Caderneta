@@ -38,6 +38,7 @@ import Frrisque from "./adicionais/frrisque/Frrisque";
 import Infancia from "./adicionais/infancia/Infancia";
 import Sarcf from "./adicionais/sarcf/Sarcf";
 import RequestAuth from "../../../../service/auth/RequestAuth";
+import Fragilidades from "./adicionais/fragilidades/Fragilidades";
 
 const ContentFicha = (props) => {
     const { selectedItem } = props;
@@ -111,7 +112,9 @@ const ContentFicha = (props) => {
             return <RequestAuth><ExamesLaborariais pacienteId={props.pacienteId}/></RequestAuth>;
         } else if (selectedItem === "frrisque") {
             return <RequestAuth><Frrisque pacienteId={props.pacienteId}/></RequestAuth>;
-        } else if (selectedItem === "infancia") {
+        } else if (selectedItem === "fragilidades") {
+            return <RequestAuth><Fragilidades pacienteId={props.pacienteId}/></RequestAuth>
+        }else if (selectedItem === "infancia") {
             return <RequestAuth><Infancia pacienteId={props.pacienteId}/></RequestAuth>;
         } else if (selectedItem === "sarcf-f") {
             return <RequestAuth><Sarcf pacienteId={props.pacienteId}/></RequestAuth>;

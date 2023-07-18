@@ -99,7 +99,7 @@ function Infancia(props) {
 
     return (
         <div className="Infancia">
-            <PainelFicha titulo="4.9 Circunstâncias Inicias da Vida e Adversidades na Infancia" botaoNew={true} onAdicionarClick={handleAdicionarClick}>
+            <PainelFicha titulo="4.10 Circunstâncias Inicias da Vida e Adversidades na Infancia" botaoNew={true} onAdicionarClick={handleAdicionarClick}>
                 <div className="Conteudo">
                     {componenteAtivo === 'tabela' && (
                         <>

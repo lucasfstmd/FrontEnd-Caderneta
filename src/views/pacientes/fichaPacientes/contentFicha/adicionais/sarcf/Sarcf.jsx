@@ -26,7 +26,7 @@ function Sarcf(props) {
 
     return (
         <div className="Sarc">
-            <PainelFicha titulo="4.10 Sarcfs" botaoNew={true} onAdicionarClick={handleAdicionarClick}>
+            <PainelFicha titulo="4.11 Sarcfs" botaoNew={true} onAdicionarClick={handleAdicionarClick}>
                 <div className="ConteudoDiagnosticos">
                     {componenteAtivo === 'tabela' && (
                         <TabelaSarcf

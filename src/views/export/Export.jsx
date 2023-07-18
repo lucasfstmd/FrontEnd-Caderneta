@@ -42,7 +42,7 @@ function Export() {
             setData(data);
         }
 
-        const url = 'http://localhost:3333/api'
+        const url = 'http://localhost:8080/api'
         console.log(url)
         const fetchDataForExport = async () => {
             // await fetchData(`${url}/v1/database`, setDataBase);

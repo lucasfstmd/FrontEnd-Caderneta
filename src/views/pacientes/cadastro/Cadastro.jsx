@@ -20,7 +20,7 @@ function Cadastro() {
     const [identidade, setIdentidade] = useState("");
     const [cpf, setCpf] = useState("");
     const [nome_mae, setNomeMae] = useState("");
-    const [sexo, setSexo] = useState("");
+    const [sexo, setSexo] = useState();
     const [nascimento_municipio, setNascimentoMunicipio] = useState("");
     const [nascimento_uf, setNascimentoUf] = useState("");
     const [nacionalidade, setNacionalidade] = useState("");
@@ -281,8 +281,8 @@ function Cadastro() {
                         <label><strong>Sexo: </strong></label>
                         <select value={sexo} onChange={(e) => setSexo(e.target.value)} name="selectSexo">
                             <option value="">Selecionar</option>
-                            <option value="M">Masculino</option>
-                            <option value="F">Feminino</option>
+                            <option value={0}>Masculino</option>
+                            <option value={1}>Feminino</option>
                         </select>
                     </div>
                     <div className="LabelInput">

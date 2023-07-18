@@ -1,64 +1,60 @@
 import React, {useEffect, useState} from "react";
 import PainelFicha from "../../../../../../components/painelFicha/PainelFicha";
-import TabelaVulnerabilidades from "./tabela/TabelaVulnerabilidades";
-import EditarVulnerabilidades from "./editar/EditarVulnerabilidades";
-import AdicionarVulnerabilidades from "./adicionar/AdicionarVulnerabilidades";
 import api from "../../../../../../service/api";
-import GraficoVES from "../../../../../../components/graficoVES/GraficoVES";
+import TabelaFragilidades from "./tabela/TabelaFragilidades";
+import EditarFragilidades from "./editar/EditarFragilidades";
+import AdicionarFragilidades from "./adicionar/AdicionarFragilidades";
 
-function Vulnerabilidades(props) {
-    const [itemsPerPage] = useState(4);
+function Fragilidades(props) {
+    const [itemsPerPage] = useState(5);
     const [currentPage, setCurrentPage] = useState(1);
-    const [vulnerabilidade, setVulnerabilidade] = useState([]);
-    const [editarVulnerabilidadesId, setEditarVulnerabilidadesId] = useState(null);
+    const [fragilidades, setFragilidades] = useState([]);
+    const [editarFragilidadesId, setEditarFragilidadesId] = useState(null);
     const [componenteAtivo, setComponenteAtivo] = useState('tabela');
 
-    const handleEditarClick = (vulnerabilidadesId) => {
+    const handleEditarClick = (fragilidadesId) => {
         setComponenteAtivo('editar');
-        setEditarVulnerabilidadesId(vulnerabilidadesId);
+        setEditarFragilidadesId(fragilidadesId);
     }
 
     const handleFechar = () => {
         setComponenteAtivo('tabela');
     }
 
-    const handleAdicionarClick = () => {
+    const handleAcicionarClick = () => {
         setComponenteAtivo('adicionar');
     }
 
     useEffect(() => {
-        async function carregarVulnerabilidade() {
+        async function carregarFragilidades() {
             try {
-                const response = await api.get(
-                    `v1/vulnerabilidades/paciente/${props.pacienteId}`
-                );
-                setVulnerabilidade(response.data);
+                const response = await api.get(`/v1/fragilidades/paciente/${props.pacienteId}`);
+                setFragilidades(response.data);
             } catch (error) {
                 console.log(error);
             }
         }
 
-        carregarVulnerabilidade();
-    });
+        carregarFragilidades();
+    })
 
-    const totalPages = Math.ceil((vulnerabilidade?.length || 0) / itemsPerPage);
-    const pagesPerGroup = 10;
-    const currentPageGroup = Math.ceil(currentPage / pagesPerGroup);
+    const totalPages = Math.ceil((fragilidades?.length || 0) / itemsPerPage);
+    const pagesPerGrop = 10;
+    const currentPageGroup = Math.ceil(currentPage / pagesPerGrop);
 
     const handlePageChange = (pageNumber) => {
         setCurrentPage(pageNumber);
-    };
+    }
 
-    const getVulnerabilidadesPaginaAtual = () => {
+    const getFragilidadesPaginaAtual = () => {
         const inicio = (currentPage - 1) * itemsPerPage;
-        const fim = inicio + itemsPerPage;
-        return vulnerabilidade?.slice(inicio, fim) || [];
-    };
+        const fim = inicio - itemsPerPage;
+        return fragilidades?.slice(inicio, fim) || [];
+    }
 
     const renderGroups = () => {
         const groups = [];
 
-        // Primeira página
         groups.push(
             <button
                 key={1000}
@@ -69,16 +65,15 @@ function Vulnerabilidades(props) {
             </button>
         );
 
-        const startGroup = (currentPageGroup - 1) * pagesPerGroup + 1;
-        const endGroup = Math.min(startGroup + pagesPerGroup - 1, totalPages);
+        const startGroup = (currentPage - 1) * pagesPerGrop + 1;
+        const endGroup = Math.min(startGroup + pagesPerGrop -1, totalPages);
 
-        for (let i = startGroup; i <= endGroup; i++) {
+        for (let i = startGroup; i < endGroup; i++) {
             groups.push(
                 <button
                     key={i}
                     onClick={() => handlePageChange(i)}
-                    className={currentPage === i ? "PaginaAtiva" : "PaginaInativa"}
-                >
+                    className={currentPage === i ? "PaginaAtiva" : "PaginaInativa"}>
                     {i}
                 </button>
             );
@@ -92,26 +87,23 @@ function Vulnerabilidades(props) {
             >
                 Próxima
             </button>
-        );
+        )
 
         return groups;
-    };
+    }
 
     return (
-        <div className="ProtocoloIdentificacao">
-            <PainelFicha titulo="2.6 Protocolo de Identificação do Idoso Vulnerável (VES-13)" botaoNew={true} onAdicionarClick={handleAdicionarClick}>
+        <div className="Fragilidades">
+            <PainelFicha titulo="4.9 Fragilidades" botaoNew={true} onAdicionarClick={handleAcicionarClick}>
                 <div className="Conteudo">
-                    {componenteAtivo === 'tabela' && (
+                    {componenteAtivo === "tabela" && (
                         <>
-                            <div className="Grafico" style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                                <GraficoVES data={vulnerabilidade}/>
-                            </div>
-                            <TabelaVulnerabilidades
+                            <TabelaFragilidades
                                 itemsPerPage={itemsPerPage}
                                 currentPage={currentPage}
                                 onEditarClick={handleEditarClick}
                                 pacienteId={props.pacienteId}
-                                data={getVulnerabilidadesPaginaAtual()}
+                                data={getFragilidadesPaginaAtual()}
                             />
                             <div className="Paginacao">
                                 <button
@@ -132,15 +124,15 @@ function Vulnerabilidades(props) {
                             </div>
                         </>
                     )}
-                    {componenteAtivo === 'editar' && (
-                        <EditarVulnerabilidades
+                    {componenteAtivo === "editar" && (
+                        <EditarFragilidades
                             onClose={handleFechar}
                             pacienteId={props.pacienteId}
-                            vulnerabilidadeId={editarVulnerabilidadesId}
+                            fragilidadesId={editarFragilidadesId}
                         />
                     )}
-                    {componenteAtivo === 'adicionar' && (
-                        <AdicionarVulnerabilidades
+                    {componenteAtivo === "adicionar" && (
+                        <AdicionarFragilidades
                             pacienteId={props.pacienteId}
                             onClose={handleFechar}
                         />
@@ -148,7 +140,7 @@ function Vulnerabilidades(props) {
                 </div>
             </PainelFicha>
         </div>
-    );
+    )
 }
 
-export default Vulnerabilidades;
+export default Fragilidades;

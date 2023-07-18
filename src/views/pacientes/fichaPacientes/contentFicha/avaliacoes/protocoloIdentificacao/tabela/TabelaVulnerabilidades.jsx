@@ -101,10 +101,7 @@ function TabelaVulnerabilidades(props) {
 
     const itemsPerPage = props.itemsPerPage;
 
-
     const totalPages = Math.ceil((props.data?.length || 0) / itemsPerPage);
-
-
 
     const handleEditarClick = (vulnerabilidadeId) => {
         props.onEditarClick(vulnerabilidadeId);

@@ -129,11 +129,14 @@ function MenuFicha(props) {
                     <div className="OpcaoFicha" onClick={() => handleItemClick("frrisque")}>
                         4.8 Frrisque
                     </div>
+                    <div className="OpcaoFicha" onClick={() => handleItemClick("fragilidades")}>
+                        4.9 Fragilidades
+                    </div>
                     <div className="OpcaoFicha" onClick={() => handleItemClick("infancia")}>
-                        4.9 Circunstâncias Inicias da Vida e Adversidades na Infancia
+                        4.10 Circunstâncias Inicias da Vida e Adversidades na Infancia
                     </div>
                     <div className="OpcaoFicha" onClick={() => handleItemClick("sarcf-f")}>
-                        4.10 SARC-F
+                        4.11 SARC-F
                     </div>
                 </div>
             </div>
