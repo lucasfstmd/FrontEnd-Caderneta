@@ -6,7 +6,7 @@ import './Header.css';
 import {FaUsers, FaUser, FaHospitalSymbol} from 'react-icons/fa';
 import { BiExport } from 'react-icons/bi'
 
-import BotaoUsuario from "../../../components/botaoUsuario/BotaoUsuario";
+import BotaoUsuario from "../../../components/menuUsuario/MenuUsuario";
 
 function Header (props) {
 

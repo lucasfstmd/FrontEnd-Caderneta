@@ -34,7 +34,7 @@ function FragilidadesLinha({ fragilidades, onEditClick }) {
     }
 
     return (
-        <tr key={fragilidades.id} className="VulnerabilidadesLinha">
+        <tr key={fragilidades.id} className="FragilidadesLinha">
             <td className="TextosTabela">
                 <div className="Pergunta">
                     P1:

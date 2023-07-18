@@ -1,10 +1,10 @@
 import React from "react";
 import './App.css'
-import Aplicacao from "./views/aplicacao/Aplicacao";
+import Aplicacao from "./pages/aplicacao/Aplicacao";
 import {isAuthenticated} from "./service/auth/auth";
-import Login from "./views/login/Login";
+import Login from "./pages/login/Login";
 
-function App(props) {
+function App() {
 
     return (
         <div className="App">
