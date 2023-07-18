@@ -1,0 +1,73 @@
+.AdicionarFragilidades .BotaoForm {
+    margin-right: 3vh;
+    margin-bottom: 3vh;
+    display: flex;
+    justify-content: center;
+}
+
+.AdicionarFragilidades .botaoFormSalvar {
+    font-size: 15px;
+    padding: 7px 15px;
+    background-color: #3ab63a;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    margin-right: 1vh;
+}
+
+.AdicionarFragilidades .botaoFormFechar {
+    font-size: 15px;
+    padding: 7px 15px;
+    background-color: #ff0000;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    margin-right: 1vh;
+}
+
+.AdicionarFragilidades input {
+    margin-left: 1vh;
+}
+
+.AdicionarFragilidades label {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 65vh;
+    margin: 1.3vh;
+    font-size: 0.9rem;
+}
+
+.AdicionarFragilidades input {
+    width: 80%;
+    margin: 1vh;
+}
+
+.AdicionarFragilidades #Titulo {
+    color: dodgerblue;
+    font-size: 1rem;
+    margin: 1vh;
+}
+
+.AdicionarFragilidades .TabelaQuadro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.AdicionarFragilidades .quadro-style {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.AdicionarFragilidades .quadro-style table,
+.AdicionarFragilidades .quadro-style th,
+.AdicionarFragilidades .quadro-style td {
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.AdicionarFragilidades .quadro-style th,
+.AdicionarFragilidades .quadro-style td {
+    padding: 15px;
+}
