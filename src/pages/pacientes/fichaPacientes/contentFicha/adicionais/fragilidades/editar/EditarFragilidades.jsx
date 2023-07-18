@@ -163,7 +163,7 @@ function EditarFragilidades(props) {
             <p id="Titulo"><strong>2. Diminuição da força de preensão no Dinamômetro Manual Jamar® (mão dominante), com ponto de corte ajustado para sexo e IMC:</strong></p>
             <div className="LabelInput">
                 <label>Média da força de preensão: </label>
-                <input defaultValue={p2_1} onChange={(e) => setP2_1(e.target.value)} type="text"/>
+                <input defaultValue={fragilidade ? fragilidade.p2_1: ""} onChange={(e) => setP2_1(e.target.value)} type="text"/>
             </div>
             <div className="TabelaQuadro">
                 <div className="Quadro">
@@ -255,7 +255,7 @@ function EditarFragilidades(props) {
             <p id="Titulo"><strong>4. Diminuição da velocidade da marcha calculada através do tempo em segundos gasto para percorrer 4 metros, ajustado pelo sexo e altura.</strong></p>
             <div className="LabelInput">
                 <label>o tempo gasto para percorrer 4 metros:</label>
-                <input defaultValue={p4_1} onChange={(e) => setP4_1(e.target.value)} type="text"/>
+                <input defaultValue={fragilidade ? fragilidade.p4_1: ""} onChange={(e) => setP4_1(e.target.value)} type="text"/>
             </div>
             <div className="TabelaQuadro">
                 <div>
