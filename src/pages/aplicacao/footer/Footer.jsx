@@ -5,7 +5,7 @@ const Footer = () => (
     <footer className="Footer">
         <div className="FooterContent">
             <strong>Caderneta de Saúde da Pessoa Idosa </strong>
-            2023
+            {new Date().getFullYear()}
         </div>
     </footer>
 );
