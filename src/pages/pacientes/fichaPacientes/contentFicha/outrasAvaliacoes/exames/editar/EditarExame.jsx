@@ -26,7 +26,7 @@ function EditarExame(props) {
                 setTipo(response.data.tipo);
                 setProfissional(response.data.profissional);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 
@@ -51,7 +51,6 @@ function EditarExame(props) {
             await api.patch(`v1/agendas/${props.exameId}`, Exame);
             setOpen(true);
         } catch (error) {
-            console.log(error)
             if (error.response && error.response.status === 400) {
                 setOpenErro400(true);
             } else if (error.response && error.response.status === 500) {

@@ -22,7 +22,7 @@ function GlicemiaLinha({ glicemia, onEditClick }) {
         try {
             await api.delete(`v1/glicemia-controles/${glicemia.id}`);
         } catch (error) {
-            console.log(error)
+            console.log(undefined)
         }
     }
 
@@ -115,7 +115,7 @@ function TabelaGlicemia(props) {
                 );
                 setGlicemia(response.data);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

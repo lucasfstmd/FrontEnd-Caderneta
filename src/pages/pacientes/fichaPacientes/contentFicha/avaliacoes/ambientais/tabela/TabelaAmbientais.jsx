@@ -20,7 +20,7 @@ function AmbientaisLinha({ ambientais, onEditClick }) {
         try {
             await api.delete(`v1/ambientais/${ambientais.id}`);
         } catch (error) {
-            console.log(error)
+            console.log(undefined)
         }
     }
 
@@ -149,7 +149,7 @@ function TabelaAmbientais(props) {
                 );
                 setAmbientais(response.data);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

@@ -20,7 +20,7 @@ function CronicasLinha({ cronicas, onEditClick }) {
         try {
             await api.delete(`v1/cronicas/${cronicas.id}`);
         } catch (error) {
-            console.log(error)
+            console.log(undefined)
         }
     }
 
@@ -121,7 +121,7 @@ function TabelaCronicas(props) {
                 );
                 setCronicas(response.data);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

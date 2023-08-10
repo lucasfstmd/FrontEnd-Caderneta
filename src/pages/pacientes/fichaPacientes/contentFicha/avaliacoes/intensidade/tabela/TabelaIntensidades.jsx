@@ -22,7 +22,7 @@ function IntensidadesLinha({ intensidades, onEditClick }){
         try {
             await api.delete(`v1/intensidades/${intensidades.id}`);
         } catch (error) {
-            console.log(error)
+            console.log(undefined)
         }
     }
 
@@ -115,7 +115,7 @@ function TabelaIntensidades(props) {
                 );
                 setIntensidades(response.data);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

@@ -35,7 +35,7 @@ function EditarFrrisques(props) {
                 setP10(response.data.p10);
 
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

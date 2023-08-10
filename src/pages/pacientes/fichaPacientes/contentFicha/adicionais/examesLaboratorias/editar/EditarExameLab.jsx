@@ -126,7 +126,7 @@ function EditarExameLab(props) {
                 setLeucogramaLinfocitos(response.data.leucograma_linfocitos);
                 setLeucogramaMonocitos(response.data.leucograma_monocitos);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 
@@ -202,7 +202,6 @@ function EditarExameLab(props) {
             await api.patch(`v1/laboratorial-exames/${props.exameLabId}`, ExameLabo);
             setOpen(true);
         } catch (error) {
-            console.log(error)
             if (error.response && error.response.status === 400) {
                 setOpenErro400(true);
             } else if (error.response && error.response.status === 500) {

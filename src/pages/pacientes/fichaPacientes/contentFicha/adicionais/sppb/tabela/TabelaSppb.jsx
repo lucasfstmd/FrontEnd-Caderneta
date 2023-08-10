@@ -20,7 +20,7 @@ function SppbLinha({ sppb, onEditClick }) {
         try {
             await api.delete(`v1/sppbs/${sppb.id}`);
         } catch (error) {
-            console.log(error)
+            console.log(undefined)
         }
     }
 
@@ -157,7 +157,7 @@ function TabelaSppb(props) {
                 );
                 setSppbs(response.data);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

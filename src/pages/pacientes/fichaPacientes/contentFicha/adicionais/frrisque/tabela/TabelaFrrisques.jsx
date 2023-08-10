@@ -20,7 +20,7 @@ function FrrisquesLinha({ frrisques, onEditarClick }) {
         try {
             await api.delete(`v1/frrisques/${frrisques.id}`);
         } catch (error) {
-            console.log(error)
+            console.log(undefined)
         }
     }
 
@@ -139,7 +139,7 @@ function TabelaFrrisques(props) {
                 );
                 setFrrisques(response.data);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

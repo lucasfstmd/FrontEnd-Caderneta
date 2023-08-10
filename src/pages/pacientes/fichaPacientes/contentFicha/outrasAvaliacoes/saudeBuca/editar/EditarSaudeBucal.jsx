@@ -82,7 +82,7 @@ function EditarSaudeBucal(props) {
                 setP31(response.data.p31);
                 setP32(response.data.p32);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 
@@ -135,7 +135,6 @@ function EditarSaudeBucal(props) {
             await api.patch(`v1/bucal-saudes/${props.saudeBucalId}`, BucalSaude);
             setOpen(true);
         } catch (error) {
-            console.log(error)
             if (error.response && error.response.status === 400) {
                 setOpenErro400(true);
             } else if (error.response && error.response.status === 500) {

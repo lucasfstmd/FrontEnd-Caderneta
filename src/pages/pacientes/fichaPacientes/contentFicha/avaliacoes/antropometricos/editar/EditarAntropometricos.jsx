@@ -24,7 +24,7 @@ function EditarAntropometricos(props) {
                 setAltura(response.data.altura);
                 setPerimetroPanturrilha(response.data.perimetro_panturrilha);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

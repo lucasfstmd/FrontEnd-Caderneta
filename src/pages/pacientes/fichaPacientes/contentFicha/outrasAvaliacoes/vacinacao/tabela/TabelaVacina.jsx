@@ -22,7 +22,7 @@ function VacinaLinha({ vacina, onEditClick }) {
         try {
             await api.delete(`v1/vacinas/${vacina.id}`);
         } catch (error) {
-            console.log(error)
+            console.log(undefined)
         }
     }
 
@@ -126,7 +126,7 @@ function TabelaVacina(props) {
                 );
                 setVacina(response.data);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

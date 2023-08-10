@@ -26,7 +26,7 @@ function EditarDiagnosticos(props) {
                 setAno_internacao(response.data.ano_internacao);
                 setTempo_internacao(response.data.tempo_internacao);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

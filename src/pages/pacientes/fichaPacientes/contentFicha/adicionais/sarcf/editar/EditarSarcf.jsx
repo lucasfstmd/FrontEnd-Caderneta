@@ -24,7 +24,7 @@ function EditarSarcf(props) {
                 setP4(response.data.p4);
                 setP5(response.data.p5);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

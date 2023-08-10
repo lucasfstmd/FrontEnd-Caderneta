@@ -17,9 +17,8 @@ function Usuarios() {
                 const response = await api.get('v1/usuarios');
                 setUsuarios(response.data);
             } catch (error) {
-                console.log(error)
+                console.log(undefined)
             }
-
         }
 
         carregarUsuarios();

@@ -20,7 +20,7 @@ function MedicamentosLinha({ avaliacoes, onEditClick }) {
         try {
             await api.delete(`v1/avaliacoes/${avaliacoes.id}`);
         } catch (error) {
-            console.log(error)
+            console.log(undefined)
         }
     }
 
@@ -125,7 +125,7 @@ function TabelaMedicamentos(props) {
                 );
                 setAvaliacoes(response.data);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

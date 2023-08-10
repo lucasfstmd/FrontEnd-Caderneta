@@ -30,7 +30,7 @@ function EditarQueda(props) {
                 setLocalQueda(response.data.local_queda);
                 setFraturaQual(response.data.fratura_qual);
             } catch (error) {
-            console.log(error);
+            console.log(undefined);
             }
         }
 

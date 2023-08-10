@@ -26,7 +26,7 @@ function PacientesLinha({ paciente }) {
             await api.delete(`v1/pacientes/${paciente.id}`);
             window.location.reload();
         } catch (error) {
-            console.log(error)
+            console.log(undefined)
         }
     }
 

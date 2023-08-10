@@ -64,7 +64,6 @@ function AdicionarInfancias(props) {
             await api.post("v1/infancias", Infancia);
             setOpen(true);
         } catch (error) {
-            console.log(error)
             if (error.response && error.response.status === 400) {
                 setOpenErro400(true);
             } else if (error.response && error.response.status === 500) {

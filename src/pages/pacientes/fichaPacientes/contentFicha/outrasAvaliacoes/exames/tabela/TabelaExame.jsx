@@ -22,7 +22,7 @@ function ExameLinha({ exame, onEditClick }) {
         try {
             await api.delete(`v1/agendas/${exame.id}`);
         } catch (error) {
-            console.log(error)
+            console.log(undefined)
         }
     }
 
@@ -123,7 +123,7 @@ function TabelaExame(props) {
                 );
                 setExames(response.data);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

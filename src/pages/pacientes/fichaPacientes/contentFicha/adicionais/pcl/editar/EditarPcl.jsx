@@ -80,7 +80,7 @@ function EditarPcl(props) {
                 setP32(response.data.p32);
                 setP33(response.data.p33);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

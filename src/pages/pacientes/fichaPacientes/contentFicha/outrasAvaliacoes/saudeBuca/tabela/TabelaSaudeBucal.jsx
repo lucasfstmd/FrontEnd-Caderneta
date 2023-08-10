@@ -20,7 +20,7 @@ function SaudeBucalLinha({ bucalSaudes, onEditClick }){
         try {
             await api.delete(`v1/bucal-saudes/${bucalSaudes.id}`);
         } catch (error) {
-            console.log(error)
+            console.log(undefined)
         }
     }
 

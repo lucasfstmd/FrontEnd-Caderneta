@@ -22,7 +22,7 @@ function EditarObitos(props) {
                 setQuando(response.data.quando);
                 setMotivo(response.data.motivo);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 
@@ -45,7 +45,6 @@ function EditarObitos(props) {
             await api.patch(`v1/obitos/${props.obitosId}`, Obito);
             setOpen(true);
         } catch (error) {
-            console.log(error)
             if (error.response && error.response.status === 400) {
                 setOpenErro400(true);
             } else if (error.response && error.response.status === 500) {

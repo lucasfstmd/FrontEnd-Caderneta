@@ -44,7 +44,7 @@ function EditarVulnerabilidades(props) {
                 setIncapacidades4(response.data.incapacidades4);
                 setIncapacidades5(response.data.incapacidades5);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

@@ -18,7 +18,7 @@ function UsuarioLinha({ data }) {
         try {
             await api.delete(`v1/usuarios/${data.id}`);
         } catch (error) {
-            console.log(error);
+            console.log(undefined);
         }
     }
 

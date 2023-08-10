@@ -20,7 +20,7 @@ function ControlePesoLinha({ controlePeso, onEditClick }) {
         try {
             await api.delete(`v1/pesos/${controlePeso.id}`);
         } catch (error) {
-            console.log(error);
+            console.log(undefined);
         }
     }
 
@@ -108,7 +108,7 @@ function TabelaControlePeso(props) {
                 );
                 setControlePeso(response.data);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

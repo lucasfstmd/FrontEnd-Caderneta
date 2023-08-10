@@ -57,7 +57,7 @@ function EditarHabitos(props) {
                 setP19(response.data.p19);
 
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

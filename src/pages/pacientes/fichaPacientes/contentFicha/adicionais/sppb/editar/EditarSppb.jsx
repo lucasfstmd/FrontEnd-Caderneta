@@ -44,7 +44,7 @@ function EditarSppb(props) {
                 setP13(response.data.p13);
                 setP14(response.data.p14);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

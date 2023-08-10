@@ -20,7 +20,7 @@ function PercaPesoLinha({ pesoPerca, onEditClick }){
         try {
             await api.delete(`v1/peso-perdas/${pesoPerca.id}`);
         } catch (error) {
-            console.log(error)
+            console.log(undefined)
         }
     }
 
@@ -108,7 +108,7 @@ function TabelaPercaPeso(props) {
                 );
                 setPercaPesos(response.data);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

@@ -20,7 +20,7 @@ function PolifarmaciaLinha({ polifarmacia, onEditClick }) {
         try {
             await api.delete(`v1/polifarmacias/${polifarmacia.id}`);
         } catch (error) {
-            console.log(error)
+            console.log(undefined)
         }
     }
 
@@ -105,7 +105,7 @@ function TabelaPolifarmacia(props) {
                 );
                 setPolifarmacia(response.data);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

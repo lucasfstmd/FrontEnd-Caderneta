@@ -26,7 +26,7 @@ const Ficha = () => {
                 const response = await api.get(`v1/pacientes/${id}`);
                 setPaciente(response.data);
             } catch (error) {
-                console.log(error)
+                console.log(undefined)
             }
         }
 

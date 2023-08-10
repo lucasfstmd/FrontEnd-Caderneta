@@ -28,7 +28,7 @@ function EditarMedicamentos(props) {
                 setSuspensao_data(response.data.suspensao_data);
                 setSuspensao_motivo(response.data.suspensao_motivo);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

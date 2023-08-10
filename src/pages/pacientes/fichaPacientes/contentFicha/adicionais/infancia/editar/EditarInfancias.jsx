@@ -63,7 +63,7 @@ function EditarInfancias(props) {
                 setB6(response.data.b6);
 
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 
@@ -106,7 +106,6 @@ function EditarInfancias(props) {
             await api.patch(`v1/infancias/${props.infanciaId}`, Infancia);
             setOpen(true);
         } catch (error) {
-            console.log(error)
             if (error.response && error.response.status === 400) {
                 setOpenErro400(true);
             } else if (error.response && error.response.status === 500) {

@@ -16,7 +16,7 @@ function SarcfLinha({ sarcf, onEditClick }) {
         try {
             await api.delete(`v1/sarcfs/${sarcf.id}`);
         } catch (error) {
-            console.log(error);
+            console.log(undefined);
         }
     }
 
@@ -110,7 +110,7 @@ function TabelaSarcf(props) {
                 );
                 setSarcf(response.data);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

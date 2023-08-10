@@ -20,7 +20,7 @@ function EditarPressao(props) {
                 setData(response.data.data);
                 setPressao(response.data.pressao);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 
@@ -42,7 +42,6 @@ function EditarPressao(props) {
             await api.patch(`v1/pressao-controles/${props.pressaoId}`, Pressao);
             setOpen(true);
         } catch (error) {
-            console.log(error)
             if (error.response && error.response.status === 400) {
                 setOpenErro400(true);
             } else if (error.response && error.response.status === 500) {

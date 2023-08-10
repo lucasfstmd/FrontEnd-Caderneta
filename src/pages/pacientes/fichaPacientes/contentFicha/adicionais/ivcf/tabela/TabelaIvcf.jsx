@@ -20,7 +20,7 @@ function IvcfLinha({ ivcf, onEditClick }) {
         try {
             await api.delete(`v1/ivcfs/${ivcf.id}`);
         } catch (error) {
-            console.log(error)
+            console.log(undefined)
         }
     }
 

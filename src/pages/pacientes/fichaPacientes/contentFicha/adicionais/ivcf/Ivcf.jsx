@@ -34,7 +34,7 @@ function Ivcf(props) {
                 );
                 setIvcf(response.data);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

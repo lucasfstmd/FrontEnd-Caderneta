@@ -20,7 +20,7 @@ function HabitosLinha({ habitos, onEditClick }){
         try {
             await api.delete(`v1/habitos/${habitos.id}`);
         } catch (error) {
-            console.log(error)
+            console.log(undefined)
         }
     }
 
@@ -181,7 +181,7 @@ function TabelaHabitos(props) {
                 );
                 setHabitos(response.data);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

@@ -40,7 +40,7 @@ function EditarAmbientais(props) {
                 setP10(response.data.p10);
                 setP11(response.data.p11);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

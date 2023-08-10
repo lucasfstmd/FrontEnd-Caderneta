@@ -20,7 +20,7 @@ function UbsLinha({ data }) {
             await api.delete(`v1/ubs/${data.id}`);
             window.location.reload(true);
         } catch (error) {
-            console.log(error);
+            console.log(undefined);
         }
     }
 

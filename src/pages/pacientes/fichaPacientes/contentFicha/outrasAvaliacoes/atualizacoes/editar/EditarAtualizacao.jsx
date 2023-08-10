@@ -20,7 +20,11 @@ function EditarAtualizacao(props) {
                 setData(response.data.data);
                 setResponsavel(response.data.responsavel);
             } catch (error) {
-                console.log(error);
+                if (error.response && error.response.status === 400) {
+                    setOpenErro400(true);
+                } else if (error.response && error.response.status === 500) {
+                    setOpenErro500(true);
+                }
             }
         }
 
@@ -43,7 +47,6 @@ function EditarAtualizacao(props) {
             await api.patch(`v1/atualizacoes/${props.atualizacaoId}`, Atualizacao);
             setOpen(true);
         } catch (error) {
-            console.log(error)
             if (error.response && error.response.status === 400) {
                 setOpenErro400(true);
             } else if (error.response && error.response.status === 500) {

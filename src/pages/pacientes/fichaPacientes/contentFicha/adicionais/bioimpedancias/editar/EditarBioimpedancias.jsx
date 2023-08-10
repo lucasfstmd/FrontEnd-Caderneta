@@ -66,7 +66,7 @@ function EditarBioimpedancias(props) {
                 setP24(response.data.p24);
                 setP25(response.data.p25);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 
@@ -111,7 +111,6 @@ function EditarBioimpedancias(props) {
             await api.patch(`v1/bioimpedancias/${props.bioimpedanciaId}`, Bioimpedancia);
             setOpen(true);
         } catch (error) {
-            console.log(error)
             if (error.response && error.response.status === 400) {
                 setOpenErro400(true);
             } else if (error.response && error.response.status === 500) {

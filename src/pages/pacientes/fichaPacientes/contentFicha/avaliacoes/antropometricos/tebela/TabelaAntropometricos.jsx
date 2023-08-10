@@ -22,7 +22,7 @@ function AntropometricosLinha({ antropometricos, onEditClick }) {
         try {
             await api.delete(`v1/antropometricos/${antropometricos.id}`);
         } catch (error) {
-            console.log(error);
+            console.log(undefined);
         }
     }
 
@@ -122,7 +122,7 @@ function TabelaAntropometricos(props) {
                 );
                 setAntropometricos(response.data);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

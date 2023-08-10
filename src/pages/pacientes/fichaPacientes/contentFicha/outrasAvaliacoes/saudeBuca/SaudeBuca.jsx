@@ -34,7 +34,7 @@ function SaudeBuca(props) {
                 );
                 setSaudeBucal(response.data);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

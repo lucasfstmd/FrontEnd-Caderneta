@@ -20,7 +20,7 @@ function EditarPercaPeso(props) {
                 setAno(response.data.ano);
                 setPerdaPeso(response.data.perda_peso);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

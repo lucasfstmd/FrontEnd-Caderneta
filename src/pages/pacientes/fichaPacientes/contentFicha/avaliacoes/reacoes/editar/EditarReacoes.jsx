@@ -22,7 +22,7 @@ function EditarReacoes(props) {
                 setData(response.data.data);
                 setReacoesAlergicas(response.data.reacoesAdversasOuAlergicas);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

@@ -17,7 +17,7 @@ function ObitosLinha({ obitos, onEditClick }) {
         try {
             await api.delete(`v1/obitos/${obitos.id}`);
         } catch (error) {
-            console.log(error);
+            console.log(undefined);
         }
     }
 
@@ -98,7 +98,7 @@ function TabelaObitos(props) {
                 setObitos(response.data);
                 setShowInfoObitos(response.data.length === 0);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

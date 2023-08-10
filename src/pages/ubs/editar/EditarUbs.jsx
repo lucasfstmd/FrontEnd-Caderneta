@@ -23,7 +23,7 @@ function EditarUbs() {
                 setUbs(response.data);
                 setNome(response.data.nome);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

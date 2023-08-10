@@ -22,7 +22,7 @@ function PclLinha({ pcl, onEditClick }) {
         try {
             await api.delete(`v1/pcls/${pcl.id}`);
         } catch (error) {
-            console.log(error)
+            console.log(undefined)
         }
     }
 
@@ -107,7 +107,7 @@ function TabelaPcl(props) {
                 );
                 setPcls(response.data);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

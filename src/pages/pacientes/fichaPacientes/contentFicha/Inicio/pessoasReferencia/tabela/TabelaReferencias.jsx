@@ -21,7 +21,7 @@ function ReferenciaLinha({ referencias, onEditClick }){
         try {
             await api.delete(`v1/referencias/${referencias.id}`);
         } catch (error) {
-            console.log(error)
+            console.log(undefined)
         }
     }
 
@@ -134,7 +134,7 @@ function TabelaReferencias(props) {
                 );
                 setReferencias(response.data);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

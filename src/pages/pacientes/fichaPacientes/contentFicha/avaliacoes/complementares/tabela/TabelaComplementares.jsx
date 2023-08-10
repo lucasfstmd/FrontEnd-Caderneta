@@ -20,7 +20,7 @@ function ComplementaresLinha({ complementares, onEditClick }) {
         try {
             await api.delete(`v1/complementares/${complementares.id}`);
         } catch (error) {
-            console.log(error)
+            console.log(undefined)
         }
     }
 
@@ -125,7 +125,7 @@ function TabelaComplementares(props) {
                 );
                 setComplementares(response.data);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

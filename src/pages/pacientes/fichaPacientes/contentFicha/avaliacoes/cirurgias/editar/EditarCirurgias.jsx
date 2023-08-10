@@ -22,7 +22,7 @@ function EditarCirurgias(props) {
                 setAno(response.data.ano);
                 setObservacao(response.data.observacao);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

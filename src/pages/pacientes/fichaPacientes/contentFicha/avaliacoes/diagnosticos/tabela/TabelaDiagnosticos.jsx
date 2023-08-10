@@ -16,7 +16,7 @@ function DiagnosticosLinha({ diagnosticos, onEditClick }) {
         try {
             await api.delete(`v1/diagnosticos/${diagnosticos.id}`);
         } catch (error) {
-            console.log(error);
+            console.log(undefined);
         }
     }
 
@@ -96,7 +96,7 @@ function TabelaDiagnosticos(props) {
                 );
                 setDiagnosticos(response.data);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

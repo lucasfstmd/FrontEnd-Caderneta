@@ -17,7 +17,7 @@ function BioimpedanciaLinha({ bioimpedancia, onEditarClick }) {
         try {
             await api.delete(`v1/bioimpedancias/${bioimpedancia.id}`);
         } catch (error) {
-            console.log(error);
+            console.log(undefined);
         }
     }
 

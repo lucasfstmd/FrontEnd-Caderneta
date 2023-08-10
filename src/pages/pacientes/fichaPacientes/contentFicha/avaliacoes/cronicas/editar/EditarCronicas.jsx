@@ -26,7 +26,7 @@ function EditarCronicas(props) {
                 setP3(response.data.p3);
                 setP4(response.data.p4);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

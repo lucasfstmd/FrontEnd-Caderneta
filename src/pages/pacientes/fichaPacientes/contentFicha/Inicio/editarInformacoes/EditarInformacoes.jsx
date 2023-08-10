@@ -107,7 +107,7 @@ function EditarInformacoes(props) {
                 setCelular(response.data.celular);
                 setEmail(response.data.email);
             } catch (error) {
-                console.log(error)
+                console.log(undefined)
             }
         }
 

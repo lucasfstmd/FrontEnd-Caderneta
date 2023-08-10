@@ -16,7 +16,7 @@ function ForcaPreensaoLinha({ forca, onEditarClick }) {
         try {
             await api.delete(`v1/preensao-forcas/${forca.id}`);
         } catch (error) {
-            console.log(error)
+            console.log(undefined)
         }
     }
 
@@ -113,7 +113,7 @@ function TabelaForcaPreensao(props) {
                 );
                 setForcasPreensao(response.data);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

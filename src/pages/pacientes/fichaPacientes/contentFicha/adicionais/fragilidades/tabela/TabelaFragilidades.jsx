@@ -16,7 +16,7 @@ function FragilidadesLinha({ fragilidades, onEditClick }) {
         try {
             await api.delete(`v1/fragilidades/${fragilidades.id}`);
         } catch (error) {
-            console.log(error);
+            console.log(undefined);
         }
     }
 

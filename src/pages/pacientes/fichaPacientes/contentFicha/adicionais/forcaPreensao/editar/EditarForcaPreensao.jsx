@@ -24,7 +24,7 @@ function EditarForcaPreensao(props) {
                 setMedida3(response.data.medida_3);
                 setMembro(response.data.membro_dominante);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 
@@ -48,7 +48,6 @@ function EditarForcaPreensao(props) {
             await api.patch(`v1/preensao-forcas/${props.forcaPressaoId}`, PreensaoForca);
             setOpen(true);
         } catch (error) {
-            console.log(error)
             if (error.response && error.response.status === 400) {
                 setOpenErro400(true);
             } else if (error.response && error.response.status === 500) {

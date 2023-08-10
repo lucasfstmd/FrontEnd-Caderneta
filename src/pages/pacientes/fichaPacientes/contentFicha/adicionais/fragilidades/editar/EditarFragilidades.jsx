@@ -70,7 +70,7 @@ function EditarFragilidades(props) {
                 setBaixo_nivel_atividade_fisica(response.data.baixo_nivel_atividade_fisica);
                 setClassificacao_da_fragilidade(response.data.classificacao_da_fragilidade);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

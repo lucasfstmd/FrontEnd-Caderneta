@@ -84,7 +84,6 @@ function AdicionarSaudeBucal(props) {
             await api.post("v1/bucal-saudes", BucalSaude);
             setOpen(true);
         } catch (error) {
-            console.log(error)
             if (error.response && error.response.status === 400) {
                 setOpenErro400(true);
             } else if (error.response && error.response.status === 500) {

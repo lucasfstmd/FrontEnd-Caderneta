@@ -22,7 +22,7 @@ function EditarIntensidades(props) {
                 setLocalDor(response.data.local_dor);
                 setIntensidade(response.data.intensidade);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 
@@ -45,7 +45,6 @@ function EditarIntensidades(props) {
             await api.patch(`v1/intensidades/${props.intensidadesId}`, Intensidade);
             setOpen(true);
         } catch (error) {
-            console.log(error)
             if (error.response && error.response.status === 400) {
                 setOpenErro400(true);
             } else if (error.response && error.response.status === 500) {

@@ -28,7 +28,7 @@ function EditarVacina(props) {
                 setLote(response.data.lote)
                 setOutra(response.data.outra);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 
@@ -54,7 +54,6 @@ function EditarVacina(props) {
             await api.patch(`v1/vacinas/${props.vacinaId}`, Vacina);
             setOpen(true);
         } catch (error) {
-            console.log(error)
             if (error.response && error.response.status === 400) {
                 setOpenErro400(true);
             } else if (error.response && error.response.status === 500) {

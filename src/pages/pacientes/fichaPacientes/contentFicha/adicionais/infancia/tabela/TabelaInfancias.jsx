@@ -20,7 +20,7 @@ function InfanciasLinha({ infancias, onEditarClick }){
         try {
             await api.delete(`v1/infancias/${infancias.id}`);
         } catch (error) {
-            console.log(error)
+            console.log(undefined)
         }
     }
 

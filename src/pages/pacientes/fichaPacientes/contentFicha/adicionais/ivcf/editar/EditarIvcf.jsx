@@ -77,7 +77,7 @@ function EditarIvcf(props) {
                 setP21(response.data.p21);
                 setP22(response.data.p22);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

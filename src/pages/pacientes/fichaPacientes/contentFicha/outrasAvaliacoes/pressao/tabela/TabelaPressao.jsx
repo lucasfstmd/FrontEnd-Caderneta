@@ -22,7 +22,7 @@ function PressaoLinha({ Pressao, onEditClick }) {
         try {
             await api.delete(`v1/pressao-controles/${Pressao.id}`);
         } catch (error) {
-            console.log(error)
+            console.log(undefined)
         }
     }
 
@@ -111,7 +111,7 @@ function TabelaPressao(props) {
                 );
                 setPressao(response.data);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

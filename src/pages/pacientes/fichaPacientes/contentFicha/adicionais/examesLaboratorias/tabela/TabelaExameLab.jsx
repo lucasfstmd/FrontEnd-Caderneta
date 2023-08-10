@@ -19,7 +19,7 @@ function ExameLabLinha({ ExameLab, onEditarClick }) {
         try {
             await api.delete(`v1/laboratorial-exames/${ExameLab.id}`);
         } catch (error) {
-            console.log(error)
+            console.log(undefined)
         }
     }
 

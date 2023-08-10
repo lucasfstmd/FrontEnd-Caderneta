@@ -20,7 +20,7 @@ function EditarControlePeso(props) {
                 setAno(response.data.ano);
                 setPeso(response.data.peso);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

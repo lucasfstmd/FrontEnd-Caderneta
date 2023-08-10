@@ -21,7 +21,7 @@ function ReacoesLinha({ reacoes, onEditClick }) {
         try {
             await api.delete(`v1/reacoes/${reacoes.id}`);
         } catch (error) {
-            console.log(error);
+            console.log(undefined);
         }
     }
 
@@ -113,7 +113,7 @@ function TabelaReacoes(props) {
                 );
                 setReacoes(response.data);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

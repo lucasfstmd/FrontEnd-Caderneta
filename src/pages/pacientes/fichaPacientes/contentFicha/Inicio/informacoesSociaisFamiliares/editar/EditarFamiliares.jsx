@@ -43,7 +43,7 @@ function EditarFamiliares(props) {
                 setP11(response.data.p11);
                 setP12(response.data.p12);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

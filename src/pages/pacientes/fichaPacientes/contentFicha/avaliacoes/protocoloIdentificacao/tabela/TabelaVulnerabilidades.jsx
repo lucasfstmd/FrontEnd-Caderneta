@@ -16,7 +16,7 @@ function VulnerabilidadesLinha({ vulnerabilidades, onEditClick }) {
         try {
             await api.delete(`v1/vulnerabilidades/${vulnerabilidades.id}`);
         } catch (error) {
-            console.log(error)
+            console.log(undefined)
         }
     }
 

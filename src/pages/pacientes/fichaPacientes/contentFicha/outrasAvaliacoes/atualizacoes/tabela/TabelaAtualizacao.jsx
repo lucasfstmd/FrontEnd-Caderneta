@@ -22,7 +22,7 @@ function AtualizacaoLinha({ atualizacao, onEditClick }){
         try {
             await api.delete(`v1/atualizacoes/${atualizacao.id}`);
         } catch (error) {
-            console.log(error)
+            console.log(undefined)
         }
     }
 
@@ -111,7 +111,7 @@ function TabelaAtualizacao(props) {
                 );
                 setAtualizacoes(response.data);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

@@ -31,7 +31,7 @@ function Fragilidades(props) {
                 const response = await api.get(`/v1/fragilidades/paciente/${props.pacienteId}`);
                 setFragilidades(response.data);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

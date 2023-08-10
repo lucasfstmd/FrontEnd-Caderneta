@@ -32,7 +32,7 @@ function EditarReferencias(props) {
                 setMora_com_voce(response.data.mora_com_voce);
                 setData_informacao(response.data.data_informacao);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

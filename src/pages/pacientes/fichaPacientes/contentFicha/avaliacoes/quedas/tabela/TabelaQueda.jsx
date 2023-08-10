@@ -20,7 +20,7 @@ function QuedaLinha({ quedas, onEditClick }) {
         try {
             await api.delete(`v1/quedas/${quedas.id}`);
         } catch (error) {
-            console.log(error)
+            console.log(undefined)
         }
     }
 
@@ -129,7 +129,7 @@ function TabelaQueda(props) {
                 );
                 setQuedas(response.data);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

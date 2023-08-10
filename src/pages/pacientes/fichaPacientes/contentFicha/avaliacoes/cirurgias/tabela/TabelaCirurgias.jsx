@@ -20,7 +20,7 @@ function CirurgiasLinha({ cirurgias, onEditClick }) {
         try {
             await api.delete(`v1/cirurgias/${cirurgias.id}`);
         } catch (error) {
-            console.log(error);
+            console.log(undefined);
         }
     }
 
@@ -112,7 +112,7 @@ function TabelaCirurgias(props) {
                 );
                 setCirurgias(response.data);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

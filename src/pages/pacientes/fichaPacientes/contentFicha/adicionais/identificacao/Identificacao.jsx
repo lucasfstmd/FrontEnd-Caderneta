@@ -100,7 +100,7 @@ function Identificacao(props) {
                 setEmail(response.data.email);
                 setNumeroIdentificacao(response.data.numero_identificacao)
             } catch (error) {
-                console.log(error)
+                console.log(undefined)
             }
         }
 
@@ -156,7 +156,6 @@ function Identificacao(props) {
             await api.patch(`v1/pacientes/${props.pacienteId}`, Paciente)
             setOpen(true);
         } catch (error) {
-            console.log(error)
             if (error.response && error.response.status === 400) {
             } else if (error.response && error.response.status === 500) {
                 setOpenErro500(true);

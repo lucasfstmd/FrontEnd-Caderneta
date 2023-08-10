@@ -24,7 +24,6 @@ function Login() {
                 navigate("/caderneta", { replace: true });
                 window.location.reload(true);
             } catch (error) {
-                console.log(error);
                 setError("Nome de usuário ou senha incorretos");
             }
         }

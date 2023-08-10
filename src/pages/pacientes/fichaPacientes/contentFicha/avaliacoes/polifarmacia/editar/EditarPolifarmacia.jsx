@@ -16,7 +16,7 @@ function EditarPolifarmacia(props) {
                 const response = await api.get(`v1/polifarmacias/${props.polifarmaciaId}`);
                 setUso_concomitante(response.data.uso_concomitante);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 

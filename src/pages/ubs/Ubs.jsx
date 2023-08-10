@@ -17,7 +17,7 @@ function Ubs() {
                 const response = await api.get('v1/ubs');
                 setUbs(response.data);
             } catch (error) {
-                console.log(error)
+                console.log(undefined)
             }
 
         }

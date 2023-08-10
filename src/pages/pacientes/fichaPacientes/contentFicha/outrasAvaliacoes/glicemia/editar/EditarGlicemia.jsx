@@ -22,7 +22,7 @@ function EditarGlicemia(props) {
                 setTipo(response.data.tipo);
                 setValor(response.data.valor);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 
@@ -45,7 +45,6 @@ function EditarGlicemia(props) {
             await api.patch(`v1/glicemia-controles/${props.glicemiaId}`, Glicemia);
             setOpen(true);
         } catch (error) {
-            console.log(error)
             if (error.response && error.response.status === 400) {
                 setOpenErro400(true);
             } else if (error.response && error.response.status === 500) {

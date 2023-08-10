@@ -19,9 +19,8 @@ function FamiliaresLinha({ familiares, onEditClick }) {
     async function handleDelet() {
         try {
             const response = await api.delete(`v1/familiares/${familiares.id}`);
-            console.log(response.data);
         } catch (error) {
-            console.log(error);
+            console.log(undefined);
         }
     }
 
@@ -152,7 +151,7 @@ function TabelaFamiliares(props) {
                 );
                 setFamiliares(response.data);
             } catch (error) {
-                console.log(error);
+                console.log(undefined);
             }
         }
 
