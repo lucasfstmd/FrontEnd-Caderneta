@@ -64,6 +64,7 @@ const GraficoVES = (props) => {
 
             setChart(newChart);
         }
+        // eslint-disable-next-line
     }, [props.data]);
 
     return (
