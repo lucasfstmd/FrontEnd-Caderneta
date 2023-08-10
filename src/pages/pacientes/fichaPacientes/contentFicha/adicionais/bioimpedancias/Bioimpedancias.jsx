@@ -34,11 +34,7 @@ function Bioimpedancias(props) {
                 );
                 setBioimpedancias(response.data);
             } catch (error) {
-                if (error.response && error.response.status === 400) {
-                    setOpenErro400(true);
-                } else if (error.response && error.response.status === 500) {
-                    setOpenErro500(true);
-                }
+                console.log(undefined);
             }
         }
 
