@@ -27,11 +27,11 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "set HTTPS=true&& set SSL_CRT_FILE=./.certs/cert.pem&& set SSL_KEY_FILE=./.certs/privkey.pem&& react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "serve": "set HTTPS=true&& set SSL_CRT_FILE=./.certs/cert.pem&& set SSL_KEY_FILE=./.certs/privkey.pem&& serve -s build"
+    "serve": "serve -s build"
   },
   "eslintConfig": {
     "extends": [
