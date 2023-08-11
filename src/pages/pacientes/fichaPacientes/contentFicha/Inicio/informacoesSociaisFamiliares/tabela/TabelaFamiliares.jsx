@@ -18,7 +18,7 @@ function FamiliaresLinha({ familiares, onEditClick }) {
 
     async function handleDelet() {
         try {
-            const response = await api.delete(`v1/familiares/${familiares.id}`);
+            await api.delete(`v1/familiares/${familiares.id}`);
         } catch (error) {
             console.log(undefined);
         }
