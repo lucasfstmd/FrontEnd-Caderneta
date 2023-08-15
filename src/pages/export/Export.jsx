@@ -5,7 +5,6 @@ import RequestAuth from "../../service/auth/RequestAuth";
 import { CSVLink } from "react-csv";
 
 function Export() {
-    // const [dataBase, setDataBase] = useState([]);
     const [pacientes, setPacientes] = useState([]);
     const [familiares, setFamiliares] = useState([]);
     const [obitos, setObitos] = useState([]);
@@ -42,10 +41,9 @@ function Export() {
             setData(data);
         }
 
-        const url = 'http://localhost:8080/api'
+        const url = 'https://proeva-caderneta.ccs.ufrn.br:8080/api'
 
         const fetchDataForExport = async () => {
-            // await fetchData(`${url}/v1/database`, setDataBase);
             await fetchData(`${url}/v1/pacientes`, setPacientes);
             await fetchData(`${url}/v1/familiares`, setFamiliares);
             await fetchData(`${url}/v1/obitos`, setObitos);
