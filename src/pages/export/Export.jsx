@@ -5,7 +5,6 @@ import RequestAuth from "../../service/auth/RequestAuth";
 import { CSVLink } from "react-csv";
 
 function Export() {
-    // const [dataBase, setDataBase] = useState([]);
     const [pacientes, setPacientes] = useState([]);
     const [familiares, setFamiliares] = useState([]);
     const [obitos, setObitos] = useState([]);
@@ -34,6 +33,8 @@ function Export() {
     const [examesLabo, setExameLabo] = useState([]);
     const [fragilidades, setFragilidades] = useState([]);
     const [frrisques, setFrrisques] = useState([]);
+    const [sarcfs, setSarcfs] = useState([]);
+
 
     useEffect(() => {
         const fetchData = async (url, setData) => {
@@ -45,7 +46,6 @@ function Export() {
         const url = 'http://localhost:8080/api'
 
         const fetchDataForExport = async () => {
-            // await fetchData(`${url}/v1/database`, setDataBase);
             await fetchData(`${url}/v1/pacientes`, setPacientes);
             await fetchData(`${url}/v1/familiares`, setFamiliares);
             await fetchData(`${url}/v1/obitos`, setObitos);
@@ -74,6 +74,7 @@ function Export() {
             await fetchData(`${url}/v1/laboratorial-exames`, setExameLabo);
             await fetchData(`${url}/v1/fragilidades`, setFragilidades);
             await fetchData(`${url}/v1/frrisques`, setFrrisques);
+            await fetchData(`${url}/v1/sarcfs`, setSarcfs);
 
         };
 
@@ -131,6 +132,7 @@ function Export() {
         const exameLabo = build(examesLabo, "exames-laboratoriais", patient.id);
         const fragilidade = build(fragilidades, "fragilidades", patient.id);
         const frrisque = build(frrisques, "frrisques", patient.id);
+        const sarcf = build(sarcfs, "sarcfs", patient.id);
 
         return {
             ...patient,
@@ -160,7 +162,8 @@ function Export() {
             ...bioimpedancia,
             ...exameLabo,
             ...fragilidade,
-            ...frrisque
+            ...frrisque,
+            ...sarcf
         }
     })
 
@@ -323,6 +326,11 @@ function Export() {
                         <li>
                             <CSVLink style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh"  }} data={frrisques} filename="frrisques.csv">
                                 <strong>Frrisque</strong>
+                            </CSVLink>
+                        </li>
+                        <li>
+                            <CSVLink style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh"  }} data={sarcfs} filename="sarcfs.csv">
+                                <strong>Sarcfs</strong>
                             </CSVLink>
                         </li>
                     </ul>
