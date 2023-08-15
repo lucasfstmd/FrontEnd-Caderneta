@@ -43,7 +43,7 @@ function Export() {
             setData(data);
         }
 
-        const url = 'http://localhost:8080/api'
+        const url = 'https://proeva-caderneta.ccs.ufrn.br:8080/api'
 
         const fetchDataForExport = async () => {
             await fetchData(`${url}/v1/pacientes`, setPacientes);
