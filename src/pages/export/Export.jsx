@@ -80,18 +80,101 @@ function Export() {
         fetchDataForExport();
     }, []);
 
+
+    const build = (array,field, patient_id) =>{
+        return array
+            .filter(item => item.paciente_id === patient_id)
+            .map((item) =>{
+                return {
+                    ...item
+                }
+            })
+            .reduce((accumulated, current,index)=>{
+                const obj = {}
+                Object.keys(current).forEach(key=>{
+                    if(key !== 'paciente_id'){
+                        obj[`${field}_${index+1}_${key}`] = current[key]
+                    }
+                })
+                return {
+                    ...accumulated,
+                    ...obj
+                }
+            },{})
+    }
+
+    const result = pacientes.map(patient => {
+        const familiar = build(familiares,'familiar', patient.id);
+        const obito = build(obitos,'exame',patient.id);
+        const medicamento = build(medicamentos, "medicamentos", patient.id);
+        const polifarmacia = build(polifarmacias, "polifarmacias", patient.id);
+        const diagnostico = build(diagnosticos, "diagnosticos", patient.id);
+        const antropometrico = build(antropometricos, "antropometricos", patient.id);
+        const cirurgia = build(cirurgias, "cirurgias", patient.id);
+        const reacao = build(reacoes, "reacoes", patient.id);
+        const peso = build(pesos, "pesos", patient.id);
+        const pesoPerda = build(pesoPerdas, "peso-perdas", patient.id);
+        const vulnerabilidade = build(vulnerabilidades, "vulnerabilidades", patient.id);
+        const ambiental = build(ambientais, "ambientais", patient.id);
+        const queda = build(quedas, "quedas", patient.id);
+        const cronica = build(cronicas, "cronicas", patient.id);
+        const intensidade = build(intensidades, "intensidades", patient.id);
+        const habito = build(habitos, "habitos", patient.id);
+        const controlesPressao = build(controlePressao, "controlePressao", patient.id);
+        const glicemias = build(glicemia, "glicemia", patient.id);
+        const saudeBuca = build(saudeBucal, "saudeBucal", patient.id);
+        const pcl = build(pcls, "pcls", patient.id);
+        const forcasPreensao = build(forcaPreensao, "forcaPreensao", patient.id);
+        const sppb = build(sppbs, "sppbs", patient.id);
+        const ivcf = build(ivcfs, "ivcfs", patient.id);
+        const bioimpedancia = build(bioimpedancias, "bioimpedancias", patient.id);
+        const exameLabo = build(examesLabo, "exames-laboratoriais", patient.id);
+        const fragilidade = build(fragilidades, "fragilidades", patient.id);
+        const frrisque = build(frrisques, "frrisques", patient.id);
+
+        return {
+            ...patient,
+            ...familiar,
+            ...obito,
+            ...medicamento,
+            ...polifarmacia,
+            ...diagnostico,
+            ...antropometrico,
+            ...cirurgia,
+            ...reacao,
+            ...peso,
+            ...pesoPerda,
+            ...vulnerabilidade,
+            ...ambiental,
+            ...queda,
+            ...cronica,
+            ...intensidade,
+            ...habito,
+            ...controlesPressao,
+            ...glicemias,
+            ...saudeBuca,
+            ...pcl,
+            ...forcasPreensao,
+            ...sppb,
+            ...ivcf,
+            ...bioimpedancia,
+            ...exameLabo,
+            ...fragilidade,
+            ...frrisque
+        }
+    })
+
+
     return (
         <RequestAuth>
             <div className="Export">
                 <Painel titulo="Exportar Dados">
                     <ul>
-                        {/*
                         <li>
-                            <CSVLink style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }} data={dataBase} filename="banco_de_dados.csv">
+                            <CSVLink style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }} data={result} filename="banco_de_dados.csv">
                                 <strong>Banco de Dados</strong>
                             </CSVLink>
                         </li>
-                        */}
                         <li>
                             <CSVLink style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }} data={pacientes} filename="pacientes.csv">
                                 <strong>Pacientes</strong>
