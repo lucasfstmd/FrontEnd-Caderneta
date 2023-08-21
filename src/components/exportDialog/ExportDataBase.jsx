@@ -188,11 +188,11 @@ function ExportDataBase() {
 
     return (
         <div>
-            <Link onClick={handleClickOpen}
+            <p onClick={handleClickOpen}
                   style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
             >
                 <strong>Banco de Dados</strong>
-            </Link>
+            </p>
             <Dialog
                 open={open}
                 onClose={handleClose}

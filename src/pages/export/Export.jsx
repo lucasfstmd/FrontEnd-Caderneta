@@ -309,7 +309,7 @@ function Export() {
                             <ExportDataBase/>
                         </li>
                         <li>
-                            <Link onClick={getPacientes}
+                            <p onClick={getPacientes}
                                   style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
                             >
                                 <ExportDialog
@@ -318,10 +318,10 @@ function Export() {
                                     loading={loadingPacientes}
                                     fileName={"pacientes.csv"}
                                 />
-                            </Link>
+                            </p>
                         </li>
                         <li>
-                            <Link onClick={getFamiliares}
+                            <p onClick={getFamiliares}
                                   style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
                             >
                                 <ExportDialog
@@ -330,10 +330,10 @@ function Export() {
                                     loading={loadingFamiliares}
                                     fileName={"familiares.csv"}
                                 />
-                            </Link>
+                            </p>
                         </li>
                         <li>
-                            <Link onClick={getObitos}
+                            <p onClick={getObitos}
                                   style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}>
                                 <ExportDialog
                                     name={"Obitos"}
@@ -341,10 +341,10 @@ function Export() {
                                     loading={loadingObitos}
                                     fileName={"obitos.csv"}
                                 />
-                            </Link>
+                            </p>
                         </li>
                         <li>
-                            <Link onClick={getMed}
+                            <p onClick={getMed}
                                   style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}>
                                 <ExportDialog
                                     name={"Medicamentos"}
@@ -352,10 +352,10 @@ function Export() {
                                     loading={loadingMed}
                                     fileName={"medicamentos.csv"}
                                 />
-                            </Link>
+                            </p>
                         </li>
                         <li>
-                            <Link onClick={getPoli}
+                            <p onClick={getPoli}
                                   style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}>
                                 <ExportDialog
                                     name={"Polifarmacias"}
@@ -363,10 +363,10 @@ function Export() {
                                     loading={loadingPoli}
                                     fileName={"polifarmacias.csv"}
                                 />
-                            </Link>
+                            </p>
                         </li>
                         <li>
-                            <Link onClick={getDiag}
+                            <p onClick={getDiag}
                                   style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}>
                                 <ExportDialog
                                     name={"Diagnosticos"}
@@ -374,10 +374,10 @@ function Export() {
                                     loading={loadingDiag}
                                     fileName={"diagnosticos.csv"}
                                 />
-                            </Link>
+                            </p>
                         </li>
                         <li>
-                            <Link onClick={getAntro}
+                            <p onClick={getAntro}
                                   style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
                             >
                                 <ExportDialog
@@ -386,10 +386,10 @@ function Export() {
                                     loading={loadingAntro}
                                     fileName={"antropometricos.csv"}
                                 />
-                            </Link>
+                            </p>
                         </li>
                         <li>
-                            <Link onClick={getCirur}
+                            <p onClick={getCirur}
                                   style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
                             >
                                 <ExportDialog
@@ -398,10 +398,10 @@ function Export() {
                                     loading={loadingCirur}
                                     fileName={"cirurgias.csv"}
                                 />
-                            </Link>
+                            </p>
                         </li>
                         <li>
-                            <Link onClick={getReac}
+                            <p onClick={getReac}
                                   style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
                             >
                                 <ExportDialog
@@ -410,10 +410,10 @@ function Export() {
                                     loading={loadingReac}
                                     fileName={"reacoes.csv"}
                                 />
-                            </Link>
+                            </p>
                         </li>
                         <li>
-                            <Link onClick={getPesos}
+                            <p onClick={getPesos}
                                   style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
                             >
                                 <ExportDialog
@@ -422,10 +422,10 @@ function Export() {
                                     loading={loadingPesos}
                                     fileName={"pesos.csv"}
                                 />
-                            </Link>
+                            </p>
                         </li>
                         <li>
-                            <Link onClick={getPesoPerdas}
+                            <p onClick={getPesoPerdas}
                                   style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
                             >
                                 <ExportDialog
@@ -434,10 +434,10 @@ function Export() {
                                     loading={loadingPesoPerdas}
                                     fileName={"pesos-perdas.csv"}
                                 />
-                            </Link>
+                            </p>
                         </li>
                         <li>
-                            <Link onClick={getVulnerabilidades}
+                            <p onClick={getVulnerabilidades}
                                   style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
                             >
                                 <ExportDialog
@@ -446,10 +446,10 @@ function Export() {
                                     loading={loadingVulnerabilidades}
                                     fileName={"vulnerabilidades.csv"}
                                 />
-                            </Link>
+                            </p>
                         </li>
                         <li>
-                            <Link onClick={getAmbientais}
+                            <p onClick={getAmbientais}
                                   style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
                             >
                                 <ExportDialog
@@ -458,10 +458,10 @@ function Export() {
                                     loading={loadingAmbientais}
                                     fileName={"ambientais.csv"}
                                 />
-                            </Link>
+                            </p>
                         </li>
                         <li>
-                            <Link onClick={getQuedas}
+                            <p onClick={getQuedas}
                                   style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
                             >
                                 <ExportDialog
@@ -470,10 +470,10 @@ function Export() {
                                     loading={loadingQuedas}
                                     fileName={"quedas.csv"}
                                 />
-                            </Link>
+                            </p>
                         </li>
                         <li>
-                            <Link onClick={getCronicas}
+                            <p onClick={getCronicas}
                                   style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
                             >
                                 <ExportDialog
@@ -482,10 +482,10 @@ function Export() {
                                     loading={loadingCronicas}
                                     fileName={"cronicas.csv"}
                                 />
-                            </Link>
+                            </p>
                         </li>
                         <li>
-                            <Link onClick={getIntensidades}
+                            <p onClick={getIntensidades}
                                   style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
                             >
                                 <ExportDialog
@@ -494,10 +494,10 @@ function Export() {
                                     loading={loadingIntensidades}
                                     fileName={"intensidades.csv"}
                                 />
-                            </Link>
+                            </p>
                         </li>
                         <li>
-                            <Link onClick={getHabitos}
+                            <p onClick={getHabitos}
                                   style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
                             >
                                 <ExportDialog
@@ -506,7 +506,7 @@ function Export() {
                                     loading={loadingHabitos}
                                     fileName={"habitos.csv"}
                                 />
-                            </Link>
+                            </p>
                         </li>
                     </ul>
                     <div className="Titulo">
@@ -514,7 +514,7 @@ function Export() {
                     </div>
                     <ul>
                         <li>
-                            <Link onClick={getControlePressao}
+                            <p onClick={getControlePressao}
                                   style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
                             >
                                 <ExportDialog
@@ -523,10 +523,10 @@ function Export() {
                                     loading={loadingControlePressao}
                                     fileName={"controle-pressao.csv"}
                                 />
-                            </Link>
+                            </p>
                         </li>
                         <li>
-                            <Link onClick={getGlicemia}
+                            <p onClick={getGlicemia}
                                   style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
                             >
                                 <ExportDialog
@@ -535,10 +535,10 @@ function Export() {
                                     loading={loadingGlicemia}
                                     fileName={"controle-glicemia.csv"}
                                 />
-                            </Link>
+                            </p>
                         </li>
                         <li>
-                            <Link onClick={getSaudeBuca}
+                            <p onClick={getSaudeBuca}
                                   style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
                             >
                                 <ExportDialog
@@ -547,7 +547,7 @@ function Export() {
                                     loading={loadingSaudeBuca}
                                     fileName={"saude-bucal.csv"}
                                 />
-                            </Link>
+                            </p>
                         </li>
                     </ul>
                     <div className="Titulo">
@@ -555,7 +555,7 @@ function Export() {
                     </div>
                     <ul>
                         <li>
-                            <Link onClick={getPcls}
+                            <p onClick={getPcls}
                                   style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
                             >
                                 <ExportDialog
@@ -564,10 +564,10 @@ function Export() {
                                     loading={loadingPcls}
                                     fileName={"pcl.csv"}
                                 />
-                            </Link>
+                            </p>
                         </li>
                         <li>
-                            <Link onClick={getForcaPreensao}
+                            <p onClick={getForcaPreensao}
                                   style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
                             >
                                 <ExportDialog
@@ -576,10 +576,10 @@ function Export() {
                                     loading={loadingForcaPreensao}
                                     fileName={"forca-preensao.csv"}
                                 />
-                            </Link>
+                            </p>
                         </li>
                         <li>
-                            <Link onClick={getSbbps}
+                            <p onClick={getSbbps}
                                   style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
                             >
                                 <ExportDialog
@@ -588,10 +588,10 @@ function Export() {
                                     loading={loadingSbbps}
                                     fileName={"sppb.csv"}
                                 />
-                            </Link>
+                            </p>
                         </li>
                         <li>
-                            <Link onClick={getIvcfs}
+                            <p onClick={getIvcfs}
                                   style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
                             >
                                 <ExportDialog
@@ -600,10 +600,10 @@ function Export() {
                                     loading={loadingIvcfs}
                                     fileName={"ivcf.csv"}
                                 />
-                            </Link>
+                            </p>
                         </li>
                         <li>
-                            <Link onClick={getBioimpedancias}
+                            <p onClick={getBioimpedancias}
                                   style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
                             >
                                 <ExportDialog
@@ -612,10 +612,10 @@ function Export() {
                                     loading={loadingBioimpedancias}
                                     fileName={"bioimpedancias.csv"}
                                 />
-                            </Link>
+                            </p>
                         </li>
                         <li>
-                            <Link onClick={getExamesLabo}
+                            <p onClick={getExamesLabo}
                                   style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
                             >
                                 <ExportDialog
@@ -624,10 +624,10 @@ function Export() {
                                     loading={loadingExamesLabo}
                                     fileName={"exames-laboratoriais.csv"}
                                 />
-                            </Link>
+                            </p>
                         </li>
                         <li>
-                            <Link onClick={getFragilidades}
+                            <p onClick={getFragilidades}
                                   style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
                             >
                                 <ExportDialog
@@ -636,10 +636,10 @@ function Export() {
                                     loading={loadingFragilidades}
                                     fileName={"fragilidades.csv"}
                                 />
-                            </Link>
+                            </p>
                         </li>
                         <li>
-                            <Link onClick={getFrrisques}
+                            <p onClick={getFrrisques}
                                   style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
                             >
                                 <ExportDialog
@@ -648,10 +648,10 @@ function Export() {
                                     loading={loadingFrrisques}
                                     fileName={"frrisque.csv"}
                                 />
-                            </Link>
+                            </p>
                         </li>
                         <li>
-                            <Link onClick={getSarcfs}
+                            <p onClick={getSarcfs}
                                   style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
                             >
                                 <ExportDialog
@@ -660,7 +660,7 @@ function Export() {
                                     loading={loadingSarcfs}
                                     fileName={"sarcfs.csv"}
                                 />
-                            </Link>
+                            </p>
                         </li>
                     </ul>
                 </Painel>
