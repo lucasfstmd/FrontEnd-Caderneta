@@ -84,7 +84,7 @@ function ExportDataBase() {
 
         };
 
-        fetchDataForExport().then();
+        fetchDataForExport();
         setLoading(false);
 
     }, [setLoading]);
