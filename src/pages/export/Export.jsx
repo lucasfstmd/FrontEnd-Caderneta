@@ -1,14 +1,14 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import "./Export.css"
 import Painel from "../../components/painel/Painel";
 import RequestAuth from "../../service/auth/RequestAuth";
 import ExportDialog from "../../components/exportDialog/ExportDialog";
-import Link from '@mui/material/Link';
-import ExportDataBase from "../../components/exportDataBase/ExportDataBase";
+import {Link} from "react-router-dom";
+import ExportDataBase from "../../components/exportDialog/ExportDataBase";
 
 function Export() {
 
-    const url = 'http://localhost:8080/api'
+    const url = 'https://proeva-caderneta.ccs.ufrn.br:8080/api'
 
     const [pacientes, setPacientes] = useState([]);
     const [loadingPacientes, setLoadingPacientes] = useState(true);
@@ -309,7 +309,9 @@ function Export() {
                             <ExportDataBase/>
                         </li>
                         <li>
-                            <Link onClick={getPacientes}>
+                            <Link onClick={getPacientes}
+                                  style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
+                            >
                                 <ExportDialog
                                     name={"Pacientes"}
                                     data={pacientes}
@@ -319,7 +321,9 @@ function Export() {
                             </Link>
                         </li>
                         <li>
-                            <Link onClick={getFamiliares}>
+                            <Link onClick={getFamiliares}
+                                  style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
+                            >
                                 <ExportDialog
                                     name={"Familiares"}
                                     data={familiares}
@@ -329,7 +333,8 @@ function Export() {
                             </Link>
                         </li>
                         <li>
-                            <Link onClick={getObitos}>
+                            <Link onClick={getObitos}
+                                  style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}>
                                 <ExportDialog
                                     name={"Obitos"}
                                     data={obitos}
@@ -339,7 +344,8 @@ function Export() {
                             </Link>
                         </li>
                         <li>
-                            <Link onClick={getMed}>
+                            <Link onClick={getMed}
+                                  style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}>
                                 <ExportDialog
                                     name={"Medicamentos"}
                                     data={medicamentos}
@@ -349,7 +355,8 @@ function Export() {
                             </Link>
                         </li>
                         <li>
-                            <Link onClick={getPoli}>
+                            <Link onClick={getPoli}
+                                  style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}>
                                 <ExportDialog
                                     name={"Polifarmacias"}
                                     data={polifarmacias}
@@ -359,7 +366,8 @@ function Export() {
                             </Link>
                         </li>
                         <li>
-                            <Link onClick={getDiag}>
+                            <Link onClick={getDiag}
+                                  style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}>
                                 <ExportDialog
                                     name={"Diagnosticos"}
                                     data={diagnosticos}
@@ -369,7 +377,9 @@ function Export() {
                             </Link>
                         </li>
                         <li>
-                            <Link onClick={getAntro}>
+                            <Link onClick={getAntro}
+                                  style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
+                            >
                                 <ExportDialog
                                     name={"Antropometricos"}
                                     data={antropometricos}
@@ -379,7 +389,9 @@ function Export() {
                             </Link>
                         </li>
                         <li>
-                            <Link onClick={getCirur}>
+                            <Link onClick={getCirur}
+                                  style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
+                            >
                                 <ExportDialog
                                     name={"Cirurgias"}
                                     data={cirurgias}
@@ -389,7 +401,9 @@ function Export() {
                             </Link>
                         </li>
                         <li>
-                            <Link onClick={getReac}>
+                            <Link onClick={getReac}
+                                  style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
+                            >
                                 <ExportDialog
                                     name={"Reaçoes"}
                                     data={reacoes}
@@ -399,7 +413,9 @@ function Export() {
                             </Link>
                         </li>
                         <li>
-                            <Link onClick={getPesos}>
+                            <Link onClick={getPesos}
+                                  style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
+                            >
                                 <ExportDialog
                                     name={"Pesos"}
                                     data={pesos}
@@ -409,7 +425,9 @@ function Export() {
                             </Link>
                         </li>
                         <li>
-                            <Link onClick={getPesoPerdas}>
+                            <Link onClick={getPesoPerdas}
+                                  style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
+                            >
                                 <ExportDialog
                                     name={"Pesos perdas"}
                                     data={pesoPerdas}
@@ -419,7 +437,9 @@ function Export() {
                             </Link>
                         </li>
                         <li>
-                            <Link onClick={getVulnerabilidades}>
+                            <Link onClick={getVulnerabilidades}
+                                  style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
+                            >
                                 <ExportDialog
                                     name={"Vulnerabilidade"}
                                     data={vulnerabilidades}
@@ -429,7 +449,9 @@ function Export() {
                             </Link>
                         </li>
                         <li>
-                            <Link onClick={getAmbientais}>
+                            <Link onClick={getAmbientais}
+                                  style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
+                            >
                                 <ExportDialog
                                     name={"Ambientais"}
                                     data={ambientais}
@@ -439,7 +461,9 @@ function Export() {
                             </Link>
                         </li>
                         <li>
-                            <Link onClick={getQuedas}>
+                            <Link onClick={getQuedas}
+                                  style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
+                            >
                                 <ExportDialog
                                     name={"Quedas"}
                                     data={quedas}
@@ -449,7 +473,9 @@ function Export() {
                             </Link>
                         </li>
                         <li>
-                            <Link onClick={getCronicas}>
+                            <Link onClick={getCronicas}
+                                  style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
+                            >
                                 <ExportDialog
                                     name={"Cronicas"}
                                     data={cronicas}
@@ -459,7 +485,9 @@ function Export() {
                             </Link>
                         </li>
                         <li>
-                            <Link onClick={getIntensidades}>
+                            <Link onClick={getIntensidades}
+                                  style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
+                            >
                                 <ExportDialog
                                     name={"Intensidades"}
                                     data={intensidades}
@@ -469,7 +497,9 @@ function Export() {
                             </Link>
                         </li>
                         <li>
-                            <Link onClick={getHabitos}>
+                            <Link onClick={getHabitos}
+                                  style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
+                            >
                                 <ExportDialog
                                     name={"Habitos"}
                                     data={habitos}
@@ -484,7 +514,9 @@ function Export() {
                     </div>
                     <ul>
                         <li>
-                            <Link onClick={getControlePressao}>
+                            <Link onClick={getControlePressao}
+                                  style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
+                            >
                                 <ExportDialog
                                     name={"Controle de Pressão Arterial"}
                                     data={controlePressao}
@@ -494,7 +526,9 @@ function Export() {
                             </Link>
                         </li>
                         <li>
-                            <Link onClick={getGlicemia}>
+                            <Link onClick={getGlicemia}
+                                  style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
+                            >
                                 <ExportDialog
                                     name={"Controle de Glicemia"}
                                     data={glicemia}
@@ -504,7 +538,9 @@ function Export() {
                             </Link>
                         </li>
                         <li>
-                            <Link onClick={getSaudeBuca}>
+                            <Link onClick={getSaudeBuca}
+                                  style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
+                            >
                                 <ExportDialog
                                     name={"Avaliação Saúde Bucal"}
                                     data={saudeBucal}
@@ -519,7 +555,9 @@ function Export() {
                     </div>
                     <ul>
                         <li>
-                            <Link onClick={getPcls}>
+                            <Link onClick={getPcls}
+                                  style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
+                            >
                                 <ExportDialog
                                     name={"Prova Cognitiva de Leganés (PCL)"}
                                     data={pcls}
@@ -529,7 +567,9 @@ function Export() {
                             </Link>
                         </li>
                         <li>
-                            <Link onClick={getForcaPreensao}>
+                            <Link onClick={getForcaPreensao}
+                                  style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
+                            >
                                 <ExportDialog
                                     name={"Força de Preensão"}
                                     data={forcaPreensao}
@@ -539,7 +579,9 @@ function Export() {
                             </Link>
                         </li>
                         <li>
-                            <Link onClick={getSbbps}>
+                            <Link onClick={getSbbps}
+                                  style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
+                            >
                                 <ExportDialog
                                     name={"Short Physucal Performance Battery (SPPB)"}
                                     data={sppbs}
@@ -549,7 +591,9 @@ function Export() {
                             </Link>
                         </li>
                         <li>
-                            <Link onClick={getIvcfs}>
+                            <Link onClick={getIvcfs}
+                                  style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
+                            >
                                 <ExportDialog
                                     name={"Índice de Vulnerabilidade Vlínico-Funcional-20 (IVCF-20)"}
                                     data={ivcfs}
@@ -559,7 +603,9 @@ function Export() {
                             </Link>
                         </li>
                         <li>
-                            <Link onClick={getBioimpedancias}>
+                            <Link onClick={getBioimpedancias}
+                                  style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
+                            >
                                 <ExportDialog
                                     name={"Bioimpedância"}
                                     data={bioimpedancias}
@@ -569,7 +615,9 @@ function Export() {
                             </Link>
                         </li>
                         <li>
-                            <Link onClick={getExamesLabo}>
+                            <Link onClick={getExamesLabo}
+                                  style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
+                            >
                                 <ExportDialog
                                     name={"Exames Laboratoriais"}
                                     data={examesLabo}
@@ -579,7 +627,9 @@ function Export() {
                             </Link>
                         </li>
                         <li>
-                            <Link onClick={getFragilidades}>
+                            <Link onClick={getFragilidades}
+                                  style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
+                            >
                                 <ExportDialog
                                     name={"Fragilidades"}
                                     data={fragilidades}
@@ -589,7 +639,9 @@ function Export() {
                             </Link>
                         </li>
                         <li>
-                            <Link onClick={getFrrisques}>
+                            <Link onClick={getFrrisques}
+                                  style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
+                            >
                                 <ExportDialog
                                     name={"Frrisque"}
                                     data={frrisques}
@@ -599,7 +651,9 @@ function Export() {
                             </Link>
                         </li>
                         <li>
-                            <Link onClick={getSarcfs}>
+                            <Link onClick={getSarcfs}
+                                  style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
+                            >
                                 <ExportDialog
                                     name={"Sarcfs"}
                                     data={sarcfs}

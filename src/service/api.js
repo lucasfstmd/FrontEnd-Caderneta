@@ -2,7 +2,7 @@ import axios from 'axios'
 import {getToken} from "./auth/auth";
 
 const api = axios.create({
-    baseURL: 'http://localhost:8080/api'
+    baseURL: 'https://proeva-caderneta.ccs.ufrn.br:8080/api'
 });
 
 api.interceptors.request.use(async config => {
