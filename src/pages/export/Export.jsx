@@ -3,7 +3,6 @@ import "./Export.css"
 import Painel from "../../components/painel/Painel";
 import RequestAuth from "../../service/auth/RequestAuth";
 import ExportDialog from "../../components/exportDialog/ExportDialog";
-import {Link} from "react-router-dom";
 import ExportDataBase from "../../components/exportDialog/ExportDataBase";
 
 function Export() {

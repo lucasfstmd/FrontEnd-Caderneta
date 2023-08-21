@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react"
-import {Link} from "react-router-dom";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
@@ -9,6 +8,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Button from "@mui/material/Button";
 import {CSVLink} from "react-csv";
 import {AiFillCloseCircle, AiOutlineDownload} from "react-icons/ai";
+import {Link} from "react-router-dom";
 
 function ExportDataBase() {
     const [pacientes, setPacientes] = useState([]);
@@ -188,11 +188,11 @@ function ExportDataBase() {
 
     return (
         <div>
-            <p onClick={handleClickOpen}
+            <Link onClick={handleClickOpen}
                   style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
             >
                 <strong>Banco de Dados</strong>
-            </p>
+            </Link>
             <Dialog
                 open={open}
                 onClose={handleClose}
