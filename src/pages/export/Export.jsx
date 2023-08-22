@@ -278,6 +278,37 @@ function Export() {
         setLoadingFragilidades(false);
     }
 
+    const headresFragilidades = [
+        { label: '1. Perda de peso não intencional (≥4,5kg ou ≥5% do peso no ano anterior)', key: 'p1' },
+        { label: '2. Média da força de preensão:', key: 'p2_1' },
+        { label: '2. Força de preensão diminuída:', key: 'p2_2' },
+        { label: '3. Na última semana: Sentiu que teve que fazer esforço para das conta das suas tarefas habituais?', key: 'p3_1' },
+        { label: '3. Na última semana: O(a) senhor(a) deixou muitos de seus interesses e atividades?', key: 'p3_2' },
+        { label: '3. Na última semana: Exaustão por auto-relato de fadiga:', key: 'p3_3' },
+        { label: '4. o tempo gasto para percorrer 4 metros:', key: 'p4_1' },
+        { label: '4. tempo gasto para percorrer 4 metros aumentado:', key: 'p4_2' },
+        { label: '5. 1a Dias ', key: 'p5_1a_1' },
+        { label: '5. 1a Nenhum', key: 'p5_1a_2' },
+        { label: '5. 1b Horas', key: 'p5_1b_1' },
+        { label: '5. 1b Minutos', key: 'p5_1b_2' },
+        { label: '5. 2a Dias', key: 'p5_2a_1' },
+        { label: '5. 2a Nenhum', key: 'p5_2a_2' },
+        { label: '5. 2b Horas', key: 'p5_2b_1' },
+        { label: '5. 2b Minutos', key: 'p5_2b_2' },
+        { label: '5. 3a Dias', key: 'p5_3a_1' },
+        { label: '5. 3a Nenhum', key: 'p5_3a_2' },
+        { label: '5. 3b Horas', key: 'p5_3b_1' },
+        { label: '5. 3b Minutos', key: 'p5_3b_2' },
+        { label: '5. 4a Horas', key: 'p5_4a_1' },
+        { label: '5. 4a Minutos', key: 'p5_4a_2' },
+        { label: '5. 4b Horas', key: 'p5_4b_1' },
+        { label: '5. 4b Minutos', key: 'p5_4b_2' },
+        { label: 'Classificação segundo o IPAQ:', key: 'ipaq' },
+        { label: 'Baixo nível de atividade física:', key: 'baixo_nivel_atividade_fisica' },
+        { label: 'CLASSIFICAÇÃO DA FRAGILIDADE:', key: 'classificacao_da_fragilidade' },
+        { label: 'Cadastro', key: 'created' },
+    ]
+
     const [frrisques, setFrrisques] = useState([]);
     const [loadingFrrisques, setLoadingFrrisques] = useState(true);
 
@@ -644,6 +675,7 @@ function Export() {
                                     data={fragilidades}
                                     loading={loadingFragilidades}
                                     fileName={"fragilidades.csv"}
+                                    headers={headresFragilidades}
                                 />
                             </p>
                         </li>

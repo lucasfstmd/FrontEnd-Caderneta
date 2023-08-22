@@ -56,10 +56,21 @@ function ExportDialog(props) {
                         :
                         <>
                             <Button onClick={handleClose} variant="outlined" color="success">
-                                <CSVLink style={{textDecoration: 'none', color: 'green'}} data={props.data}
-                                         filename={props.fileName}>
-                                    <AiOutlineDownload/> Baixar
-                                </CSVLink>
+                                {props.headers ?
+                                    <CSVLink style={{textDecoration: 'none', color: 'green'}}
+                                             data={props.data}
+                                             filename={props.fileName}
+                                             headers={props.headers}
+                                    >
+                                        <AiOutlineDownload/> Baixar
+                                    </CSVLink>
+                                :
+                                    <CSVLink style={{textDecoration: 'none', color: 'green'}} data={props.data}
+                                             filename={props.fileName}>
+                                        <AiOutlineDownload/> Baixar
+                                    </CSVLink>
+                                }
+
                             </Button>
                             <Button onClick={handleClose} variant="outlined" color="error">
                                 <AiFillCloseCircle style={{marginRight: "1vh"}}/> Fechar
