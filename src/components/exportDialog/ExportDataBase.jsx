@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react"
+import React, { useState} from "react"
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
@@ -40,55 +40,53 @@ function ExportDataBase() {
     const [fragilidades, setFragilidades] = useState([]);
     const [frrisques, setFrrisques] = useState([]);
     const [sarcfs, setSarcfs] = useState([]);
-    const [loading, setLoading] = useState();
+    const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        const fetchData = async (url, setData) => {
-            const response = await fetch(url);
-            const data = await response.json();
-            setData(data);
-        }
+    const fetchData = async (url, setData) => {
+        const response = await fetch(url);
+        const data = await response.json();
+        setData(data);
+    }
 
-        const url = 'https://proeva-caderneta.ccs.ufrn.br:8080/api'
+    const url = 'https://proeva-caderneta.ccs.ufrn.br:8080/api'
 
-        const fetchDataForExport = async () => {
-            await fetchData(`${url}/v1/pacientes`, setPacientes);
-            await fetchData(`${url}/v1/familiares`, setFamiliares);
-            await fetchData(`${url}/v1/obitos`, setObitos);
-            await fetchData(`${url}/v1/avaliacoes`, setMedicamentos);
-            await fetchData(`${url}/v1/polifarmacias`, setPolifarmacias);
-            await fetchData(`${url}/v1/diagnosticos`, setDiagnosticos);
-            await fetchData(`${url}/v1/antropometricos`, setAntropometricos);
-            await fetchData(`${url}/v1/cirurgias`, setCirurgias);
-            await fetchData(`${url}/v1/reacoes`, setReacoes);
-            await fetchData(`${url}/v1/pesos`, setPesos);
-            await fetchData(`${url}/v1/peso-perdas`, setPesoPerdas);
-            await fetchData(`${url}/v1/vulnerabilidades`, setVulnerabilidades);
-            await fetchData(`${url}/v1/ambientais`, setAmbientais);
-            await fetchData(`${url}/v1/quedas`, setQuedas);
-            await fetchData(`${url}/v1/cronicas`, setCronicas);
-            await fetchData(`${url}/v1/intensidades`, setIntensidades);
-            await fetchData(`${url}/v1/habitos`, setHabitos);
-            await fetchData(`${url}/v1/pressao-controles`, setControlePressao);
-            await fetchData(`${url}/v1/glicemia-controles`, setGlicemia);
-            await fetchData(`${url}/v1/bucal-saudes`, setSaudeBucal);
-            await fetchData(`${url}/v1/pcls`, setPcls);
-            await fetchData(`${url}/v1/preensao-forcas`, setForcaPreensao);
-            await fetchData(`${url}/v1/sppbs`, setSppbs);
-            await fetchData(`${url}/v1/ivcfs`, setIvcfs);
-            await fetchData(`${url}/v1/bioimpedancias`, setBioimpedancias);
-            await fetchData(`${url}/v1/laboratorial-exames`, setExameLabo);
-            await fetchData(`${url}/v1/fragilidades`, setFragilidades);
-            await fetchData(`${url}/v1/frrisques`, setFrrisques);
-            await fetchData(`${url}/v1/sarcfs`, setSarcfs);
-
-        };
-
-        fetchDataForExport();
+    const fetchDataForExport = async () => {
+        await fetchData(`${url}/v1/pacientes`, setPacientes);
+        await fetchData(`${url}/v1/familiares`, setFamiliares);
+        await fetchData(`${url}/v1/obitos`, setObitos);
+        await fetchData(`${url}/v1/avaliacoes`, setMedicamentos);
+        await fetchData(`${url}/v1/polifarmacias`, setPolifarmacias);
+        await fetchData(`${url}/v1/diagnosticos`, setDiagnosticos);
+        await fetchData(`${url}/v1/antropometricos`, setAntropometricos);
+        await fetchData(`${url}/v1/cirurgias`, setCirurgias);
+        await fetchData(`${url}/v1/reacoes`, setReacoes);
+        await fetchData(`${url}/v1/pesos`, setPesos);
+        await fetchData(`${url}/v1/peso-perdas`, setPesoPerdas);
+        await fetchData(`${url}/v1/vulnerabilidades`, setVulnerabilidades);
+        await fetchData(`${url}/v1/ambientais`, setAmbientais);
+        await fetchData(`${url}/v1/quedas`, setQuedas);
+        await fetchData(`${url}/v1/cronicas`, setCronicas);
+        await fetchData(`${url}/v1/intensidades`, setIntensidades);
+        await fetchData(`${url}/v1/habitos`, setHabitos);
+        await fetchData(`${url}/v1/pressao-controles`, setControlePressao);
+        await fetchData(`${url}/v1/glicemia-controles`, setGlicemia);
+        await fetchData(`${url}/v1/bucal-saudes`, setSaudeBucal);
+        await fetchData(`${url}/v1/pcls`, setPcls);
+        await fetchData(`${url}/v1/preensao-forcas`, setForcaPreensao);
+        await fetchData(`${url}/v1/sppbs`, setSppbs);
+        await fetchData(`${url}/v1/ivcfs`, setIvcfs);
+        await fetchData(`${url}/v1/bioimpedancias`, setBioimpedancias);
+        await fetchData(`${url}/v1/laboratorial-exames`, setExameLabo);
+        await fetchData(`${url}/v1/fragilidades`, setFragilidades);
+        await fetchData(`${url}/v1/frrisques`, setFrrisques);
+        await fetchData(`${url}/v1/sarcfs`, setSarcfs);
         setLoading(false);
 
-    }, [setLoading]);
+    };
 
+    const getDataBase = () => {
+        fetchDataForExport();
+    }
 
     const build = (array,field, patient_id) => {
         return array
@@ -179,7 +177,7 @@ function ExportDataBase() {
 
     const handleClickOpen = () => {
         setOpen(true);
-        setLoading(true);
+        getDataBase();
     };
 
     const handleClose = () => {

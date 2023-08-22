@@ -288,6 +288,16 @@ function Export() {
         setLoadingFrrisques(false);
     }
 
+    const [infancias, setInfancias] = useState([]);
+    const [loadingInfancias, setLoagingInfacies] = useState(true);
+
+    const getInfancias = async () => {
+        const response = await fetch(`${url}/v1/infancias`);
+        const data = await response.json();
+        setInfancias(data);
+        setLoagingInfacies(false);
+    }
+
     const [sarcfs, setSarcfs] = useState([]);
     const [loadingSarcfs, setLoadingSarcfs] = useState(true);
 
@@ -646,6 +656,18 @@ function Export() {
                                     data={frrisques}
                                     loading={loadingFrrisques}
                                     fileName={"frrisque.csv"}
+                                />
+                            </p>
+                        </li>
+                        <li>
+                            <p onClick={getInfancias}
+                               style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
+                            >
+                                <ExportDialog
+                                    name={"Circunstâncias Inicias da Vida e Adversidades na Infancia"}
+                                    data={infancias}
+                                    loading={loadingInfancias}
+                                    fileName={"adversidades.csv"}
                                 />
                             </p>
                         </li>
