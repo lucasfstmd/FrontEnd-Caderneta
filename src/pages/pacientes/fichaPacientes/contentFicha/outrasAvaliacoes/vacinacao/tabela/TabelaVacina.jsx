@@ -118,20 +118,20 @@ function TabelaVacina(props) {
 
     const itemsPerPage = props.itemsPerPage;
 
-    useEffect(() => {
-        async function carregarGlicemia() {
-            try {
-                const response = await api.get(
-                    `v1/vacinas/paciente/${props.pacienteId}`
-                );
-                setVacina(response.data);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarGlicemia() {
+        try {
+            const response = await api.get(
+                `v1/vacinas/paciente/${props.pacienteId}`
+            );
+            setVacina(response.data);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarGlicemia();
-    });
+    }, []);
 
     const totalPages = Math.ceil((vacina?.length || 0) / itemsPerPage);
 

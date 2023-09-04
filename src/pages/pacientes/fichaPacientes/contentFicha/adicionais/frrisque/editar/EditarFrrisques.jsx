@@ -19,28 +19,28 @@ function EditarFrrisques(props) {
     const [p9, setP9] = useState(null);
     const [p10, setP10] = useState(null);
 
-    useEffect(() => {
-        async function carregarHabito() {
-            try {
-                const response = await api.get(`v1/frrisques/${props.frrisquesId}`);
-                setP1(response.data.p1);
-                setP2(response.data.p2);
-                setP3(response.data.p3);
-                setP4(response.data.p4);
-                setP5(response.data.p5);
-                setP6(response.data.p6);
-                setP7(response.data.p7);
-                setP8(response.data.p8);
-                setP9(response.data.p9);
-                setP10(response.data.p10);
+    async function carregarHabito() {
+        try {
+            const response = await api.get(`v1/frrisques/${props.frrisquesId}`);
+            setP1(response.data.p1);
+            setP2(response.data.p2);
+            setP3(response.data.p3);
+            setP4(response.data.p4);
+            setP5(response.data.p5);
+            setP6(response.data.p6);
+            setP7(response.data.p7);
+            setP8(response.data.p8);
+            setP9(response.data.p9);
+            setP10(response.data.p10);
 
-            } catch (error) {
-                console.log(undefined);
-            }
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarHabito();
-    }, [props.frrisquesId]);
+    }, []);
 
     const Frrisque = {
         paciente_id: props.pacienteId,

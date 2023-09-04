@@ -26,20 +26,20 @@ function SaudeBuca(props) {
         setComponenteAtivo('adicionar');
     }
 
-    useEffect(() => {
-        async function carregarBucalSaudes() {
-            try {
-                const response = await api.get(
-                    `v1/bucal-saudes/paciente/${props.pacienteId}`
-                );
-                setSaudeBucal(response.data);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarBucalSaudes() {
+        try {
+            const response = await api.get(
+                `v1/bucal-saudes/paciente/${props.pacienteId}`
+            );
+            setSaudeBucal(response.data);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarBucalSaudes();
-    });
+    }, []);
 
     const totalPages = Math.ceil((saudeBucal?.length || 0) / itemsPerPage);
     const pagesPerGroup = 10;

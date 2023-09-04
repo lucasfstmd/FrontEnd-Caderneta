@@ -13,21 +13,21 @@ function EditarCirurgias(props) {
     const [ano, setAno] = useState('');
     const [observacao, setObservacao] = useState('');
 
-    useEffect(() => {
-        async function carregarCirurgia() {
-            try {
-                const response = await api.get(`v1/cirurgias/${props.cirurgiasId}`);
-                setObjCirurgia(response.data);
-                setCirurgia(response.data.cirurgia);
-                setAno(response.data.ano);
-                setObservacao(response.data.observacao);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarCirurgia() {
+        try {
+            const response = await api.get(`v1/cirurgias/${props.cirurgiasId}`);
+            setObjCirurgia(response.data);
+            setCirurgia(response.data.cirurgia);
+            setAno(response.data.ano);
+            setObservacao(response.data.observacao);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarCirurgia();
-    }, [props.cirurgiasId]);
+    }, []);
 
     const Cirurgia = {
         paciente_id: props.pacienteId,

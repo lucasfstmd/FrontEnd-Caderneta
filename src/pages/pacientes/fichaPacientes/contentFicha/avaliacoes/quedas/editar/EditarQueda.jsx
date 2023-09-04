@@ -17,25 +17,25 @@ function EditarQueda(props) {
     const [local_queda, setLocalQueda] = useState('');
     const [fratura_qual, setFraturaQual] = useState('');
 
-    useEffect(() => {
-        async function carregarQuedas() {
-            try {
-                const response = await api.get(`v1/quedas/${props.quedaId}`);
-                setQuedaObj(response.data);
-                setQueda(response.data.queda);
-                setDataMes(response.data.data_mes);
-                setDataAno(response.data.data_ano);
-                setFratura(response.data.fratura);
-                setParouAtividade(response.data.parou_atividade);
-                setLocalQueda(response.data.local_queda);
-                setFraturaQual(response.data.fratura_qual);
-            } catch (error) {
+    async function carregarQuedas() {
+        try {
+            const response = await api.get(`v1/quedas/${props.quedaId}`);
+            setQuedaObj(response.data);
+            setQueda(response.data.queda);
+            setDataMes(response.data.data_mes);
+            setDataAno(response.data.data_ano);
+            setFratura(response.data.fratura);
+            setParouAtividade(response.data.parou_atividade);
+            setLocalQueda(response.data.local_queda);
+            setFraturaQual(response.data.fratura_qual);
+        } catch (error) {
             console.log(undefined);
-            }
         }
+    }
 
+    useEffect(() => {
         carregarQuedas();
-    }, [props.quedaId]);
+    }, []);
 
     const Queda = {
         paciente_id: props.pacienteId,

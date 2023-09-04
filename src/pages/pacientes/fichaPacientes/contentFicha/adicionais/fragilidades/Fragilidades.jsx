@@ -25,18 +25,18 @@ function Fragilidades(props) {
         setComponenteAtivo('adicionar');
     }
 
-    useEffect(() => {
-        async function carregarFragilidades() {
-            try {
-                const response = await api.get(`/v1/fragilidades/paciente/${props.pacienteId}`);
-                setFragilidades(response.data);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarFragilidades() {
+        try {
+            const response = await api.get(`/v1/fragilidades/paciente/${props.pacienteId}`);
+            setFragilidades(response.data);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarFragilidades();
-    })
+    }, []);
 
 
     return (

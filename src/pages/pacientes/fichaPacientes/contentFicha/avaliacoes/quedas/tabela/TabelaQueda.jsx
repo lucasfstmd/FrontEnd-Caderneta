@@ -121,20 +121,20 @@ function TabelaQueda(props) {
 
     const itemsPerPage = props.itemsPerPage;
 
-    useEffect(() => {
-        async function carregarAmbientais() {
-            try {
-                const response = await api.get(
-                    `v1/quedas/paciente/${props.pacienteId}`
-                );
-                setQuedas(response.data);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarAmbientais() {
+        try {
+            const response = await api.get(
+                `v1/quedas/paciente/${props.pacienteId}`
+            );
+            setQuedas(response.data);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarAmbientais();
-    });
+    }, []);
 
     const totalPages = Math.ceil((quedas?.length || 0) / itemsPerPage);
 

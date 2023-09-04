@@ -12,24 +12,24 @@ function EditarAtualizacao(props) {
     const [data, setData] = useState("");
     const [responsavel, setResponsavel] = useState("");
 
-    useEffect(() => {
-        async function carregarExame() {
-            try {
-                const response = await api.get(`v1/atualizacoes/${props.atualizacaoId}`);
-                setAtualizacao(response.data);
-                setData(response.data.data);
-                setResponsavel(response.data.responsavel);
-            } catch (error) {
-                if (error.response && error.response.status === 400) {
-                    setOpenErro400(true);
-                } else if (error.response && error.response.status === 500) {
-                    setOpenErro500(true);
-                }
+    async function carregarExame() {
+        try {
+            const response = await api.get(`v1/atualizacoes/${props.atualizacaoId}`);
+            setAtualizacao(response.data);
+            setData(response.data.data);
+            setResponsavel(response.data.responsavel);
+        } catch (error) {
+            if (error.response && error.response.status === 400) {
+                setOpenErro400(true);
+            } else if (error.response && error.response.status === 500) {
+                setOpenErro500(true);
             }
         }
+    }
 
+    useEffect(() => {
         carregarExame();
-    }, [props.atualizacaoId]);
+    }, []);
 
 
     const Atualizacao = {

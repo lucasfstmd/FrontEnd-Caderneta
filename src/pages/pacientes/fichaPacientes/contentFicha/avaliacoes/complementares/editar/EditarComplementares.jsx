@@ -16,24 +16,24 @@ function EditarComplementares(props) {
     const [p4, setP4] = useState("");
     const [p5, setP5] = useState("");
 
-    useEffect(() => {
-        async function carregarComplementar() {
-            try {
-                const response = await api.get(`v1/complementares/${props.complementaresId}`);
-                setComplementares(response.data);
-                setAno(response.data.ano);
-                setP1(response.data.p1);
-                setP2(response.data.p2);
-                setP3(response.data.p3);
-                setP4(response.data.p4);
-                setP5(response.data.p5);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarComplementar() {
+        try {
+            const response = await api.get(`v1/complementares/${props.complementaresId}`);
+            setComplementares(response.data);
+            setAno(response.data.ano);
+            setP1(response.data.p1);
+            setP2(response.data.p2);
+            setP3(response.data.p3);
+            setP4(response.data.p4);
+            setP5(response.data.p5);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarComplementar();
-    }, [props.complementaresId]);
+    }, []);
 
     const Complementar = {
         paciente_id: props.pacienteId,

@@ -113,20 +113,21 @@ function TabelaCronicas(props) {
 
     const itemsPerPage = props.itemsPerPage;
 
-    useEffect(() => {
-        async function carregarCronicas() {
-            try {
-                const response = await api.get(
-                    `v1/cronicas/paciente/${props.pacienteId}`
-                );
-                setCronicas(response.data);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarCronicas() {
+        try {
+            const response = await api.get(
+                `v1/cronicas/paciente/${props.pacienteId}`
+            );
+            setCronicas(response.data);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
+
+    useEffect(() => {
 
         carregarCronicas();
-    });
+    }, []);
 
     const totalPages = Math.ceil((cronicas?.length || 0) / itemsPerPage);
 

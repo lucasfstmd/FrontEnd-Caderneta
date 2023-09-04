@@ -103,20 +103,20 @@ function TabelaAtualizacao(props) {
 
     const itemsPerPage = props.itemsPerPage;
 
-    useEffect(() => {
-        async function carregarAtualizacoes() {
-            try {
-                const response = await api.get(
-                    `v1/atualizacoes/paciente/${props.pacienteId}`
-                );
-                setAtualizacoes(response.data);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarAtualizacoes() {
+        try {
+            const response = await api.get(
+                `v1/atualizacoes/paciente/${props.pacienteId}`
+            );
+            setAtualizacoes(response.data);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarAtualizacoes();
-    });
+    }, []);
 
 
     const totalPages = Math.ceil((atualizacaos?.length || 0) / itemsPerPage);

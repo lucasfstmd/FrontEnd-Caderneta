@@ -126,20 +126,20 @@ function TabelaReferencias(props) {
 
     const itemsPerPage = props.itemsPerPage;
 
-    useEffect(() => {
-        async function carregarReferencias() {
-            try {
-                const response = await api.get(
-                    `v1/referencias/paciente/${props.pacienteId}`
-                );
-                setReferencias(response.data);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarReferencias() {
+        try {
+            const response = await api.get(
+                `v1/referencias/paciente/${props.pacienteId}`
+            );
+            setReferencias(response.data);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarReferencias();
-    });
+    }, []);
 
     const totalPages = Math.ceil((referencias?.length || 0) / itemsPerPage);
 

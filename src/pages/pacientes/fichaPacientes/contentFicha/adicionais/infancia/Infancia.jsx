@@ -26,20 +26,20 @@ function Infancia(props) {
         setComponenteAtivo('adicionar');
     }
 
-    useEffect(() => {
-        async function carregarInfancias() {
-            try {
-                const response = await api.get(
-                    `v1/infancias/paciente/${props.pacienteId}`
-                );
-                setInfancias(response.data);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarInfancias() {
+        try {
+            const response = await api.get(
+                `v1/infancias/paciente/${props.pacienteId}`
+            );
+            setInfancias(response.data);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarInfancias();
-    });
+    }, []);
 
     const totalPages = Math.ceil((infancias?.length || 0) / itemsPerPage);
     const pagesPerGroup = 10;

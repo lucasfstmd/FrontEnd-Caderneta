@@ -143,20 +143,20 @@ function TabelaFamiliares(props) {
     const [currentPage] = useState(1);
     const itemsPerPage = props.itemsPerPage;
 
-    useEffect(() => {
-        async function carregarFamiliares() {
-            try {
-                const response = await api.get(
-                    `v1/familiares/paciente/${props.pacienteId}`
-                );
-                setFamiliares(response.data);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarFamiliares() {
+        try {
+            const response = await api.get(
+                `v1/familiares/paciente/${props.pacienteId}`
+            );
+            setFamiliares(response.data);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarFamiliares();
-    });
+    }, []);
 
     const totalPages = Math.ceil((familiares?.length || 0) / itemsPerPage);
 

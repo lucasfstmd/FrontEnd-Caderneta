@@ -18,26 +18,26 @@ function EditarReferencias(props) {
     const [mora_com_voce, setMora_com_voce] = useState();
     const [data_informacao, setData_informacao] = useState("");
 
-    useEffect(() => {
-        async function carregarReferencia() {
-            try {
-                const response = await api.get(`v1/referencias/${props.referenciaId}`);
-                setReferencia(response.data);
-                setNome(response.data.nome);
-                setDataNascimento(response.data.data_nascimento);
-                setVinculo(response.data.vinculo);
-                setEndereco(response.data.endereco);
-                setTelefone(response.data.telefone);
-                setCelular(response.data.celular);
-                setMora_com_voce(response.data.mora_com_voce);
-                setData_informacao(response.data.data_informacao);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarReferencia() {
+        try {
+            const response = await api.get(`v1/referencias/${props.referenciaId}`);
+            setReferencia(response.data);
+            setNome(response.data.nome);
+            setDataNascimento(response.data.data_nascimento);
+            setVinculo(response.data.vinculo);
+            setEndereco(response.data.endereco);
+            setTelefone(response.data.telefone);
+            setCelular(response.data.celular);
+            setMora_com_voce(response.data.mora_com_voce);
+            setData_informacao(response.data.data_informacao);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarReferencia();
-    }, [props.referenciaId]);
+    }, []);
 
     const Referencia = {
         paciente_id: props.pacienteId,

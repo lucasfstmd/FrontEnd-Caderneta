@@ -43,51 +43,51 @@ function EditarSaudeBucal(props) {
     const [p31, setP31] = useState(null);
     const [p32, setP32] = useState("");
 
-    useEffect(() => {
-        async function carregarSaudeBucal() {
-            try {
-                const response = await api.get(`v1/bucal-saudes/${props.saudeBucalId}`);
-                setSaudeBucal(response.data);
-                setAno(response.data.ano);
-                setP1(response.data.p1);
-                setP2(response.data.p2);
-                setP3(response.data.p3);
-                setP4(response.data.p4);
-                setP5(response.data.p5);
-                setP6(response.data.p6);
-                setP7(response.data.p7);
-                setP8(response.data.p8);
-                setP9(response.data.p9);
-                setP10(response.data.p10);
-                setP11(response.data.p11);
-                setP12(response.data.p12);
-                setP13(response.data.p13);
-                setP14(response.data.p14);
-                setP15(response.data.p15);
-                setP16(response.data.p16);
-                setP17(response.data.p17);
-                setP18(response.data.p18);
-                setP19(response.data.p19);
-                setP20(response.data.p20);
-                setP21(response.data.p21);
-                setP22(response.data.p22);
-                setP23(response.data.p23);
-                setP24(response.data.p24);
-                setP25(response.data.p25);
-                setP26(response.data.p26);
-                setP27(response.data.p27);
-                setP28(response.data.p28);
-                setP29(response.data.p29);
-                setP30(response.data.p30);
-                setP31(response.data.p31);
-                setP32(response.data.p32);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarSaudeBucal() {
+        try {
+            const response = await api.get(`v1/bucal-saudes/${props.saudeBucalId}`);
+            setSaudeBucal(response.data);
+            setAno(response.data.ano);
+            setP1(response.data.p1);
+            setP2(response.data.p2);
+            setP3(response.data.p3);
+            setP4(response.data.p4);
+            setP5(response.data.p5);
+            setP6(response.data.p6);
+            setP7(response.data.p7);
+            setP8(response.data.p8);
+            setP9(response.data.p9);
+            setP10(response.data.p10);
+            setP11(response.data.p11);
+            setP12(response.data.p12);
+            setP13(response.data.p13);
+            setP14(response.data.p14);
+            setP15(response.data.p15);
+            setP16(response.data.p16);
+            setP17(response.data.p17);
+            setP18(response.data.p18);
+            setP19(response.data.p19);
+            setP20(response.data.p20);
+            setP21(response.data.p21);
+            setP22(response.data.p22);
+            setP23(response.data.p23);
+            setP24(response.data.p24);
+            setP25(response.data.p25);
+            setP26(response.data.p26);
+            setP27(response.data.p27);
+            setP28(response.data.p28);
+            setP29(response.data.p29);
+            setP30(response.data.p30);
+            setP31(response.data.p31);
+            setP32(response.data.p32);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarSaudeBucal();
-    }, [props.saudeBucalId]);
+    }, []);
 
     const BucalSaude = {
         paciente_id: props.pacienteId,

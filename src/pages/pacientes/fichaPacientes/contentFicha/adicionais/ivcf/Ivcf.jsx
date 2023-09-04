@@ -26,20 +26,20 @@ function Ivcf(props) {
         setComponenteAtivo('adicionar');
     }
 
-    useEffect(() => {
-        async function carregarIvcfs() {
-            try {
-                const response = await api.get(
-                    `v1/ivcfs/paciente/${props.pacienteId}`
-                );
-                setIvcf(response.data);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarIvcfs() {
+        try {
+            const response = await api.get(
+                `v1/ivcfs/paciente/${props.pacienteId}`
+            );
+            setIvcf(response.data);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarIvcfs();
-    });
+    }, []);
 
     const totalPages = Math.ceil((ivcf?.length || 0) / itemsPerPage);
     const pagesPerGroup = 10;

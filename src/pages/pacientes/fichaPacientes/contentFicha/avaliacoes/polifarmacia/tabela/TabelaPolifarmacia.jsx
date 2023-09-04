@@ -97,20 +97,20 @@ function TabelaPolifarmacia(props) {
     const itemsPerPage = props.itemsPerPage;
 
 
-    useEffect(() => {
-        async function carregarPolifarmacia() {
-            try {
-                const response = await api.get(
-                    `v1/polifarmacias/paciente/${props.pacienteId}`
-                );
-                setPolifarmacia(response.data);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarPolifarmacia() {
+        try {
+            const response = await api.get(
+                `v1/polifarmacias/paciente/${props.pacienteId}`
+            );
+            setPolifarmacia(response.data);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarPolifarmacia();
-    });
+    }, []);
 
     const totalPages = Math.ceil((polifarmacia?.length || 0) / itemsPerPage);
 

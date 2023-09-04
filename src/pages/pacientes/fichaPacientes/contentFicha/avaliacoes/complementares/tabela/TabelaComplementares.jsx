@@ -116,21 +116,20 @@ function TabelaComplementares(props) {
 
     const itemsPerPage = props.itemsPerPage;
 
+    async function carregarComplementares() {
+        try {
+            const response = await api.get(
+                `v1/complementares/paciente/${props.pacienteId}`
+            );
+            setComplementares(response.data);
+        } catch (error) {
+            console.log(undefined);
+        }
+    }
 
     useEffect(() => {
-        async function carregarComplementares() {
-            try {
-                const response = await api.get(
-                    `v1/complementares/paciente/${props.pacienteId}`
-                );
-                setComplementares(response.data);
-            } catch (error) {
-                console.log(undefined);
-            }
-        }
-
         carregarComplementares();
-    });
+    }, []);
 
     const totalPages = Math.ceil((complementares?.length || 0) / itemsPerPage);
 

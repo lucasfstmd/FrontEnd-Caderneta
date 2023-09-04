@@ -26,20 +26,20 @@ function Vulnerabilidades(props) {
         setComponenteAtivo('adicionar');
     }
 
-    useEffect(() => {
-        async function carregarVulnerabilidade() {
-            try {
-                const response = await api.get(
-                    `v1/vulnerabilidades/paciente/${props.pacienteId}`
-                );
-                setVulnerabilidade(response.data);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarVulnerabilidade() {
+        try {
+            const response = await api.get(
+                `v1/vulnerabilidades/paciente/${props.pacienteId}`
+            );
+            setVulnerabilidade(response.data);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarVulnerabilidade();
-    });
+    }, []);
 
     const totalPages = Math.ceil((vulnerabilidade?.length || 0) / itemsPerPage);
     const pagesPerGroup = 10;

@@ -24,32 +24,32 @@ function EditarVulnerabilidades(props) {
     const [incapacidades4, setIncapacidades4] = useState();
     const [incapacidades5, setIncapacidades5] = useState();
 
-    useEffect(() => {
-        async function carregarVulnerabilidade() {
-            try {
-                const response = await api.get(`v1/vulnerabilidades/${props.vulnerabilidadeId}`);
-                setVulnerabilidade(response.data);
-                setAno(response.data.ano);
-                setIdade(response.data.idade);
-                setAutopercepcao(response.data.autopercepcao);
-                setLimitacao1(response.data.limitacao1);
-                setLimitacao2(response.data.limitacao2);
-                setLimitacao3(response.data.limitacao3);
-                setLimitacao4(response.data.limitacao4);
-                setLimitacao5(response.data.limitacao5);
-                setLimitacao6(response.data.limitacao6);
-                setIncapacidades1(response.data.incapacidades1);
-                setIncapacidades2(response.data.incapacidades2);
-                setIncapacidades3(response.data.incapacidades3);
-                setIncapacidades4(response.data.incapacidades4);
-                setIncapacidades5(response.data.incapacidades5);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarVulnerabilidade() {
+        try {
+            const response = await api.get(`v1/vulnerabilidades/${props.vulnerabilidadeId}`);
+            setVulnerabilidade(response.data);
+            setAno(response.data.ano);
+            setIdade(response.data.idade);
+            setAutopercepcao(response.data.autopercepcao);
+            setLimitacao1(response.data.limitacao1);
+            setLimitacao2(response.data.limitacao2);
+            setLimitacao3(response.data.limitacao3);
+            setLimitacao4(response.data.limitacao4);
+            setLimitacao5(response.data.limitacao5);
+            setLimitacao6(response.data.limitacao6);
+            setIncapacidades1(response.data.incapacidades1);
+            setIncapacidades2(response.data.incapacidades2);
+            setIncapacidades3(response.data.incapacidades3);
+            setIncapacidades4(response.data.incapacidades4);
+            setIncapacidades5(response.data.incapacidades5);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarVulnerabilidade();
-    }, [props.vulnerabilidadeId]);
+    }, []);
 
     const getPontos = () => {
         let total = 0;

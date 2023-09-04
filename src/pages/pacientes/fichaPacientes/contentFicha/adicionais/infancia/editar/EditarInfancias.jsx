@@ -33,42 +33,42 @@ function EditarInfancias(props) {
     const [b5, setB5] = useState("");
     const [b6, setB6] = useState("");
 
-    useEffect(() => {
-        async function carregarInfancia() {
-            try {
-                const response = await api.get(`v1/infancias/${props.infanciaId}`);
-                setInfancia(response.data);
-                setA1(response.data.a1);
-                setA2_a(response.data.a2_a);
-                setA2_b(response.data.a2_b);
-                setA3_a(response.data.a3_a);
-                setA3_b(response.data.a3_b);
-                setA4(response.data.a4);
-                setA5_a(response.data.a5_a);
-                setA5_b(response.data.a5_b);
-                setA5_c(response.data.a5_c);
-                setA5_d(response.data.a5_d);
-                setA5_e(response.data.a5_e);
-                setA5_f(response.data.a5_f);
-                setA5_g(response.data.a5_g);
-                setA5_h(response.data.a5_h);
-                setA6(response.data.a6);
-                setA7(response.data.a7);
-                setB1(response.data.b1);
-                setB2(response.data.b2);
-                setB3_a(response.data.b3_a);
-                setB3_b(response.data.b3_b);
-                setB4(response.data.b4);
-                setB5(response.data.b5);
-                setB6(response.data.b6);
+    async function carregarInfancia() {
+        try {
+            const response = await api.get(`v1/infancias/${props.infanciaId}`);
+            setInfancia(response.data);
+            setA1(response.data.a1);
+            setA2_a(response.data.a2_a);
+            setA2_b(response.data.a2_b);
+            setA3_a(response.data.a3_a);
+            setA3_b(response.data.a3_b);
+            setA4(response.data.a4);
+            setA5_a(response.data.a5_a);
+            setA5_b(response.data.a5_b);
+            setA5_c(response.data.a5_c);
+            setA5_d(response.data.a5_d);
+            setA5_e(response.data.a5_e);
+            setA5_f(response.data.a5_f);
+            setA5_g(response.data.a5_g);
+            setA5_h(response.data.a5_h);
+            setA6(response.data.a6);
+            setA7(response.data.a7);
+            setB1(response.data.b1);
+            setB2(response.data.b2);
+            setB3_a(response.data.b3_a);
+            setB3_b(response.data.b3_b);
+            setB4(response.data.b4);
+            setB5(response.data.b5);
+            setB6(response.data.b6);
 
-            } catch (error) {
-                console.log(undefined);
-            }
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarInfancia();
-    }, [props.infanciaId]);
+    }, []);
 
     const Infancia = {
         paciente_id: props.pacienteId,

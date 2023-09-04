@@ -45,44 +45,44 @@ function EditarIvcf(props) {
     const [p21, setP21] = useState(0);
     const [p22, setP22] = useState(0);
 
-    useEffect(() => {
-        async function carregarPcl() {
-            try {
-                const response = await api.get(`v1/ivcfs/${props.ivcfId}`);
-                setP1(response.data.p1);
-                setP2(response.data.p2);
-                setP3(response.data.p3);
-                setP4(response.data.p4);
-                setP5(response.data.p5);
-                setP6(response.data.p6);
-                setP7(response.data.p7);
-                setP8(response.data.p8);
-                setP9(response.data.p9);
-                setP10(response.data.p10);
-                setP11(response.data.p11);
-                setP12(response.data.p12);
-                setP13(response.data.p13);
-                setP14_1(response.data.p14_1);
-                setP14_2(response.data.p14_2);
-                setP14_3(response.data.p14_3);
-                setP14_4(response.data.p14_4);
-                setP15(response.data.p15);
-                setP16(response.data.p16);
-                setP17(response.data.p17);
-                setP18(response.data.p18);
-                setP19(response.data.p19);
-                setP20_1(response.data.p20_1);
-                setP20_2(response.data.p20_2);
-                setP20_3(response.data.p20_3);
-                setP21(response.data.p21);
-                setP22(response.data.p22);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarPcl() {
+        try {
+            const response = await api.get(`v1/ivcfs/${props.ivcfId}`);
+            setP1(response.data.p1);
+            setP2(response.data.p2);
+            setP3(response.data.p3);
+            setP4(response.data.p4);
+            setP5(response.data.p5);
+            setP6(response.data.p6);
+            setP7(response.data.p7);
+            setP8(response.data.p8);
+            setP9(response.data.p9);
+            setP10(response.data.p10);
+            setP11(response.data.p11);
+            setP12(response.data.p12);
+            setP13(response.data.p13);
+            setP14_1(response.data.p14_1);
+            setP14_2(response.data.p14_2);
+            setP14_3(response.data.p14_3);
+            setP14_4(response.data.p14_4);
+            setP15(response.data.p15);
+            setP16(response.data.p16);
+            setP17(response.data.p17);
+            setP18(response.data.p18);
+            setP19(response.data.p19);
+            setP20_1(response.data.p20_1);
+            setP20_2(response.data.p20_2);
+            setP20_3(response.data.p20_3);
+            setP21(response.data.p21);
+            setP22(response.data.p22);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarPcl();
-    }, [props.ivcfId]);
+    }, []);
 
     const handleCheckbox14 = () => {
         if (p14_1 === 1 || p14_2 === 1 || p14_3 === 1 || p14_4 === 1) {

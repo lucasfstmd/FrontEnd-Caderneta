@@ -13,21 +13,21 @@ function EditarGlicemia(props) {
     const [tipo, setTipo] = useState("");
     const [valor, setValor] = useState(null);
 
-    useEffect(() => {
-        async function carregarGlicemia() {
-            try {
-                const response = await api.get(`v1/glicemia-controles/${props.glicemiaId}`);
-                setGlicemia(response.data);
-                setData(response.data.data);
-                setTipo(response.data.tipo);
-                setValor(response.data.valor);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarGlicemia() {
+        try {
+            const response = await api.get(`v1/glicemia-controles/${props.glicemiaId}`);
+            setGlicemia(response.data);
+            setData(response.data.data);
+            setTipo(response.data.tipo);
+            setValor(response.data.valor);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarGlicemia();
-    }, [props.glicemiaId]);
+    }, []);
 
     const Glicemia = {
         paciente_id: props.pacienteId,

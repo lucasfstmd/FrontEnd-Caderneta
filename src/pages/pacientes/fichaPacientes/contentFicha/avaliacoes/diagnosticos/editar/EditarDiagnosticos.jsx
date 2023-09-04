@@ -15,23 +15,24 @@ function EditarDiagnosticos(props) {
     const [ano_internacao, setAno_internacao] = useState('');
     const [tempo_internacao, setTempo_internacao] = useState('');
 
-    useEffect(() => {
-        async function carregarDiagnosticos() {
-            try {
-                const response = await api.get(`v1/diagnosticos/${props.diagnosticosId}`);
-                setDiagnosticos(response.data);
-                setTipo(response.data.tipo);
-                setTipoOutro(response.data.tipo_outro);
-                setAno_diagnostico(response.data.ano_diagnostico);
-                setAno_internacao(response.data.ano_internacao);
-                setTempo_internacao(response.data.tempo_internacao);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarDiagnosticos() {
+        try {
+            const response = await api.get(`v1/diagnosticos/${props.diagnosticosId}`);
+            setDiagnosticos(response.data);
+            setTipo(response.data.tipo);
+            setTipoOutro(response.data.tipo_outro);
+            setAno_diagnostico(response.data.ano_diagnostico);
+            setAno_internacao(response.data.ano_internacao);
+            setTempo_internacao(response.data.tempo_internacao);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
+
+    useEffect(() => {
 
         carregarDiagnosticos();
-    }, [props.diagnosticosId]);
+    }, []);
 
     const Diagnostico = {
         paciente_id: props.pacienteId,

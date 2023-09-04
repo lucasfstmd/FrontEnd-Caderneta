@@ -100,20 +100,20 @@ function TabelaControlePeso(props) {
 
     const itemsPerPage = props.itemsPerPage;
 
-    useEffect(() => {
-        async function carregarPesos() {
-            try {
-                const response = await api.get(
-                    `v1/pesos/paciente/${props.pacienteId}`
-                );
-                setControlePeso(response.data);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarPesos() {
+        try {
+            const response = await api.get(
+                `v1/pesos/paciente/${props.pacienteId}`
+            );
+            setControlePeso(response.data);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarPesos();
-    });
+    }, []);
 
     const totalPages = Math.ceil((controlePeso?.length || 0) / itemsPerPage);
 

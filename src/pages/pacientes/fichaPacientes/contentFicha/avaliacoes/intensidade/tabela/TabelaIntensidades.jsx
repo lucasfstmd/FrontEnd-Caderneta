@@ -107,20 +107,20 @@ function TabelaIntensidades(props) {
 
     const itemsPerPage = props.itemsPerPage;
 
-    useEffect(() => {
-        async function carregarIntensidades() {
-            try {
-                const response = await api.get(
-                    `v1/intensidades/paciente/${props.pacienteId}`
-                );
-                setIntensidades(response.data);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarIntensidades() {
+        try {
+            const response = await api.get(
+                `v1/intensidades/paciente/${props.pacienteId}`
+            );
+            setIntensidades(response.data);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarIntensidades();
-    });
+    }, []);
 
     const totalPages = Math.ceil((intensidades?.length || 0) / itemsPerPage);
 

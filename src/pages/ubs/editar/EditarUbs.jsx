@@ -16,19 +16,19 @@ function EditarUbs() {
     const {id} = useParams();
     const navigate = useNavigate();
 
-    useEffect(() => {
-        async function carregarUbs() {
-            try {
-                const response = await api.get(`v1/ubs/${id}`);
-                setUbs(response.data);
-                setNome(response.data.nome);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarUbs() {
+        try {
+            const response = await api.get(`v1/ubs/${id}`);
+            setUbs(response.data);
+            setNome(response.data.nome);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarUbs();
-    }, [id]);
+    }, []);
 
     const Ubs = {
         nome,

@@ -26,20 +26,20 @@ function Bioimpedancias(props) {
         setComponenteAtivo('adicionar');
     }
 
-    useEffect(() => {
-        async function carregarBioimpedancias() {
-            try {
-                const response = await api.get(
-                    `v1/bioimpedancias/paciente/${props.pacienteId}`
-                );
-                setBioimpedancias(response.data);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarBioimpedancias() {
+        try {
+            const response = await api.get(
+                `v1/bioimpedancias/paciente/${props.pacienteId}`
+            );
+            setBioimpedancias(response.data);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarBioimpedancias();
-    });
+    }, []);
 
     const totalPages = Math.ceil((bioimpedancias?.length || 0) / itemsPerPage);
     const pagesPerGroup = 10;

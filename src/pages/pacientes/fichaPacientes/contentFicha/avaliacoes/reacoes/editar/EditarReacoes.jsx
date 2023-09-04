@@ -13,21 +13,21 @@ function EditarReacoes(props) {
     const [data, setData] = useState('');
     const [reacoes_adversas_ou_alergicas, setReacoesAlergicas] = useState('');
 
-    useEffect(() => {
-        async function carregarReacao() {
-            try {
-                const response = await api.get(`v1/reacoes/${props.reacoesId}`);
-                setReacao(response.data);
-                setMedicamento(response.data.medicamento);
-                setData(response.data.data);
-                setReacoesAlergicas(response.data.reacoesAdversasOuAlergicas);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarReacao() {
+        try {
+            const response = await api.get(`v1/reacoes/${props.reacoesId}`);
+            setReacao(response.data);
+            setMedicamento(response.data.medicamento);
+            setData(response.data.data);
+            setReacoesAlergicas(response.data.reacoesAdversasOuAlergicas);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarReacao();
-    }, [props.reacoesId]);
+    }, []);
 
     const Reacao = {
         paciente_id: props.pacienteId,

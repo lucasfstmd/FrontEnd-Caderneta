@@ -16,24 +16,24 @@ function EditarVacina(props) {
     const [lote, setLote] = useState("");
     const [outra, setOutra] = useState("");
 
-    useEffect(() => {
-        async function carregarVacina() {
-            try {
-                const response = await api.get(`v1/vacinas/${props.vacinaId}`);
-                setVacina(response.data);
-                setData(response.data.data);
-                setTipo(response.data.tipo);
-                setNome(response.data.nome);
-                setAss(response.data.ass);
-                setLote(response.data.lote)
-                setOutra(response.data.outra);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarVacina() {
+        try {
+            const response = await api.get(`v1/vacinas/${props.vacinaId}`);
+            setVacina(response.data);
+            setData(response.data.data);
+            setTipo(response.data.tipo);
+            setNome(response.data.nome);
+            setAss(response.data.ass);
+            setLote(response.data.lote)
+            setOutra(response.data.outra);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarVacina();
-    }, [props.vacinaId]);
+    }, []);
 
     const Vacina = {
         paciente_id: props.pacienteId,

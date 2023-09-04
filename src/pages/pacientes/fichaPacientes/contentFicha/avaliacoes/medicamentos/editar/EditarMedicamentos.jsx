@@ -16,24 +16,24 @@ function EditarMedicamentos(props) {
     const [suspensao_data, setSuspensao_data] = useState('');
     const [suspensao_motivo, setSuspensao_motivo] = useState('');
 
-    useEffect(() => {
-        async function carregarMedicamentos() {
-            try {
-                const response = await api.get(`v1/avaliacoes/${props.medicamentosId}`);
-                setAvaliacoes(response.data);
-                setNome_medicamento(response.data.nome_medicamento);
-                setDose(response.data.dose);
-                setData_inicio(response.data.data_inicio);
-                setPrescrito_por(response.data.prescrito_por);
-                setSuspensao_data(response.data.suspensao_data);
-                setSuspensao_motivo(response.data.suspensao_motivo);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarMedicamentos() {
+        try {
+            const response = await api.get(`v1/avaliacoes/${props.medicamentosId}`);
+            setAvaliacoes(response.data);
+            setNome_medicamento(response.data.nome_medicamento);
+            setDose(response.data.dose);
+            setData_inicio(response.data.data_inicio);
+            setPrescrito_por(response.data.prescrito_por);
+            setSuspensao_data(response.data.suspensao_data);
+            setSuspensao_motivo(response.data.suspensao_motivo);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarMedicamentos();
-    }, [props.medicamentosId]);
+    }, []);
 
     const Avaliacao = {
         paciente_id: props.pacienteId,

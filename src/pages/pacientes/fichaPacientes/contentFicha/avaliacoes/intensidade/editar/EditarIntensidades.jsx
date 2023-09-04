@@ -13,21 +13,21 @@ function EditarIntensidades(props) {
     const [local_dor, setLocalDor] = useState("");
     const [intensidade, setIntensidade] = useState("");
 
-    useEffect(() => {
-        async function carregarIntensidade() {
-            try {
-                const response = await api.get(`v1/intensidades/${props.intensidadesId}`);
-                setIntensidadeObj(response.data);
-                setData(response.data.data);
-                setLocalDor(response.data.local_dor);
-                setIntensidade(response.data.intensidade);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarIntensidade() {
+        try {
+            const response = await api.get(`v1/intensidades/${props.intensidadesId}`);
+            setIntensidadeObj(response.data);
+            setData(response.data.data);
+            setLocalDor(response.data.local_dor);
+            setIntensidade(response.data.intensidade);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarIntensidade();
-    }, [props.intensidadesId]);
+    }, []);
 
     const Intensidade = {
         paciente_id: props.pacienteId,

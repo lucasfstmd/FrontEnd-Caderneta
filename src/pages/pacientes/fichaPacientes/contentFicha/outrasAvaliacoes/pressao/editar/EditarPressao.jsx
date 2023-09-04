@@ -12,20 +12,20 @@ function EditarPressao(props) {
     const [data, setData] = useState("");
     const [pressao, setPressao] = useState("");
 
-    useEffect(() => {
-        async function carregarPressao() {
-            try {
-                const response = await api.get(`v1/pressao-controles/${props.pressaoId}`);
-                setPressaoObj(response.data);
-                setData(response.data.data);
-                setPressao(response.data.pressao);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarPressao() {
+        try {
+            const response = await api.get(`v1/pressao-controles/${props.pressaoId}`);
+            setPressaoObj(response.data);
+            setData(response.data.data);
+            setPressao(response.data.pressao);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarPressao();
-    }, [props.pressaoId]);
+    }, []);
 
     const Pressao = {
         paciente_id: props.pacienteId,

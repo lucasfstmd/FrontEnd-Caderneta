@@ -103,20 +103,20 @@ function TabelaPressao(props) {
 
     const itemsPerPage = props.itemsPerPage;
 
-    useEffect(() => {
-        async function carregarPrecao() {
-            try {
-                const response = await api.get(
-                    `v1/pressao-controles/paciente/${props.pacienteId}`
-                );
-                setPressao(response.data);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarPrecao() {
+        try {
+            const response = await api.get(
+                `v1/pressao-controles/paciente/${props.pacienteId}`
+            );
+            setPressao(response.data);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarPrecao();
-    });
+    }, []);
 
     const totalPages = Math.ceil((pressao?.length || 0) / itemsPerPage);
 

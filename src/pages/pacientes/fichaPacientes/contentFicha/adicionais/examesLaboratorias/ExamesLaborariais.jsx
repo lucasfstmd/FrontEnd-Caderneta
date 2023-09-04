@@ -26,20 +26,20 @@ function ExamesLaborariais(props) {
         setComponenteAtivo('adicionar');
     }
 
-    useEffect(() => {
-        async function carregarExamesLab() {
-            try {
-                const response = await api.get(
-                    `v1/laboratorial-exames/paciente/${props.pacienteId}`
-                );
-                setExameLab(response.data);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarExamesLab() {
+        try {
+            const response = await api.get(
+                `v1/laboratorial-exames/paciente/${props.pacienteId}`
+            );
+            setExameLab(response.data);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarExamesLab();
-    });
+    }, []);
 
     const totalPages = Math.ceil((exameLab?.length || 0) / itemsPerPage);
     const pagesPerGroup = 10;

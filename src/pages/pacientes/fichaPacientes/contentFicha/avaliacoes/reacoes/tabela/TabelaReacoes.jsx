@@ -105,20 +105,20 @@ function TabelaReacoes(props) {
 
     const itemsPerPage = props.itemsPerPage;
 
-    useEffect(() => {
-        async function carregarReacoes() {
-            try {
-                const response = await api.get(
-                    `v1/reacoes/paciente/${props.pacienteId}`
-                );
-                setReacoes(response.data);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarReacoes() {
+        try {
+            const response = await api.get(
+                `v1/reacoes/paciente/${props.pacienteId}`
+            );
+            setReacoes(response.data);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarReacoes();
-    });
+    }, []);
 
     const totalPages = Math.ceil((reacoes?.length || 0) / itemsPerPage);
 

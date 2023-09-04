@@ -21,27 +21,28 @@ function EditarUsuario(props) {
     const [senha, setSenha] = useState("");
     const [tipo, setTipo] = useState("");
 
-    useEffect(() => {
-        async function carregarUsuario() {
-            try {
-                const response = await api.get(`v1/usuarios/${user}`);
-                setUser(response.data);
-                setUsuario(response.data.usuario);
-                setId(response.data.id);
-                setEmail(response.data.email);
-                setTipo(response.data.tipo);
-                console.log(response.data)
-            } catch (error) {
-                setError(error.response.data.message);
-                if (error.response && error.response.status === 400) {
-                    setOpenErro400(true);
-                } else if (error.response && error.response.status === 500) {
-                    setOpenErro500(true);
-                }
+    async function carregarUsuario() {
+        try {
+            const response = await api.get(`v1/usuarios/${user}`);
+            setUser(response.data);
+            setUsuario(response.data.usuario);
+            setId(response.data.id);
+            setEmail(response.data.email);
+            setTipo(response.data.tipo);
+            console.log(response.data)
+        } catch (error) {
+            setError(error.response.data.message);
+            if (error.response && error.response.status === 400) {
+                setOpenErro400(true);
+            } else if (error.response && error.response.status === 500) {
+                setOpenErro500(true);
             }
         }
+    }
+
+    useEffect(() => {
         carregarUsuario();
-    }, [user])
+    }, [])
 
     const Usuario = {
         usuario,

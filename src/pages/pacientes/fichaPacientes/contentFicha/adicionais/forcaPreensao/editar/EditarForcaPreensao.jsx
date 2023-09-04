@@ -14,22 +14,22 @@ function EditarForcaPreensao(props) {
     const [medida_3, setMedida3] = useState(null);
     const [membro_dominante, setMembro] = useState("");
 
-    useEffect(() => {
-        async function carregarForca() {
-            try {
-                const response = await api.get(`v1/preensao-forcas/${props.forcaPressaoId}`);
-                setPreensaoForca(response.data);
-                setMedida1(response.data.medida_1);
-                setMedida2(response.data.medida_2);
-                setMedida3(response.data.medida_3);
-                setMembro(response.data.membro_dominante);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarForca() {
+        try {
+            const response = await api.get(`v1/preensao-forcas/${props.forcaPressaoId}`);
+            setPreensaoForca(response.data);
+            setMedida1(response.data.medida_1);
+            setMedida2(response.data.medida_2);
+            setMedida3(response.data.medida_3);
+            setMembro(response.data.membro_dominante);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarForca();
-    }, [props.forcaPressaoId]);
+    }, []);
 
     const PreensaoForca = {
         paciente_id: props.pacienteId,

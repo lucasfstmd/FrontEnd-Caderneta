@@ -100,20 +100,20 @@ function TabelaPercaPeso(props) {
 
     const itemsPerPage = props.itemsPerPage;
 
-    useEffect(() => {
-        async function carregarPercaPeso() {
-            try {
-                const response = await api.get(
-                    `v1/peso-perdas/paciente/${props.pacienteId}`
-                );
-                setPercaPesos(response.data);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarPercaPeso() {
+        try {
+            const response = await api.get(
+                `v1/peso-perdas/paciente/${props.pacienteId}`
+            );
+            setPercaPesos(response.data);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarPercaPeso();
-    });
+    }, []);
 
     const totalPages = Math.ceil((percaPesos?.length || 0) / itemsPerPage);
 

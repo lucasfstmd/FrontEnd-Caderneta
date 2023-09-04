@@ -15,23 +15,24 @@ function EditarCronicas(props) {
     const [p3, setP3] = useState(null);
     const [p4, setP4] = useState(null);
 
-    useEffect(() => {
-        async function carregarCronica() {
-            try {
-                const response = await api.get(`v1/cronicas/${props.cronicasId}`);
-                setCronica(response.data);
-                setAno(response.data.ano);
-                setP1(response.data.p1);
-                setP2(response.data.p2);
-                setP3(response.data.p3);
-                setP4(response.data.p4);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarCronica() {
+        try {
+            const response = await api.get(`v1/cronicas/${props.cronicasId}`);
+            setCronica(response.data);
+            setAno(response.data.ano);
+            setP1(response.data.p1);
+            setP2(response.data.p2);
+            setP3(response.data.p3);
+            setP4(response.data.p4);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
+
+    useEffect(() => {
 
         carregarCronica();
-    }, [props.cronicasId]);
+    }, []);
 
     const Cronica = {
         paciente_id: props.pacienteId,

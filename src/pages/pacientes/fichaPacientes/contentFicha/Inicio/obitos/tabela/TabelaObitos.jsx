@@ -91,19 +91,19 @@ function TabelaObitos(props) {
 
     const itemsPerPage = props.itemsPerPage;
 
-    useEffect(() => {
-        async function carregarObitos() {
-            try {
-                const response = await api.get(`v1/obitos/paciente/${props.pacienteId}`);
-                setObitos(response.data);
-                setShowInfoObitos(response.data.length === 0);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarObitos() {
+        try {
+            const response = await api.get(`v1/obitos/paciente/${props.pacienteId}`);
+            setObitos(response.data);
+            setShowInfoObitos(response.data.length === 0);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarObitos();
-    }, [props.pacienteId]);
+    }, []);
 
     const totalPages = Math.ceil((obitos?.length || 0) / itemsPerPage);
 

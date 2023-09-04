@@ -13,19 +13,19 @@ function EditarObitos(props) {
     const [quando, setQuando] = useState('');
     const [motivo, setMotivo] = useState('');
 
-    useEffect(() => {
-        async function carregarObito() {
-            try {
-                const response = await api.get(`v1/obitos/${props.obitosId}`);
-                setObjObito(response.data);
-                setObito(response.data.obito);
-                setQuando(response.data.quando);
-                setMotivo(response.data.motivo);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarObito() {
+        try {
+            const response = await api.get(`v1/obitos/${props.obitosId}`);
+            setObjObito(response.data);
+            setObito(response.data.obito);
+            setQuando(response.data.quando);
+            setMotivo(response.data.motivo);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarObito();
     }, [props.obitosId]);
 

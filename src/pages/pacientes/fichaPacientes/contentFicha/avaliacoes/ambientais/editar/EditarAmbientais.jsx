@@ -22,30 +22,30 @@ function EditarAmbientais(props) {
     const [p10, setP10] = useState(null);
     const [p11, setP11] = useState(null);
 
-    useEffect(() => {
-        async function carregarAmbientais() {
-            try {
-                const response = await api.get(`v1/ambientais/${props.ambientaisId}`);
-                setAmbientais(response.data);
-                setAno(response.data.ano);
-                setP1(response.data.p1);
-                setP2(response.data.p2);
-                setP3(response.data.p3);
-                setP4(response.data.p4);
-                setP5(response.data.p5);
-                setP6(response.data.p6);
-                setP7(response.data.p7);
-                setP8(response.data.p8);
-                setP9(response.data.p9);
-                setP10(response.data.p10);
-                setP11(response.data.p11);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarAmbientais() {
+        try {
+            const response = await api.get(`v1/ambientais/${props.ambientaisId}`);
+            setAmbientais(response.data);
+            setAno(response.data.ano);
+            setP1(response.data.p1);
+            setP2(response.data.p2);
+            setP3(response.data.p3);
+            setP4(response.data.p4);
+            setP5(response.data.p5);
+            setP6(response.data.p6);
+            setP7(response.data.p7);
+            setP8(response.data.p8);
+            setP9(response.data.p9);
+            setP10(response.data.p10);
+            setP11(response.data.p11);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarAmbientais();
-    }, [props.ambientaisId]);
+    }, []);
 
     const Ambiental = {
         paciente_id: props.pacienteId,

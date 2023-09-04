@@ -99,20 +99,20 @@ function TabelaPcl(props) {
 
     const itemsPerPage = props.itemsPerPage;
 
-    useEffect(() => {
-        async function carregarPcl() {
-            try {
-                const response = await api.get(
-                    `v1/pcls/paciente/${props.pacienteId}`
-                );
-                setPcls(response.data);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarPcl() {
+        try {
+            const response = await api.get(
+                `v1/pcls/paciente/${props.pacienteId}`
+            );
+            setPcls(response.data);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarPcl();
-    });
+    }, []);
 
 
     const totalPages = Math.ceil((pcls?.length || 0) / itemsPerPage);

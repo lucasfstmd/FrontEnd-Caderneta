@@ -141,20 +141,20 @@ function TabelaAmbientais(props) {
 
     const itemsPerPage = props.itemsPerPage;
 
-    useEffect(() => {
-        async function carregarAmbientais() {
-            try {
-                const response = await api.get(
-                    `v1/ambientais/paciente/${props.pacienteId}`
-                );
-                setAmbientais(response.data);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarAmbientais() {
+        try {
+            const response = await api.get(
+                `v1/ambientais/paciente/${props.pacienteId}`
+            );
+            setAmbientais(response.data);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarAmbientais();
-    });
+    }, []);
 
     const totalPages = Math.ceil((ambientais?.length || 0) / itemsPerPage);
 

@@ -12,20 +12,20 @@ function EditarPercaPeso(props) {
     const [ano, setAno] = useState(0);
     const [perda_peso, setPerdaPeso] = useState(0);
 
-    useEffect(() => {
-        async function carregarPesoPerca() {
-            try {
-                const response = await api.get(`v1/peso-perdas/${props.percaPesoId}`);
-                setPesoPerca(response.data);
-                setAno(response.data.ano);
-                setPerdaPeso(response.data.perda_peso);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarPesoPerca() {
+        try {
+            const response = await api.get(`v1/peso-perdas/${props.percaPesoId}`);
+            setPesoPerca(response.data);
+            setAno(response.data.ano);
+            setPerdaPeso(response.data.perda_peso);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarPesoPerca();
-    }, [props.percaPesoId]);
+    }, []);
 
     const PesoPerca = {
         paciente_id: props.pacienteId,

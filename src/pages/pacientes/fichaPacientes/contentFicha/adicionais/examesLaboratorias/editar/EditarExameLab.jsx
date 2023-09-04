@@ -65,73 +65,73 @@ function EditarExameLab(props) {
     const [leucograma_linfocitos, setLeucogramaLinfocitos] = useState("");
     const [leucograma_monocitos, setLeucogramaMonocitos] = useState("");
 
-    useEffect(() => {
-        async function carregarExameLab() {
-            try {
-                const response = await api.get(`v1/laboratorial-exames/${props.exameLabId}`);
-                setExameLab(response.data);
-                setHemograma(response.data.hemograma);
-                setPlaquetas(response.data.plaquetas);
-                setContagem(response.data.contagem);
-                setMpv(response.data.mpv);
-                setObservacoesMorfologicas(response.data.observacoes_morfologicas);
-                setVsh(response.data.vsh);
-                setClassifiSanguinea(response.data.classifi_sanguinea);
-                setIc(response.data.ic);
-                setTs(response.data.ts);
-                setGlicemiaDeJejum(response.data.glicemia_de_jejum);
-                setHbGlicosilada(response.data.hb_glicosilada);
-                setUreia(response.data.ureia);
-                setCreatina(response.data.creatina);
-                setSodio(response.data.sodio);
-                setPotassio(response.data.potassio);
-                setColesterolTotal(response.data.colesterol_total);
-                setHdl(response.data.hdl);
-                setLdl(response.data.ldl);
-                setTriglicerides(response.data.triglicerides);
-                setHiv(response.data.hiv);
-                setTgo(response.data.tgo);
-                setTgp(response.data.tgp);
-                setBtEFracoes(response.data.bt_e_fracoes);
-                setAcidoUrico(response.data.acido_urico);
-                setPsa(response.data.psa);
-                setT3(response.data.t3);
-                setT4(response.data.t4);
-                setTsh(response.data.tsh);
-                setAslo(response.data.aslo);
-                setLatex(response.data.latex);
-                setPcr(response.data.pcr);
-                setMucoproteina(response.data.mucoproteina);
-                setCelulaLe(response.data.celula_le);
-                setVdrl(response.data.vdrl);
-                setEas(response.data.eas);
-                setEpf(response.data.epf);
-                setDeterminacaoDoFatorReumatoide(response.data.determinacao_do_fator_reumatoide);
-                setEritrogramaEritrocitos(response.data.eritrograma_eritrocitos);
-                setEritrogramaHemoglobina(response.data.eritrograma_hemoglobina);
-                setEritrogramaHematocrito(response.data.eritrograma_hematocrito);
-                setEritrogramaVcm(response.data.eritrograma_vcm);
-                setEritrogramaHcm(response.data.eritrograma_hcm);
-                setEritrogramaChcm(response.data.eritrograma_chcm);
-                setEritrogramaRdw(response.data.eritrograma_rdw);
-                setEritrogramaRdwFl(response.data.eritrograma_rdw_fl);
-                setLeucogramaLeucocitos(response.data.leucograma_leucocitos);
-                setLeucogramaPromielocitos(response.data.leucograma_promielocitos);
-                setLeucogramaMielocitos(response.data.leucograma_mielocitos);
-                setLeucogramaMetamielocitos(response.data.leucograma_metamielocitos);
-                setLeucogramaNeutrofilosEmBastao(response.data.leucograma_neutrofilos_em_bastao);
-                setLeucogramaNeutrofilosSegmentados(response.data.leucograma_neutrofilos_segmentados);
-                setLeucogramaEosinofilos(response.data.leucograma_eosinofilos);
-                setLeucogramaBasofilos(response.data.leucograma_basofilos);
-                setLeucogramaLinfocitos(response.data.leucograma_linfocitos);
-                setLeucogramaMonocitos(response.data.leucograma_monocitos);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarExameLab() {
+        try {
+            const response = await api.get(`v1/laboratorial-exames/${props.exameLabId}`);
+            setExameLab(response.data);
+            setHemograma(response.data.hemograma);
+            setPlaquetas(response.data.plaquetas);
+            setContagem(response.data.contagem);
+            setMpv(response.data.mpv);
+            setObservacoesMorfologicas(response.data.observacoes_morfologicas);
+            setVsh(response.data.vsh);
+            setClassifiSanguinea(response.data.classifi_sanguinea);
+            setIc(response.data.ic);
+            setTs(response.data.ts);
+            setGlicemiaDeJejum(response.data.glicemia_de_jejum);
+            setHbGlicosilada(response.data.hb_glicosilada);
+            setUreia(response.data.ureia);
+            setCreatina(response.data.creatina);
+            setSodio(response.data.sodio);
+            setPotassio(response.data.potassio);
+            setColesterolTotal(response.data.colesterol_total);
+            setHdl(response.data.hdl);
+            setLdl(response.data.ldl);
+            setTriglicerides(response.data.triglicerides);
+            setHiv(response.data.hiv);
+            setTgo(response.data.tgo);
+            setTgp(response.data.tgp);
+            setBtEFracoes(response.data.bt_e_fracoes);
+            setAcidoUrico(response.data.acido_urico);
+            setPsa(response.data.psa);
+            setT3(response.data.t3);
+            setT4(response.data.t4);
+            setTsh(response.data.tsh);
+            setAslo(response.data.aslo);
+            setLatex(response.data.latex);
+            setPcr(response.data.pcr);
+            setMucoproteina(response.data.mucoproteina);
+            setCelulaLe(response.data.celula_le);
+            setVdrl(response.data.vdrl);
+            setEas(response.data.eas);
+            setEpf(response.data.epf);
+            setDeterminacaoDoFatorReumatoide(response.data.determinacao_do_fator_reumatoide);
+            setEritrogramaEritrocitos(response.data.eritrograma_eritrocitos);
+            setEritrogramaHemoglobina(response.data.eritrograma_hemoglobina);
+            setEritrogramaHematocrito(response.data.eritrograma_hematocrito);
+            setEritrogramaVcm(response.data.eritrograma_vcm);
+            setEritrogramaHcm(response.data.eritrograma_hcm);
+            setEritrogramaChcm(response.data.eritrograma_chcm);
+            setEritrogramaRdw(response.data.eritrograma_rdw);
+            setEritrogramaRdwFl(response.data.eritrograma_rdw_fl);
+            setLeucogramaLeucocitos(response.data.leucograma_leucocitos);
+            setLeucogramaPromielocitos(response.data.leucograma_promielocitos);
+            setLeucogramaMielocitos(response.data.leucograma_mielocitos);
+            setLeucogramaMetamielocitos(response.data.leucograma_metamielocitos);
+            setLeucogramaNeutrofilosEmBastao(response.data.leucograma_neutrofilos_em_bastao);
+            setLeucogramaNeutrofilosSegmentados(response.data.leucograma_neutrofilos_segmentados);
+            setLeucogramaEosinofilos(response.data.leucograma_eosinofilos);
+            setLeucogramaBasofilos(response.data.leucograma_basofilos);
+            setLeucogramaLinfocitos(response.data.leucograma_linfocitos);
+            setLeucogramaMonocitos(response.data.leucograma_monocitos);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarExameLab();
-    }, [props.exameLabId]);
+    }, []);
 
 
     const ExameLabo = {

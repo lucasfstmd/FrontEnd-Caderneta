@@ -102,20 +102,20 @@ function TabelaSarcf(props) {
 
     const itemsPerPage = props.itemsPerPage;
 
-    useEffect(() => {
-        async function carregarSarcfs() {
-            try {
-                const response = await api.get(
-                    `v1/sarcfs/paciente/${props.pacienteId}`
-                );
-                setSarcf(response.data);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarSarcfs() {
+        try {
+            const response = await api.get(
+                `v1/sarcfs/paciente/${props.pacienteId}`
+            );
+            setSarcf(response.data);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarSarcfs();
-    });
+    }, []);
 
     const totalPages = Math.ceil((sarcf?.length || 0) / itemsPerPage);
 

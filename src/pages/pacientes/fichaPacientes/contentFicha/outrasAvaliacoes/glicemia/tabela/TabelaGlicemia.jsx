@@ -107,20 +107,20 @@ function TabelaGlicemia(props) {
 
     const itemsPerPage = props.itemsPerPage;
 
-    useEffect(() => {
-        async function carregarGlicemia() {
-            try {
-                const response = await api.get(
-                    `v1/glicemia-controles/paciente/${props.pacienteId}`
-                );
-                setGlicemia(response.data);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarGlicemia() {
+        try {
+            const response = await api.get(
+                `v1/glicemia-controles/paciente/${props.pacienteId}`
+            );
+            setGlicemia(response.data);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarGlicemia();
-    });
+    }, []);
 
     const totalPages = Math.ceil((glicemia?.length || 0) / itemsPerPage);
 

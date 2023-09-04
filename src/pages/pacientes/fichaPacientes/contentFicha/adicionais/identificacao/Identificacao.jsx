@@ -54,58 +54,58 @@ function Identificacao(props) {
 
 
 
-    useEffect(() => {
-        async function carregarPaciente() {
-            try {
-                const response = await api.get(`v1/pacientes/${props.pacienteId}`);
-                setPacienteObj(response.data);
-                setNome(response.data.nome);
-                setUbs(response.data.ubs);
-                setNomeSocial(response.data.nome_social);
-                setNCartaoSus(response.data.n_cartao_sus);
-                setCpf(response.data.cpf);
-                setIdentidade(response.data.identidade);
-                setNomeMae(response.data.nome_mae);
-                setDataNascimento(response.data.data_nascimento);
-                setSexo(response.data.sexo);
-                setNascimentoMunicipio(response.data.nascimento_municipio);
-                setNascimentoUf(response.data.nascimento_uf);
-                setNacionalidade(response.data.nacionalidade);
-                setNascimento(response.data.nascimento);
-                setSabeLerEscrever(response.data.sabe_ler_escrever);
-                setEscolaridade(response.data.escolaridade);
-                setRacaCor(response.data.raca_cor);
-                setQualEtnia(response.data.qual_etnia);
-                setReligiao(response.data.religiao);
-                setReligiaoQual(response.data.religiao_qual);
-                setOcupacao(response.data.ocupacao);
-                setSituacaoConjugal(response.data.situacao_conjugal);
-                setUnidadeBasica(response.data.unidade_basica);
-                setAlergiaMaiorGravidade(response.data.alergia_maior_gravidade);
-                setDeficiencia(response.data.deficiencia);
-                setDeficienciaQual(response.data.deficiencia_qual);
-                setDeficienciaEspecificar(response.data.deficiencia_especificar);
-                setGrupoSanguineo(response.data.grupo_sanguineo);
-                setPossuiInternet(response.data.possui_internet);
-                setCep(response.data.cep);
-                setRua(response.data.rua);
-                setNumero(response.data.numero);
-                setBairro(response.data.bairro);
-                setPontoReferencia(response.data.ponto_referencia);
-                setComplemento(response.data.complemento);
-                setMunicipio(response.data.municipio);
-                setUf(response.data.uf);
-                setTelefone(response.data.telefone);
-                setCelular(response.data.celular);
-                setEmail(response.data.email);
-                setNumeroIdentificacao(response.data.numero_identificacao)
-            } catch (error) {
-                console.log(undefined)
-            }
+    async function carregarPaciente() {
+        try {
+            const response = await api.get(`v1/pacientes/${props.pacienteId}`);
+            setPacienteObj(response.data);
+            setNome(response.data.nome);
+            setUbs(response.data.ubs);
+            setNomeSocial(response.data.nome_social);
+            setNCartaoSus(response.data.n_cartao_sus);
+            setCpf(response.data.cpf);
+            setIdentidade(response.data.identidade);
+            setNomeMae(response.data.nome_mae);
+            setDataNascimento(response.data.data_nascimento);
+            setSexo(response.data.sexo);
+            setNascimentoMunicipio(response.data.nascimento_municipio);
+            setNascimentoUf(response.data.nascimento_uf);
+            setNacionalidade(response.data.nacionalidade);
+            setNascimento(response.data.nascimento);
+            setSabeLerEscrever(response.data.sabe_ler_escrever);
+            setEscolaridade(response.data.escolaridade);
+            setRacaCor(response.data.raca_cor);
+            setQualEtnia(response.data.qual_etnia);
+            setReligiao(response.data.religiao);
+            setReligiaoQual(response.data.religiao_qual);
+            setOcupacao(response.data.ocupacao);
+            setSituacaoConjugal(response.data.situacao_conjugal);
+            setUnidadeBasica(response.data.unidade_basica);
+            setAlergiaMaiorGravidade(response.data.alergia_maior_gravidade);
+            setDeficiencia(response.data.deficiencia);
+            setDeficienciaQual(response.data.deficiencia_qual);
+            setDeficienciaEspecificar(response.data.deficiencia_especificar);
+            setGrupoSanguineo(response.data.grupo_sanguineo);
+            setPossuiInternet(response.data.possui_internet);
+            setCep(response.data.cep);
+            setRua(response.data.rua);
+            setNumero(response.data.numero);
+            setBairro(response.data.bairro);
+            setPontoReferencia(response.data.ponto_referencia);
+            setComplemento(response.data.complemento);
+            setMunicipio(response.data.municipio);
+            setUf(response.data.uf);
+            setTelefone(response.data.telefone);
+            setCelular(response.data.celular);
+            setEmail(response.data.email);
+            setNumeroIdentificacao(response.data.numero_identificacao)
+        } catch (error) {
+            console.log(undefined)
         }
+    }
 
+    useEffect(() => {
         carregarPaciente();
-    });
+    }, []);
 
     const Paciente = {
         ubs,

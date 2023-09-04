@@ -105,20 +105,20 @@ function TabelaForcaPreensao(props) {
     const [currentPage] = useState(1);
     const itemsPerPage = props.itemsPerPage;
 
-    useEffect(() => {
-        async function carregarForcas() {
-            try {
-                const response = await api.get(
-                    `v1/preensao-forcas/paciente/${props.pacienteId}`
-                );
-                setForcasPreensao(response.data);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarForcas() {
+        try {
+            const response = await api.get(
+                `v1/preensao-forcas/paciente/${props.pacienteId}`
+            );
+            setForcasPreensao(response.data);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarForcas();
-    });
+    }, []);
 
     const totalPages = Math.ceil((forcasPreensao?.length || 0) / itemsPerPage);
 

@@ -15,23 +15,23 @@ function EditarExame(props) {
     const [tipo, setTipo] = useState("");
     const [profissional, setProfissional] = useState("");
 
-    useEffect(() => {
-        async function carregarExame() {
-            try {
-                const response = await api.get(`v1/agendas/${props.exameId}`);
-                setExame(response.data);
-                setData(response.data.data);
-                setHora(response.data.hora);
-                setLocal(response.data.local);
-                setTipo(response.data.tipo);
-                setProfissional(response.data.profissional);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarExame() {
+        try {
+            const response = await api.get(`v1/agendas/${props.exameId}`);
+            setExame(response.data);
+            setData(response.data.data);
+            setHora(response.data.hora);
+            setLocal(response.data.local);
+            setTipo(response.data.tipo);
+            setProfissional(response.data.profissional);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarExame();
-    }, [props.exameId]);
+    }, []);
 
     const Exame = {
         paciente_id: props.pacienteId,

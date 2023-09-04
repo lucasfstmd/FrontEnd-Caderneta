@@ -104,20 +104,20 @@ function TabelaCirurgias(props) {
 
     const itemsPerPage = props.itemsPerPage;
 
-    useEffect(() => {
-        async function carregarCirurgias() {
-            try {
-                const response = await api.get(
-                    `v1/cirurgias/paciente/${props.pacienteId}`
-                );
-                setCirurgias(response.data);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarCirurgias() {
+        try {
+            const response = await api.get(
+                `v1/cirurgias/paciente/${props.pacienteId}`
+            );
+            setCirurgias(response.data);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarCirurgias();
-    });
+    }, []);
 
     const totalPages = Math.ceil((cirurgias?.length || 0) / itemsPerPage);
 

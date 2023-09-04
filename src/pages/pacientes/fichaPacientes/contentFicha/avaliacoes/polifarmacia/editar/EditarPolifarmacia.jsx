@@ -10,18 +10,18 @@ import Button from "@mui/material/Button";
 function EditarPolifarmacia(props) {
     const [uso_concomitante, setUso_concomitante] = useState(null);
 
-    useEffect(() => {
-        async function carregarPolifarmacia() {
-            try {
-                const response = await api.get(`v1/polifarmacias/${props.polifarmaciaId}`);
-                setUso_concomitante(response.data.uso_concomitante);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarPolifarmacia() {
+        try {
+            const response = await api.get(`v1/polifarmacias/${props.polifarmaciaId}`);
+            setUso_concomitante(response.data.uso_concomitante);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarPolifarmacia();
-    }, [props.polifarmaciaId]);
+    }, []);
 
     const Polifarmacia = {
         paciente_id: props.pacienteId,

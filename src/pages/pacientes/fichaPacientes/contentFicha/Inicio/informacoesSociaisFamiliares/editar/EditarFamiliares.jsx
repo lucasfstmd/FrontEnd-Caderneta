@@ -24,31 +24,31 @@ function EditarFamiliares(props) {
     const [p11, setP11] = useState(null);
     const [p12, setP12] = useState(null);
 
-    useEffect(() => {
-        async function carregarFamiliare() {
-            try {
-                const response = await api.get(`v1/familiares/${props.familiarId}`);
-                setFamiliar(response.data);
-                setAno(response.data.ano);
-                setP1(response.data.p1);
-                setP2(response.data.p2);
-                setP3(response.data.p3);
-                setP4(response.data.p4);
-                setP5(response.data.p5);
-                setP6(response.data.p6);
-                setP7(response.data.p7);
-                setP8(response.data.p8);
-                setP9(response.data.p9);
-                setP10(response.data.p10);
-                setP11(response.data.p11);
-                setP12(response.data.p12);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarFamiliare() {
+        try {
+            const response = await api.get(`v1/familiares/${props.familiarId}`);
+            setFamiliar(response.data);
+            setAno(response.data.ano);
+            setP1(response.data.p1);
+            setP2(response.data.p2);
+            setP3(response.data.p3);
+            setP4(response.data.p4);
+            setP5(response.data.p5);
+            setP6(response.data.p6);
+            setP7(response.data.p7);
+            setP8(response.data.p8);
+            setP9(response.data.p9);
+            setP10(response.data.p10);
+            setP11(response.data.p11);
+            setP12(response.data.p12);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarFamiliare();
-    }, [props.familiarId]);
+    }, []);
 
     const Familiar = {
         paciente_id: props.pacienteId,

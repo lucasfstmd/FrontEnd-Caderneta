@@ -11,17 +11,17 @@ function Ubs() {
     const [currentPage] = useState(1);
     const [ubs, setUbs] = useState([])
 
-    useEffect(() => {
-        async function carregarUsuarios() {
-            try {
-                const response = await api.get('v1/ubs');
-                setUbs(response.data);
-            } catch (error) {
-                console.log(undefined)
-            }
-
+    async function carregarUsuarios() {
+        try {
+            const response = await api.get('v1/ubs');
+            setUbs(response.data);
+        } catch (error) {
+            console.log(undefined)
         }
 
+    }
+
+    useEffect(() => {
         carregarUsuarios();
     }, [])
 

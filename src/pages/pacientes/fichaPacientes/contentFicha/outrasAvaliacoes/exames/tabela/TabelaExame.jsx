@@ -115,20 +115,20 @@ function TabelaExame(props) {
 
     const itemsPerPage = props.itemsPerPage;
 
-    useEffect(() => {
-        async function carregarExames() {
-            try {
-                const response = await api.get(
-                    `v1/agendas/paciente/${props.pacienteId}`
-                );
-                setExames(response.data);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarExames() {
+        try {
+            const response = await api.get(
+                `v1/agendas/paciente/${props.pacienteId}`
+            );
+            setExames(response.data);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarExames();
-    });
+    }, []);
 
     const totalPages = Math.ceil((exames?.length || 0) / itemsPerPage);
 

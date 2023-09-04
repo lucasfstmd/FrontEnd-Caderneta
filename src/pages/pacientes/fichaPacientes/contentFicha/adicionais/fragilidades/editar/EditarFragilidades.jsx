@@ -37,45 +37,45 @@ function EditarFragilidades(props) {
     const [baixo_nivel_atividade_fisica, setBaixo_nivel_atividade_fisica] = useState(true);
     const [classificacao_da_fragilidade, setClassificacao_da_fragilidade] = useState("");
 
-    useEffect(() => {
-        async function carregarFragilidade() {
-            try {
-                const response = await api.get(`v1/fragilidades/${props.fragilidadesId}`);
-                setFragilidade(response.data);
-                setP1(response.data.p1);
-                setP2_1(response.data.p2_1);
-                setP2_2(response.data.p2_2);
-                setP3_1(response.data.p3_1);
-                setP3_2(response.data.p3_2);
-                setP3_3(response.data.p3_3);
-                setP4_1(response.data.p4_1);
-                setP4_2(response.data.p4_2);
-                setP5_1a_1(response.data.p5_1a_1);
-                setP5_1a_2(response.data.p5_1a_2);
-                setP5_1b_1(response.data.p5_1b_1);
-                setP5_1b_2(response.data.p5_1b_2);
-                setP5_2a_1(response.data.p5_2a_1);
-                setP5_2a_2(response.data.p5_2a_2);
-                setP5_2b_1(response.data.p5_2b_1);
-                setP5_2b_2(response.data.p5_2b_2);
-                setP5_3a_1(response.data.p5_3a_1);
-                setP5_3a_2(response.data.p5_3a_2);
-                setP5_3b_1(response.data.p5_3b_1);
-                setP5_3b_2(response.data.p5_3b_2);
-                setP5_4a_1(response.data.p5_4a_1);
-                setP5_4a_2(response.data.p5_4a_2);
-                setP5_4b_1(response.data.p5_4b_1);
-                setP5_4b_2(response.data.p5_4b_2);
-                setIpaq(response.data.ipaq);
-                setBaixo_nivel_atividade_fisica(response.data.baixo_nivel_atividade_fisica);
-                setClassificacao_da_fragilidade(response.data.classificacao_da_fragilidade);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarFragilidade() {
+        try {
+            const response = await api.get(`v1/fragilidades/${props.fragilidadesId}`);
+            setFragilidade(response.data);
+            setP1(response.data.p1);
+            setP2_1(response.data.p2_1);
+            setP2_2(response.data.p2_2);
+            setP3_1(response.data.p3_1);
+            setP3_2(response.data.p3_2);
+            setP3_3(response.data.p3_3);
+            setP4_1(response.data.p4_1);
+            setP4_2(response.data.p4_2);
+            setP5_1a_1(response.data.p5_1a_1);
+            setP5_1a_2(response.data.p5_1a_2);
+            setP5_1b_1(response.data.p5_1b_1);
+            setP5_1b_2(response.data.p5_1b_2);
+            setP5_2a_1(response.data.p5_2a_1);
+            setP5_2a_2(response.data.p5_2a_2);
+            setP5_2b_1(response.data.p5_2b_1);
+            setP5_2b_2(response.data.p5_2b_2);
+            setP5_3a_1(response.data.p5_3a_1);
+            setP5_3a_2(response.data.p5_3a_2);
+            setP5_3b_1(response.data.p5_3b_1);
+            setP5_3b_2(response.data.p5_3b_2);
+            setP5_4a_1(response.data.p5_4a_1);
+            setP5_4a_2(response.data.p5_4a_2);
+            setP5_4b_1(response.data.p5_4b_1);
+            setP5_4b_2(response.data.p5_4b_2);
+            setIpaq(response.data.ipaq);
+            setBaixo_nivel_atividade_fisica(response.data.baixo_nivel_atividade_fisica);
+            setClassificacao_da_fragilidade(response.data.classificacao_da_fragilidade);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarFragilidade();
-    }, [props.fragilidadesId]);
+    }, []);
 
     const Fragilidade = {
         paciente_id: props.pacienteId,

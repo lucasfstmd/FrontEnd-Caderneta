@@ -11,16 +11,16 @@ function Usuarios() {
     const [currentPage] = useState(1);
     const [usuarios, setUsuarios] = useState([])
 
-    useEffect(() => {
-        async function carregarUsuarios() {
-            try {
-                const response = await api.get('v1/usuarios');
-                setUsuarios(response.data);
-            } catch (error) {
-                console.log(undefined)
-            }
+    async function carregarUsuarios() {
+        try {
+            const response = await api.get('v1/usuarios');
+            setUsuarios(response.data);
+        } catch (error) {
+            console.log(undefined)
         }
+    }
 
+    useEffect(() => {
         carregarUsuarios();
     }, [])
 

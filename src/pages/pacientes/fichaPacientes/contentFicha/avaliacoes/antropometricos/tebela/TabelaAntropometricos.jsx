@@ -114,20 +114,20 @@ function TabelaAntropometricos(props) {
 
     const itemsPerPage = props.itemsPerPage;
 
-    useEffect(() => {
-        async function carregarAntropometricos() {
-            try {
-                const response = await api.get(
-                    `v1/antropometricos/paciente/${props.pacienteId}`
-                );
-                setAntropometricos(response.data);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarAntropometricos() {
+        try {
+            const response = await api.get(
+                `v1/antropometricos/paciente/${props.pacienteId}`
+            );
+            setAntropometricos(response.data);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarAntropometricos();
-    });
+    }, []);
 
 
     const totalPages = Math.ceil((antropometricos?.length || 0) / itemsPerPage);

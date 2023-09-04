@@ -88,20 +88,20 @@ function TabelaDiagnosticos(props) {
 
     const itemsPerPage = props.itemsPerPage;
 
-    useEffect(() => {
-        async function carregarDiagnosticos() {
-            try {
-                const response = await api.get(
-                    `v1/diagnosticos/paciente/${props.pacienteId}`
-                );
-                setDiagnosticos(response.data);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarDiagnosticos() {
+        try {
+            const response = await api.get(
+                `v1/diagnosticos/paciente/${props.pacienteId}`
+            );
+            setDiagnosticos(response.data);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarDiagnosticos();
-    });
+    }, []);
 
     const totalPages = Math.ceil((diagnosticos?.length || 0) / itemsPerPage);
 

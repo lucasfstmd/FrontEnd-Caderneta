@@ -30,39 +30,40 @@ function EditarHabitos(props) {
     const [p18, setP18] = useState(null);
     const [p19, setP19] = useState(null);
 
-    useEffect(() => {
-        async function carregarHabito() {
-            try {
-                const response = await api.get(`v1/habitos/${props.habitosId}`);
-                setHabito(response.data);
-                setAno(response.data.ano);
-                setP1(response.data.p1);
-                setP2(response.data.p2);
-                setP3(response.data.p3);
-                setP4(response.data.p4);
-                setP5(response.data.p5);
-                setP6(response.data.p6);
-                setP7(response.data.p7);
-                setP8(response.data.p8);
-                setP9(response.data.p9);
-                setP10(response.data.p10);
-                setP11(response.data.p11);
-                setP12(response.data.p12);
-                setP13(response.data.p13);
-                setP14(response.data.p14);
-                setP15(response.data.p15);
-                setP16(response.data.p16);
-                setP17(response.data.p17);
-                setP18(response.data.p18);
-                setP19(response.data.p19);
+    async function carregarHabito() {
+        try {
+            const response = await api.get(`v1/habitos/${props.habitosId}`);
+            setHabito(response.data);
+            setAno(response.data.ano);
+            setP1(response.data.p1);
+            setP2(response.data.p2);
+            setP3(response.data.p3);
+            setP4(response.data.p4);
+            setP5(response.data.p5);
+            setP6(response.data.p6);
+            setP7(response.data.p7);
+            setP8(response.data.p8);
+            setP9(response.data.p9);
+            setP10(response.data.p10);
+            setP11(response.data.p11);
+            setP12(response.data.p12);
+            setP13(response.data.p13);
+            setP14(response.data.p14);
+            setP15(response.data.p15);
+            setP16(response.data.p16);
+            setP17(response.data.p17);
+            setP18(response.data.p18);
+            setP19(response.data.p19);
 
-            } catch (error) {
-                console.log(undefined);
-            }
+        } catch (error) {
+            console.log(undefined);
         }
+    }
+
+    useEffect(() => {
 
         carregarHabito();
-    }, [props.habitosId]);
+    }, []);
 
     const Habito = {
         paciente_id: props.pacienteId,

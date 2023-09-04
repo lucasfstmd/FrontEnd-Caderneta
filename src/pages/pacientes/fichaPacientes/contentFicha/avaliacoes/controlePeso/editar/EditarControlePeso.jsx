@@ -12,20 +12,21 @@ function EditarControlePeso(props) {
     const [ano, setAno] = useState(0);
     const [peso, setPeso] = useState(0);
 
-    useEffect(() => {
-        async function carregarControlePeso() {
-            try {
-                const response = await api.get(`v1/pesos/${props.controlePesoId}`);
-                setControlePeso(response.data);
-                setAno(response.data.ano);
-                setPeso(response.data.peso);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarControlePeso() {
+        try {
+            const response = await api.get(`v1/pesos/${props.controlePesoId}`);
+            setControlePeso(response.data);
+            setAno(response.data.ano);
+            setPeso(response.data.peso);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
+
+    useEffect(() => {
 
         carregarControlePeso();
-    }, [props.controlePesoId]);
+    }, []);
 
     const ControlePeso = {
         paciente_id: props.pacienteId,

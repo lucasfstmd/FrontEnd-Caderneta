@@ -131,20 +131,20 @@ function TabelaFrrisques(props) {
     const [currentPage] = useState(1);
     const itemsPerPage = props.itemsPerPage;
 
-    useEffect(() => {
-        async function carregarFrrisques() {
-            try {
-                const response = await api.get(
-                    `v1/frrisques/paciente/${props.pacienteId}`
-                );
-                setFrrisques(response.data);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarFrrisques() {
+        try {
+            const response = await api.get(
+                `v1/frrisques/paciente/${props.pacienteId}`
+            );
+            setFrrisques(response.data);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarFrrisques();
-    });
+    }, []);
 
     const totalPages = Math.ceil((frrisques?.length || 0) / itemsPerPage);
 

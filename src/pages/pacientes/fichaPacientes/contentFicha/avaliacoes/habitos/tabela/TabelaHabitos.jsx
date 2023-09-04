@@ -173,20 +173,20 @@ function TabelaHabitos(props) {
 
     const itemsPerPage = props.itemsPerPage;
 
-    useEffect(() => {
-        async function carregarHabitos() {
-            try {
-                const response = await api.get(
-                    `v1/habitos/paciente/${props.pacienteId}`
-                );
-                setHabitos(response.data);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarHabitos() {
+        try {
+            const response = await api.get(
+                `v1/habitos/paciente/${props.pacienteId}`
+            );
+            setHabitos(response.data);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarHabitos();
-    });
+    }, []);
 
     const totalPages = Math.ceil((habitos?.length || 0) / itemsPerPage);
 

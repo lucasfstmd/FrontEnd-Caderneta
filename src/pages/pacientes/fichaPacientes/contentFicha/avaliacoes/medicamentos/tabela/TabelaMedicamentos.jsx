@@ -117,20 +117,20 @@ function TabelaMedicamentos(props) {
     const itemsPerPage = props.itemsPerPage;
 
 
-    useEffect(() => {
-        async function carregarAvaliacoes() {
-            try {
-                const response = await api.get(
-                    `v1/avaliacoes/paciente/${props.pacienteId}`
-                );
-                setAvaliacoes(response.data);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarAvaliacoes() {
+        try {
+            const response = await api.get(
+                `v1/avaliacoes/paciente/${props.pacienteId}`
+            );
+            setAvaliacoes(response.data);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarAvaliacoes();
-    });
+    }, []);
 
     const totalPages = Math.ceil((avaliacoes?.length || 0) / itemsPerPage);
 

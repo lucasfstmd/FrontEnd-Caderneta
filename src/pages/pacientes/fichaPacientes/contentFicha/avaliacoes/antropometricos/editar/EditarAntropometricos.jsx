@@ -14,22 +14,22 @@ function EditarAntropometricos(props) {
     const [altura, setAltura] = useState();
     const [perimetro_panturrilha, setPerimetroPanturrilha] = useState();
 
-    useEffect(() => {
-        async function carregarAntropometricos() {
-            try {
-                const response = await api.get(`v1/antropometricos/${props.antropometricosId}`);
-                setAntropometricos(response.data);
-                setAno(response.data.ano);
-                setPeso(response.data.peso);
-                setAltura(response.data.altura);
-                setPerimetroPanturrilha(response.data.perimetro_panturrilha);
-            } catch (error) {
-                console.log(undefined);
-            }
+    async function carregarAntropometricos() {
+        try {
+            const response = await api.get(`v1/antropometricos/${props.antropometricosId}`);
+            setAntropometricos(response.data);
+            setAno(response.data.ano);
+            setPeso(response.data.peso);
+            setAltura(response.data.altura);
+            setPerimetroPanturrilha(response.data.perimetro_panturrilha);
+        } catch (error) {
+            console.log(undefined);
         }
+    }
 
+    useEffect(() => {
         carregarAntropometricos();
-    }, [props.antropometricosId]);
+    }, []);
 
     const Imc = parseFloat((peso / (altura ** 2)).toFixed(2));
 
