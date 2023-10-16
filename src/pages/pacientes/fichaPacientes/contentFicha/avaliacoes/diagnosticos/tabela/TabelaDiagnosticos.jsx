@@ -8,6 +8,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import Loading from "../../../../../../../components/loading/Loading";
 
 function DiagnosticosLinha({ diagnosticos, onEditClick }) {
     const [open, setOpen] = useState(false);
@@ -85,6 +86,7 @@ function DiagnosticosLinha({ diagnosticos, onEditClick }) {
 function TabelaDiagnosticos(props) {
     const [diagnosticos, setDiagnosticos] = useState([]);
     const [currentPage] = useState(1);
+    const [loading, setLoading] = useState(true)
 
     const itemsPerPage = props.itemsPerPage;
 
@@ -94,6 +96,7 @@ function TabelaDiagnosticos(props) {
                 `v1/diagnosticos/paciente/${props.pacienteId}`
             );
             setDiagnosticos(response.data);
+            setLoading(false);
         } catch (error) {
             console.log(undefined);
         }
@@ -148,7 +151,9 @@ function TabelaDiagnosticos(props) {
                         </tr>
                         </thead>
                         <tbody>
-                        {getLinhas()}
+                            <Loading loading={loading}>
+                                {getLinhas()}
+                            </Loading>
                         </tbody>
                     </table>
                 </>

@@ -9,6 +9,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import Loading from "../../../../../../../components/loading/Loading";
 
 function QuedaLinha({ quedas, onEditClick }) {
     const [open, setOpen] = useState(false);
@@ -117,7 +118,7 @@ function QuedaLinha({ quedas, onEditClick }) {
 function TabelaQueda(props) {
     const [quedas, setQuedas] = useState([]);
     const [currentPage] = useState(1);
-
+    const [loading, setLoading] = useState(true)
 
     const itemsPerPage = props.itemsPerPage;
 
@@ -127,6 +128,7 @@ function TabelaQueda(props) {
                 `v1/quedas/paciente/${props.pacienteId}`
             );
             setQuedas(response.data);
+            setLoading(false)
         } catch (error) {
             console.log(undefined);
         }
@@ -181,7 +183,9 @@ function TabelaQueda(props) {
                         </tr>
                         </thead>
                         <tbody>
-                        {getLinhas()}
+                            <Loading loading={loading}>
+                                {getLinhas()}
+                            </Loading>
                         </tbody>
                     </table>
                 </>

@@ -8,6 +8,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import {DialogContent, DialogContentText} from "@mui/material";
+import Loading from "../../../../../../../components/loading/Loading";
 
 function ObitosLinha({ obitos, onEditClick }) {
     const [open, setOpen] = useState(false);
@@ -87,7 +88,7 @@ function ObitosLinha({ obitos, onEditClick }) {
 function TabelaObitos(props) {
     const [obitos, setObitos] = useState([]);
     const [currentPage] = useState(1);
-    const [showInfoObitos, setShowInfoObitos] = useState(false);
+    const [loading, setLoading] = useState(true)
 
     const itemsPerPage = props.itemsPerPage;
 
@@ -95,7 +96,7 @@ function TabelaObitos(props) {
         try {
             const response = await api.get(`v1/obitos/paciente/${props.pacienteId}`);
             setObitos(response.data);
-            setShowInfoObitos(response.data.length === 0);
+            setLoading(false)
         } catch (error) {
             console.log(undefined);
         }
@@ -128,7 +129,7 @@ function TabelaObitos(props) {
 
     return (
         <div className="TabelaObitos">
-            {showInfoObitos ? (
+            {obitos.length === 0 ? (
                 <div className="InfoObitos">
                     <h1>Esse Paciente não possui dados Cadastrados.</h1>
                 </div>
@@ -149,7 +150,9 @@ function TabelaObitos(props) {
                         </tr>
                         </thead>
                         <tbody>
-                        {getLinhas()}
+                            <Loading loading={loading}>
+                                {getLinhas()}
+                            </Loading>
                         </tbody>
                     </table>
                 </>

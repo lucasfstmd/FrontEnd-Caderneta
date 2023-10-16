@@ -4,6 +4,7 @@ import api from "../../../../../../service/api";
 import TabelaExameLab from "./tabela/TabelaExameLab";
 import EditarExameLab from "./editar/EditarExameLab";
 import AdicionarExameLab from "./adicionar/AdicionarExameLab";
+import {useParams} from "react-router-dom";
 
 function ExamesLaborariais(props) {
     const [itemsPerPage] = useState(1);
@@ -11,6 +12,8 @@ function ExamesLaborariais(props) {
     const [exameLab, setExameLab] = useState([]);
     const [editarExameLabId, setEditarExameLabId] = useState(null);
     const [componenteAtivo, setComponenteAtivo] = useState('tabela');
+    const [loading, setLoading] = useState(true)
+    const { id } = useParams();
 
     const handleEditarClick = (exameLabId) => {
         setComponenteAtivo('editar');
@@ -29,9 +32,10 @@ function ExamesLaborariais(props) {
     async function carregarExamesLab() {
         try {
             const response = await api.get(
-                `v1/laboratorial-exames/paciente/${props.pacienteId}`
+                `v1/laboratorial-exames/paciente/${id}`
             );
             setExameLab(response.data);
+            setLoading(false);
         } catch (error) {
             console.log(undefined);
         }
@@ -109,6 +113,7 @@ function ExamesLaborariais(props) {
                                 onEditarClick={handleEditarClick}
                                 pacienteId={props.pacienteId}
                                 data={getExamesLabPagAtual()}
+                                loading={loading}
                             />
                             <div className="Paginacao">
                                 <button

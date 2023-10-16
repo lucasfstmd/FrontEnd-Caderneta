@@ -9,6 +9,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import Loading from "../../../../../../../components/loading/Loading";
 
 function ReacoesLinha({ reacoes, onEditClick }) {
     const [open, setOpen] = useState(false);
@@ -102,6 +103,7 @@ function ReacoesLinha({ reacoes, onEditClick }) {
 function TabelaReacoes(props) {
     const [reacoes, setReacoes] = useState([]);
     const [currentPage] = useState(1);
+    const [loading, setLoading] = useState(true)
 
     const itemsPerPage = props.itemsPerPage;
 
@@ -111,6 +113,7 @@ function TabelaReacoes(props) {
                 `v1/reacoes/paciente/${props.pacienteId}`
             );
             setReacoes(response.data);
+            setLoading(false)
         } catch (error) {
             console.log(undefined);
         }
@@ -165,7 +168,9 @@ function TabelaReacoes(props) {
                         </tr>
                         </thead>
                         <tbody>
-                        {getLinhas()}
+                            <Loading loading={loading}>
+                                {getLinhas()}
+                            </Loading>
                         </tbody>
                     </table>
                 </>

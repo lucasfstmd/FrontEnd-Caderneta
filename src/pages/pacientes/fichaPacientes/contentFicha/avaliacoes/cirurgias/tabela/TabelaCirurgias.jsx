@@ -9,6 +9,7 @@ import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import {format} from "date-fns";
+import Loading from "../../../../../../../components/loading/Loading";
 
 function CirurgiasLinha({ cirurgias, onEditClick }) {
     const [open, setOpen] = useState(false);
@@ -101,6 +102,7 @@ function CirurgiasLinha({ cirurgias, onEditClick }) {
 function TabelaCirurgias(props) {
     const [cirurgias, setCirurgias] = useState([]);
     const [currentPage] = useState(1);
+    const [loading, setLoading] = useState(true)
 
     const itemsPerPage = props.itemsPerPage;
 
@@ -110,6 +112,7 @@ function TabelaCirurgias(props) {
                 `v1/cirurgias/paciente/${props.pacienteId}`
             );
             setCirurgias(response.data);
+            setLoading(false);
         } catch (error) {
             console.log(undefined);
         }
@@ -164,7 +167,9 @@ function TabelaCirurgias(props) {
                         </tr>
                         </thead>
                         <tbody>
-                        {getLinhas()}
+                            <Loading loading={loading}>
+                                {getLinhas()}
+                            </Loading>
                         </tbody>
                     </table>
                 </>

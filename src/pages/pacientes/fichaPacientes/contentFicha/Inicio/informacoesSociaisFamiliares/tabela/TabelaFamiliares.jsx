@@ -9,6 +9,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import {DialogContent, DialogContentText} from "@mui/material";
+import Loading from "../../../../../../../components/loading/Loading";
 
 function FamiliaresLinha({ familiares, onEditClick }) {
     const [open, setOpen] = useState(false);
@@ -141,6 +142,8 @@ function FamiliaresLinha({ familiares, onEditClick }) {
 function TabelaFamiliares(props) {
     const [familiares, setFamiliares] = useState([]);
     const [currentPage] = useState(1);
+    const [loading, setLoading] = useState(true)
+
     const itemsPerPage = props.itemsPerPage;
 
     async function carregarFamiliares() {
@@ -149,6 +152,7 @@ function TabelaFamiliares(props) {
                 `v1/familiares/paciente/${props.pacienteId}`
             );
             setFamiliares(response.data);
+            setLoading(false);
         } catch (error) {
             console.log(undefined);
         }
@@ -203,7 +207,9 @@ function TabelaFamiliares(props) {
                         </tr>
                         </thead>
                         <tbody>
-                        {getLinhas()}
+                            <Loading loading={loading}>
+                                {getLinhas()}
+                            </Loading>
                         </tbody>
                     </table>
                 </>

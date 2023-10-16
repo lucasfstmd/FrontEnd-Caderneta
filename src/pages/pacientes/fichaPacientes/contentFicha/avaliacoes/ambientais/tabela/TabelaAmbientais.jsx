@@ -9,6 +9,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import Loading from "../../../../../../../components/loading/Loading";
 
 function AmbientaisLinha({ ambientais, onEditClick }) {
     const [open, setOpen] = useState(false);
@@ -137,7 +138,7 @@ function AmbientaisLinha({ ambientais, onEditClick }) {
 function TabelaAmbientais(props) {
     const [ambientais, setAmbientais] = useState([]);
     const [currentPage] = useState(1);
-
+    const [loading, setLoading] = useState(true)
 
     const itemsPerPage = props.itemsPerPage;
 
@@ -147,6 +148,7 @@ function TabelaAmbientais(props) {
                 `v1/ambientais/paciente/${props.pacienteId}`
             );
             setAmbientais(response.data);
+            setLoading(false);
         } catch (error) {
             console.log(undefined);
         }
@@ -201,7 +203,9 @@ function TabelaAmbientais(props) {
                         </tr>
                         </thead>
                         <tbody>
-                        {getLinhas()}
+                            <Loading loading={loading}>
+                                {getLinhas()}
+                            </Loading>
                         </tbody>
                     </table>
                 </>

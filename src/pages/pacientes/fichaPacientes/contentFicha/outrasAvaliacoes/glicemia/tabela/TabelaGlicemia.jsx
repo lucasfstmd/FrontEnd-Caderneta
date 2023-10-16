@@ -9,6 +9,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import Loading from "../../../../../../../components/loading/Loading";
 
 function GlicemiaLinha({ glicemia, onEditClick }) {
     const [open, setOpen] = useState(false);
@@ -103,7 +104,7 @@ function GlicemiaLinha({ glicemia, onEditClick }) {
 function TabelaGlicemia(props) {
     const [glicemia, setGlicemia] = useState([]);
     const [currentPage] = useState(1);
-
+    const [loading, setLoading] = useState(true)
 
     const itemsPerPage = props.itemsPerPage;
 
@@ -113,6 +114,7 @@ function TabelaGlicemia(props) {
                 `v1/glicemia-controles/paciente/${props.pacienteId}`
             );
             setGlicemia(response.data);
+            setLoading(false)
         } catch (error) {
             console.log(undefined);
         }
@@ -167,7 +169,9 @@ function TabelaGlicemia(props) {
                         </tr>
                         </thead>
                         <tbody>
-                        {getLinhas()}
+                            <Loading loading={loading}>
+                                {getLinhas()}
+                            </Loading>
                         </tbody>
                     </table>
                 </>

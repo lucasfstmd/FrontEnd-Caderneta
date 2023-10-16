@@ -11,6 +11,7 @@ function Infancia(props) {
     const [infancias, setInfancias] = useState([]);
     const [editarInfanciasId, setEditarInfanciasId] = useState(null);
     const [componenteAtivo, setComponenteAtivo] = useState('tabela');
+    const [loading, setLoading] = useState(true)
 
     const handleEditarClick = (infanciasId) => {
         setComponenteAtivo('editar');
@@ -32,6 +33,7 @@ function Infancia(props) {
                 `v1/infancias/paciente/${props.pacienteId}`
             );
             setInfancias(response.data);
+            setLoading(false);
         } catch (error) {
             console.log(undefined);
         }
@@ -109,6 +111,7 @@ function Infancia(props) {
                                 onEditarClick={handleEditarClick}
                                 pacienteId={props.pacienteId}
                                 data={getInfanciasPagAtual()}
+                                loading={loading}
                             />
                             <div className="Paginacao">
                                 <button

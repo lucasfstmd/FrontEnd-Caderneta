@@ -11,6 +11,7 @@ function Ivcf(props) {
     const [ivcf, setIvcf] = useState([]);
     const [editarIvcfId, setEditarIvcfId] = useState(null);
     const [componenteAtivo, setComponenteAtivo] = useState('tabela');
+    const [loading, setLoading] = useState(true)
 
     const handleEditarClick = (ivcfId) => {
         setComponenteAtivo('editar');
@@ -32,6 +33,7 @@ function Ivcf(props) {
                 `v1/ivcfs/paciente/${props.pacienteId}`
             );
             setIvcf(response.data);
+            setLoading(false);
         } catch (error) {
             console.log(undefined);
         }
@@ -109,6 +111,7 @@ function Ivcf(props) {
                                 onEditarClick={handleEditarClick}
                                 pacienteId={props.pacienteId}
                                 data={getIvcfsPagAtual()}
+                                loading={loading}
                             />
                             <div className="Paginacao">
                                 <button

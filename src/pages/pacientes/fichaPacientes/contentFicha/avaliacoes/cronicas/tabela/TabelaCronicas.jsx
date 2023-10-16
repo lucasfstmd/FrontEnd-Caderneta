@@ -9,6 +9,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import Loading from "../../../../../../../components/loading/Loading";
 
 function CronicasLinha({ cronicas, onEditClick }) {
     const [open, setOpen] = useState(false);
@@ -109,7 +110,7 @@ function CronicasLinha({ cronicas, onEditClick }) {
 function TabelaCronicas(props) {
     const [cronicas, setCronicas] = useState([]);
     const [currentPage] = useState(1);
-
+    const [loading, setLoading] = useState(true)
 
     const itemsPerPage = props.itemsPerPage;
 
@@ -119,6 +120,7 @@ function TabelaCronicas(props) {
                 `v1/cronicas/paciente/${props.pacienteId}`
             );
             setCronicas(response.data);
+            setLoading(false);
         } catch (error) {
             console.log(undefined);
         }
@@ -174,7 +176,9 @@ function TabelaCronicas(props) {
                         </tr>
                         </thead>
                         <tbody>
-                        {getLinhas()}
+                            <Loading loading={loading}>
+                                {getLinhas()}
+                            </Loading>
                         </tbody>
                     </table>
                 </>

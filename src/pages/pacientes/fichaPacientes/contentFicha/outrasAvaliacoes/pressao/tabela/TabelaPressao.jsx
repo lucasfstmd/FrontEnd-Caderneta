@@ -9,6 +9,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import Loading from "../../../../../../../components/loading/Loading";
 
 function PressaoLinha({ Pressao, onEditClick }) {
     const [open, setOpen] = useState(false);
@@ -99,7 +100,7 @@ function PressaoLinha({ Pressao, onEditClick }) {
 function TabelaPressao(props) {
     const [pressao, setPressao] = useState([]);
     const [currentPage] = useState(1);
-
+    const [loading, setLoading] = useState(true)
 
     const itemsPerPage = props.itemsPerPage;
 
@@ -109,6 +110,7 @@ function TabelaPressao(props) {
                 `v1/pressao-controles/paciente/${props.pacienteId}`
             );
             setPressao(response.data);
+            setLoading(false)
         } catch (error) {
             console.log(undefined);
         }
@@ -163,7 +165,9 @@ function TabelaPressao(props) {
                         </tr>
                         </thead>
                         <tbody>
-                        {getLinhas()}
+                            <Loading loading={loading}>
+                                {getLinhas()}
+                            </Loading>
                         </tbody>
                     </table>
                 </>

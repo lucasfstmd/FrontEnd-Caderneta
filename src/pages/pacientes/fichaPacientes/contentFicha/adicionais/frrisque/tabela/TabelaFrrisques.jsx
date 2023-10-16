@@ -9,6 +9,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import Loading from "../../../../../../../components/loading/Loading";
 
 function FrrisquesLinha({ frrisques, onEditarClick }) {
     const [open, setOpen] = useState(false);
@@ -130,6 +131,7 @@ function TabelaFrrisques(props) {
     const [frrisques, setFrrisques] = useState([]);
     const [currentPage] = useState(1);
     const itemsPerPage = props.itemsPerPage;
+    const [loading, setLoading] = useState(true)
 
     async function carregarFrrisques() {
         try {
@@ -137,6 +139,7 @@ function TabelaFrrisques(props) {
                 `v1/frrisques/paciente/${props.pacienteId}`
             );
             setFrrisques(response.data);
+            setLoading(false);
         } catch (error) {
             console.log(undefined);
         }
@@ -191,7 +194,9 @@ function TabelaFrrisques(props) {
                         </tr>
                         </thead>
                         <tbody>
-                        {getLinhas()}
+                            <Loading loading={loading}>
+                                {getLinhas()}
+                            </Loading>
                         </tbody>
                     </table>
                 </>

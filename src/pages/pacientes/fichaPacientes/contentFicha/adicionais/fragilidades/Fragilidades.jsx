@@ -4,6 +4,7 @@ import api from "../../../../../../service/api";
 import TabelaFragilidades from "./tabela/TabelaFragilidades";
 import EditarFragilidades from "./editar/EditarFragilidades";
 import AdicionarFragilidades from "./adicionar/AdicionarFragilidades";
+import {useParams} from "react-router-dom";
 
 function Fragilidades(props) {
     const [itemsPerPage] = useState(5);
@@ -11,6 +12,8 @@ function Fragilidades(props) {
     const [fragilidades, setFragilidades] = useState([]);
     const [editarFragilidadesId, setEditarFragilidadesId] = useState(null);
     const [componenteAtivo, setComponenteAtivo] = useState('tabela');
+    const [loading, setLoading] = useState(true)
+    const { id } = useParams();
 
     const handleEditarClick = (fragilidadesId) => {
         setComponenteAtivo('editar');
@@ -27,8 +30,9 @@ function Fragilidades(props) {
 
     async function carregarFragilidades() {
         try {
-            const response = await api.get(`/v1/fragilidades/paciente/${props.pacienteId}`);
+            const response = await api.get(`/v1/fragilidades/paciente/${id}`);
             setFragilidades(response.data);
+            setLoading(false);
         } catch (error) {
             console.log(undefined);
         }
@@ -51,6 +55,7 @@ function Fragilidades(props) {
                                 onEditarClick={handleEditarClick}
                                 pacienteId={props.pacienteId}
                                 data={fragilidades}
+                                loading={loading}
                             />
                         </>
                     )}

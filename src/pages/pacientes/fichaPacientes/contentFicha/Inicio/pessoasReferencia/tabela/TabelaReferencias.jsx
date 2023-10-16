@@ -9,6 +9,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import {DialogContent, DialogContentText} from "@mui/material";
+import Loading from "../../../../../../../components/loading/Loading";
 
 function ReferenciaLinha({ referencias, onEditClick }){
     const [open, setOpen] = useState(false);
@@ -122,7 +123,7 @@ function ReferenciaLinha({ referencias, onEditClick }){
 function TabelaReferencias(props) {
     const [referencias, setReferencias] = useState([]);
     const [currentPage] = useState(1);
-
+    const [loading, setLoading] = useState(true)
 
     const itemsPerPage = props.itemsPerPage;
 
@@ -132,6 +133,7 @@ function TabelaReferencias(props) {
                 `v1/referencias/paciente/${props.pacienteId}`
             );
             setReferencias(response.data);
+            setLoading(false)
         } catch (error) {
             console.log(undefined);
         }
@@ -186,7 +188,9 @@ function TabelaReferencias(props) {
                         </tr>
                         </thead>
                         <tbody>
-                        {getLinhas()}
+                            <Loading loading={loading}>
+                                {getLinhas()}
+                            </Loading>
                         </tbody>
                     </table>
                 </>

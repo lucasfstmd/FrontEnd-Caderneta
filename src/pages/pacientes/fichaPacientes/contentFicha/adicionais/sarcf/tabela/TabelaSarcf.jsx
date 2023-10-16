@@ -8,6 +8,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import Loading from "../../../../../../../components/loading/Loading";
 
 function SarcfLinha({ sarcf, onEditClick }) {
     const [open, setOpen] = useState(false);
@@ -96,8 +97,7 @@ function SarcfLinha({ sarcf, onEditClick }) {
 
 function TabelaSarcf(props) {
     const [sarcf, setSarcf] = useState([]);
-
-
+    const [loading, setLoading] = useState(true)
     const [currentPage] = useState(1);
 
     const itemsPerPage = props.itemsPerPage;
@@ -108,6 +108,7 @@ function TabelaSarcf(props) {
                 `v1/sarcfs/paciente/${props.pacienteId}`
             );
             setSarcf(response.data);
+            setLoading(false);
         } catch (error) {
             console.log(undefined);
         }
@@ -162,7 +163,9 @@ function TabelaSarcf(props) {
                         </tr>
                         </thead>
                         <tbody>
-                        {getLinhas()}
+                            <Loading loading={loading}>
+                                {getLinhas()}
+                            </Loading>
                         </tbody>
                     </table>
                 </>

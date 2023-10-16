@@ -9,6 +9,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import {DialogContent, DialogContentText} from "@mui/material";
+import Loading from "../../../../../../../components/loading/Loading";
 
 function PolifarmaciaLinha({ polifarmacia, onEditClick }) {
     const [open, setOpen] = useState(false);
@@ -93,9 +94,9 @@ function PolifarmaciaLinha({ polifarmacia, onEditClick }) {
 function TabelaPolifarmacia(props) {
     const [polifarmacia, setPolifarmacia] = useState([]);
     const [currentPage] = useState(1);
+    const [loading, setLoading] = useState(true)
 
     const itemsPerPage = props.itemsPerPage;
-
 
     async function carregarPolifarmacia() {
         try {
@@ -103,6 +104,7 @@ function TabelaPolifarmacia(props) {
                 `v1/polifarmacias/paciente/${props.pacienteId}`
             );
             setPolifarmacia(response.data);
+            setLoading(false)
         } catch (error) {
             console.log(undefined);
         }
@@ -157,7 +159,9 @@ function TabelaPolifarmacia(props) {
                         </tr>
                         </thead>
                         <tbody>
-                        {getLinhas()}
+                            <Loading loading={loading}>
+                                {getLinhas()}
+                            </Loading>
                         </tbody>
                     </table>
                 </>

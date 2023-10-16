@@ -1,9 +1,9 @@
-import React, {useState} from "react"
-import "./AdicionarAntropometricos.css"
+import React, { useState } from "react";
+import "./AdicionarAntropometricos.css";
 import api from "../../../../../../../service/api";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
-import {DialogContent, DialogContentText} from "@mui/material";
+import { DialogContent, DialogContentText } from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 
@@ -13,16 +13,19 @@ function AdicionarAntropometricos(props) {
     const [altura, setAltura] = useState();
     const [perimetro_panturrilha, setPerimetroPanturrilha] = useState();
 
-    const Imc = parseFloat((peso / (altura ** 2)).toFixed(2));
+    const pesoFloat = parseFloat(peso.toString().replace(',', '.'));
+    const alturaFloat = parseFloat(altura.toString().replace(',', '.'));
+
+    const Imc = isNaN(pesoFloat) || isNaN(alturaFloat) ? 0 : parseFloat((pesoFloat / (alturaFloat * alturaFloat)).toFixed(2));
 
     const Antropometrico = {
         paciente_id: props.pacienteId,
         ano,
-        peso,
-        altura,
+        peso: !isNaN(pesoFloat) ? pesoFloat : 0,
+        altura: !isNaN(alturaFloat) ? alturaFloat : 0,
         imc: Imc,
         perimetro_panturrilha,
-    }
+    };
 
     async function handleSalvarApi() {
         try {
@@ -43,46 +46,46 @@ function AdicionarAntropometricos(props) {
 
     const handleFecharErro400 = () => {
         setOpenErro400(false);
-    }
+    };
 
     const handleFecharErro500 = () => {
         setOpenErro500(false);
-    }
+    };
 
     const handleClickOpen = () => {
         handleSalvarApi();
-    }
+    };
 
     const handleClose = () => {
         setOpen(false);
-    }
+    };
 
     const handleSalvar = (antropometricosId) => {
         setOpen(false);
         props.onClose(antropometricosId);
-    }
+    };
 
     const handleFecharClick = (antropometricosId) => {
         props.onClose(antropometricosId);
-    }
+    };
 
     return (
         <div className="AdicionarAntropometricos">
             <div className="LabelInput">
                 <label><strong>Ano: </strong></label>
-                <input defaultValue={ano} onChange={(e) => setAno(parseInt(e.target.value))} type="number"/>
+                <input defaultValue={ano} onChange={(e) => setAno(parseInt(e.target.value))} type="number" />
             </div>
             <div className="LabelInput">
                 <label><strong>Peso: </strong></label>
-                <input defaultValue={peso} onChange={(e) => setPeso(parseFloat(e.target.value))} type="text"/>
+                <input defaultValue={peso} onChange={(e) => setPeso(e.target.value)} type="text" />
             </div>
             <div className="LabelInput">
                 <label><strong>Altura: </strong></label>
-                <input defaultValue={altura} onChange={(e) => setAltura(parseFloat(e.target.value))} type="text"/>
+                <input defaultValue={altura} onChange={(e) => setAltura(e.target.value)} type="text" />
             </div>
             <div className="LabelInput">
                 <label><strong>Perimetro Panturrilha: </strong></label>
-                <input defaultValue={perimetro_panturrilha} onChange={(e) => setPerimetroPanturrilha(parseFloat(e.target.value))} type="text"/>
+                <input defaultValue={perimetro_panturrilha} onChange={(e) => setPerimetroPanturrilha(parseFloat(e.target.value))} type="text" />
             </div>
             <div className="BotaoForm">
                 <button onClick={handleClickOpen} className="botaoFormSalvar">Salvar</button>
@@ -149,7 +152,7 @@ function AdicionarAntropometricos(props) {
                 </Dialog>
             </div>
         </div>
-    )
+    );
 }
 
 export default AdicionarAntropometricos;

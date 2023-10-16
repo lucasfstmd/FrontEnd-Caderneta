@@ -12,6 +12,7 @@ function Vulnerabilidades(props) {
     const [vulnerabilidade, setVulnerabilidade] = useState([]);
     const [editarVulnerabilidadesId, setEditarVulnerabilidadesId] = useState(null);
     const [componenteAtivo, setComponenteAtivo] = useState('tabela');
+    const [loading, setLoading] = useState(true)
 
     const handleEditarClick = (vulnerabilidadesId) => {
         setComponenteAtivo('editar');
@@ -32,6 +33,7 @@ function Vulnerabilidades(props) {
                 `v1/vulnerabilidades/paciente/${props.pacienteId}`
             );
             setVulnerabilidade(response.data);
+            setLoading(false)
         } catch (error) {
             console.log(undefined);
         }
@@ -112,6 +114,7 @@ function Vulnerabilidades(props) {
                                 onEditarClick={handleEditarClick}
                                 pacienteId={props.pacienteId}
                                 data={getVulnerabilidadesPaginaAtual()}
+                                loading={loading}
                             />
                             <div className="Paginacao">
                                 <button

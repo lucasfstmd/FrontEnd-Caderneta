@@ -6,6 +6,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import {useParams} from "react-router-dom";
 
 function EditarBioimpedancias(props) {
     const [bioimpedancia, setBioimpedancia] = useState();
@@ -34,6 +35,7 @@ function EditarBioimpedancias(props) {
     const [p23, setP23] = useState(null);
     const [p24, setP24] = useState(null);
     const [p25, setP25] = useState(null);
+    const { id } = useParams()
 
     async function carregarBioimpedancia() {
         try {
@@ -74,7 +76,7 @@ function EditarBioimpedancias(props) {
     }, []);
 
     const Bioimpedancia = {
-        paciente_id: props.pacienteId,
+        paciente_id: id,
         p1,
         p2,
         p3,

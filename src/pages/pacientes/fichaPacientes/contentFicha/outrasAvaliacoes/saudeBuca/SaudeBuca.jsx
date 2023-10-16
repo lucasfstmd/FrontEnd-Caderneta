@@ -11,6 +11,7 @@ function SaudeBuca(props) {
     const [saudeBucal, setSaudeBucal] = useState([]);
     const [editarSaudeBucalId, setEditarSaudeBucalId] = useState(null);
     const [componenteAtivo, setComponenteAtivo] = useState('tabela');
+    const [loading, setLoading] = useState(true)
 
     const handleEditarClick = (saudeBucalId) => {
         setComponenteAtivo('editar');
@@ -32,6 +33,7 @@ function SaudeBuca(props) {
                 `v1/bucal-saudes/paciente/${props.pacienteId}`
             );
             setSaudeBucal(response.data);
+            setLoading(false)
         } catch (error) {
             console.log(undefined);
         }
@@ -109,6 +111,7 @@ function SaudeBuca(props) {
                                 onEditarClick={handleEditarClick}
                                 pacienteId={props.pacienteId}
                                 data={getBucalSaudesPagAtual()}
+                                loading={loading}
                             />
                             <div className="Paginacao">
                                 <button

@@ -9,6 +9,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import {DialogContent, DialogContentText} from "@mui/material";
+import Loading from "../../../../../../../components/loading/Loading";
 
 function MedicamentosLinha({ avaliacoes, onEditClick }) {
     const [open, setOpen] = useState(false);
@@ -113,6 +114,7 @@ function MedicamentosLinha({ avaliacoes, onEditClick }) {
 function TabelaMedicamentos(props) {
     const [avaliacoes, setAvaliacoes] = useState([]);
     const [currentPage] = useState(1);
+    const [loading, setLoading] = useState(true)
 
     const itemsPerPage = props.itemsPerPage;
 
@@ -123,6 +125,7 @@ function TabelaMedicamentos(props) {
                 `v1/avaliacoes/paciente/${props.pacienteId}`
             );
             setAvaliacoes(response.data);
+            setLoading(false)
         } catch (error) {
             console.log(undefined);
         }
@@ -177,7 +180,9 @@ function TabelaMedicamentos(props) {
                         </tr>
                         </thead>
                         <tbody>
-                        {getLinhas()}
+                            <Loading loading={loading}>
+                                {getLinhas()}
+                            </Loading>
                         </tbody>
                     </table>
                 </>

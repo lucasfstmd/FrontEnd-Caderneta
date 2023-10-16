@@ -4,13 +4,16 @@ import api from "../../../../../../service/api";
 import TabelaBioimpedancias from "./tabela/TabelaBioimpedancias";
 import EditarBioimpedancias from "./editar/EditarBioimpedancias";
 import AdicionarBioimpedancias from "./adicionar/AdicionarBioimpedancias";
+import {useParams} from "react-router-dom";
 
-function Bioimpedancias(props) {
+function Bioimpedancias() {
     const [itemsPerPage] = useState(2);
     const [currentPage, setCurrentPage] = useState(1);
     const [bioimpedancias, setBioimpedancias] = useState([]);
     const [editarBioimpedanciaId, setEditarBioimpedanciaId] = useState(null);
     const [componenteAtivo, setComponenteAtivo] = useState('tabela');
+    const [loading, setLoading] = useState(true)
+    const { id } = useParams();
 
     const handleEditarClick = (bioimpedanciaId) => {
         setComponenteAtivo('editar');
@@ -29,9 +32,10 @@ function Bioimpedancias(props) {
     async function carregarBioimpedancias() {
         try {
             const response = await api.get(
-                `v1/bioimpedancias/paciente/${props.pacienteId}`
+                `v1/bioimpedancias/paciente/${id}`
             );
             setBioimpedancias(response.data);
+            setLoading(false)
         } catch (error) {
             console.log(undefined);
         }
@@ -107,8 +111,8 @@ function Bioimpedancias(props) {
                                 itemsPerPage={itemsPerPage}
                                 currentPage={currentPage}
                                 onEditarClick={handleEditarClick}
-                                pacienteId={props.pacienteId}
                                 data={getBioimpedanciasPagAtual()}
+                                loading={loading}
                             />
                             <div className="Paginacao">
                                 <button
@@ -134,13 +138,11 @@ function Bioimpedancias(props) {
                     {componenteAtivo === 'editar' && (
                         <EditarBioimpedancias
                             onClose={handleFechar}
-                            pacienteId={props.pacienteId}
                             bioimpedanciaId={editarBioimpedanciaId}
                         />
                     )}
                     {componenteAtivo === 'adicionar' && (
                         <AdicionarBioimpedancias
-                            pacienteId={props.pacienteId}
                             onClose={handleFechar}
                         />
                     )}
