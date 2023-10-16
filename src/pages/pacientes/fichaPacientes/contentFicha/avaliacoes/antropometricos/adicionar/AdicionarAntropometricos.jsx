@@ -9,8 +9,8 @@ import Button from "@mui/material/Button";
 
 function AdicionarAntropometricos(props) {
     const [ano, setAno] = useState();
-    const [peso, setPeso] = useState();
-    const [altura, setAltura] = useState();
+    const [peso, setPeso] = useState('');
+    const [altura, setAltura] = useState('');
     const [perimetro_panturrilha, setPerimetroPanturrilha] = useState();
 
     const pesoFloat = parseFloat(peso.toString().replace(',', '.'));
