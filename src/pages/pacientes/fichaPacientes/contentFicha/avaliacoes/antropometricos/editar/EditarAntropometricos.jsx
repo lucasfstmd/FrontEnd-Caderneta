@@ -10,8 +10,8 @@ import Button from "@mui/material/Button";
 function EditarAntropometricos(props) {
     const [antropometrico, setAntropometricos] = useState();
     const [ano, setAno] = useState();
-    const [peso, setPeso] = useState();
-    const [altura, setAltura] = useState();
+    const [peso, setPeso] = useState('');
+    const [altura, setAltura] = useState('');
     const [perimetro_panturrilha, setPerimetroPanturrilha] = useState();
 
     async function carregarAntropometricos() {
@@ -31,16 +31,19 @@ function EditarAntropometricos(props) {
         carregarAntropometricos();
     }, []);
 
-    const Imc = parseFloat((peso / (altura ** 2)).toFixed(2));
+    const pesoFloat = parseFloat(peso.toString().replace(',', '.'));
+    const alturaFloat = parseFloat(altura.toString().replace(',', '.'));
+
+    const Imc = isNaN(pesoFloat) || isNaN(alturaFloat) ? 0 : parseFloat((pesoFloat / (alturaFloat * alturaFloat)).toFixed(2));
 
     const Antropometrico = {
         paciente_id: props.pacienteId,
         ano,
-        peso,
-        altura,
+        peso: !isNaN(pesoFloat) ? pesoFloat : 0,
+        altura: !isNaN(alturaFloat) ? alturaFloat : 0,
         imc: Imc,
         perimetro_panturrilha,
-    }
+    };
 
     const handleFecharClick = (reacoesId) => {
         props.onClose(reacoesId);
