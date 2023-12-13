@@ -7,8 +7,8 @@ import Button from "@mui/material/Button";
 import {CSVLink} from "react-csv";
 import {AiOutlineDownload, AiFillCloseCircle} from "react-icons/ai";
 import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
-import {Link} from "react-router-dom";
+import { Link } from 'react-router-dom'
+
 
 function ExportDialog(props) {
 
@@ -50,9 +50,9 @@ function ExportDialog(props) {
                 </DialogContent>
                 <DialogActions>
                     {props.loading ?
-                        <Box sx={{ display: 'flex', justifyContent: 'center', AlingItens: 'center' }}>
-                            <CircularProgress />
-                        </Box>
+                        <div style={{ display: "flex", justifyContent: "center" }}>
+                            <CircularProgress/>
+                        </div>
                         :
                         <>
                             <Button onClick={handleClose} variant="outlined" color="success">
