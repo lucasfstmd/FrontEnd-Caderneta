@@ -187,7 +187,7 @@ function ExportDataBase() {
     return (
         <div>
             <Link onClick={handleClickOpen}
-                  style={{ textDecoration: 'none', color: '#1E90FF', margin: "1vh" }}
+                  style={{ textDecoration: 'none', color: '#1E90FF', margin: "2vh" }}
             >
                 <strong>Banco de Dados</strong>
             </Link>

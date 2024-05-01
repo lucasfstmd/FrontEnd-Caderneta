@@ -39,6 +39,7 @@ import Infancia from "./adicionais/infancia/Infancia";
 import Sarcf from "./adicionais/sarcf/Sarcf";
 import RequestAuth from "../../../../service/auth/RequestAuth";
 import Fragilidades from "./adicionais/fragilidades/Fragilidades";
+import Usabilidade from './saudeMental/usabilidade/Usabilidade'
 
 const ContentFicha = (props) => {
     const { selectedItem } = props;
@@ -118,7 +119,10 @@ const ContentFicha = (props) => {
             return <RequestAuth><Infancia pacienteId={props.pacienteId}/></RequestAuth>;
         } else if (selectedItem === "sarcf-f") {
             return <RequestAuth><Sarcf pacienteId={props.pacienteId}/></RequestAuth>;
-        } else {
+        } else if (selectedItem === "usabilidade")  {
+            return <RequestAuth><Usabilidade pacientId={props.pacienteId}/></RequestAuth>
+        }
+        else {
             return <RequestAuth><Inicio pacienteId={props.pacienteId}/></RequestAuth>;
         }
     }

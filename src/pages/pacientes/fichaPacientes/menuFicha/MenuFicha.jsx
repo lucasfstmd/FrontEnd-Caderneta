@@ -139,6 +139,35 @@ function MenuFicha(props) {
                         4.11 SARC-F
                     </div>
                 </div>
+                <div className="Adicionais">
+                    <div className="Titulo">
+                        <strong>5. Saúde Mental</strong>
+                    </div>
+                    <div className="OpcaoFicha" onClick={() => handleItemClick("usabilidade")}>
+                        5.1 Questionário de Usabilidade
+                    </div>
+                    <div className="OpcaoFicha" onClick={() => handleItemClick("ipaq")}>
+                        5.2 Questionário Internacional de Atividade Física (IPAQ) – Versão Curta
+                    </div>
+                    <div className="OpcaoFicha" onClick={() => handleItemClick("autorrelato-nocturia")}>
+                        5.3 Autorrelato de Noctúria
+                    </div>
+                    <div className="OpcaoFicha" onClick={() => handleItemClick("psqi")}>
+                        5.4 Índice de Qualidade de Sono de Pittsburgh em Português (PSQI-BR)
+                    </div>
+                    <div className="OpcaoFicha" onClick={() => handleItemClick("ese")}>
+                        5.5 Escala de Sonolência de Epworth (ESE) para Avaliação do Sono
+                    </div>
+                    <div className="OpcaoFicha" onClick={() => handleItemClick("escala-depressao")}>
+                        5.6 Escala de Depressão do Center Epidemiological Studies (Últimos 7 dias)
+                    </div>
+                    <div className="OpcaoFicha" onClick={() => handleItemClick("escala-estresse")}>
+                        5.7 Escala de Estresse Percebido
+                    </div>
+                    <div className="OpcaoFicha" onClick={() => handleItemClick("gai")}>
+                        5.8 Inventário de Ansiedade Geriátrica (GAI)
+                    </div>
+                </div>
             </div>
         </div>
     );
