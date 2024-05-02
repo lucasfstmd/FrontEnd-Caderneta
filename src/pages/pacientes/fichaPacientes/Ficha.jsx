@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import "./Ficha.css";
 
@@ -9,16 +9,12 @@ import ContentFicha from "./contentFicha/ContentFicha";
 import api from "../../../service/api";
 
 import { format } from "date-fns";
-import queryString from "query-string";
 import RequestAuth from "../../../service/auth/RequestAuth";
 
 const Ficha = () => {
     const { id } = useParams();
-    const location = useLocation();
-    const { selectedItem: initialSelectedItem } = queryString.parse(location.search);
 
     const [paciente, setPaciente] = useState(null);
-    const [selectedItem, setSelectedItem] = useState(initialSelectedItem || "inicio");
 
     useEffect(() => {
         async function fetchPaciente() {
@@ -33,9 +29,6 @@ const Ficha = () => {
         fetchPaciente();
     }, [id]);
 
-    const handleItemClick = (item) => {
-        setSelectedItem(item);
-    };
 
     if (!paciente) {
         return <div>Carregando...</div>;
@@ -55,9 +48,8 @@ const Ficha = () => {
                     </div>
                 </div>
                 <div className="ConteudoFicha">
-                    <MenuFicha onItemClick={handleItemClick} />
+                    <MenuFicha />
                     <ContentFicha
-                        selectedItem={selectedItem}
                         pacienteId={paciente.id}
                     />
                 </div>

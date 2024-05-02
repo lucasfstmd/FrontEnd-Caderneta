@@ -39,6 +39,8 @@
     margin-bottom: -1px;
     background-color: #fff;
     border: 1px solid #ddd;
+    text-decoration: none;
+    color: #000;
 }
 
 .OpcaoFicha:hover {

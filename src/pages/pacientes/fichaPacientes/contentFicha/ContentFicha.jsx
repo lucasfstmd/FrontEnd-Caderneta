@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from 'react'
 import "./ContentFicha.css";
 
 import Inicio from "./Inicio/Inicio";
@@ -40,9 +40,17 @@ import Sarcf from "./adicionais/sarcf/Sarcf";
 import RequestAuth from "../../../../service/auth/RequestAuth";
 import Fragilidades from "./adicionais/fragilidades/Fragilidades";
 import Usabilidade from './saudeMental/usabilidade/Usabilidade'
+import { useLocation } from 'react-router-dom'
 
-const ContentFicha = (props) => {
-    const { selectedItem } = props;
+export function useQuery() {
+    const { search } = useLocation();
+
+    return useMemo(() => new URLSearchParams(search), [search]);
+}
+
+export default function ContentFia(props) {
+    const query = useQuery();
+    const selectedItem = query.get('form')
 
     const renderContent = () => {
         if (selectedItem === "inicio") {
@@ -132,6 +140,4 @@ const ContentFicha = (props) => {
             <div className="ItemContente">{renderContent()}</div>
         </div>
     );
-};
-
-export default ContentFicha;
+}

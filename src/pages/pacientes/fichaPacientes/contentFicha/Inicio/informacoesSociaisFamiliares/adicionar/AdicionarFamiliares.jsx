@@ -6,6 +6,8 @@ import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import api from "../../../../../../../service/api";
+import { useQuery } from '../../../ContentFicha'
+import { useNavigate } from 'react-router-dom'
 
 function AdicionarFamiliares(props) {
     const [ano, setAno] = useState();
@@ -21,6 +23,8 @@ function AdicionarFamiliares(props) {
     const [p10, setP10] = useState();
     const [p11, setP11] = useState();
     const [p12, setP12] = useState();
+    const query = useQuery();
+    const navigate = useNavigate();
 
     const Familiar = {
         paciente_id: props.pacienteId,
@@ -78,7 +82,8 @@ function AdicionarFamiliares(props) {
     }
 
     const handleFecharClick = (familiaresId) => {
-        props.onClose(familiaresId);
+        // props.onClose(familiaresId);
+        navigate(`/caderneta/pacientes/ficha/${props.pacienteId}?form=${query.get('form')}&view=tabela`);
     }
 
     return (

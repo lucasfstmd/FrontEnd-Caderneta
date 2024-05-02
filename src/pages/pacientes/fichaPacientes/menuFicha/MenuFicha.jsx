@@ -1,172 +1,167 @@
 import React from "react";
 import "./MenuFicha.css";
+import { Link } from 'react-router-dom'
 
-function MenuFicha(props) {
-    const { onItemClick } = props;
-
-    const handleItemClick = (item) => {
-        onItemClick(item);
-    };
-
+function MenuFicha() {
     return (
         <div className="MenuFicha">
             <div className="InformacoesFicha">
                 <div className="InicioFicha">
-                    <div className="OpcaoFicha" onClick={() => handleItemClick("inicio")}>
+                    <Link to={'?form=inicio'} className="OpcaoFicha">
                         <strong>1. Inicio</strong>
-                    </div>
-                    <div className="OpcaoFicha" onClick={() => handleItemClick("editar-dados")}>
+                    </Link>
+                    <Link to={'?form=editar-dados'} className="OpcaoFicha">
                         1.1 Editar Dados Pessoais
-                    </div>
-                    <div className="OpcaoFicha" onClick={() => handleItemClick("informacoes-sociais")}>
+                    </Link>
+                    <Link to={'?form=informacoes-sociais'} className="OpcaoFicha">
                         1.2 Informações sociais e familiares
-                    </div>
-                    <div className="OpcaoFicha" onClick={() => handleItemClick("pessoas-referencias")}>
+                    </Link>
+                    <Link to={'?form=pessoas-referencias'} className="OpcaoFicha">
                         1.3 Pessoas de Refêrencias
-                    </div>
-                    <div className="OpcaoFicha" onClick={() => handleItemClick("obitos")}>
+                    </Link>
+                    <Link to={'?qst=obitos'} className="OpcaoFicha">
                         1.4 Obitos
-                    </div>
+                    </Link>
                 </div>
                 <div className="AvaliacaoFicha">
                     <div className="Titulo">
                         <strong>2. Avaliação da Pessoa Idosa</strong>
                     </div>
-                    <div className="OpcaoFicha" onClick={() => handleItemClick("medicamentos")}>
+                    <Link to={'?form=medicamentos'} className="OpcaoFicha">
                         2.1 Medicamentos, Fitoterápicos, Suplementos e Vitaminas em Uso
-                    </div>
-                    <div className="OpcaoFicha" onClick={() => handleItemClick("polifarmacia")}>
+                    </Link>
+                    <Link to={'?form=polifarmacia'} className="OpcaoFicha">
                         2.1.1 Polifarmácia
-                    </div>
-                    <div className="OpcaoFicha" onClick={() => handleItemClick("diagnosticos")}>
+                    </Link>
+                    <Link to={'?form=diagnosticos'} className="OpcaoFicha">
                         2.2 Diagnósticos e Internações Prévios
-                    </div>
-                    <div className="OpcaoFicha" onClick={() => handleItemClick("cirurgias")}>
+                    </Link>
+                    <Link to={'?form=cirurgias'} className="OpcaoFicha">
                         2.3 Cirurgias Realizadas
-                    </div>
-                    <div className="OpcaoFicha" onClick={() => handleItemClick("reacoes")}>
+                    </Link>
+                    <Link to={'?form=reacoes'} className="OpcaoFicha">
                         2.4 Reações Adversas ou Alergias a Medicamentos
-                    </div>
-                    <div className="OpcaoFicha" onClick={() => handleItemClick("antropometricos")}>
+                    </Link>
+                    <Link to={'?form=antropometricos'} className="OpcaoFicha">
                         2.5 Dados Antropométricos
-                    </div>
-                    <div className="OpcaoFicha" onClick={() => handleItemClick("perca-peso")}>
+                    </Link>
+                    <Link to={'?form=perca-peso'} className="OpcaoFicha">
                         2.5.1 Controle de Perda de Peso
-                    </div>
-                    <div className="OpcaoFicha" onClick={() => handleItemClick("controle-peso")}>
+                    </Link>
+                    <Link to={'?form=controle-peso'} className="OpcaoFicha">
                         2.5.2 Controle de Peso
-                    </div>
-                    <div className="OpcaoFicha" onClick={() => handleItemClick("protocolo-identificacao")}>
+                    </Link>
+                    <Link to={'?form=protocolo-identificacao'} className="OpcaoFicha">
                         2.6 Protocolo de Identificação do Idoso Vulnerável (VES-13)
-                    </div>
-                    <div className="OpcaoFicha" onClick={() => handleItemClick("complementares")}>
-                        2.7 Informações Complementares
-                    </div>
-                    <div className="OpcaoFicha" onClick={() => handleItemClick("ambientais")}>
-                        2.8 Avaliação Ambiental
-                    </div>
-                    <div className="OpcaoFicha" onClick={() => handleItemClick("quedas")}>
+                    </Link>
+                     <Link to={'?form=complementares'} className="OpcaoFicha">
+                         2.7 Informações Complementares
+                    </Link>
+                     <Link to={'?form=ambientais'} className="OpcaoFicha">
+                         2.8 Avaliação Ambiental
+                    </Link>
+                    <Link to={'?form=quedas'} className="OpcaoFicha">
                         2.9 Quedas
-                    </div>
-                    <div className="OpcaoFicha" onClick={() => handleItemClick("cronicas")}>
+                    </Link>
+                    <Link to={'?form=cronicas'} className="OpcaoFicha">
                         2.10 Identificação de Dor Crônica
-                    </div>
-                    <div className="OpcaoFicha" onClick={() => handleItemClick("intensidade")}>
+                    </Link>
+                    <Link to={'?form=intensidade'} className="OpcaoFicha">
                         2.10.1 Intensidade da Dor
-                    </div>
-                    <div className="OpcaoFicha" onClick={() => handleItemClick("habitos")}>
+                    </Link>
+                    <Link to={'?form=habitos'} className="OpcaoFicha">
                         2.11 Hábitos de Vida
-                    </div>
+                    </Link>
                 </div>
                 <div className="OutrasAvaliacoes">
                     <div className="Titulo">
                         <strong>3. Outras Avaliações</strong>
                     </div>
-                    <div className="OpcaoFicha" onClick={() => handleItemClick("pressao")}>
+                    <Link to={'?form=pressao'} className="OpcaoFicha">
                         3.1 Controle de Pressão Arterial
-                    </div>
-                    <div className="OpcaoFicha" onClick={() => handleItemClick("glicemia")}>
+                    </Link>
+                    <Link to={'?form=glicemia'} className="OpcaoFicha">
                         3.2 Controle de Glicemia
-                    </div>
-                    <div className="OpcaoFicha" onClick={() => handleItemClick("vacinacao")}>
+                    </Link>
+                    <Link to={'?form=vacinacao'} className="OpcaoFicha">
                         3.3 Calendário de Vacinação
-                    </div>
-                    <div className="OpcaoFicha" onClick={() => handleItemClick("saude-buca")}>
+                    </Link>
+                    <Link to={'?form=saude-buca'} className="OpcaoFicha">
                         3.4 Avalição de Saúde Buca
-                    </div>
-                    <div className="OpcaoFicha" onClick={() => handleItemClick("exames")}>
+                    </Link>
+                    <Link to={'?form=exames'} className="OpcaoFicha">
                         3.5 Agenda de Consultas e Exames
-                    </div>
-                    <div className="OpcaoFicha" onClick={() => handleItemClick("atualizacoes")}>
+                    </Link>
+                    <Link to={'?form=atualizacoes'} className="OpcaoFicha">
                         3.6 Atualizações da Caderneta
-                    </div>
+                    </Link>
                 </div>
                 <div className="Adicionais">
                     <div className="Titulo">
                         <strong>4. Adicionais</strong>
                     </div>
-                    <div className="OpcaoFicha" onClick={() => handleItemClick("identificacao")}>
+                    <Link to={'?form=identificacao'} className="OpcaoFicha">
                         4.1 Numero de Identificação
-                    </div>
-                    <div className="OpcaoFicha" onClick={() => handleItemClick("pcl")}>
+                    </Link>
+                    <Link to={'?form=pcl'} className="OpcaoFicha">
                         4.2 PCL
-                    </div>
-                    <div className="OpcaoFicha" onClick={() => handleItemClick("forca-preensao")}>
+                    </Link>
+                    <Link to={'?form=forca-preensao'} className="OpcaoFicha">
                         4.3 Força de Preensão
-                    </div>
-                    <div className="OpcaoFicha" onClick={() => handleItemClick("sppb")}>
+                    </Link>
+                    <Link to={'?form=sppb'} className="OpcaoFicha">
                         4.4 SPPB
-                    </div>
-                    <div className="OpcaoFicha" onClick={() => handleItemClick("ivcf")}>
+                    </Link>
+                    <Link to={'?form=ivcf'} className="OpcaoFicha">
                         4.5 IVCF-20
-                    </div>
-                    <div className="OpcaoFicha" onClick={() => handleItemClick("bioimpedancias")}>
+                    </Link>
+                    <Link to={'?form=bioimpedancias'} className="OpcaoFicha">
                         4.6 Bioimpedâncias
-                    </div>
-                    <div className="OpcaoFicha" onClick={() => handleItemClick("exames-laboratoriais")}>
+                    </Link>
+                    <Link to={'?form=exames-laboratoriais'} className="OpcaoFicha">
                         4.7 Exames Laboratoriais
-                    </div>
-                    <div className="OpcaoFicha" onClick={() => handleItemClick("frrisque")}>
+                    </Link>
+                    <Link to={'?form=frrisque'} className="OpcaoFicha">
                         4.8 Frrisque
-                    </div>
-                    <div className="OpcaoFicha" onClick={() => handleItemClick("fragilidades")}>
+                    </Link>
+                    <Link to={'?form=fragilidades'} className="OpcaoFicha">
                         4.9 Fragilidades
-                    </div>
-                    <div className="OpcaoFicha" onClick={() => handleItemClick("infancia")}>
+                    </Link>
+                    <Link to={'?form=infancia'} className="OpcaoFicha">
                         4.10 Circunstâncias Inicias da Vida e Adversidades na Infancia
-                    </div>
-                    <div className="OpcaoFicha" onClick={() => handleItemClick("sarcf-f")}>
+                    </Link>
+                    <Link to={'?form=sarcf-f'} className="OpcaoFicha">
                         4.11 SARC-F
-                    </div>
+                    </Link>
                 </div>
                 <div className="Adicionais">
                     <div className="Titulo">
                         <strong>5. Saúde Mental</strong>
                     </div>
-                    <div className="OpcaoFicha" onClick={() => handleItemClick("usabilidade")}>
+                    <Link to={'?form=usabilidade'} className="OpcaoFicha">
                         5.1 Questionário de Usabilidade
-                    </div>
-                    <div className="OpcaoFicha" onClick={() => handleItemClick("ipaq")}>
+                    </Link>
+                    <Link to={'?form=ipaq'} className="OpcaoFicha">
                         5.2 Questionário Internacional de Atividade Física (IPAQ) – Versão Curta
-                    </div>
-                    <div className="OpcaoFicha" onClick={() => handleItemClick("autorrelato-nocturia")}>
+                    </Link>
+                    <Link to={'?form=autorrelato-nocturia'} className="OpcaoFicha">
                         5.3 Autorrelato de Noctúria
-                    </div>
-                    <div className="OpcaoFicha" onClick={() => handleItemClick("psqi")}>
+                    </Link>
+                    <Link to={'?form=psqi'} className="OpcaoFicha">
                         5.4 Índice de Qualidade de Sono de Pittsburgh em Português (PSQI-BR)
-                    </div>
-                    <div className="OpcaoFicha" onClick={() => handleItemClick("ese")}>
+                    </Link>
+                    <Link to={'?form=ese'} className="OpcaoFicha">
                         5.5 Escala de Sonolência de Epworth (ESE) para Avaliação do Sono
-                    </div>
-                    <div className="OpcaoFicha" onClick={() => handleItemClick("escala-depressao")}>
+                    </Link>
+                    <Link to={'?form=escala-depressao'} className="OpcaoFicha">
                         5.6 Escala de Depressão do Center Epidemiological Studies (Últimos 7 dias)
-                    </div>
-                    <div className="OpcaoFicha" onClick={() => handleItemClick("escala-estresse")}>
+                    </Link>
+                    <Link to={'?form=escala-estresse'} className="OpcaoFicha">
                         5.7 Escala de Estresse Percebido
-                    </div>
-                    <div className="OpcaoFicha" onClick={() => handleItemClick("gai")}>
+                    </Link>
+                    <Link to={'?form=gai'} className="OpcaoFicha">
                         5.8 Inventário de Ansiedade Geriátrica (GAI)
-                    </div>
+                    </Link>
                 </div>
             </div>
         </div>
