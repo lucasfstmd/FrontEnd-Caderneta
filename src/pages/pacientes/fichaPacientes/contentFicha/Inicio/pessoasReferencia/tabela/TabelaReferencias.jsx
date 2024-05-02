@@ -10,6 +10,7 @@ import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import {DialogContent, DialogContentText} from "@mui/material";
 import Loading from "../../../../../../../components/loading/Loading";
+import { useParams } from 'react-router-dom'
 
 function ReferenciaLinha({ referencias, onEditClick }){
     const [open, setOpen] = useState(false);
@@ -124,13 +125,14 @@ function TabelaReferencias(props) {
     const [referencias, setReferencias] = useState([]);
     const [currentPage] = useState(1);
     const [loading, setLoading] = useState(true)
-
+    const params = useParams();
+    const { id } = params
     const itemsPerPage = props.itemsPerPage;
 
     async function carregarReferencias() {
         try {
             const response = await api.get(
-                `v1/referencias/paciente/${props.pacienteId}`
+                `v1/referencias/paciente/${id}`
             );
             setReferencias(response.data);
             setLoading(false)

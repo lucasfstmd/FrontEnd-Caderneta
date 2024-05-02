@@ -6,12 +6,19 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import { useNavigate, useParams } from 'react-router-dom'
+import { useQuery } from '../../../ContentFicha'
 
-function AdicionarPolifarmacia(props) {
+function AdicionarPolifarmacia() {
+    const params = useParams();
+    const { id } = params
+    const query = useQuery();
+    const navigate = useNavigate();
+
     const [uso_concomitante, setUso_concomitante] = useState(-1);
 
     const Polifarmacia = {
-        paciente_id: props.pacienteId,
+        paciente_id: id,
         uso_concomitante,
     }
 
@@ -48,13 +55,13 @@ function AdicionarPolifarmacia(props) {
         setOpen(false);
     }
 
-    const handleSalvar = (medicamentosId) => {
+    const handleSalvar = () => {
         setOpen(false);
-        props.onClose(medicamentosId);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
-    const handleFecharClick = (medicamentosId) => {
-        props.onClose(medicamentosId);
+    const handleFecharClick = () => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     return (

@@ -3,52 +3,43 @@ import PainelFicha from "../../../../../../components/painelFicha/PainelFicha";
 import TabelaSppb from "./tabela/TabelaSppb";
 import EditarSppb from "./editar/EditarSppb";
 import AdicionarSppb from "./adicionar/AdicionarSppb";
+import { useNavigate, useParams } from 'react-router-dom'
+import { useQuery } from '../../ContentFicha'
 
-function Sppb(props) {
+function Sppb() {
     const [itemsPerPage] = useState(20);
     const [currentPage] = useState(1);
-    const [editarSppbId, setEditarSppbId] = useState(null);
-    const [componenteAtivo, setComponenteAtivo] = useState('tabela');
+    const navigate = useNavigate()
+    const query = useQuery()
+    const params = useParams()
+    const { id } = params
 
     const handleEditarClick = (editarSppbId) => {
-        setComponenteAtivo('editar');
-        setEditarSppbId(editarSppbId);
-    }
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=editar&infoId=${editarSppbId}`);
 
-    const handleFechar = () => {
-        setComponenteAtivo('tabela');
-        setEditarSppbId(null);
     }
 
     const handleAdicionarClick = () => {
-        setComponenteAtivo('adicionar');
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=adicionar`);
     }
 
     return (
         <div className="Sppb">
             <PainelFicha titulo="4.4 Short Physical Performace Battery (SPPB)" botaoNew={true} onAdicionarClick={handleAdicionarClick}>
                 <div className="Conteudo">
-                    {componenteAtivo === 'tabela' && (
+                    {query.get('view') === 'tabela' && (
                         <TabelaSppb
                             itemsPerPage={itemsPerPage}
                             currentPage={currentPage}
                             onEditarClick={handleEditarClick}
-                            pacienteId={props.pacienteId}
                         />
                     )}
 
-                    {componenteAtivo === 'editar' && (
-                        <EditarSppb
-                            onClose={handleFechar}
-                            pacienteId={props.pacienteId}
-                            sppbId={editarSppbId}
-                        />
+                    {query.get('view') === 'editar' && (
+                        <EditarSppb/>
                     )}
-                    {componenteAtivo === 'adicionar' && (
-                        <AdicionarSppb
-                            pacienteId={props.pacienteId}
-                            onClose={handleFechar}
-                        />
+                    {query.get('view') === 'adicionar' && (
+                        <AdicionarSppb/>
                     )}
                 </div>
             </PainelFicha>

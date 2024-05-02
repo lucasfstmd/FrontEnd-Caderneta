@@ -10,6 +10,7 @@ import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import Loading from "../../../../../../../components/loading/Loading";
+import { useParams } from 'react-router-dom'
 
 function AmbientaisLinha({ ambientais, onEditClick }) {
     const [open, setOpen] = useState(false);
@@ -139,13 +140,14 @@ function TabelaAmbientais(props) {
     const [ambientais, setAmbientais] = useState([]);
     const [currentPage] = useState(1);
     const [loading, setLoading] = useState(true)
-
+    const params = useParams();
+    const { id } = params
     const itemsPerPage = props.itemsPerPage;
 
     async function carregarAmbientais() {
         try {
             const response = await api.get(
-                `v1/ambientais/paciente/${props.pacienteId}`
+                `v1/ambientais/paciente/${id}`
             );
             setAmbientais(response.data);
             setLoading(false);

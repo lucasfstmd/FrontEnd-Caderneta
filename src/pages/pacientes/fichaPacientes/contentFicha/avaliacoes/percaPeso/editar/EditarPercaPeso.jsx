@@ -6,15 +6,23 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import { useQuery } from '../../../ContentFicha'
+import { useNavigate, useParams } from 'react-router-dom'
 
-function EditarPercaPeso(props) {
+function EditarPercaPeso() {
+    const query = useQuery();
+    const percaPesoId = query.get('infoId')
+    const params = useParams();
+    const { id } = params
+    const navigate = useNavigate()
+
     const [pesoPerca, setPesoPerca] = useState();
     const [ano, setAno] = useState(0);
     const [perda_peso, setPerdaPeso] = useState(0);
 
     async function carregarPesoPerca() {
         try {
-            const response = await api.get(`v1/peso-perdas/${props.percaPesoId}`);
+            const response = await api.get(`v1/peso-perdas/${percaPesoId}`);
             setPesoPerca(response.data);
             setAno(response.data.ano);
             setPerdaPeso(response.data.perda_peso);
@@ -28,18 +36,18 @@ function EditarPercaPeso(props) {
     }, []);
 
     const PesoPerca = {
-        paciente_id: props.pacienteId,
+        paciente_id: id,
         ano,
         perda_peso,
     }
 
-    const handleFecharClick = (perdaPesoId) => {
-        props.onClose(perdaPesoId);
+    const handleFecharClick = () => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     const handleEdit = async () => {
         try {
-            await api.patch(`v1/peso-perdas/${props.percaPesoId}`, PesoPerca);
+            await api.patch(`v1/peso-perdas/${percaPesoId}`, PesoPerca);
             setOpen(true);
         } catch (error) {
             if (error.response && error.response.status === 400) {
@@ -70,9 +78,9 @@ function EditarPercaPeso(props) {
         setOpen(false);
     }
 
-    const handleSalvar = (pesoPercaId) => {
+    const handleSalvar = () => {
         setOpen(false);
-        props.onClose(pesoPercaId);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     return (

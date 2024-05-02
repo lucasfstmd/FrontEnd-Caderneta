@@ -6,8 +6,16 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import { useQuery } from '../../../ContentFicha'
+import { useNavigate, useParams } from 'react-router-dom'
 
-function EditarReacoes(props) {
+function EditarReacoes() {
+    const query = useQuery();
+    const reacoesId = query.get('infoId')
+    const params = useParams();
+    const { id } = params
+    const navigate = useNavigate()
+
     const [reacao, setReacao] = useState();
     const [medicamento, setMedicamento] = useState('');
     const [data, setData] = useState('');
@@ -15,7 +23,7 @@ function EditarReacoes(props) {
 
     async function carregarReacao() {
         try {
-            const response = await api.get(`v1/reacoes/${props.reacoesId}`);
+            const response = await api.get(`v1/reacoes/${reacoesId}`);
             setReacao(response.data);
             setMedicamento(response.data.medicamento);
             setData(response.data.data);
@@ -30,19 +38,19 @@ function EditarReacoes(props) {
     }, []);
 
     const Reacao = {
-        paciente_id: props.pacienteId,
+        paciente_id: id,
         medicamento,
         data,
         reacoes_adversas_ou_alergicas,
     }
 
-    const handleFecharClick = (reacoesId) => {
-        props.onClose(reacoesId);
+    const handleFecharClick = () => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     };
 
     const handleEdit = async () => {
         try {
-            await api.patch(`v1/reacoes/${props.reacoesId}`, Reacao);
+            await api.patch(`v1/reacoes/${reacoesId}`, Reacao);
             setOpen(true);
         } catch (error) {
             if (error.response && error.response.status === 400) {
@@ -73,10 +81,10 @@ function EditarReacoes(props) {
         setOpen(false);
     };
 
-    const handleSalvar = (reacoesId) => {
+    const handleSalvar = () => {
         setOpen(false);
-        props.onClose(reacoesId);
-    };
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
+    }
 
 
     return (

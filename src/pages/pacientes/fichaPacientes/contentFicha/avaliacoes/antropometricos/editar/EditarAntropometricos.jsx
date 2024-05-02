@@ -6,8 +6,16 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import { useQuery } from '../../../ContentFicha'
+import { useNavigate, useParams } from 'react-router-dom'
 
-function EditarAntropometricos(props) {
+function EditarAntropometricos() {
+    const query = useQuery();
+    const antropometricosId = query.get('infoId')
+    const params = useParams();
+    const { id } = params
+    const navigate = useNavigate()
+
     const [antropometrico, setAntropometricos] = useState();
     const [ano, setAno] = useState();
     const [peso, setPeso] = useState('');
@@ -16,7 +24,7 @@ function EditarAntropometricos(props) {
 
     async function carregarAntropometricos() {
         try {
-            const response = await api.get(`v1/antropometricos/${props.antropometricosId}`);
+            const response = await api.get(`v1/antropometricos/${antropometricosId}`);
             setAntropometricos(response.data);
             setAno(response.data.ano);
             setPeso(response.data.peso);
@@ -37,7 +45,7 @@ function EditarAntropometricos(props) {
     const Imc = isNaN(pesoFloat) || isNaN(alturaFloat) ? 0 : parseFloat((pesoFloat / (alturaFloat * alturaFloat)).toFixed(2));
 
     const Antropometrico = {
-        paciente_id: props.pacienteId,
+        paciente_id: id,
         ano,
         peso: !isNaN(pesoFloat) ? pesoFloat : 0,
         altura: !isNaN(alturaFloat) ? alturaFloat : 0,
@@ -45,13 +53,13 @@ function EditarAntropometricos(props) {
         perimetro_panturrilha,
     };
 
-    const handleFecharClick = (reacoesId) => {
-        props.onClose(reacoesId);
+    const handleFecharClick = () => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     const handleEdit = async () => {
         try {
-            await api.patch(`v1/antropometricos/${props.antropometricosId}`, Antropometrico);
+            await api.patch(`v1/antropometricos/${antropometricosId}`, Antropometrico);
             setOpen(true);
         } catch (error) {
             if (error.response && error.response.status === 400) {
@@ -82,9 +90,9 @@ function EditarAntropometricos(props) {
         setOpen(false);
     }
 
-    const handleSalvar = (reacoesId) => {
+    const handleSalvar = () => {
         setOpen(false);
-        props.onClose(reacoesId);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     return (

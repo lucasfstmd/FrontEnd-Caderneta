@@ -3,52 +3,44 @@ import PainelFicha from "../../../../../../components/painelFicha/PainelFicha";
 import TabelaForcaPreensao from "./tebela/TabelaForcaPreensao";
 import EditarForcaPreensao from "./editar/EditarForcaPreensao";
 import AdicionarForcaPreensao from "./adicionar/AdicionarForcaPreensao";
+import { useNavigate, useParams } from 'react-router-dom'
+import { useQuery } from '../../ContentFicha'
 
-function ForcaPreensao(props) {
+function ForcaPreensao() {
     const [itemsPerPage] = useState(20);
     const [currentPage] = useState(1);
-    const [editarForcaPressaoID, setEditarForcaPressaoID] = useState(null);
-    const [componenteAtivo, setComponenteAtivo] = useState('tabela');
+    const navigate = useNavigate()
+    const query = useQuery()
+    const params = useParams()
+    const { id } = params
+
 
     const handleEditarClick = (forcaPressaoId) => {
-        setComponenteAtivo('editar');
-        setEditarForcaPressaoID(forcaPressaoId);
-    }
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=editar&infoId=${forcaPressaoId}`);
 
-    const handleFechar = () => {
-        setComponenteAtivo('tabela');
-        setEditarForcaPressaoID(null);
     }
 
     const handleAdicionarClick = () => {
-        setComponenteAtivo('adicionar');
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=adicionar`);
     }
 
     return (
         <div className="ForcaPressao">
             <PainelFicha titulo="4.3 Força de Preensão" botaoNew={true} onAdicionarClick={handleAdicionarClick}>
                 <div className="Conteudo">
-                    {componenteAtivo === 'tabela' && (
+                    {query.get('view') === 'tabela' && (
                         <TabelaForcaPreensao
                             itemsPerPage={itemsPerPage}
                             currentPage={currentPage}
                             onEditarClick={handleEditarClick}
-                            pacienteId={props.pacienteId}
                         />
                     )}
 
-                    {componenteAtivo === 'editar' && (
-                        <EditarForcaPreensao
-                            onClose={handleFechar}
-                            pacienteId={props.pacienteId}
-                            forcaPressaoId={editarForcaPressaoID}
-                        />
+                    {query.get('view') === 'editar' && (
+                        <EditarForcaPreensao/>
                     )}
-                    {componenteAtivo === 'adicionar' && (
-                        <AdicionarForcaPreensao
-                            pacienteId={props.pacienteId}
-                            onClose={handleFechar}
-                        />
+                    {query.get('view') === 'adicionar' && (
+                        <AdicionarForcaPreensao/>
                     )}
                 </div>
             </PainelFicha>

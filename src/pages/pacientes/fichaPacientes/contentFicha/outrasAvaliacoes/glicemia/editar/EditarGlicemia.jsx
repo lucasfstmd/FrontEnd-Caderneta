@@ -6,8 +6,16 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import { useQuery } from '../../../ContentFicha'
+import { useNavigate, useParams } from 'react-router-dom'
 
-function EditarGlicemia(props) {
+function EditarGlicemia() {
+    const query = useQuery();
+    const glicemiaId = query.get('infoId')
+    const params = useParams();
+    const { id } = params
+    const navigate = useNavigate()
+
     const [glicemia, setGlicemia] = useState();
     const [data, setData] = useState("");
     const [tipo, setTipo] = useState("");
@@ -15,7 +23,7 @@ function EditarGlicemia(props) {
 
     async function carregarGlicemia() {
         try {
-            const response = await api.get(`v1/glicemia-controles/${props.glicemiaId}`);
+            const response = await api.get(`v1/glicemia-controles/${glicemiaId}`);
             setGlicemia(response.data);
             setData(response.data.data);
             setTipo(response.data.tipo);
@@ -30,19 +38,19 @@ function EditarGlicemia(props) {
     }, []);
 
     const Glicemia = {
-        paciente_id: props.pacienteId,
+        paciente_id: id,
         data,
         tipo,
         valor,
     }
 
-    const handleFecharClick = (glicemiaId) => {
-        props.onClose(glicemiaId);
+    const handleFecharClick = () => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     };
 
     const handleEdit = async () => {
         try {
-            await api.patch(`v1/glicemia-controles/${props.glicemiaId}`, Glicemia);
+            await api.patch(`v1/glicemia-controles/${glicemiaId}`, Glicemia);
             setOpen(true);
         } catch (error) {
             if (error.response && error.response.status === 400) {
@@ -73,9 +81,9 @@ function EditarGlicemia(props) {
         setOpen(false);
     }
 
-    const handleSalvar = (glicemiaId) => {
+    const handleSalvar = () => {
         setOpen(false);
-        props.onClose(glicemiaId);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     return (

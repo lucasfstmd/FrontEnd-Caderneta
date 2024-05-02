@@ -6,15 +6,23 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import { useQuery } from '../../../ContentFicha'
+import { useNavigate, useParams } from 'react-router-dom'
 
-function EditarAtualizacao(props) {
+function EditarAtualizacao() {
+    const query = useQuery();
+    const atualizacaoId = query.get('infoId')
+    const params = useParams();
+    const { id } = params
+    const navigate = useNavigate()
+
     const [atualizacao, setAtualizacao] = useState();
     const [data, setData] = useState("");
     const [responsavel, setResponsavel] = useState("");
 
     async function carregarExame() {
         try {
-            const response = await api.get(`v1/atualizacoes/${props.atualizacaoId}`);
+            const response = await api.get(`v1/atualizacoes/${atualizacaoId}`);
             setAtualizacao(response.data);
             setData(response.data.data);
             setResponsavel(response.data.responsavel);
@@ -33,18 +41,18 @@ function EditarAtualizacao(props) {
 
 
     const Atualizacao = {
-        paciente_id: props.pacienteId,
+        paciente_id: id,
         data,
         responsavel,
     }
 
-    const handleFecharClick = (atualizcaoId) => {
-        props.onClose(atualizcaoId);
+    const handleFecharClick = () => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     };
 
     const handleEdit = async () => {
         try {
-            await api.patch(`v1/atualizacoes/${props.atualizacaoId}`, Atualizacao);
+            await api.patch(`v1/atualizacoes/${atualizacaoId}`, Atualizacao);
             setOpen(true);
         } catch (error) {
             if (error.response && error.response.status === 400) {
@@ -75,9 +83,9 @@ function EditarAtualizacao(props) {
         setOpen(false);
     }
 
-    const handleSalvar = (atualizcaoId) => {
+    const handleSalvar = () => {
         setOpen(false);
-        props.onClose(atualizcaoId);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     return (

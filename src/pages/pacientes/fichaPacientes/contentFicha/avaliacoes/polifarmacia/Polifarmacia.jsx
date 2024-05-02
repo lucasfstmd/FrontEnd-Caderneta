@@ -3,51 +3,42 @@ import PainelFicha from "../../../../../../components/painelFicha/PainelFicha";
 import TabelaPolifarmacia from "./tabela/TabelaPolifarmacia";
 import EditarPolifarmacia from "./editar/EditarPolifarmacia";
 import AdicionarPolifarmacia from "./adicionar/AdicionarPolifarmacia";
+import { useNavigate, useParams } from 'react-router-dom'
+import { useQuery } from '../../ContentFicha'
 
-function Polifarmacia(props) {
+function Polifarmacia() {
     const [itemsPerPage] = useState(20);
     const [currentPage] = useState(1);
-    const [editarPolifarmaciaId, setEditarPolifarmaciaId] = useState(null);
-    const [componenteAtivo, setComponenteAtivo] = useState('tabela');
+    const navigate = useNavigate()
+    const query = useQuery()
+    const params = useParams()
+    const { id } = params
 
     const handleEditarClick = (polifarmaciaId) => {
-        setComponenteAtivo('editar');
-        setEditarPolifarmaciaId(polifarmaciaId);
-    }
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=editar&infoId=${polifarmaciaId}`);
 
-    const handleFechar = () => {
-        setComponenteAtivo('tabela');
-        setEditarPolifarmaciaId(null);
     }
 
     const handleAdicionarClick = () => {
-        setComponenteAtivo('adicionar');
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=adicionar`);
     }
 
     return (
         <div className="Polifarmacia">
             <PainelFicha titulo="2.1.1 Uso Concomitante de 5 ou mais Medicamentos?" botaoNew={true} onAdicionarClick={handleAdicionarClick}>
                 <div className="ConteudoPolifarmacia">
-                    {componenteAtivo === 'tabela' && (
+                    {query.get('view') === 'tabela' && (
                         <TabelaPolifarmacia
                             itemsPerPage={itemsPerPage}
                             currentPage={currentPage}
                             onEditarClick={handleEditarClick}
-                            pacienteId={props.pacienteId}
                         />
                     )}
-                    {componenteAtivo === 'editar' && (
-                        <EditarPolifarmacia
-                            onClose={handleFechar}
-                            pacienteId={props.pacienteId}
-                            polifarmaciaId={editarPolifarmaciaId}
-                        />
+                    {query.get('view') === 'editar' && (
+                        <EditarPolifarmacia/>
                     )}
-                    {componenteAtivo === 'adicionar' && (
-                        <AdicionarPolifarmacia
-                            pacienteId={props.pacienteId}
-                            onClose={handleFechar}
-                        />
+                    {query.get('view') === 'adicionar' && (
+                        <AdicionarPolifarmacia/>
                     )}
                 </div>
             </PainelFicha>

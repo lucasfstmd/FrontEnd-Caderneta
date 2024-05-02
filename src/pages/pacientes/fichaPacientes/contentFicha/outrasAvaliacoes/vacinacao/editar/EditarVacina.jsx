@@ -6,8 +6,16 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import { useQuery } from '../../../ContentFicha'
+import { useNavigate, useParams } from 'react-router-dom'
 
-function EditarVacina(props) {
+function EditarVacina() {
+    const query = useQuery();
+    const vacinaId = query.get('infoId')
+    const params = useParams();
+    const { id } = params
+    const navigate = useNavigate()
+
     const [vacina, setVacina] = useState();
     const [data, setData] = useState("");
     const [nome, setNome] = useState("");
@@ -18,7 +26,7 @@ function EditarVacina(props) {
 
     async function carregarVacina() {
         try {
-            const response = await api.get(`v1/vacinas/${props.vacinaId}`);
+            const response = await api.get(`v1/vacinas/${vacinaId}`);
             setVacina(response.data);
             setData(response.data.data);
             setTipo(response.data.tipo);
@@ -36,7 +44,7 @@ function EditarVacina(props) {
     }, []);
 
     const Vacina = {
-        paciente_id: props.pacienteId,
+        paciente_id: id,
         data,
         nome,
         tipo,
@@ -45,13 +53,13 @@ function EditarVacina(props) {
         outra,
     }
 
-    const handleFecharClick = (vacinaId) => {
-        props.onClose(vacinaId);
+    const handleFecharClick = () => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     };
 
     const handleEdit = async () => {
         try {
-            await api.patch(`v1/vacinas/${props.vacinaId}`, Vacina);
+            await api.patch(`v1/vacinas/${vacinaId}`, Vacina);
             setOpen(true);
         } catch (error) {
             if (error.response && error.response.status === 400) {
@@ -82,9 +90,9 @@ function EditarVacina(props) {
         setOpen(false);
     }
 
-    const handleSalvar = (vacinaId) => {
+    const handleSalvar = () => {
         setOpen(false);
-        props.onClose(vacinaId);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     return (

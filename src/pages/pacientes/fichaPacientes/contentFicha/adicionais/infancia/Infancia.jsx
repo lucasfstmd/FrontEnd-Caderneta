@@ -4,27 +4,25 @@ import api from "../../../../../../service/api";
 import TabelaInfancias from "./tabela/TabelaInfancias";
 import EditarInfancias from "./editar/EditarInfancias";
 import AdicionarInfancias from "./adicionar/AdicionarInfancias";
+import { useNavigate, useParams } from 'react-router-dom'
+import { useQuery } from '../../ContentFicha'
 
 function Infancia(props) {
     const [itemsPerPage] = useState(1);
     const [currentPage, setCurrentPage] = useState(1);
     const [infancias, setInfancias] = useState([]);
-    const [editarInfanciasId, setEditarInfanciasId] = useState(null);
-    const [componenteAtivo, setComponenteAtivo] = useState('tabela');
+    const navigate = useNavigate()
+    const query = useQuery()
+    const params = useParams()
+    const { id } = params
     const [loading, setLoading] = useState(true)
 
     const handleEditarClick = (infanciasId) => {
-        setComponenteAtivo('editar');
-        setEditarInfanciasId(infanciasId);
-    }
-
-    const handleFechar = () => {
-        setComponenteAtivo('tabela');
-        setEditarInfanciasId(null);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=editar&infoId=${infanciasId}`);
     }
 
     const handleAdicionarClick = () => {
-        setComponenteAtivo('adicionar');
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=adicionar`);
     }
 
     async function carregarInfancias() {
@@ -103,13 +101,12 @@ function Infancia(props) {
         <div className="Infancia">
             <PainelFicha titulo="4.10 Circunstâncias Inicias da Vida e Adversidades na Infancia" botaoNew={true} onAdicionarClick={handleAdicionarClick}>
                 <div className="Conteudo">
-                    {componenteAtivo === 'tabela' && (
+                    {query.get('view') === 'tabela' && (
                         <>
                             <TabelaInfancias
                                 itemsPerPage={itemsPerPage}
                                 currentPage={currentPage}
                                 onEditarClick={handleEditarClick}
-                                pacienteId={props.pacienteId}
                                 data={getInfanciasPagAtual()}
                                 loading={loading}
                             />
@@ -134,18 +131,11 @@ function Infancia(props) {
 
                     )}
 
-                    {componenteAtivo === 'editar' && (
-                        <EditarInfancias
-                            onClose={handleFechar}
-                            pacienteId={props.pacienteId}
-                            infanciaId={editarInfanciasId}
-                        />
+                    {query.get('view') === 'editar' && (
+                        <EditarInfancias/>
                     )}
-                    {componenteAtivo === 'adicionar' && (
-                        <AdicionarInfancias
-                            pacienteId={props.pacienteId}
-                            onClose={handleFechar}
-                        />
+                    {query.get('view') === 'adicionar' && (
+                        <AdicionarInfancias/>
                     )}
                 </div>
 

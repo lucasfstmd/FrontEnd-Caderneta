@@ -6,15 +6,23 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import { useQuery } from '../../../ContentFicha'
+import { useNavigate, useParams } from 'react-router-dom'
 
-function EditarPressao(props) {
+function EditarPressao() {
+    const query = useQuery();
+    const pressaoId = query.get('infoId')
+    const params = useParams();
+    const { id } = params
+    const navigate = useNavigate()
+
     const [pressaoObj, setPressaoObj] = useState();
     const [data, setData] = useState("");
     const [pressao, setPressao] = useState("");
 
     async function carregarPressao() {
         try {
-            const response = await api.get(`v1/pressao-controles/${props.pressaoId}`);
+            const response = await api.get(`v1/pressao-controles/${pressaoId}`);
             setPressaoObj(response.data);
             setData(response.data.data);
             setPressao(response.data.pressao);
@@ -28,18 +36,18 @@ function EditarPressao(props) {
     }, []);
 
     const Pressao = {
-        paciente_id: props.pacienteId,
+        paciente_id: id,
         data,
         pressao,
     }
 
     const handleFecharClick = (cronicaId) => {
-        props.onClose(cronicaId);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     };
 
     const handleEdit = async () => {
         try {
-            await api.patch(`v1/pressao-controles/${props.pressaoId}`, Pressao);
+            await api.patch(`v1/pressao-controles/${pressaoId}`, Pressao);
             setOpen(true);
         } catch (error) {
             if (error.response && error.response.status === 400) {
@@ -70,9 +78,9 @@ function EditarPressao(props) {
         setOpen(false);
     }
 
-    const handleSalvar = (pressaoId) => {
+    const handleSalvar = () => {
         setOpen(false);
-        props.onClose(pressaoId);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     return (

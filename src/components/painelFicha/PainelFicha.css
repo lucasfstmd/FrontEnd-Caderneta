@@ -24,7 +24,8 @@
     border: none;
     border-radius: 30px;
     color: white;
-    height: 4vh;
+    height: auto;
+    width: auto;
 }
 
 .PainelFicha .ContentPainelFicha {

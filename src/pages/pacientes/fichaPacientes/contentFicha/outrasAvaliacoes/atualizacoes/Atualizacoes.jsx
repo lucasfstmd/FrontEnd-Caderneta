@@ -3,52 +3,43 @@ import PainelFicha from "../../../../../../components/painelFicha/PainelFicha";
 import TabelaAtualizacao from "./tabela/TabelaAtualizacao";
 import EditarAtualizacao from "./editar/EditarAtualizacao";
 import AdicionarAtualizacao from "./adicionar/AdicionarAtualizacao";
+import { useNavigate, useParams } from 'react-router-dom'
+import { useQuery } from '../../ContentFicha'
 
-function Atualizacoes(props) {
+function Atualizacoes() {
     const [itemsPerPage] = useState(20);
     const [currentPage] = useState(1);
-    const [editarAtualizacaoId, setEditarAtualizacaoId] = useState(null);
-    const [componenteAtivo, setComponenteAtivo] = useState('tabela');
+    const navigate = useNavigate()
+    const query = useQuery()
+    const params = useParams()
+    const { id } = params
 
     const handleEditarClick = (atualizacaoId) => {
-        setComponenteAtivo('editar');
-        setEditarAtualizacaoId(atualizacaoId);
-    }
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=editar&infoId=${atualizacaoId}`);
 
-    const handleFechar = () => {
-        setComponenteAtivo('tabela');
-        setEditarAtualizacaoId(null);
     }
 
     const handleAdicionarClick = () => {
-        setComponenteAtivo('adicionar');
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=adicionar`);
     }
 
     return (
         <div className="Atualizacoes">
             <PainelFicha titulo="3.6 Atualizações da Caderneta" botaoNew={true} onAdicionarClick={handleAdicionarClick}>
                 <div className="Conteudo">
-                    {componenteAtivo === 'tabela' && (
+                    {query.get('view') === 'tabela' && (
                         <TabelaAtualizacao
                             itemsPerPage={itemsPerPage}
                             currentPage={currentPage}
                             onEditarClick={handleEditarClick}
-                            pacienteId={props.pacienteId}
                         />
                     )}
 
-                    {componenteAtivo === 'editar' && (
-                        <EditarAtualizacao
-                            onClose={handleFechar}
-                            pacienteId={props.pacienteId}
-                            atualizacaoId={editarAtualizacaoId}
-                        />
+                    {query.get('view') === 'editar' && (
+                        <EditarAtualizacao/>
                     )}
-                    {componenteAtivo === 'adicionar' && (
-                        <AdicionarAtualizacao
-                            pacienteId={props.pacienteId}
-                            onClose={handleFechar}
-                        />
+                    {query.get('view') === 'adicionar' && (
+                        <AdicionarAtualizacao/>
                     )}
                 </div>
             </PainelFicha>

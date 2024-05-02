@@ -4,29 +4,25 @@ import api from "../../../../../../service/api";
 import TabelaExameLab from "./tabela/TabelaExameLab";
 import EditarExameLab from "./editar/EditarExameLab";
 import AdicionarExameLab from "./adicionar/AdicionarExameLab";
-import {useParams} from "react-router-dom";
+import { useNavigate, useParams } from 'react-router-dom'
+import { useQuery } from '../../ContentFicha'
 
 function ExamesLaborariais(props) {
     const [itemsPerPage] = useState(1);
     const [currentPage, setCurrentPage] = useState(1);
     const [exameLab, setExameLab] = useState([]);
-    const [editarExameLabId, setEditarExameLabId] = useState(null);
-    const [componenteAtivo, setComponenteAtivo] = useState('tabela');
+    const navigate = useNavigate()
+    const query = useQuery()
+    const params = useParams()
+    const { id } = params
     const [loading, setLoading] = useState(true)
-    const { id } = useParams();
 
-    const handleEditarClick = (exameLabId) => {
-        setComponenteAtivo('editar');
-        setEditarExameLabId(exameLabId);
-    }
-
-    const handleFechar = () => {
-        setComponenteAtivo('tabela');
-        setEditarExameLabId(null);
+    const handleEditarClick = (diagnosticosId) => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=editar&infoId=${diagnosticosId}`);
     }
 
     const handleAdicionarClick = () => {
-        setComponenteAtivo('adicionar');
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=adicionar`);
     }
 
     async function carregarExamesLab() {
@@ -105,13 +101,12 @@ function ExamesLaborariais(props) {
         <div className="ExamesLaborariais">
             <PainelFicha titulo="4.7 Exames Laboratoriais" botaoNew={true} onAdicionarClick={handleAdicionarClick}>
                 <div className="Conteudo">
-                    {componenteAtivo === 'tabela' && (
+                    {query.get('view') === 'tabela' && (
                         <>
                             <TabelaExameLab
                                 itemsPerPage={itemsPerPage}
                                 currentPage={currentPage}
                                 onEditarClick={handleEditarClick}
-                                pacienteId={props.pacienteId}
                                 data={getExamesLabPagAtual()}
                                 loading={loading}
                             />
@@ -136,18 +131,11 @@ function ExamesLaborariais(props) {
 
                     )}
 
-                    {componenteAtivo === 'editar' && (
-                        <EditarExameLab
-                            onClose={handleFechar}
-                            pacienteId={props.pacienteId}
-                            exameLabId={editarExameLabId}
-                        />
+                    {query.get('view') === 'editar' && (
+                        <EditarExameLab/>
                     )}
-                    {componenteAtivo === 'adicionar' && (
-                        <AdicionarExameLab
-                            pacienteId={props.pacienteId}
-                            onClose={handleFechar}
-                        />
+                    {query.get('view') === 'adicionar' && (
+                        <AdicionarExameLab/>
                     )}
                 </div>
             </PainelFicha>

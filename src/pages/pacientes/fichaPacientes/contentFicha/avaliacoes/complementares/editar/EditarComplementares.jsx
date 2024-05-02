@@ -6,8 +6,16 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import { useQuery } from '../../../ContentFicha'
+import { useNavigate, useParams } from 'react-router-dom'
 
-function EditarComplementares(props) {
+function EditarComplementares() {
+    const query = useQuery();
+    const complementaresId = query.get('infoId')
+    const params = useParams();
+    const { id } = params
+    const navigate = useNavigate()
+
     const [complementares, setComplementares] = useState();
     const [ano, setAno] = useState();
     const [p1, setP1] = useState("");
@@ -18,7 +26,7 @@ function EditarComplementares(props) {
 
     async function carregarComplementar() {
         try {
-            const response = await api.get(`v1/complementares/${props.complementaresId}`);
+            const response = await api.get(`v1/complementares/${complementaresId}`);
             setComplementares(response.data);
             setAno(response.data.ano);
             setP1(response.data.p1);
@@ -36,7 +44,7 @@ function EditarComplementares(props) {
     }, []);
 
     const Complementar = {
-        paciente_id: props.pacienteId,
+        paciente_id: id,
         ano,
         p1,
         p2,
@@ -45,13 +53,13 @@ function EditarComplementares(props) {
         p5,
     }
 
-    const handleFecharClick = (complementaresId) => {
-        props.onClose(complementaresId);
+    const handleFecharClick = () => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     const handleEdit = async () => {
         try {
-            await api.patch(`v1/complementares/${props.complementaresId}`, Complementar);
+            await api.patch(`v1/complementares/${complementaresId}`, Complementar);
             setOpen(true);
         } catch (error) {
             if (error.response && error.response.status === 400) {
@@ -82,9 +90,9 @@ function EditarComplementares(props) {
         setOpen(false);
     }
 
-    const handleSalvar = (complementaresId) => {
+    const handleSalvar = () => {
         setOpen(false);
-        props.onClose(complementaresId);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     return (

@@ -6,8 +6,16 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import { useQuery } from '../../../ContentFicha'
+import { useNavigate, useParams } from 'react-router-dom'
 
-function EditarForcaPreensao(props) {
+function EditarForcaPreensao() {
+    const query = useQuery();
+    const forcaPressaoId = query.get('infoId')
+    const params = useParams();
+    const { id } = params
+    const navigate = useNavigate()
+
     const [preensaoForca, setPreensaoForca] = useState();
     const [medida_1, setMedida1] = useState(null);
     const [medida_2, setMedida2] = useState(null);
@@ -16,7 +24,7 @@ function EditarForcaPreensao(props) {
 
     async function carregarForca() {
         try {
-            const response = await api.get(`v1/preensao-forcas/${props.forcaPressaoId}`);
+            const response = await api.get(`v1/preensao-forcas/${forcaPressaoId}`);
             setPreensaoForca(response.data);
             setMedida1(response.data.medida_1);
             setMedida2(response.data.medida_2);
@@ -32,20 +40,20 @@ function EditarForcaPreensao(props) {
     }, []);
 
     const PreensaoForca = {
-        paciente_id: props.pacienteId,
+        paciente_id: id,
         medida_1,
         medida_2,
         medida_3,
         membro_dominante,
     }
 
-    const handleFecharClick = (glicemiaId) => {
-        props.onClose(glicemiaId);
+    const handleFecharClick = () => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     };
 
     const handleEdit = async () => {
         try {
-            await api.patch(`v1/preensao-forcas/${props.forcaPressaoId}`, PreensaoForca);
+            await api.patch(`v1/preensao-forcas/${forcaPressaoId}`, PreensaoForca);
             setOpen(true);
         } catch (error) {
             if (error.response && error.response.status === 400) {
@@ -76,9 +84,9 @@ function EditarForcaPreensao(props) {
         setOpen(false);
     }
 
-    const handleSalvar = (forcaPressaoId) => {
+    const handleSalvar = () => {
         setOpen(false);
-        props.onClose(forcaPressaoId);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     return (

@@ -6,8 +6,15 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import { useNavigate, useParams } from 'react-router-dom'
+import { useQuery } from '../../../ContentFicha'
 
-function AdicionarQueda(props) {
+function AdicionarQueda() {
+    const params = useParams();
+    const { id } = params
+    const query = useQuery();
+    const navigate = useNavigate();
+
     const [queda, setQueda] = useState();
     const [data_mes, setDataMes] = useState();
     const [data_ano, setDataAno] = useState();
@@ -17,7 +24,7 @@ function AdicionarQueda(props) {
     const [fratura_qual, setFraturaQual] = useState('');
 
     const Queda = {
-        paciente_id: props.pacienteId,
+        paciente_id: id,
         queda,
         data_mes,
         data_ano,
@@ -60,13 +67,13 @@ function AdicionarQueda(props) {
         setOpen(false);
     }
 
-    const handleSalvar = (quedasId) => {
+    const handleSalvar = () => {
         setOpen(false);
-        props.onClose(quedasId);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
-    const handleFecharClick = (quedasId) => {
-        props.onClose(quedasId);
+    const handleFecharClick = () => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     return (

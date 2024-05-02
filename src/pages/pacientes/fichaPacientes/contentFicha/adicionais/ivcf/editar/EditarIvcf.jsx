@@ -15,8 +15,16 @@ import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import { useQuery } from '../../../ContentFicha'
+import { useNavigate, useParams } from 'react-router-dom'
 
-function EditarIvcf(props) {
+function EditarIvcf() {
+    const query = useQuery();
+    const ivcfId = query.get('infoId')
+    const params = useParams();
+    const { id } = params
+    const navigate = useNavigate()
+
     const [p1, setP1] = useState(null);
     const [p2, setP2] = useState(null);
     const [p3, setP3] = useState(null);
@@ -47,7 +55,7 @@ function EditarIvcf(props) {
 
     async function carregarPcl() {
         try {
-            const response = await api.get(`v1/ivcfs/${props.ivcfId}`);
+            const response = await api.get(`v1/ivcfs/${ivcfId}`);
             setP1(response.data.p1);
             setP2(response.data.p2);
             setP3(response.data.p3);
@@ -101,7 +109,7 @@ function EditarIvcf(props) {
     };
 
     const Ivcf = {
-        paciente_id: props.pacienteId,
+        paciente_id: id,
         p1,
         p2,
         p3,
@@ -134,12 +142,12 @@ function EditarIvcf(props) {
     };
 
     const handleFecharClick = (ivcfId) => {
-        props.onClose(ivcfId);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     };
 
     const handleEdit = async () => {
         try {
-            await api.patch(`v1/ivcfs/${props.ivcfId}`, Ivcf);
+            await api.patch(`v1/ivcfs/${ivcfId}`, Ivcf);
             setOpen(true);
         } catch (error) {
             if (error.response && error.response.status === 400) {
@@ -172,7 +180,7 @@ function EditarIvcf(props) {
 
     const handleSalvar = (ivcfId) => {
         setOpen(false);
-        props.onClose(ivcfId);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     return (

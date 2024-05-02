@@ -6,8 +6,15 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import { useNavigate, useParams } from 'react-router-dom'
+import { useQuery } from '../../../ContentFicha'
 
-function AdicionarVacina(props) {
+function AdicionarVacina() {
+    const params = useParams();
+    const { id } = params
+    const query = useQuery();
+    const navigate = useNavigate();
+
     const [data, setData] = useState("");
     const [nome, setNome] = useState("");
     const [tipo, setTipo] = useState("");
@@ -16,7 +23,7 @@ function AdicionarVacina(props) {
     const [outra, setOutra] = useState("");
 
     const Vacina = {
-        paciente_id: props.pacienteId,
+        paciente_id: id,
         data,
         nome,
         tipo,
@@ -58,13 +65,13 @@ function AdicionarVacina(props) {
         setOpen(false);
     }
 
-    const handleSalvar = (vacinasId) => {
+    const handleSalvar = () => {
         setOpen(false);
-        props.onClose(vacinasId);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
-    const handleFecharClick = (vacinasId) => {
-        props.onClose(vacinasId);
+    const handleFecharClick = () => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     return (

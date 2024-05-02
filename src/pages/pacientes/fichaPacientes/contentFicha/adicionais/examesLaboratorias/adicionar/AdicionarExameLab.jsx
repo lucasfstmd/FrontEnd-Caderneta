@@ -6,8 +6,15 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import { useNavigate, useParams } from 'react-router-dom'
+import { useQuery } from '../../../ContentFicha'
 
-function AdicionarExameLab(props) {
+function AdicionarExameLab() {
+    const params = useParams();
+    const { id } = params
+    const query = useQuery();
+    const navigate = useNavigate();
+
     const [hemograma, setHemograma] = useState("");
     const [plaquetas, setPlaquetas] = useState("");
     const [contagem, setContagem] = useState("");
@@ -65,7 +72,7 @@ function AdicionarExameLab(props) {
     const [leucograma_monocitos, setLeucogramaMonocitos] = useState("");
 
     const ExameLabo = {
-        paciente_id: props.pacienteId,
+        paciente_id: id,
         hemograma,
         plaquetas,
         contagem,
@@ -156,13 +163,13 @@ function AdicionarExameLab(props) {
         setOpen(false);
     }
 
-    const handleSalvar = (exameLabId) => {
+    const handleSalvar = () => {
         setOpen(false);
-        props.onClose(exameLabId);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
-    const handleFecharClick = (exameLabId) => {
-        props.onClose(exameLabId);
+    const handleFecharClick = () => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     return (

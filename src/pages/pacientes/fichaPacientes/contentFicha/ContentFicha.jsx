@@ -50,14 +50,14 @@ export function useQuery() {
 
 export default function ContentFia(props) {
     const query = useQuery();
-    const selectedItem = query.get('form')
+    const selectedItem = query.get('form');
 
     const renderContent = () => {
         if (selectedItem === "inicio") {
             return <RequestAuth><Inicio pacienteId={props.pacienteId}/></RequestAuth>;
         } else if (selectedItem === "editar-dados") {
             return <RequestAuth><EditarInformacoes pacienteId={props.pacienteId} /></RequestAuth>;
-        } else if (selectedItem === "informacoes-sociais") {
+        } else if (selectedItem === "sociais") {
             return <RequestAuth><InformacoesSociaisFamiliares pacienteId={props.pacienteId}/></RequestAuth>;
         } else if (selectedItem === "pessoas-referencias") {
             return <RequestAuth><PessoasReferencias pacienteId={props.pacienteId}/></RequestAuth>;
@@ -94,7 +94,7 @@ export default function ContentFia(props) {
         } else if (selectedItem === "habitos") {
             return <RequestAuth><Habitos pacienteId={props.pacienteId}/></RequestAuth>;
         } else if (selectedItem === "pressao") {
-            return <RequestAuth><Pressao pacienteId={props.pacienteId}/></RequestAuth>;
+            return <RequestAuth><Pressao pacienteId={props.pacienteId}/></RequestAuth>
         } else if (selectedItem === "glicemia") {
             return <RequestAuth><Glicemia pacienteId={props.pacienteId}/></RequestAuth>;
         } else if (selectedItem === "vacinacao") {

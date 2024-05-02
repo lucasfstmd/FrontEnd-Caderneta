@@ -6,13 +6,20 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import { useNavigate, useParams } from 'react-router-dom'
+import { useQuery } from '../../../ContentFicha'
 
-function AdicionarPercaPeso(props) {
+function AdicionarPercaPeso() {
+    const params = useParams();
+    const { id } = params
+    const query = useQuery();
+    const navigate = useNavigate();
+
     const [ano, setAno] = useState(0);
     const [perda_peso, setPerdaPeso] = useState(0);
 
     const PesoPerca = {
-        paciente_id: props.pacienteId,
+        paciente_id: id,
         ano,
         perda_peso,
     }
@@ -50,13 +57,13 @@ function AdicionarPercaPeso(props) {
         setOpen(false);
     }
 
-    const handleSalvar = (pesoPerdasId) => {
+    const handleSalvar = () => {
         setOpen(false);
-        props.onClose(pesoPerdasId);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
-    const handleFecharClick = (pesoPerdasId) => {
-        props.onClose(pesoPerdasId);
+    const handleFecharClick = () => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
 

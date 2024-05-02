@@ -10,6 +10,7 @@ import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import Loading from "../../../../../../../components/loading/Loading";
+import { useParams } from 'react-router-dom'
 
 function QuedaLinha({ quedas, onEditClick }) {
     const [open, setOpen] = useState(false);
@@ -119,13 +120,14 @@ function TabelaQueda(props) {
     const [quedas, setQuedas] = useState([]);
     const [currentPage] = useState(1);
     const [loading, setLoading] = useState(true)
-
+    const params = useParams();
+    const { id } = params
     const itemsPerPage = props.itemsPerPage;
 
     async function carregarAmbientais() {
         try {
             const response = await api.get(
-                `v1/quedas/paciente/${props.pacienteId}`
+                `v1/quedas/paciente/${id}`
             );
             setQuedas(response.data);
             setLoading(false)

@@ -3,52 +3,43 @@ import PainelFicha from "../../../../../../components/painelFicha/PainelFicha";
 import TabelaAmbientais from "./tabela/TabelaAmbientais";
 import EditarAmbientais from "./editar/EditarAmbientais";
 import AdicionarAmbientais from "./adicionar/AdicionarAmbientais";
+import { useNavigate, useParams } from 'react-router-dom'
+import { useQuery } from '../../ContentFicha'
 
 function Ambientais(props) {
     const [itemsPerPage] = useState(20);
     const [currentPage] = useState(1);
-    const [editarAmbientaisId, setEditarAmbientaisId] = useState(null);
-    const [componenteAtivo, setComponenteAtivo] = useState('tabela');
+    const navigate = useNavigate()
+    const query = useQuery()
+    const params = useParams()
+    const { id } = params
 
     const handleEditarClick = (ambientaisId) => {
-        setComponenteAtivo('editar');
-        setEditarAmbientaisId(ambientaisId);
-    }
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=editar&infoId=${ambientaisId}`);
 
-    const handleFechar = () => {
-        setComponenteAtivo('tabela');
-        setEditarAmbientaisId(null);
     }
 
     const handleAdicionarClick = () => {
-        setComponenteAtivo('adicionar');
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=adicionar`);
     }
 
     return (
         <div className="Ambientais">
             <PainelFicha titulo="2.8 Avaliação Ambiental" botaoNew={true} onAdicionarClick={handleAdicionarClick}>
                 <div className="Conteudo">
-                    {componenteAtivo === 'tabela' && (
+                    {query.get('view') === 'tabela' && (
                         <TabelaAmbientais
                             itemsPerPage={itemsPerPage}
                             currentPage={currentPage}
                             onEditarClick={handleEditarClick}
-                            pacienteId={props.pacienteId}
                         />
                     )}
 
-                    {componenteAtivo === 'editar' && (
-                        <EditarAmbientais
-                            onClose={handleFechar}
-                            pacienteId={props.pacienteId}
-                            ambientaisId={editarAmbientaisId}
-                        />
+                    {query.get('view') === 'editar' && (
+                        <EditarAmbientais/>
                     )}
-                    {componenteAtivo === 'adicionar' && (
-                        <AdicionarAmbientais
-                            pacienteId={props.pacienteId}
-                            onClose={handleFechar}
-                        />
+                    {query.get('view') === 'adicionar' && (
+                        <AdicionarAmbientais/>
                     )}
                 </div>
             </PainelFicha>

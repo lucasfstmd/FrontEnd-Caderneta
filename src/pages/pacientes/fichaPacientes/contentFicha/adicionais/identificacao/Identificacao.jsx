@@ -7,8 +7,12 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import { useParams } from 'react-router-dom'
 
-function Identificacao(props) {
+function Identificacao() {
+    const params = useParams()
+    const { id } = params
+
     const [pacienteObj, setPacienteObj] = useState();
     const [ubs, setUbs] = useState([]);
     const [nome, setNome] = useState('');
@@ -56,7 +60,7 @@ function Identificacao(props) {
 
     async function carregarPaciente() {
         try {
-            const response = await api.get(`v1/pacientes/${props.pacienteId}`);
+            const response = await api.get(`v1/pacientes/${id}`);
             setPacienteObj(response.data);
             setNome(response.data.nome);
             setUbs(response.data.ubs);
@@ -153,7 +157,7 @@ function Identificacao(props) {
 
     const handleEdit = async () => {
         try {
-            await api.patch(`v1/pacientes/${props.pacienteId}`, Paciente)
+            await api.patch(`v1/pacientes/${id}`, Paciente)
             setOpen(true);
         } catch (error) {
             if (error.response && error.response.status === 400) {

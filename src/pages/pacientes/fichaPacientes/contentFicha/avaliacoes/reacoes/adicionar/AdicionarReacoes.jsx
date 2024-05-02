@@ -6,14 +6,21 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import { useNavigate, useParams } from 'react-router-dom'
+import { useQuery } from '../../../ContentFicha'
 
-function AdicionarReacoes(props) {
+function AdicionarReacoes() {
+    const params = useParams();
+    const { id } = params
+    const query = useQuery();
+    const navigate = useNavigate();
+
     const [medicamento, setMedicamento] = useState('');
     const [data, setData] = useState(0);
     const [reacoes_adversas_ou_alergicas, setReacoesAlergicas] = useState('');
 
     const Reacao = {
-        paciente_id: props.pacienteId,
+        paciente_id: id,
         medicamento,
         data,
         reacoes_adversas_ou_alergicas,
@@ -52,13 +59,13 @@ function AdicionarReacoes(props) {
         setOpen(false);
     }
 
-    const handleSalvar = (reacaoId) => {
+    const handleSalvar = () => {
         setOpen(false);
-        props.onClose(reacaoId);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
-    const handleFecharClick = (reacaoId) => {
-        props.onClose(reacaoId);
+    const handleFecharClick = () => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     return (

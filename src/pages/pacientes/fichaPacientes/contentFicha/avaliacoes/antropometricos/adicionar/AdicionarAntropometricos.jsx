@@ -6,8 +6,15 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { DialogContent, DialogContentText } from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import { useNavigate, useParams } from 'react-router-dom'
+import { useQuery } from '../../../ContentFicha'
 
-function AdicionarAntropometricos(props) {
+function AdicionarAntropometricos() {
+    const params = useParams();
+    const { id } = params
+    const query = useQuery();
+    const navigate = useNavigate();
+
     const [ano, setAno] = useState();
     const [peso, setPeso] = useState('');
     const [altura, setAltura] = useState('');
@@ -19,7 +26,7 @@ function AdicionarAntropometricos(props) {
     const Imc = isNaN(pesoFloat) || isNaN(alturaFloat) ? 0 : parseFloat((pesoFloat / (alturaFloat * alturaFloat)).toFixed(2));
 
     const Antropometrico = {
-        paciente_id: props.pacienteId,
+        paciente_id: id,
         ano,
         peso: !isNaN(pesoFloat) ? pesoFloat : 0,
         altura: !isNaN(alturaFloat) ? alturaFloat : 0,
@@ -60,13 +67,13 @@ function AdicionarAntropometricos(props) {
         setOpen(false);
     };
 
-    const handleSalvar = (antropometricosId) => {
+    const handleSalvar = () => {
         setOpen(false);
-        props.onClose(antropometricosId);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     };
 
-    const handleFecharClick = (antropometricosId) => {
-        props.onClose(antropometricosId);
+    const handleFecharClick = () => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     };
 
     return (

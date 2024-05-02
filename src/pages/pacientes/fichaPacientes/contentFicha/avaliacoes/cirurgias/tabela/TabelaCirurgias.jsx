@@ -10,6 +10,7 @@ import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import {format} from "date-fns";
 import Loading from "../../../../../../../components/loading/Loading";
+import { useParams } from 'react-router-dom'
 
 function CirurgiasLinha({ cirurgias, onEditClick }) {
     const [open, setOpen] = useState(false);
@@ -103,13 +104,14 @@ function TabelaCirurgias(props) {
     const [cirurgias, setCirurgias] = useState([]);
     const [currentPage] = useState(1);
     const [loading, setLoading] = useState(true)
-
+    const params = useParams();
+    const { id } = params
     const itemsPerPage = props.itemsPerPage;
 
     async function carregarCirurgias() {
         try {
             const response = await api.get(
-                `v1/cirurgias/paciente/${props.pacienteId}`
+                `v1/cirurgias/paciente/${id}`
             );
             setCirurgias(response.data);
             setLoading(false);

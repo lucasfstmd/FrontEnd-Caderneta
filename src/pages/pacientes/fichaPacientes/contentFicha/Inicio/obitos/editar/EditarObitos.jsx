@@ -6,8 +6,16 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import { useQuery } from '../../../ContentFicha'
+import { useNavigate, useParams } from 'react-router-dom'
 
-function EditarObitos(props) {
+function EditarObitos() {
+    const query = useQuery();
+    const obitosId = query.get('infoId')
+    const params = useParams();
+    const { id } = params
+    const navigate = useNavigate()
+
     const [objObito, setObjObito] = useState();
     const [obito, setObito] = useState(null)
     const [quando, setQuando] = useState('');
@@ -15,7 +23,7 @@ function EditarObitos(props) {
 
     async function carregarObito() {
         try {
-            const response = await api.get(`v1/obitos/${props.obitosId}`);
+            const response = await api.get(`v1/obitos/${obitosId}`);
             setObjObito(response.data);
             setObito(response.data.obito);
             setQuando(response.data.quando);
@@ -27,22 +35,22 @@ function EditarObitos(props) {
 
     useEffect(() => {
         carregarObito();
-    }, [props.obitosId]);
+    }, []);
 
     const Obito = {
-        paciente_id: props.pacienteId,
+        paciente_id: id,
         obito,
         quando,
         motivo,
     }
 
-    const handleFecharClick = (obitoId) => {
-        props.onClose(obitoId);
+    const handleFecharClick = () => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     };
 
     const handleEdit = async () => {
         try {
-            await api.patch(`v1/obitos/${props.obitosId}`, Obito);
+            await api.patch(`v1/obitos/${obitosId}`, Obito);
             setOpen(true);
         } catch (error) {
             if (error.response && error.response.status === 400) {
@@ -73,9 +81,9 @@ function EditarObitos(props) {
         setOpen(false);
     }
 
-    const handleSalvar = (obitoId) => {
+    const handleSalvar = () => {
         setOpen(false);
-        props.onClose(obitoId);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     return (

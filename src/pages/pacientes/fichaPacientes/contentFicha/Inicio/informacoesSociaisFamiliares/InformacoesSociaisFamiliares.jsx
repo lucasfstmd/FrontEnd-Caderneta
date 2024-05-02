@@ -4,29 +4,23 @@ import PainelFicha from "../../../../../../components/painelFicha/PainelFicha";
 import TabelaFamiliares from "./tabela/TabelaFamiliares";
 import EditarFamiliares from "./editar/EditarFamiliares"
 import AdicionarFamiliares from "./adicionar/AdicionarFamiliares";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useQuery } from '../../ContentFicha'
 
-function InformacoesSociaisFamiliares(props) {
+function InformacoesSociaisFamiliares() {
     const [itemsPerPage] = useState(20);
     const [currentPage] = useState(1);
-    const [editarFamiliaresId, setEditarFamiliaresId] = useState(null);
-    const [componenteAtivo, setComponenteAtivo] = useState('tabela');
     const navigate = useNavigate()
     const query = useQuery()
+    const params = useParams()
+    const { id } = params
 
     const handleEditarClick = (familiarId) => {
-        setComponenteAtivo('editar');
-        setEditarFamiliaresId(familiarId);
-    }
-
-    const handleFechar = () => {
-        setComponenteAtivo('tabela');
-        setEditarFamiliaresId(null);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=editar&infoId=${familiarId}`);
     }
 
     const handleAdicionarClick = () => {
-        navigate(`/caderneta/pacientes/ficha/${props.pacienteId}?form=${query.get('form')}&view=adicionar`);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=adicionar`);
     }
 
 
@@ -39,23 +33,15 @@ function InformacoesSociaisFamiliares(props) {
                             itemsPerPage={itemsPerPage}
                             currentPage={currentPage}
                             onEditarClick={handleEditarClick}
-                            pacienteId={props.pacienteId}
                         />
                     )}
 
                     {query.get('view') === 'editar' && (
-                        <EditarFamiliares
-                            onClose={handleFechar}
-                            pacienteId={props.pacienteId}
-                            familiarId={editarFamiliaresId}
-                        />
+                        <EditarFamiliares/>
                     )}
 
                     {query.get('view') === 'adicionar' && (
-                        <AdicionarFamiliares
-                            pacienteId={props.pacienteId}
-                            onClose={handleFechar}
-                        />
+                        <AdicionarFamiliares/>
                     )}
                 </div>
             </PainelFicha>

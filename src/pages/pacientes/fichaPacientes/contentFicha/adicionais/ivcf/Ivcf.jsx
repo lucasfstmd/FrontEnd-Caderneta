@@ -4,33 +4,32 @@ import api from "../../../../../../service/api";
 import TabelaIvcf from "./tabela/TabelaIvcf";
 import EditarIvcf from "./editar/EditarIvcf";
 import AdicionarIvcf from "./adicionar/AdicionarIvcf";
+import { useNavigate, useParams } from 'react-router-dom'
+import { useQuery } from '../../ContentFicha'
 
-function Ivcf(props) {
+function Ivcf() {
     const [itemsPerPage] = useState(2);
     const [currentPage, setCurrentPage] = useState(1);
     const [ivcf, setIvcf] = useState([]);
-    const [editarIvcfId, setEditarIvcfId] = useState(null);
-    const [componenteAtivo, setComponenteAtivo] = useState('tabela');
+    const navigate = useNavigate()
+    const query = useQuery()
+    const params = useParams()
+    const { id } = params
     const [loading, setLoading] = useState(true)
 
     const handleEditarClick = (ivcfId) => {
-        setComponenteAtivo('editar');
-        setEditarIvcfId(ivcfId);
-    }
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=editar&infoId=${ivcfId}`);
 
-    const handleFechar = () => {
-        setComponenteAtivo('tabela');
-        setEditarIvcfId(null);
     }
 
     const handleAdicionarClick = () => {
-        setComponenteAtivo('adicionar');
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=adicionar`);
     }
 
     async function carregarIvcfs() {
         try {
             const response = await api.get(
-                `v1/ivcfs/paciente/${props.pacienteId}`
+                `v1/ivcfs/paciente/${id}`
             );
             setIvcf(response.data);
             setLoading(false);
@@ -103,13 +102,12 @@ function Ivcf(props) {
         <div className="Ivcf">
             <PainelFicha titulo="4.5 Índice de Vulnerabilidade Clínico-Funcional-20 (IVCF-20)" botaoNew={true} onAdicionarClick={handleAdicionarClick}>
                 <div className="Conteudo">
-                    {componenteAtivo === 'tabela' && (
+                    {query.get('view') === 'tabela' && (
                         <>
                             <TabelaIvcf
                                 itemsPerPage={itemsPerPage}
                                 currentPage={currentPage}
                                 onEditarClick={handleEditarClick}
-                                pacienteId={props.pacienteId}
                                 data={getIvcfsPagAtual()}
                                 loading={loading}
                             />
@@ -134,18 +132,11 @@ function Ivcf(props) {
 
                     )}
 
-                    {componenteAtivo === 'editar' && (
-                        <EditarIvcf
-                            onClose={handleFechar}
-                            pacienteId={props.pacienteId}
-                            ivcfId={editarIvcfId}
-                        />
+                    {query.get('view') === 'editar' && (
+                        <EditarIvcf/>
                     )}
-                    {componenteAtivo === 'adicionar' && (
-                        <AdicionarIvcf
-                            pacienteId={props.pacienteId}
-                            onClose={handleFechar}
-                        />
+                    {query.get('view') === 'adicionar' && (
+                        <AdicionarIvcf/>
                     )}
                 </div>
 

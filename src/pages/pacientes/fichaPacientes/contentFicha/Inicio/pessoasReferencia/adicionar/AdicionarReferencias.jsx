@@ -6,8 +6,15 @@ import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import api from "../../../../../../../service/api";
+import { useNavigate, useParams } from 'react-router-dom'
+import { useQuery } from '../../../ContentFicha'
 
-function AdicionarReferencias(props) {
+function AdicionarReferencias() {
+    const params = useParams();
+    const { id } = params
+    const query = useQuery();
+    const navigate = useNavigate();
+
     const [nome, setNome] = useState('');
     const [data_nascimento, setDataNascimento] = useState(null);
     const [vinculo, setVinculo] = useState('');
@@ -18,7 +25,7 @@ function AdicionarReferencias(props) {
     const [data_informacao, setData_informacao] = useState('');
 
     const Referencia = {
-        paciente_id: props.pacienteId,
+        paciente_id: id,
         nome,
         data_nascimento,
         vinculo,
@@ -62,13 +69,13 @@ function AdicionarReferencias(props) {
         setOpen(false);
     }
 
-    const handleSalvar = (familiaresId) => {
+    const handleSalvar = () => {
         setOpen(false);
-        props.onClose(familiaresId);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
-    const handleFecharClick = (familiaresId) => {
-        props.onClose(familiaresId);
+    const handleFecharClick = () => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     function formatarTelefone(valor) {

@@ -6,8 +6,16 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import { useQuery } from '../../../ContentFicha'
+import { useNavigate, useParams } from 'react-router-dom'
 
-function EditarAmbientais(props) {
+function EditarAmbientais() {
+    const query = useQuery();
+    const ambientaisId = query.get('infoId')
+    const params = useParams();
+    const { id } = params
+    const navigate = useNavigate()
+
     const [ambientais, setAmbientais] = useState();
     const [ano, setAno] = useState(null);
     const [p1, setP1] = useState(null);
@@ -24,7 +32,7 @@ function EditarAmbientais(props) {
 
     async function carregarAmbientais() {
         try {
-            const response = await api.get(`v1/ambientais/${props.ambientaisId}`);
+            const response = await api.get(`v1/ambientais/${ambientaisId}`);
             setAmbientais(response.data);
             setAno(response.data.ano);
             setP1(response.data.p1);
@@ -48,7 +56,7 @@ function EditarAmbientais(props) {
     }, []);
 
     const Ambiental = {
-        paciente_id: props.pacienteId,
+        paciente_id: id,
         ano,
         p1,
         p2,
@@ -62,13 +70,13 @@ function EditarAmbientais(props) {
         p10,
         p11,
     }
-    const handleFecharClick = (ambientalId) => {
-        props.onClose(ambientalId);
+    const handleFecharClick = () => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     };
 
     const handleEdit = async () => {
         try {
-            await api.patch(`v1/ambientais/${props.ambientaisId}`, Ambiental);
+            await api.patch(`v1/ambientais/${ambientaisId}`, Ambiental);
             setOpen(true);
         } catch (error) {
             if (error.response && error.response.status === 400) {
@@ -99,9 +107,9 @@ function EditarAmbientais(props) {
         setOpen(false);
     }
 
-    const handleSalvar = (ambientalId) => {
+    const handleSalvar = () => {
         setOpen(false);
-        props.onClose(ambientalId);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     return (

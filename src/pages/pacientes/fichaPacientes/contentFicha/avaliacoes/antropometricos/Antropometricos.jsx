@@ -3,51 +3,42 @@ import PainelFicha from "../../../../../../components/painelFicha/PainelFicha";
 import TabelaAntropometricos from "./tebela/TabelaAntropometricos";
 import EditarAntropometricos from "./editar/EditarAntropometricos";
 import AdicionarAntropometricos from "./adicionar/AdicionarAntropometricos";
+import { useNavigate, useParams } from 'react-router-dom'
+import { useQuery } from '../../ContentFicha'
 
-function Antropometricos(props) {
+function Antropometricos() {
     const [itemsPerPage] = useState(20);
     const [currentPage] = useState(1);
-    const [editarAntropometricosId, setEditarAntropometricosId] = useState(null);
-    const [componenteAtivo, setComponenteAtivo] = useState('tabela');
+    const navigate = useNavigate()
+    const query = useQuery()
+    const params = useParams()
+    const { id } = params
 
     const handleEditarClick = (antropometricosId) => {
-        setComponenteAtivo('editar');
-        setEditarAntropometricosId(antropometricosId);
-    }
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=editar&infoId=${antropometricosId}`);
 
-    const handleFechar = () => {
-        setComponenteAtivo('tabela');
-        setEditarAntropometricosId(null);
     }
 
     const handleAdicionarClick = () => {
-        setComponenteAtivo('adicionar');
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=adicionar`);
     }
 
     return (
         <div className="Antropometricos">
             <PainelFicha titulo="2.5 Dados Antropométricos" botaoNew={true} onAdicionarClick={handleAdicionarClick}>
                 <div className="ConteudoDiagnosticos">
-                    {componenteAtivo === 'tabela' && (
+                    {query.get('view') === 'tabela' && (
                         <TabelaAntropometricos
                             itemsPerPage={itemsPerPage}
                             currentPage={currentPage}
                             onEditarClick={handleEditarClick}
-                            pacienteId={props.pacienteId}
                         />
                     )}
-                    {componenteAtivo === 'editar' && (
-                        <EditarAntropometricos
-                            onClose={handleFechar}
-                            pacienteId={props.pacienteId}
-                            antropometricosId={editarAntropometricosId}
-                        />
+                    {query.get('view') === 'editar' && (
+                        <EditarAntropometricos/>
                     )}
-                    {componenteAtivo === 'adicionar' && (
-                        <AdicionarAntropometricos
-                            pacienteId={props.pacienteId}
-                            onClose={handleFechar}
-                        />
+                    {query.get('view') === 'adicionar' && (
+                        <AdicionarAntropometricos/>
                     )}
                 </div>
             </PainelFicha>

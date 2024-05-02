@@ -6,8 +6,16 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import { useQuery } from '../../../ContentFicha'
+import { useNavigate, useParams } from 'react-router-dom'
 
 function EditarCirurgias(props) {
+    const query = useQuery();
+    const cirurgiasId = query.get('infoId')
+    const params = useParams();
+    const { id } = params
+    const navigate = useNavigate()
+
     const [objCirurgia, setObjCirurgia] = useState();
     const [cirurgia, setCirurgia] = useState('');
     const [ano, setAno] = useState('');
@@ -15,7 +23,7 @@ function EditarCirurgias(props) {
 
     async function carregarCirurgia() {
         try {
-            const response = await api.get(`v1/cirurgias/${props.cirurgiasId}`);
+            const response = await api.get(`v1/cirurgias/${cirurgiasId}`);
             setObjCirurgia(response.data);
             setCirurgia(response.data.cirurgia);
             setAno(response.data.ano);
@@ -30,19 +38,19 @@ function EditarCirurgias(props) {
     }, []);
 
     const Cirurgia = {
-        paciente_id: props.pacienteId,
+        paciente_id: id,
         cirurgia,
         ano,
         observacao,
     }
 
-    const handleFecharClick = (cirurgiaId) => {
-        props.onClose(cirurgiaId);
+    const handleFecharClick = () => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     const handleEdit = async () => {
         try {
-            await api.patch(`v1/cirurgias/${props.cirurgiasId}`, Cirurgia);
+            await api.patch(`v1/cirurgias/${cirurgiasId}`, Cirurgia);
             setOpen(true);
         } catch (error) {
             if (error.response && error.response.status === 400) {
@@ -73,9 +81,9 @@ function EditarCirurgias(props) {
         setOpen(false);
     }
 
-    const handleSalvar = (cirurgiaId) => {
+    const handleSalvar = () => {
         setOpen(false);
-        props.onClose(cirurgiaId);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     return (

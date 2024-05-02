@@ -6,8 +6,16 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import { useQuery } from '../../../ContentFicha'
+import { useNavigate, useParams } from 'react-router-dom'
 
-function EditarSarcf(props) {
+function EditarSarcf() {
+    const query = useQuery();
+    const sarcfId = query.get('infoId')
+    const params = useParams();
+    const { id } = params
+    const navigate = useNavigate()
+
     const [p1, setP1] = useState("");
     const [p2, setP2] = useState("");
     const [p3, setP3] = useState("");
@@ -16,7 +24,7 @@ function EditarSarcf(props) {
 
     async function carregarSarcf() {
         try {
-            const response = await api.get(`v1/sarcfs/${props.sarcfId}`);
+            const response = await api.get(`v1/sarcfs/${sarcfId}`);
             setP1(response.data.p1);
             setP2(response.data.p2);
             setP3(response.data.p3);
@@ -32,7 +40,7 @@ function EditarSarcf(props) {
     }, []);
 
     const Sarcf = {
-        paciente_id: props.pacienteId,
+        paciente_id: id,
         p1,
         p2,
         p3,
@@ -40,13 +48,13 @@ function EditarSarcf(props) {
         p5,
     }
 
-    const handleFecharClick = (diagnosticoId) => {
-        props.onClose(diagnosticoId);
+    const handleFecharClick = () => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     };
 
     const handleEdit = async () => {
         try {
-            await api.patch(`v1/sarcfs/${props.sarcfId}`, Sarcf);
+            await api.patch(`v1/sarcfs/${sarcfId}`, Sarcf);
             setOpen(true);
         } catch (error) {
             if (error.response && error.response.status === 400) {
@@ -77,9 +85,9 @@ function EditarSarcf(props) {
         setOpen(false);
     }
 
-    const handleSalvar = (sarcfId) => {
+    const handleSalvar = () => {
         setOpen(false);
-        props.onClose(sarcfId);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     return (

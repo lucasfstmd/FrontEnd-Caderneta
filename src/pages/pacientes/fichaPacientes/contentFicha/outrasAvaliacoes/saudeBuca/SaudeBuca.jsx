@@ -4,33 +4,32 @@ import TabelaSaudeBucal from "./tabela/TabelaSaudeBucal";
 import AdicionarSaudeBucal from "./adicionar/AdicionarSaudeBucal";
 import EditarSaudeBucal from "./editar/EditarSaudeBucal";
 import api from "../../../../../../service/api";
+import { useNavigate, useParams } from 'react-router-dom'
+import { useQuery } from '../../ContentFicha'
 
-function SaudeBuca(props) {
+function SaudeBuca() {
     const [itemsPerPage] = useState(2);
     const [currentPage, setCurrentPage] = useState(1);
     const [saudeBucal, setSaudeBucal] = useState([]);
-    const [editarSaudeBucalId, setEditarSaudeBucalId] = useState(null);
-    const [componenteAtivo, setComponenteAtivo] = useState('tabela');
+    const navigate = useNavigate()
+    const query = useQuery()
+    const params = useParams()
+    const { id } = params
     const [loading, setLoading] = useState(true)
 
     const handleEditarClick = (saudeBucalId) => {
-        setComponenteAtivo('editar');
-        setEditarSaudeBucalId(saudeBucalId);
-    }
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=editar&infoId=${saudeBucalId}`);
 
-    const handleFechar = () => {
-        setComponenteAtivo('tabela');
-        setEditarSaudeBucalId(null);
     }
 
     const handleAdicionarClick = () => {
-        setComponenteAtivo('adicionar');
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=adicionar`);
     }
 
     async function carregarBucalSaudes() {
         try {
             const response = await api.get(
-                `v1/bucal-saudes/paciente/${props.pacienteId}`
+                `v1/bucal-saudes/paciente/${id}`
             );
             setSaudeBucal(response.data);
             setLoading(false)
@@ -103,13 +102,12 @@ function SaudeBuca(props) {
         <div className="SaudeBuca">
             <PainelFicha titulo="3.4 Avalição de Saúde Buca" botaoNew={true} onAdicionarClick={handleAdicionarClick}>
                 <div className="Conteudo">
-                    {componenteAtivo === 'tabela' && (
+                    {query.get('view') === 'tabela' && (
                         <>
                             <TabelaSaudeBucal
                                 itemsPerPage={itemsPerPage}
                                 currentPage={currentPage}
                                 onEditarClick={handleEditarClick}
-                                pacienteId={props.pacienteId}
                                 data={getBucalSaudesPagAtual()}
                                 loading={loading}
                             />
@@ -134,18 +132,11 @@ function SaudeBuca(props) {
 
                     )}
 
-                    {componenteAtivo === 'editar' && (
-                        <EditarSaudeBucal
-                            onClose={handleFechar}
-                            pacienteId={props.pacienteId}
-                            saudeBucalId={editarSaudeBucalId}
-                        />
+                    {query.get('view') === 'editar' && (
+                        <EditarSaudeBucal/>
                     )}
-                    {componenteAtivo === 'adicionar' && (
-                        <AdicionarSaudeBucal
-                            pacienteId={props.pacienteId}
-                            onClose={handleFechar}
-                        />
+                    {query.get('view') === 'adicionar' && (
+                        <AdicionarSaudeBucal/>
                     )}
                 </div>
             </PainelFicha>

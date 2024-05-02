@@ -5,32 +5,32 @@ import EditarVulnerabilidades from "./editar/EditarVulnerabilidades";
 import AdicionarVulnerabilidades from "./adicionar/AdicionarVulnerabilidades";
 import api from "../../../../../../service/api";
 import GraficoVES from "../../../../../../components/graficoVES/GraficoVES";
+import { useNavigate, useParams } from 'react-router-dom'
+import { useQuery } from '../../ContentFicha'
 
 function Vulnerabilidades(props) {
     const [itemsPerPage] = useState(4);
     const [currentPage, setCurrentPage] = useState(1);
     const [vulnerabilidade, setVulnerabilidade] = useState([]);
-    const [editarVulnerabilidadesId, setEditarVulnerabilidadesId] = useState(null);
-    const [componenteAtivo, setComponenteAtivo] = useState('tabela');
+    const navigate = useNavigate()
+    const query = useQuery()
+    const params = useParams()
+    const { id } = params
     const [loading, setLoading] = useState(true)
 
     const handleEditarClick = (vulnerabilidadesId) => {
-        setComponenteAtivo('editar');
-        setEditarVulnerabilidadesId(vulnerabilidadesId);
-    }
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=editar&infoId=${vulnerabilidadesId}`);
 
-    const handleFechar = () => {
-        setComponenteAtivo('tabela');
     }
 
     const handleAdicionarClick = () => {
-        setComponenteAtivo('adicionar');
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=adicionar`);
     }
 
     async function carregarVulnerabilidade() {
         try {
             const response = await api.get(
-                `v1/vulnerabilidades/paciente/${props.pacienteId}`
+                `v1/vulnerabilidades/paciente/${id}`
             );
             setVulnerabilidade(response.data);
             setLoading(false)
@@ -103,7 +103,7 @@ function Vulnerabilidades(props) {
         <div className="ProtocoloIdentificacao">
             <PainelFicha titulo="2.6 Protocolo de Identificação do Idoso Vulnerável (VES-13)" botaoNew={true} onAdicionarClick={handleAdicionarClick}>
                 <div className="Conteudo">
-                    {componenteAtivo === 'tabela' && (
+                    {query.get('view') === 'tabela' && (
                         <>
                             <div className="Grafico" style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                                 <GraficoVES data={vulnerabilidade}/>
@@ -112,7 +112,6 @@ function Vulnerabilidades(props) {
                                 itemsPerPage={itemsPerPage}
                                 currentPage={currentPage}
                                 onEditarClick={handleEditarClick}
-                                pacienteId={props.pacienteId}
                                 data={getVulnerabilidadesPaginaAtual()}
                                 loading={loading}
                             />
@@ -135,18 +134,11 @@ function Vulnerabilidades(props) {
                             </div>
                         </>
                     )}
-                    {componenteAtivo === 'editar' && (
-                        <EditarVulnerabilidades
-                            onClose={handleFechar}
-                            pacienteId={props.pacienteId}
-                            vulnerabilidadeId={editarVulnerabilidadesId}
-                        />
+                    {query.get('view') === 'editar' && (
+                        <EditarVulnerabilidades/>
                     )}
-                    {componenteAtivo === 'adicionar' && (
-                        <AdicionarVulnerabilidades
-                            pacienteId={props.pacienteId}
-                            onClose={handleFechar}
-                        />
+                    {query.get('view') === 'adicionar' && (
+                        <AdicionarVulnerabilidades/>
                     )}
                 </div>
             </PainelFicha>

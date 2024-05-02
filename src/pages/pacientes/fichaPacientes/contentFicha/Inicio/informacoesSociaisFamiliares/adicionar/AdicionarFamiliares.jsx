@@ -7,9 +7,14 @@ import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import api from "../../../../../../../service/api";
 import { useQuery } from '../../../ContentFicha'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
-function AdicionarFamiliares(props) {
+function AdicionarFamiliares() {
+    const params = useParams();
+    const { id } = params
+    const query = useQuery();
+    const navigate = useNavigate();
+
     const [ano, setAno] = useState();
     const [p1, setP1] = useState();
     const [p2, setP2] = useState();
@@ -23,11 +28,9 @@ function AdicionarFamiliares(props) {
     const [p10, setP10] = useState();
     const [p11, setP11] = useState();
     const [p12, setP12] = useState();
-    const query = useQuery();
-    const navigate = useNavigate();
 
     const Familiar = {
-        paciente_id: props.pacienteId,
+        paciente_id: id,
         ano,
         p1,
         p2,
@@ -76,14 +79,13 @@ function AdicionarFamiliares(props) {
         setOpen(false);
     }
 
-    const handleSalvar = (familiaresId) => {
+    const handleSalvar = () => {
         setOpen(false);
-        props.onClose(familiaresId);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
-    const handleFecharClick = (familiaresId) => {
-        // props.onClose(familiaresId);
-        navigate(`/caderneta/pacientes/ficha/${props.pacienteId}?form=${query.get('form')}&view=tabela`);
+    const handleFecharClick = () => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     return (

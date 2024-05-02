@@ -6,8 +6,15 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import { useNavigate, useParams } from 'react-router-dom'
+import { useQuery } from '../../../ContentFicha'
 
-function AdicionarHabitos(props) {
+function AdicionarHabitos() {
+    const params = useParams();
+    const { id } = params
+    const query = useQuery();
+    const navigate = useNavigate();
+
     const [ano, setAno] = useState(null);
     const [p1, setP1] = useState(null);
     const [p2, setP2] = useState(null);
@@ -30,7 +37,7 @@ function AdicionarHabitos(props) {
     const [p19, setP19] = useState(null);
 
     const Habito = {
-        paciente_id: props.pacienteId,
+        paciente_id: id,
         ano,
         p1,
         p2,
@@ -86,13 +93,13 @@ function AdicionarHabitos(props) {
         setOpen(false);
     }
 
-    const handleSalvar = (habitosId) => {
+    const handleSalvar = () => {
         setOpen(false);
-        props.onClose(habitosId);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
-    const handleFecharClick = (habitosId) => {
-        props.onClose(habitosId);
+    const handleFecharClick = () => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     return (

@@ -6,8 +6,15 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import { useNavigate, useParams } from 'react-router-dom'
+import { useQuery } from '../../../ContentFicha'
 
-function AdicionarDiagnosticos(props) {
+function AdicionarDiagnosticos() {
+    const params = useParams();
+    const { id } = params
+    const query = useQuery();
+    const navigate = useNavigate();
+
     const [tipo, setTipo] = useState('');
     const [tipo_outro, setTipoOutro] = useState('');
     const [ano_diagnostico, setAno_diagnostico] = useState('');
@@ -15,7 +22,7 @@ function AdicionarDiagnosticos(props) {
     const [tempo_internacao, setTempo_internacao] = useState('');
 
     const Diagnostico = {
-        paciente_id: props.pacienteId,
+        paciente_id: id,
         tipo,
         tipo_outro,
         ano_diagnostico,
@@ -56,13 +63,13 @@ function AdicionarDiagnosticos(props) {
         setOpen(false);
     }
 
-    const handleSalvar = (diagnosticosId) => {
+    const handleSalvar = () => {
         setOpen(false);
-        props.onClose(diagnosticosId);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
-    const handleFecharClick = (medicamentosId) => {
-        props.onClose(medicamentosId);
+    const handleFecharClick = () => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     return (

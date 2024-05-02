@@ -40,6 +40,7 @@ function ExportDataBase() {
     const [fragilidades, setFragilidades] = useState([]);
     const [frrisques, setFrrisques] = useState([]);
     const [sarcfs, setSarcfs] = useState([]);
+    const [dataBase, setDataBase] = useState([]);
     const [loading, setLoading] = useState(true);
 
     const fetchData = async (url, setData) => {
@@ -48,7 +49,14 @@ function ExportDataBase() {
         setData(data);
     }
 
-    const url = 'https://proeva-caderneta.ccs.ufrn.br:8080/api'
+    const url = 'http://localhost:8080/api'
+
+    const fetchDataBase = async () => {
+        const response = await fetch(`${url}/v1/database`)
+        const data = await response.json()
+        setDataBase(data)
+        setLoading(false);
+    }
 
     const fetchDataForExport = async () => {
         await fetchData(`${url}/v1/pacientes`, setPacientes);
@@ -85,7 +93,8 @@ function ExportDataBase() {
     };
 
     const getDataBase = () => {
-        fetchDataForExport();
+        // fetchDataForExport();
+        fetchDataBase();
     }
 
     const build = (array,field, patient_id) => {
@@ -219,7 +228,7 @@ function ExportDataBase() {
                         :
                         <>
                             <Button onClick={handleClose} variant="outlined" color="success">
-                                <CSVLink style={{textDecoration: 'none', color: 'green'}} data={result}
+                                <CSVLink style={{textDecoration: 'none', color: 'green'}} data={dataBase}
                                          filename="banco-de-dados.csv">
                                     <AiOutlineDownload/> Baixar
                                 </CSVLink>

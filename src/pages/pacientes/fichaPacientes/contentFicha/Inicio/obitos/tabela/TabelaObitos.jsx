@@ -9,6 +9,7 @@ import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import {DialogContent, DialogContentText} from "@mui/material";
 import Loading from "../../../../../../../components/loading/Loading";
+import { useParams } from 'react-router-dom'
 
 function ObitosLinha({ obitos, onEditClick }) {
     const [open, setOpen] = useState(false);
@@ -89,12 +90,13 @@ function TabelaObitos(props) {
     const [obitos, setObitos] = useState([]);
     const [currentPage] = useState(1);
     const [loading, setLoading] = useState(true)
-
+    const params = useParams();
+    const { id } = params
     const itemsPerPage = props.itemsPerPage;
 
     async function carregarObitos() {
         try {
-            const response = await api.get(`v1/obitos/paciente/${props.pacienteId}`);
+            const response = await api.get(`v1/obitos/paciente/${id}`);
             setObitos(response.data);
             setLoading(false)
         } catch (error) {

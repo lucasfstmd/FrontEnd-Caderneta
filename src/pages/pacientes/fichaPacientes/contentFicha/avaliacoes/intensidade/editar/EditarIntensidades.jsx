@@ -6,8 +6,16 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import { useQuery } from '../../../ContentFicha'
+import { useNavigate, useParams } from 'react-router-dom'
 
-function EditarIntensidades(props) {
+function EditarIntensidades() {
+    const query = useQuery();
+    const intensidadesId = query.get('infoId')
+    const params = useParams();
+    const { id } = params
+    const navigate = useNavigate()
+
     const [intensidadeObj, setIntensidadeObj] = useState();
     const [data, setData] = useState("");
     const [local_dor, setLocalDor] = useState("");
@@ -15,7 +23,7 @@ function EditarIntensidades(props) {
 
     async function carregarIntensidade() {
         try {
-            const response = await api.get(`v1/intensidades/${props.intensidadesId}`);
+            const response = await api.get(`v1/intensidades/${intensidadesId}`);
             setIntensidadeObj(response.data);
             setData(response.data.data);
             setLocalDor(response.data.local_dor);
@@ -30,19 +38,19 @@ function EditarIntensidades(props) {
     }, []);
 
     const Intensidade = {
-        paciente_id: props.pacienteId,
+        paciente_id: id,
         data,
         local_dor,
         intensidade,
     }
 
-    const handleFecharClick = (cronicaId) => {
-        props.onClose(cronicaId);
+    const handleFecharClick = () => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     };
 
     const handleEdit = async () => {
         try {
-            await api.patch(`v1/intensidades/${props.intensidadesId}`, Intensidade);
+            await api.patch(`v1/intensidades/${intensidadesId}`, Intensidade);
             setOpen(true);
         } catch (error) {
             if (error.response && error.response.status === 400) {
@@ -73,9 +81,9 @@ function EditarIntensidades(props) {
         setOpen(false);
     }
 
-    const handleSalvar = (intensidadesId) => {
+    const handleSalvar = () => {
         setOpen(false);
-        props.onClose(intensidadesId);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     return (

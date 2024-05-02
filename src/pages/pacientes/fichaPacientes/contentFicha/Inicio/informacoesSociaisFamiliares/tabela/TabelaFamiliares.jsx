@@ -10,6 +10,7 @@ import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import {DialogContent, DialogContentText} from "@mui/material";
 import Loading from "../../../../../../../components/loading/Loading";
+import { useParams } from 'react-router-dom'
 
 function FamiliaresLinha({ familiares, onEditClick }) {
     const [open, setOpen] = useState(false);
@@ -143,13 +144,14 @@ function TabelaFamiliares(props) {
     const [familiares, setFamiliares] = useState([]);
     const [currentPage] = useState(1);
     const [loading, setLoading] = useState(true)
-
+    const params = useParams();
+    const { id } = params
     const itemsPerPage = props.itemsPerPage;
 
     async function carregarFamiliares() {
         try {
             const response = await api.get(
-                `v1/familiares/paciente/${props.pacienteId}`
+                `v1/familiares/paciente/${id}`
             );
             setFamiliares(response.data);
             setLoading(false);

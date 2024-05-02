@@ -6,9 +6,15 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
-import {useParams} from "react-router-dom";
+import { useNavigate, useParams } from 'react-router-dom'
+import { useQuery } from '../../../ContentFicha'
 
 function AdicionarBioimpedancias(props) {
+    const params = useParams();
+    const { id } = params
+    const query = useQuery();
+    const navigate = useNavigate();
+
     const [p1, setP1] = useState(null);
     const [p2, setP2] = useState(null);
     const [p3, setP3] = useState(null);
@@ -34,10 +40,9 @@ function AdicionarBioimpedancias(props) {
     const [p23, setP23] = useState(null);
     const [p24, setP24] = useState(null);
     const [p25, setP25] = useState(null);
-    const { id } = useParams();
 
     const Bioimpedancia = {
-        paciente_id: parseInt(id),
+        paciente_id: id,
         p1,
         p2,
         p3,
@@ -98,13 +103,13 @@ function AdicionarBioimpedancias(props) {
         setOpen(false);
     }
 
-    const handleSalvar = (bioimpedanciaId) => {
+    const handleSalvar = () => {
         setOpen(false);
-        props.onClose(bioimpedanciaId);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
-    const handleFecharClick = (bioimpedanciaId) => {
-        props.onClose(bioimpedanciaId);
+    const handleFecharClick = () => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     return (

@@ -10,6 +10,7 @@ import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import Loading from "../../../../../../../components/loading/Loading";
+import { useParams } from 'react-router-dom'
 
 function PercaPesoLinha({ pesoPerca, onEditClick }){
     const [open, setOpen] = useState(false);
@@ -99,13 +100,14 @@ function TabelaPercaPeso(props) {
     const [percaPesos, setPercaPesos] = useState([]);
     const [currentPage] = useState(1);
     const [loading, setLoading] = useState(true)
-
+    const params = useParams();
+    const { id } = params
     const itemsPerPage = props.itemsPerPage;
 
     async function carregarPercaPeso() {
         try {
             const response = await api.get(
-                `v1/peso-perdas/paciente/${props.pacienteId}`
+                `v1/peso-perdas/paciente/${id}`
             );
             setPercaPesos(response.data);
             setLoading(false)

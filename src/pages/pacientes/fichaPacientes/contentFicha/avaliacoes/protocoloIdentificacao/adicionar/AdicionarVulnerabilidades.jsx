@@ -6,8 +6,15 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import { useNavigate, useParams } from 'react-router-dom'
+import { useQuery } from '../../../ContentFicha'
 
-function AdicionarVulnerabilidades(props) {
+function AdicionarVulnerabilidades() {
+    const params = useParams();
+    const { id } = params
+    const query = useQuery();
+    const navigate = useNavigate();
+
     const [ano, setAno] = useState();
     const [idade, setIdade] = useState('');
     const [autopercepcao, setAutopercepcao] = useState('');
@@ -92,7 +99,7 @@ function AdicionarVulnerabilidades(props) {
     };
 
     const Vulnerabilidade = {
-        paciente_id: props.pacienteId,
+        paciente_id: id,
         ano,
         idade,
         autopercepcao,
@@ -143,13 +150,13 @@ function AdicionarVulnerabilidades(props) {
         setOpen(false);
     }
 
-    const handleSalvar = (vulnerabilidadeId) => {
+    const handleSalvar = () => {
         setOpen(false);
-        props.onClose(vulnerabilidadeId);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
-    const handleFecharClick = (vulnerabilidadeId) => {
-        props.onClose(vulnerabilidadeId);
+    const handleFecharClick = () => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     return (

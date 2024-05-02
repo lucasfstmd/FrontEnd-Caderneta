@@ -10,6 +10,7 @@ import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import Loading from "../../../../../../../components/loading/Loading";
+import { useParams } from 'react-router-dom'
 
 function SppbLinha({ sppb, onEditClick }) {
     const [open, setOpen] = useState(false);
@@ -147,13 +148,14 @@ function TabelaSppb(props) {
     const [sppbs, setSppbs] = useState([]);
     const [currentPage] = useState(1);
     const [loading, setLoading] = useState(true);
-
+    const params = useParams()
+    const { id } = params
     const itemsPerPage = props.itemsPerPage;
 
     async function carregarSppb() {
         try {
             const response = await api.get(
-                `v1/sppbs/paciente/${props.pacienteId}`
+                `v1/sppbs/paciente/${id}`
             );
             setSppbs(response.data);
             setLoading(false);

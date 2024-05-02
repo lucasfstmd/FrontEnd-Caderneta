@@ -6,8 +6,16 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import { useQuery } from '../../../ContentFicha'
+import { useNavigate, useParams } from 'react-router-dom'
 
-function EditarVulnerabilidades(props) {
+function EditarVulnerabilidades() {
+    const query = useQuery();
+    const vulnerabilidadeId = query.get('infoId')
+    const params = useParams();
+    const { id } = params
+    const navigate = useNavigate()
+
     const [vulnerabilidade, setVulnerabilidade] = useState();
     const [ano, setAno] = useState(0);
     const [idade, setIdade] = useState('');
@@ -26,7 +34,7 @@ function EditarVulnerabilidades(props) {
 
     async function carregarVulnerabilidade() {
         try {
-            const response = await api.get(`v1/vulnerabilidades/${props.vulnerabilidadeId}`);
+            const response = await api.get(`v1/vulnerabilidades/${vulnerabilidadeId}`);
             setVulnerabilidade(response.data);
             setAno(response.data.ano);
             setIdade(response.data.idade);
@@ -120,7 +128,7 @@ function EditarVulnerabilidades(props) {
     };
 
     const Vulnerabilidade = {
-        paciente_id: props.pacienteId,
+        paciente_id: id,
         ano,
         idade,
         autopercepcao,
@@ -138,13 +146,13 @@ function EditarVulnerabilidades(props) {
         pontuacao_total: getPontos(),
     }
 
-    const handleFecharClick = (vulnerabilidadeId) => {
-        props.onClose(vulnerabilidadeId);
+    const handleFecharClick = () => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     const handleEdit = async () => {
         try {
-            await api.patch(`v1/vulnerabilidades/${props.vulnerabilidadeId}`, Vulnerabilidade);
+            await api.patch(`v1/vulnerabilidades/${vulnerabilidadeId}`, Vulnerabilidade);
             setOpen(true);
         } catch (error) {
             if (error.response && error.response.status === 400) {
@@ -175,9 +183,9 @@ function EditarVulnerabilidades(props) {
         setOpen(false);
     }
 
-    const handleSalvar = (vulnerabilidadeId) => {
+    const handleSalvar = () => {
         setOpen(false);
-        props.onClose(vulnerabilidadeId);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     return (

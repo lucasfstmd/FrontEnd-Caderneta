@@ -6,8 +6,17 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import { useQuery } from '../../../ContentFicha'
+import { useNavigate, useParams } from 'react-router-dom'
 
-function EditarCronicas(props) {
+function EditarCronicas() {
+    const query = useQuery();
+    const cronicasId = query.get('infoId')
+    const params = useParams();
+    const { id } = params
+    const navigate = useNavigate()
+
+
     const [cronica, setCronica] = useState();
     const [ano, setAno] = useState(null);
     const [p1, setP1] = useState(null);
@@ -17,7 +26,7 @@ function EditarCronicas(props) {
 
     async function carregarCronica() {
         try {
-            const response = await api.get(`v1/cronicas/${props.cronicasId}`);
+            const response = await api.get(`v1/cronicas/${cronicasId}`);
             setCronica(response.data);
             setAno(response.data.ano);
             setP1(response.data.p1);
@@ -35,7 +44,7 @@ function EditarCronicas(props) {
     }, []);
 
     const Cronica = {
-        paciente_id: props.pacienteId,
+        paciente_id: id,
         ano,
         p1,
         p2,
@@ -43,13 +52,13 @@ function EditarCronicas(props) {
         p4,
     }
 
-    const handleFecharClick = (cronicaId) => {
-        props.onClose(cronicaId);
+    const handleFecharClick = () => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     };
 
     const handleEdit = async () => {
         try {
-            await api.patch(`v1/cronicas/${props.cronicasId}`, Cronica);
+            await api.patch(`v1/cronicas/${cronicasId}`, Cronica);
             setOpen(true);
         } catch (error) {
             if (error.response && error.response.status === 400) {
@@ -80,9 +89,9 @@ function EditarCronicas(props) {
         setOpen(false);
     }
 
-    const handleSalvar = (cronicaId) => {
+    const handleSalvar = () => {
         setOpen(false);
-        props.onClose(cronicaId);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     return (

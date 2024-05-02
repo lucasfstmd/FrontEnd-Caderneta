@@ -4,29 +4,25 @@ import api from "../../../../../../service/api";
 import TabelaBioimpedancias from "./tabela/TabelaBioimpedancias";
 import EditarBioimpedancias from "./editar/EditarBioimpedancias";
 import AdicionarBioimpedancias from "./adicionar/AdicionarBioimpedancias";
-import {useParams} from "react-router-dom";
+import { useNavigate, useParams } from 'react-router-dom'
+import { useQuery } from '../../ContentFicha'
 
 function Bioimpedancias() {
     const [itemsPerPage] = useState(2);
     const [currentPage, setCurrentPage] = useState(1);
     const [bioimpedancias, setBioimpedancias] = useState([]);
-    const [editarBioimpedanciaId, setEditarBioimpedanciaId] = useState(null);
-    const [componenteAtivo, setComponenteAtivo] = useState('tabela');
+    const navigate = useNavigate()
+    const query = useQuery()
+    const params = useParams()
+    const { id } = params
     const [loading, setLoading] = useState(true)
-    const { id } = useParams();
 
     const handleEditarClick = (bioimpedanciaId) => {
-        setComponenteAtivo('editar');
-        setEditarBioimpedanciaId(bioimpedanciaId);
-    }
-
-    const handleFechar = () => {
-        setComponenteAtivo('tabela');
-        setEditarBioimpedanciaId(null);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=editar&infoId=${diagnosticosId}`);
     }
 
     const handleAdicionarClick = () => {
-        setComponenteAtivo('adicionar');
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=adicionar`);
     }
 
     async function carregarBioimpedancias() {
@@ -105,7 +101,7 @@ function Bioimpedancias() {
         <div className="Bioimpedancias">
             <PainelFicha titulo="4.6 Bioimpedâncias" botaoNew={true} onAdicionarClick={handleAdicionarClick}>
                 <div className="Conteudo">
-                    {componenteAtivo === 'tabela' && (
+                    {query.get('view') === 'tabela' && (
                         <>
                             <TabelaBioimpedancias
                                 itemsPerPage={itemsPerPage}
@@ -135,16 +131,11 @@ function Bioimpedancias() {
 
                     )}
 
-                    {componenteAtivo === 'editar' && (
-                        <EditarBioimpedancias
-                            onClose={handleFechar}
-                            bioimpedanciaId={editarBioimpedanciaId}
-                        />
+                    {query.get('view') === 'editar' && (
+                        <EditarBioimpedancias/>
                     )}
-                    {componenteAtivo === 'adicionar' && (
-                        <AdicionarBioimpedancias
-                            onClose={handleFechar}
-                        />
+                    {query.get('view') === 'adicionar' && (
+                        <AdicionarBioimpedancias/>
                     )}
                 </div>
             </PainelFicha>

@@ -6,8 +6,16 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import { useQuery } from '../../../ContentFicha'
+import { useNavigate, useParams } from 'react-router-dom'
 
-function EditarDiagnosticos(props) {
+function EditarDiagnosticos() {
+    const query = useQuery();
+    const diagnosticosId = query.get('infoId')
+    const params = useParams();
+    const { id } = params
+    const navigate = useNavigate()
+
     const [diagnosticos, setDiagnosticos] = useState();
     const [tipo, setTipo] = useState('');
     const [tipo_outro, setTipoOutro] = useState('');
@@ -17,7 +25,7 @@ function EditarDiagnosticos(props) {
 
     async function carregarDiagnosticos() {
         try {
-            const response = await api.get(`v1/diagnosticos/${props.diagnosticosId}`);
+            const response = await api.get(`v1/diagnosticos/${diagnosticosId}`);
             setDiagnosticos(response.data);
             setTipo(response.data.tipo);
             setTipoOutro(response.data.tipo_outro);
@@ -35,7 +43,7 @@ function EditarDiagnosticos(props) {
     }, []);
 
     const Diagnostico = {
-        paciente_id: props.pacienteId,
+        paciente_id: id,
         tipo,
         tipo_outro,
         ano_diagnostico,
@@ -43,13 +51,13 @@ function EditarDiagnosticos(props) {
         tempo_internacao,
     }
 
-    const handleFecharClick = (diagnosticoId) => {
-        props.onClose(diagnosticoId);
+    const handleFecharClick = () => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     };
 
     const handleEdit = async () => {
         try {
-            await api.patch(`v1/diagnosticos/${props.diagnosticosId}`, Diagnostico);
+            await api.patch(`v1/diagnosticos/${diagnosticosId}`, Diagnostico);
             setOpen(true);
         } catch (error) {
             if (error.response && error.response.status === 400) {
@@ -80,9 +88,9 @@ function EditarDiagnosticos(props) {
         setOpen(false);
     }
 
-    const handleSalvar = (diagnosticoId) => {
+    const handleSalvar = () => {
         setOpen(false);
-        props.onClose(diagnosticoId);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     return (

@@ -3,52 +3,43 @@ import PainelFicha from "../../../../../../components/painelFicha/PainelFicha";
 import TabelaControlePeso from "./tabela/TabelaControlePeso";
 import EditarControlePeso from "./editar/EditarControlePeso";
 import AdicionarControlePeso from "./adicionar/AdicionarControlePeso";
+import { useNavigate, useParams } from 'react-router-dom'
+import { useQuery } from '../../ContentFicha'
 
-function ControlePeso(props) {
+function ControlePeso() {
     const [itemsPerPage] = useState(20);
     const [currentPage] = useState(1);
-    const [editarControlePesoId, setEditarControlePesoId] = useState(null);
-    const [componenteAtivo, setComponenteAtivo] = useState('tabela');
+    const navigate = useNavigate()
+    const query = useQuery()
+    const params = useParams()
+    const { id } = params
 
     const handleEditarClick = (controlePesoId) => {
-        setComponenteAtivo('editar');
-        setEditarControlePesoId(controlePesoId);
-    }
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=editar&infoId=${controlePesoId}`);
 
-    const handleFechar = () => {
-        setComponenteAtivo('tabela');
-        setEditarControlePesoId(null);
     }
 
     const handleAdicionarClick = () => {
-        setComponenteAtivo('adicionar');
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=adicionar`);
     }
 
     return (
         <div className="ControlePeso">
             <PainelFicha titulo="2.5.2 Controle de Peso" botaoNew={true} onAdicionarClick={handleAdicionarClick}>
                 <div className="ConteudoReferencia">
-                    {componenteAtivo === 'tabela' && (
+                    {query.get('view') === 'tabela' && (
                         <TabelaControlePeso
                             itemsPerPage={itemsPerPage}
                             currentPage={currentPage}
                             onEditarClick={handleEditarClick}
-                            pacienteId={props.pacienteId}
                         />
                     )}
 
-                    {componenteAtivo === 'editar' && (
-                        <EditarControlePeso
-                            onClose={handleFechar}
-                            pacienteId={props.pacienteId}
-                            controlePesoId={editarControlePesoId}
-                        />
+                    {query.get('view') === 'editar' && (
+                        <EditarControlePeso/>
                     )}
-                    {componenteAtivo === 'adicionar' && (
-                        <AdicionarControlePeso
-                            pacienteId={props.pacienteId}
-                            onClose={handleFechar}
-                        />
+                    {query.get('view') === 'adicionar' && (
+                        <AdicionarControlePeso/>
                     )}
                 </div>
             </PainelFicha>

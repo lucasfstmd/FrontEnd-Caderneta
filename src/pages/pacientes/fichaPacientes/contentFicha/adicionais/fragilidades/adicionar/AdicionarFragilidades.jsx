@@ -6,8 +6,15 @@ import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import api from "../../../../../../../service/api";
+import { useNavigate, useParams } from 'react-router-dom'
+import { useQuery } from '../../../ContentFicha'
 
-function AdicionarFragilidades(props) {
+function AdicionarFragilidades() {
+    const params = useParams();
+    const { id } = params
+    const query = useQuery();
+    const navigate = useNavigate();
+
     const [p1, setP1] = useState();
     const [p2_1, setP2_1] = useState("22.00");
     const [p2_2, setP2_2] = useState();
@@ -37,7 +44,7 @@ function AdicionarFragilidades(props) {
     const [classificacao_da_fragilidade, setClassificacao_da_fragilidade] = useState("");
 
     const Fragilidade = {
-        paciente_id: props.pacienteId,
+        paciente_id: id,
         p1,
         p2_1,
         p2_2,
@@ -100,13 +107,13 @@ function AdicionarFragilidades(props) {
         setOpen(false);
     }
 
-    const handleSalvar = (fragilidadeId) => {
+    const handleSalvar = () => {
         setOpen(false);
-        props.onClose(fragilidadeId);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
-    const handleFecharClick = (fragilidadeId) => {
-        props.onClose(fragilidadeId);
+    const handleFecharClick = () => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     return (

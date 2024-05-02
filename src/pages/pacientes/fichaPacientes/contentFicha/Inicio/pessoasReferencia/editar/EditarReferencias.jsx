@@ -6,8 +6,16 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import { useQuery } from '../../../ContentFicha'
+import { useNavigate, useParams } from 'react-router-dom'
 
-function EditarReferencias(props) {
+function EditarReferencias() {
+    const query = useQuery();
+    const referenciaId = query.get('infoId')
+    const params = useParams();
+    const { id } = params
+    const navigate = useNavigate()
+
     const [referencia, setReferencia] = useState();
     const [nome, setNome] = useState("");
     const [data_nascimento, setDataNascimento] = useState("");
@@ -20,7 +28,7 @@ function EditarReferencias(props) {
 
     async function carregarReferencia() {
         try {
-            const response = await api.get(`v1/referencias/${props.referenciaId}`);
+            const response = await api.get(`v1/referencias/${referenciaId}`);
             setReferencia(response.data);
             setNome(response.data.nome);
             setDataNascimento(response.data.data_nascimento);
@@ -40,7 +48,7 @@ function EditarReferencias(props) {
     }, []);
 
     const Referencia = {
-        paciente_id: props.pacienteId,
+        paciente_id: id,
         nome,
         data_nascimento,
         vinculo,
@@ -77,13 +85,13 @@ function EditarReferencias(props) {
         setCelular(formatarCelular(e.target.value));
     }
 
-    const handleFecharClick = (referenciaId) => {
-        props.onClose(referenciaId);
+    const handleFecharClick = () => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     const handleEdit = async () => {
         try {
-            await api.patch(`v1/referencias/${props.referenciaId}`, Referencia);
+            await api.patch(`v1/referencias/${referenciaId}`, Referencia);
             setOpen(true);
         } catch (error) {
             if (error.response && error.response.status === 400) {
@@ -114,9 +122,9 @@ function EditarReferencias(props) {
         setOpen(false);
     }
 
-    const handleSalvar = (referenciasId) => {
+    const handleSalvar = () => {
         setOpen(false);
-        props.onClose(referenciasId);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
 
     }
 

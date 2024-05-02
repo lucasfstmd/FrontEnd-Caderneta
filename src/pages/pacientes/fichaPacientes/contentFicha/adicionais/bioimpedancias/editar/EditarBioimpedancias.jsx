@@ -6,9 +6,16 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
-import {useParams} from "react-router-dom";
+import { useNavigate, useParams } from 'react-router-dom'
+import { useQuery } from '../../../ContentFicha'
 
-function EditarBioimpedancias(props) {
+function EditarBioimpedancias() {
+    const query = useQuery();
+    const bioimpedanciaId = query.get('infoId')
+    const params = useParams();
+    const { id } = params
+    const navigate = useNavigate()
+
     const [bioimpedancia, setBioimpedancia] = useState();
     const [p1, setP1] = useState(null);
     const [p2, setP2] = useState(null);
@@ -35,11 +42,10 @@ function EditarBioimpedancias(props) {
     const [p23, setP23] = useState(null);
     const [p24, setP24] = useState(null);
     const [p25, setP25] = useState(null);
-    const { id } = useParams()
 
     async function carregarBioimpedancia() {
         try {
-            const response = await api.get(`v1/bioimpedancias/${props.bioimpedanciaId}`);
+            const response = await api.get(`v1/bioimpedancias/${bioimpedanciaId}`);
             setBioimpedancia(response.data);
             setP1(response.data.p1);
             setP2(response.data.p2);
@@ -104,13 +110,13 @@ function EditarBioimpedancias(props) {
         p25,
     };
 
-    const handleFecharClick = (bioimpedanciaId) => {
-        props.onClose(bioimpedanciaId);
+    const handleFecharClick = () => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     };
 
     const handleEdit = async () => {
         try {
-            await api.patch(`v1/bioimpedancias/${props.bioimpedanciaId}`, Bioimpedancia);
+            await api.patch(`v1/bioimpedancias/${bioimpedanciaId}`, Bioimpedancia);
             setOpen(true);
         } catch (error) {
             if (error.response && error.response.status === 400) {
@@ -141,9 +147,9 @@ function EditarBioimpedancias(props) {
         setOpen(false);
     }
 
-    const handleSalvar = (bioimpedanciaId) => {
+    const handleSalvar = () => {
         setOpen(false);
-        props.onClose(bioimpedanciaId);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     return (

@@ -13,8 +13,15 @@ import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
 import DialogActions from '@mui/material/DialogActions'
 import Button from '@mui/material/Button'
+import { useNavigate, useParams } from 'react-router-dom'
+import { useQuery } from '../../../ContentFicha'
 
-function AdicionarUsabilidade(props) {
+function AdicionarUsabilidade() {
+    const params = useParams();
+    const { id } = params
+    const query = useQuery();
+    const navigate = useNavigate();
+
     const [p1, setP1] = useState(null);
     const [p1_0, setP1_0] = useState('');
     const [p1_1, setP1_1] = useState(null);
@@ -54,13 +61,13 @@ function AdicionarUsabilidade(props) {
         setOpen(false);
     }
 
-    const handleSalvar = (ivcgId) => {
+    const handleSalvar = () => {
         setOpen(false);
-        props.onClose(ivcgId);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
-    const handleFecharClick = (ivcgId) => {
-        props.onClose(ivcgId);
+    const handleFecharClick = () => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     return (

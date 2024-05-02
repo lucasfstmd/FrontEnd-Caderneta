@@ -9,6 +9,7 @@ import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import Loading from "../../../../../../../components/loading/Loading";
+import { useParams } from 'react-router-dom'
 
 function SarcfLinha({ sarcf, onEditClick }) {
     const [open, setOpen] = useState(false);
@@ -99,13 +100,14 @@ function TabelaSarcf(props) {
     const [sarcf, setSarcf] = useState([]);
     const [loading, setLoading] = useState(true)
     const [currentPage] = useState(1);
-
+    const params = useParams();
+    const { id } = params
     const itemsPerPage = props.itemsPerPage;
 
     async function carregarSarcfs() {
         try {
             const response = await api.get(
-                `v1/sarcfs/paciente/${props.pacienteId}`
+                `v1/sarcfs/paciente/${id}`
             );
             setSarcf(response.data);
             setLoading(false);

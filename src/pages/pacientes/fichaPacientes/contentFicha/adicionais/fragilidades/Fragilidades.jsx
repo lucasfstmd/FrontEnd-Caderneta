@@ -4,28 +4,25 @@ import api from "../../../../../../service/api";
 import TabelaFragilidades from "./tabela/TabelaFragilidades";
 import EditarFragilidades from "./editar/EditarFragilidades";
 import AdicionarFragilidades from "./adicionar/AdicionarFragilidades";
-import {useParams} from "react-router-dom";
+import { useNavigate, useParams } from 'react-router-dom'
+import { useQuery } from '../../ContentFicha'
 
-function Fragilidades(props) {
+function Fragilidades() {
     const [itemsPerPage] = useState(5);
     const [currentPage] = useState(1);
     const [fragilidades, setFragilidades] = useState([]);
-    const [editarFragilidadesId, setEditarFragilidadesId] = useState(null);
-    const [componenteAtivo, setComponenteAtivo] = useState('tabela');
+    const navigate = useNavigate()
+    const query = useQuery()
+    const params = useParams()
+    const { id } = params
     const [loading, setLoading] = useState(true)
-    const { id } = useParams();
 
-    const handleEditarClick = (fragilidadesId) => {
-        setComponenteAtivo('editar');
-        setEditarFragilidadesId(fragilidadesId);
+    const handleEditarClick = (diagnosticosId) => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=editar&infoId=${diagnosticosId}`);
     }
 
-    const handleFechar = () => {
-        setComponenteAtivo('tabela');
-    }
-
-    const handleAcicionarClick = () => {
-        setComponenteAtivo('adicionar');
+    const handleAdicionarClick = () => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=adicionar`);
     }
 
     async function carregarFragilidades() {
@@ -45,32 +42,24 @@ function Fragilidades(props) {
 
     return (
         <div className="Fragilidades">
-            <PainelFicha titulo="4.9 Fragilidades" botaoNew={true} onAdicionarClick={handleAcicionarClick}>
+            <PainelFicha titulo="4.9 Fragilidades" botaoNew={true} onAdicionarClick={handleAdicionarClick}>
                 <div className="Conteudo">
-                    {componenteAtivo === "tabela" && (
+                    {query.get('view') === "tabela" && (
                         <>
                             <TabelaFragilidades
                                 itemsPerPage={itemsPerPage}
                                 currentPage={currentPage}
                                 onEditarClick={handleEditarClick}
-                                pacienteId={props.pacienteId}
                                 data={fragilidades}
                                 loading={loading}
                             />
                         </>
                     )}
-                    {componenteAtivo === "editar" && (
-                        <EditarFragilidades
-                            onClose={handleFechar}
-                            pacienteId={props.pacienteId}
-                            fragilidadesId={editarFragilidadesId}
-                        />
+                    {query.get('view') === "editar" && (
+                        <EditarFragilidades/>
                     )}
-                    {componenteAtivo === "adicionar" && (
-                        <AdicionarFragilidades
-                            pacienteId={props.pacienteId}
-                            onClose={handleFechar}
-                        />
+                    {query.get('view') === "adicionar" && (
+                        <AdicionarFragilidades/>
                     )}
                 </div>
             </PainelFicha>

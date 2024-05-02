@@ -6,8 +6,15 @@ import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import { useNavigate, useParams } from 'react-router-dom'
+import { useQuery } from '../../../ContentFicha'
 
 function AdicionarPcl(props) {
+    const params = useParams();
+    const { id } = params
+    const query = useQuery();
+    const navigate = useNavigate();
+
     const [p1, setP1] = useState(null);
     const [p2, setP2] = useState(null);
     const [p3, setP3] = useState(null);
@@ -44,7 +51,7 @@ function AdicionarPcl(props) {
 
 
     const Pcl = {
-        paciente_id: props.pacienteId,
+        paciente_id: id,
         p1,
         p2,
         p3,
@@ -113,13 +120,13 @@ function AdicionarPcl(props) {
         setOpen(false);
     }
 
-    const handleSalvar = (pclId) => {
+    const handleSalvar = () => {
         setOpen(false);
-        props.onClose(pclId);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
-    const handleFecharClick = (pclId) => {
-        props.onClose(pclId);
+    const handleFecharClick = () => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     return (
@@ -133,7 +140,7 @@ function AdicionarPcl(props) {
             <div className="LabelInput">
                 <table>
                     <tbody>
-                        <tr key={props.pacienteId}>
+                        <tr key={id}>
                             <td className="TabelaAdicionarPcl">
                                 <div className="Pergunta">
                                     Qual é a data de hoje?
@@ -323,7 +330,7 @@ function AdicionarPcl(props) {
             <div className="LabelInput">
                 <table>
                     <tbody>
-                    <tr key={props.pacienteId}>
+                    <tr key={id}>
                         <td className="TabelaAdicionarPcl">
                             <div className="Pergunta">
                                 Vaca
@@ -466,7 +473,7 @@ function AdicionarPcl(props) {
             <div className="LabelInput">
                 <table>
                     <tbody>
-                    <tr key={props.pacienteId}>
+                    <tr key={id}>
                         <td className="TabelaAdicionarPcl">
                             <div className="Pergunta">
                                 Vaca
@@ -615,7 +622,7 @@ function AdicionarPcl(props) {
             <div className="LabelInput">
                 <table>
                     <tbody>
-                    <tr key={props.pacienteId}>
+                    <tr key={id}>
                         <td className="TabelaAdicionarPcl">
                             <div className="Pergunta">
                                 Três crianças
@@ -761,7 +768,7 @@ function AdicionarPcl(props) {
             <div className="LabelInput">
                 <table>
                     <tbody>
-                    <tr key={props.pacienteId}>
+                    <tr key={id}>
                         <td className="TabelaAdicionarPcl">
                             <div className="Pergunta">
                                 Vaca

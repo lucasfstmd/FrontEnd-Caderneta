@@ -10,6 +10,7 @@ import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import Loading from "../../../../../../../components/loading/Loading";
+import { useParams } from 'react-router-dom'
 
 function PressaoLinha({ Pressao, onEditClick }) {
     const [open, setOpen] = useState(false);
@@ -101,13 +102,14 @@ function TabelaPressao(props) {
     const [pressao, setPressao] = useState([]);
     const [currentPage] = useState(1);
     const [loading, setLoading] = useState(true)
-
+    const params = useParams();
+    const { id } = params
     const itemsPerPage = props.itemsPerPage;
 
     async function carregarPrecao() {
         try {
             const response = await api.get(
-                `v1/pressao-controles/paciente/${props.pacienteId}`
+                `v1/pressao-controles/paciente/${id}`
             );
             setPressao(response.data);
             setLoading(false)

@@ -6,13 +6,21 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import { useNavigate, useParams } from 'react-router-dom'
+import { useQuery } from '../../../ContentFicha'
 
-function AdicionarPressao(props) {
+function AdicionarPressao() {
+    const params = useParams();
+    const { id } = params
+    const query = useQuery();
+    const navigate = useNavigate();
+
+
     const [data, setData] = useState("");
     const [pressao, setPressao] = useState("");
 
     const Pressao = {
-        paciente_id: props.pacienteId,
+        paciente_id: id,
         data,
         pressao,
     }
@@ -50,14 +58,15 @@ function AdicionarPressao(props) {
         setOpen(false);
     }
 
-    const handleSalvar = (pressaoId) => {
+    const handleSalvar = () => {
         setOpen(false);
-        props.onClose(pressaoId);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
-    const handleFecharClick = (intensidadesId) => {
-        props.onClose(intensidadesId);
+    const handleFecharClick = () => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
+
 
     return (
         <div className="AdicionarPressao">

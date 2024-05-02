@@ -6,8 +6,15 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import { useNavigate, useParams } from 'react-router-dom'
+import { useQuery } from '../../../ContentFicha'
 
-function AdicionarAmbientais(props) {
+function AdicionarAmbientais() {
+    const params = useParams();
+    const { id } = params
+    const query = useQuery();
+    const navigate = useNavigate();
+
     const [ano, setAno] = useState();
     const [p1, setP1] = useState();
     const [p2, setP2] = useState();
@@ -22,7 +29,7 @@ function AdicionarAmbientais(props) {
     const [p11, setP11] = useState();
 
     const Ambiental = {
-        paciente_id: props.pacienteId,
+        paciente_id: id,
         ano,
         p1,
         p2,
@@ -70,13 +77,13 @@ function AdicionarAmbientais(props) {
         setOpen(false);
     }
 
-    const handleSalvar = (ambientaisId) => {
+    const handleSalvar = () => {
         setOpen(false);
-        props.onClose(ambientaisId);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
-    const handleFecharClick = (ambientaisId) => {
-        props.onClose(ambientaisId);
+    const handleFecharClick = () => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     return (

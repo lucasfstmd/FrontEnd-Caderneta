@@ -15,8 +15,15 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import api from "../../../../../../../service/api";
+import { useNavigate, useParams } from 'react-router-dom'
+import { useQuery } from '../../../ContentFicha'
 
-function AdicionarIvcf(props) {
+function AdicionarIvcf() {
+    const params = useParams();
+    const { id } = params
+    const query = useQuery();
+    const navigate = useNavigate();
+
     const [p1, setP1] = useState(null);
     const [p2, setP2] = useState(null);
     const [p3, setP3] = useState(null);
@@ -62,7 +69,7 @@ function AdicionarIvcf(props) {
     };
 
     const Ivcf = {
-        paciente_id: props.pacienteId,
+        paciente_id: id,
         p1,
         p2,
         p3,
@@ -127,13 +134,13 @@ function AdicionarIvcf(props) {
         setOpen(false);
     }
 
-    const handleSalvar = (ivcgId) => {
+    const handleSalvar = () => {
         setOpen(false);
-        props.onClose(ivcgId);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
-    const handleFecharClick = (ivcgId) => {
-        props.onClose(ivcgId);
+    const handleFecharClick = () => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     return (

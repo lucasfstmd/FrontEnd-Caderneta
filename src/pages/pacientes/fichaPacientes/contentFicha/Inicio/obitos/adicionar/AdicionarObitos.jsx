@@ -6,14 +6,21 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import { useNavigate, useParams } from 'react-router-dom'
+import { useQuery } from '../../../ContentFicha'
 
-function AdicionarObitos(props) {
+function AdicionarObitos() {
+    const params = useParams();
+    const { id } = params
+    const query = useQuery();
+    const navigate = useNavigate();
+
     const [obito, setObito] = useState(null)
     const [quando, setQuando] = useState('');
     const [motivo, setMotivo] = useState('');
 
     const Obito = {
-        paciente_id: props.pacienteId,
+        paciente_id: id,
         obito,
         quando,
         motivo,
@@ -52,13 +59,13 @@ function AdicionarObitos(props) {
         setOpen(false);
     }
 
-    const handleSalvar = (obitosId) => {
+    const handleSalvar = () => {
         setOpen(false);
-        handleFecharClick(obitosId)
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     const handleFecharClick = (obitosId) => {
-        props.onClose(obitosId);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     return (

@@ -6,8 +6,16 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import { useQuery } from '../../../ContentFicha'
+import { useNavigate, useParams } from 'react-router-dom'
 
-function EditarFragilidades(props) {
+function EditarFragilidades() {
+    const query = useQuery();
+    const fragilidadesId = query.get('infoId')
+    const params = useParams();
+    const { id } = params
+    const navigate = useNavigate()
+
     const [fragilidade, setFragilidade] = useState();
     const [p1, setP1] = useState(true);
     const [p2_1, setP2_1] = useState("22.00");
@@ -39,7 +47,7 @@ function EditarFragilidades(props) {
 
     async function carregarFragilidade() {
         try {
-            const response = await api.get(`v1/fragilidades/${props.fragilidadesId}`);
+            const response = await api.get(`v1/fragilidades/${fragilidadesId}`);
             setFragilidade(response.data);
             setP1(response.data.p1);
             setP2_1(response.data.p2_1);
@@ -78,7 +86,7 @@ function EditarFragilidades(props) {
     }, []);
 
     const Fragilidade = {
-        paciente_id: props.pacienteId,
+        paciente_id: id,
         p1,
         p2_1,
         p2_2,
@@ -108,13 +116,13 @@ function EditarFragilidades(props) {
         classificacao_da_fragilidade
     };
 
-    const handleFecharClick = (fragilidadeId) => {
-        props.onClose(fragilidadeId);
+    const handleFecharClick = () => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     const handleEdit = async () => {
         try {
-            await api.patch(`v1/fragilidades/${props.fragilidadesId}`, Fragilidade);
+            await api.patch(`v1/fragilidades/${fragilidadesId}`, Fragilidade);
             setOpen(true);
         } catch (error) {
             if (error.response && error.response.status === 400) {
@@ -145,9 +153,9 @@ function EditarFragilidades(props) {
         setOpen(false);
     }
 
-    const handleSalvar = (fragilidadeId) => {
+    const handleSalvar = () => {
         setOpen(false);
-        props.onClose(fragilidadeId);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     return (

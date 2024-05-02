@@ -3,51 +3,41 @@ import PainelFicha from "../../../../../../components/painelFicha/PainelFicha";
 import TabelaSarcf from "./tabela/TabelaSarcf";
 import EditarSarcf from "./editar/EditarSarcf";
 import AdicionarSarcf from "./adicionar/AdicionarSarcf";
+import { useNavigate, useParams } from 'react-router-dom'
+import { useQuery } from '../../ContentFicha'
 
-function Sarcf(props) {
+function Sarcf() {
     const [itemsPerPage] = useState(20);
     const [currentPage] = useState(1);
-    const [editarSarcfId, setEditarSarcfId] = useState(null);
-    const [componenteAtivo, setComponenteAtivo] = useState('tabela');
+    const navigate = useNavigate()
+    const query = useQuery()
+    const params = useParams()
+    const { id } = params
 
     const handleEditarClick = (sarcfId) => {
-        setComponenteAtivo('editar');
-        setEditarSarcfId(sarcfId);
-    }
-
-    const handleFechar = () => {
-        setComponenteAtivo('tabela');
-        setEditarSarcfId(null);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=editar&infoId=${sarcfId}`);
     }
 
     const handleAdicionarClick = () => {
-        setComponenteAtivo('adicionar');
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=adicionar`);
     }
 
     return (
         <div className="Sarc">
             <PainelFicha titulo="4.11 Sarcfs" botaoNew={true} onAdicionarClick={handleAdicionarClick}>
                 <div className="ConteudoDiagnosticos">
-                    {componenteAtivo === 'tabela' && (
+                    {query.get('view') === 'tabela' && (
                         <TabelaSarcf
                             itemsPerPage={itemsPerPage}
                             currentPage={currentPage}
                             onEditarClick={handleEditarClick}
-                            pacienteId={props.pacienteId}
                         />
                     )}
-                    {componenteAtivo === 'editar' && (
-                        <EditarSarcf
-                            onClose={handleFechar}
-                            pacienteId={props.pacienteId}
-                            sarcfId={editarSarcfId}
-                        />
+                    {query.get('view') === 'editar' && (
+                        <EditarSarcf/>
                     )}
-                    {componenteAtivo === 'adicionar' && (
-                        <AdicionarSarcf
-                            pacienteId={props.pacienteId}
-                            onClose={handleFechar}
-                        />
+                    {query.get('view') === 'adicionar' && (
+                        <AdicionarSarcf/>
                     )}
                 </div>
             </PainelFicha>

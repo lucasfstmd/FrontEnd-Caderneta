@@ -9,6 +9,7 @@ import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import Loading from "../../../../../../../components/loading/Loading";
+import { useParams } from 'react-router-dom'
 
 function DiagnosticosLinha({ diagnosticos, onEditClick }) {
     const [open, setOpen] = useState(false);
@@ -87,13 +88,14 @@ function TabelaDiagnosticos(props) {
     const [diagnosticos, setDiagnosticos] = useState([]);
     const [currentPage] = useState(1);
     const [loading, setLoading] = useState(true)
-
+    const params = useParams();
+    const { id } = params
     const itemsPerPage = props.itemsPerPage;
 
     async function carregarDiagnosticos() {
         try {
             const response = await api.get(
-                `v1/diagnosticos/paciente/${props.pacienteId}`
+                `v1/diagnosticos/paciente/${id}`
             );
             setDiagnosticos(response.data);
             setLoading(false);

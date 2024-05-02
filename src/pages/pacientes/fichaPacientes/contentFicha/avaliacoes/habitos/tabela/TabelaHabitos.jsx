@@ -10,6 +10,7 @@ import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import Loading from "../../../../../../../components/loading/Loading";
+import { useParams } from 'react-router-dom'
 
 function HabitosLinha({ habitos, onEditClick }){
     const [open, setOpen] = useState(false);
@@ -171,13 +172,14 @@ function TabelaHabitos(props) {
     const [habitos, setHabitos] = useState([]);
     const [currentPage] = useState(1);
     const [loading, setLoading] = useState(true)
-
+    const params = useParams();
+    const { id } = params
     const itemsPerPage = props.itemsPerPage;
 
     async function carregarHabitos() {
         try {
             const response = await api.get(
-                `v1/habitos/paciente/${props.pacienteId}`
+                `v1/habitos/paciente/${id}`
             );
             setHabitos(response.data);
             setLoading(false)

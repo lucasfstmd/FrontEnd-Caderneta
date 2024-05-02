@@ -6,8 +6,16 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import { useQuery } from '../../../ContentFicha'
+import { useNavigate, useParams } from 'react-router-dom'
 
-function EditarExameLab(props) {
+function EditarExameLab() {
+    const query = useQuery();
+    const exameLabId = query.get('infoId')
+    const params = useParams();
+    const { id } = params
+    const navigate = useNavigate()
+
     const [ExameLab, setExameLab] = useState();
     const [hemograma, setHemograma] = useState("");
     const [plaquetas, setPlaquetas] = useState("");
@@ -67,7 +75,7 @@ function EditarExameLab(props) {
 
     async function carregarExameLab() {
         try {
-            const response = await api.get(`v1/laboratorial-exames/${props.exameLabId}`);
+            const response = await api.get(`v1/laboratorial-exames/${exameLabId}`);
             setExameLab(response.data);
             setHemograma(response.data.hemograma);
             setPlaquetas(response.data.plaquetas);
@@ -135,7 +143,7 @@ function EditarExameLab(props) {
 
 
     const ExameLabo = {
-        paciente_id: props.pacienteId,
+        paciente_id: id,
         hemograma,
         plaquetas,
         contagem,
@@ -193,13 +201,13 @@ function EditarExameLab(props) {
         leucograma_monocitos
     };
 
-    const handleFecharClick = (exameLabId) => {
-        props.onClose(exameLabId);
+    const handleFecharClick = () => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     };
 
     const handleEdit = async () => {
         try {
-            await api.patch(`v1/laboratorial-exames/${props.exameLabId}`, ExameLabo);
+            await api.patch(`v1/laboratorial-exames/${exameLabId}`, ExameLabo);
             setOpen(true);
         } catch (error) {
             if (error.response && error.response.status === 400) {
@@ -230,9 +238,9 @@ function EditarExameLab(props) {
         setOpen(false);
     }
 
-    const handleSalvar = (exameLabId) => {
+    const handleSalvar = () => {
         setOpen(false);
-        props.onClose(exameLabId);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     return (

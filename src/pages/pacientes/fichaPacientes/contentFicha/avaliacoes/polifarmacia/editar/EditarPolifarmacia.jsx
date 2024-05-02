@@ -6,13 +6,21 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import { useQuery } from '../../../ContentFicha'
+import { useNavigate, useParams } from 'react-router-dom'
 
-function EditarPolifarmacia(props) {
+function EditarPolifarmacia() {
+    const query = useQuery();
+    const polifarmaciaId = query.get('infoId')
+    const params = useParams();
+    const { id } = params
+    const navigate = useNavigate()
+
     const [uso_concomitante, setUso_concomitante] = useState(null);
 
     async function carregarPolifarmacia() {
         try {
-            const response = await api.get(`v1/polifarmacias/${props.polifarmaciaId}`);
+            const response = await api.get(`v1/polifarmacias/${polifarmaciaId}`);
             setUso_concomitante(response.data.uso_concomitante);
         } catch (error) {
             console.log(undefined);
@@ -24,17 +32,17 @@ function EditarPolifarmacia(props) {
     }, []);
 
     const Polifarmacia = {
-        paciente_id: props.pacienteId,
+        paciente_id: id,
         uso_concomitante,
     }
 
-    const handleFecharClick = (polifarmaciaId) => {
-        props.onClose(polifarmaciaId);
+    const handleFecharClick = () => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     const handleEdit = async () => {
         try {
-            await api.patch(`v1/polifarmacias/${props.polifarmaciaId}`, Polifarmacia);
+            await api.patch(`v1/polifarmacias/${polifarmaciaId}`, Polifarmacia);
             setOpen(true);
         } catch (error) {
             if (error.response && error.response.status === 400) {
@@ -65,9 +73,9 @@ function EditarPolifarmacia(props) {
         setOpen(false);
     }
 
-    const handleSalvar = (polifarmaciaId) => {
+    const handleSalvar = () => {
         setOpen(false);
-        props.onClose(polifarmaciaId);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     return (

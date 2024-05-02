@@ -8,6 +8,7 @@ import { DialogContent, DialogContentText } from '@mui/material'
 import DialogActions from '@mui/material/DialogActions'
 import Button from '@mui/material/Button'
 import Loading from '../../../../../../../components/loading/Loading'
+import { useParams } from 'react-router-dom'
 
 function UsabilidadeLinha({ usabilidade, onEditarClick }) {
     const [open, setOpen] = useState(false);
@@ -131,7 +132,8 @@ function TabelaUsabilidade(props) {
     const currentPage = 1
     const itemsPerPage = props.itemsPerPage;
     const [loading, setLoading] = useState(false);
-
+    const params = useParams();
+    const { id } = params
     const totalPages = Math.ceil((usabilidade?.length || 0) / itemsPerPage);
 
     const getUsabilidadesPagAtual = () => {

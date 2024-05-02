@@ -3,52 +3,42 @@ import PainelFicha from "../../../../../../components/painelFicha/PainelFicha";
 import TabelaGlicemia from "./tabela/TabelaGlicemia";
 import EditarGlicemia from "./editar/EditarGlicemia";
 import AdicionarGlicemia from "./adicionar/AdicionarGlicemia";
+import { useNavigate, useParams } from 'react-router-dom'
+import { useQuery } from '../../ContentFicha'
 
-function Glicemia(props) {
+function Glicemia() {
     const [itemsPerPage] = useState(20);
     const [currentPage] = useState(1);
-    const [editarGlicemiaId, setEditarGlicemiaId] = useState(null);
-    const [componenteAtivo, setComponenteAtivo] = useState('tabela');
+    const navigate = useNavigate()
+    const query = useQuery()
+    const params = useParams()
+    const { id } = params
 
     const handleEditarClick = (glicemiaId) => {
-        setComponenteAtivo('editar');
-        setEditarGlicemiaId(glicemiaId);
-    }
-
-    const handleFechar = () => {
-        setComponenteAtivo('tabela');
-        setEditarGlicemiaId(null);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=editar&infoId=${glicemiaId}`);
     }
 
     const handleAdicionarClick = () => {
-        setComponenteAtivo('adicionar');
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=adicionar`);
     }
 
     return (
         <div className="Glicemia">
             <PainelFicha titulo="3.2 Controle de Glicemia" botaoNew={true} onAdicionarClick={handleAdicionarClick}>
                 <div className="Conteudo">
-                    {componenteAtivo === 'tabela' && (
+                    {query.get('view') === 'tabela' && (
                         <TabelaGlicemia
                             itemsPerPage={itemsPerPage}
                             currentPage={currentPage}
                             onEditarClick={handleEditarClick}
-                            pacienteId={props.pacienteId}
                         />
                     )}
 
-                    {componenteAtivo === 'editar' && (
-                        <EditarGlicemia
-                            onClose={handleFechar}
-                            pacienteId={props.pacienteId}
-                            glicemiaId={editarGlicemiaId}
-                        />
+                    {query.get('view') === 'editar' && (
+                        <EditarGlicemia/>
                     )}
-                    {componenteAtivo === 'adicionar' && (
-                        <AdicionarGlicemia
-                            pacienteId={props.pacienteId}
-                            onClose={handleFechar}
-                        />
+                    {query.get('view') === 'adicionar' && (
+                        <AdicionarGlicemia/>
                     )}
                 </div>
             </PainelFicha>

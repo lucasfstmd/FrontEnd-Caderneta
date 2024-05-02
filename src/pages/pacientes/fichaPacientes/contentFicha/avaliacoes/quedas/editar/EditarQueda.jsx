@@ -6,8 +6,16 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import { useQuery } from '../../../ContentFicha'
+import { useNavigate, useParams } from 'react-router-dom'
 
-function EditarQueda(props) {
+function EditarQueda() {
+    const query = useQuery();
+    const quedaId = query.get('infoId')
+    const params = useParams();
+    const { id } = params
+    const navigate = useNavigate()
+
     const [quedaObj, setQuedaObj] = useState();
     const [queda, setQueda] = useState();
     const [data_mes, setDataMes] = useState();
@@ -19,7 +27,7 @@ function EditarQueda(props) {
 
     async function carregarQuedas() {
         try {
-            const response = await api.get(`v1/quedas/${props.quedaId}`);
+            const response = await api.get(`v1/quedas/${quedaId}`);
             setQuedaObj(response.data);
             setQueda(response.data.queda);
             setDataMes(response.data.data_mes);
@@ -38,7 +46,7 @@ function EditarQueda(props) {
     }, []);
 
     const Queda = {
-        paciente_id: props.pacienteId,
+        paciente_id: id,
         queda,
         data_mes,
         data_ano,
@@ -48,13 +56,13 @@ function EditarQueda(props) {
         fratura_qual
     }
 
-    const handleFecharClick = (ambientalId) => {
-        props.onClose(ambientalId);
+    const handleFecharClick = () => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     };
 
     const handleEdit = async () => {
         try {
-            await api.patch(`v1/quedas/${props.quedaId}`, Queda);
+            await api.patch(`v1/quedas/${quedaId}`, Queda);
             setOpen(true);
         } catch (error) {
             if (error.response && error.response.status === 400) {
@@ -85,9 +93,9 @@ function EditarQueda(props) {
         setOpen(false);
     }
 
-    const handleSalvar = (quedaId) => {
+    const handleSalvar = () => {
         setOpen(false);
-        props.onClose(quedaId);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     return (

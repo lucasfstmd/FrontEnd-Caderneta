@@ -10,6 +10,7 @@ import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import {DialogContent, DialogContentText} from "@mui/material";
 import Loading from "../../../../../../../components/loading/Loading";
+import { useParams } from 'react-router-dom'
 
 function MedicamentosLinha({ avaliacoes, onEditClick }) {
     const [open, setOpen] = useState(false);
@@ -115,14 +116,15 @@ function TabelaMedicamentos(props) {
     const [avaliacoes, setAvaliacoes] = useState([]);
     const [currentPage] = useState(1);
     const [loading, setLoading] = useState(true)
-
+    const params = useParams();
+    const { id } = params
     const itemsPerPage = props.itemsPerPage;
 
 
     async function carregarAvaliacoes() {
         try {
             const response = await api.get(
-                `v1/avaliacoes/paciente/${props.pacienteId}`
+                `v1/avaliacoes/paciente/${id}`
             );
             setAvaliacoes(response.data);
             setLoading(false)

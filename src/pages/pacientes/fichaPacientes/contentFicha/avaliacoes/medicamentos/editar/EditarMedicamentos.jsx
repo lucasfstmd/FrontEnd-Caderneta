@@ -6,8 +6,16 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import { useQuery } from '../../../ContentFicha'
+import { useNavigate, useParams } from 'react-router-dom'
 
-function EditarMedicamentos(props) {
+function EditarMedicamentos() {
+    const query = useQuery();
+    const medicamentosId = query.get('infoId')
+    const params = useParams();
+    const { id } = params
+    const navigate = useNavigate()
+
     const [avaliacoes, setAvaliacoes] = useState();
     const [nome_medicamento, setNome_medicamento] = useState('');
     const [dose, setDose] = useState('');
@@ -18,7 +26,7 @@ function EditarMedicamentos(props) {
 
     async function carregarMedicamentos() {
         try {
-            const response = await api.get(`v1/avaliacoes/${props.medicamentosId}`);
+            const response = await api.get(`v1/avaliacoes/${medicamentosId}`);
             setAvaliacoes(response.data);
             setNome_medicamento(response.data.nome_medicamento);
             setDose(response.data.dose);
@@ -36,7 +44,7 @@ function EditarMedicamentos(props) {
     }, []);
 
     const Avaliacao = {
-        paciente_id: props.pacienteId,
+        paciente_id: id,
         nome_medicamento,
         dose,
         data_inicio,
@@ -46,13 +54,13 @@ function EditarMedicamentos(props) {
     }
 
 
-    const handleFecharClick = (avaliacoesId) => {
-        props.onClose(avaliacoesId);
+    const handleFecharClick = () => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     const handleEdit = async () => {
         try {
-            await api.patch(`v1/avaliacoes/${props.medicamentosId}`, Avaliacao);
+            await api.patch(`v1/avaliacoes/${medicamentosId}`, Avaliacao);
             setOpen(true);
         } catch (error) {
             if (error.response && error.response.status === 400) {
@@ -83,9 +91,9 @@ function EditarMedicamentos(props) {
         setOpen(false);
     }
 
-    const handleSalvar = (medicamentosId) => {
+    const handleSalvar = () => {
         setOpen(false);
-        props.onClose(medicamentosId);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     return (

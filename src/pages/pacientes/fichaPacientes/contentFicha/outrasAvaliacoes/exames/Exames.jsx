@@ -3,52 +3,43 @@ import PainelFicha from "../../../../../../components/painelFicha/PainelFicha";
 import TabelaExame from "./tabela/TabelaExame";
 import EditarExame from "./editar/EditarExame";
 import AdicionarExame from "./adicionar/AdicionarExame";
+import { useNavigate, useParams } from 'react-router-dom'
+import { useQuery } from '../../ContentFicha'
 
-function Exames(props) {
+function Exames() {
     const [itemsPerPage] = useState(20);
     const [currentPage] = useState(1);
-    const [editarExamesId, setEditarExamesId] = useState(null);
-    const [componenteAtivo, setComponenteAtivo] = useState('tabela');
+    const navigate = useNavigate()
+    const query = useQuery()
+    const params = useParams()
+    const { id } = params
 
     const handleEditarClick = (examesId) => {
-        setComponenteAtivo('editar');
-        setEditarExamesId(examesId);
-    }
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=editar&infoId=${examesId}`);
 
-    const handleFechar = () => {
-        setComponenteAtivo('tabela');
-        setEditarExamesId(null);
     }
 
     const handleAdicionarClick = () => {
-        setComponenteAtivo('adicionar');
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=adicionar`);
     }
 
     return (
         <div className="Exames">
             <PainelFicha titulo="3.5 Agenda de Consultas e Exames" botaoNew={true} onAdicionarClick={handleAdicionarClick}>
                 <div className="Conteudo">
-                    {componenteAtivo === 'tabela' && (
+                    {query.get('view') === 'tabela' && (
                         <TabelaExame
                             itemsPerPage={itemsPerPage}
                             currentPage={currentPage}
                             onEditarClick={handleEditarClick}
-                            pacienteId={props.pacienteId}
                         />
                     )}
 
-                    {componenteAtivo === 'editar' && (
-                        <EditarExame
-                            onClose={handleFechar}
-                            pacienteId={props.pacienteId}
-                            exameId={editarExamesId}
-                        />
+                    {query.get('view') === 'editar' && (
+                        <EditarExame/>
                     )}
-                    {componenteAtivo === 'adicionar' && (
-                        <AdicionarExame
-                            pacienteId={props.pacienteId}
-                            onClose={handleFechar}
-                        />
+                    {query.get('view') === 'adicionar' && (
+                        <AdicionarExame/>
                     )}
                 </div>
             </PainelFicha>

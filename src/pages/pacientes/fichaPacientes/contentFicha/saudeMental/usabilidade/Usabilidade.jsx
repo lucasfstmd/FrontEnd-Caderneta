@@ -2,25 +2,23 @@ import { useState } from 'react'
 import PainelFicha from '../../../../../../components/painelFicha/PainelFicha'
 import TabelaUsabilidade from './tabela/TabelaUsabilidade'
 import AdicionarUsabilidade from './adicionar/AdicionarUsabilidade'
+import { useNavigate, useParams } from 'react-router-dom'
+import { useQuery } from '../../ContentFicha'
 
 function Usabilidade(props) {
     const itemsPerPage = 20;
     const currentPage = 1;
-    const [editarUsabilidade, setEditarUsabilidade] = useState(null);
-    const [componenteAtivo, setComponenteAtivo] = useState('tabela');
+    const navigate = useNavigate()
+    const query = useQuery()
+    const params = useParams()
+    const { id } = params
 
     const handleEditarClick = (usabilidadeId) => {
-        setComponenteAtivo('editar');
-        setEditarUsabilidade(usabilidadeId);
-    }
-
-    const handleFechar = () => {
-        setComponenteAtivo('tabela');
-        setEditarUsabilidade(null);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=editar&infoId=${usabilidadeId}`);
     }
 
     const handleAdicionarClick = () => {
-        setComponenteAtivo('adicionar');
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=adicionar`);
     }
 
     return (
@@ -31,22 +29,18 @@ function Usabilidade(props) {
                 onAdicionarClick={handleAdicionarClick}
             >
                 <div className="Conteudo">
-                    {componenteAtivo === 'tabela' && (
+                    {query.get('view') === 'tabela' && (
                         <TabelaUsabilidade
                             itemsPerPage={itemsPerPage}
                             currentPage={currentPage}
                             onEditarClick={handleEditarClick}
-                            pacientId={props.pacienteId}
                         />
                     )}
-                    {componenteAtivo === 'adicionar' && (
-                        <AdicionarUsabilidade
-                            pacienteId={props.pacientId}
-                            onClose={handleFechar}
-                        />
+                    {query.get('view') === 'adicionar' && (
+                        <AdicionarUsabilidade/>
                     )}
 
-                    {componenteAtivo === 'editar' && (
+                    {query.get('view') === 'editar' && (
                         <>
 
                         </>
