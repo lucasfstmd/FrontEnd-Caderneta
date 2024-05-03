@@ -4,6 +4,7 @@ import TabelaUsabilidade from './tabela/TabelaUsabilidade'
 import AdicionarUsabilidade from './adicionar/AdicionarUsabilidade'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useQuery } from '../../ContentFicha'
+import EditarUsabilidade from './editar/EditarUsabilidade'
 
 function Usabilidade(props) {
     const itemsPerPage = 20;
@@ -41,9 +42,7 @@ function Usabilidade(props) {
                     )}
 
                     {query.get('view') === 'editar' && (
-                        <>
-
-                        </>
+                        <EditarUsabilidade/>
                     )}
                 </div>
             </PainelFicha>

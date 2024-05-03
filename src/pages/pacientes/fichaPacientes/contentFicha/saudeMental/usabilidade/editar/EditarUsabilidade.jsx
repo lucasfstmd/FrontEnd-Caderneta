@@ -1,4 +1,7 @@
-import React, { useState } from 'react'
+import { useQuery } from '../../../ContentFicha'
+import { useNavigate, useParams } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import api from '../../../../../../../service/api'
 import {
     Checkbox,
     DialogContent,
@@ -13,14 +16,13 @@ import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
 import DialogActions from '@mui/material/DialogActions'
 import Button from '@mui/material/Button'
-import { useNavigate, useParams } from 'react-router-dom'
-import { useQuery } from '../../../ContentFicha'
 
-function AdicionarUsabilidade() {
+function EditarUsabilidade() {
+    const query = useQuery();
+    const usabilidadeId = query.get('infoId')
     const params = useParams();
     const { id } = params
-    const query = useQuery();
-    const navigate = useNavigate();
+    const navigate = useNavigate()
 
     const [usabilidade, setUsabilidaded] = useState({
         p1: null,
@@ -42,7 +44,37 @@ function AdicionarUsabilidade() {
         p4_1_1: null,
     })
 
+    async function carregarUsabilidade() {
+        try {
+            const response = await api.get(`v1/usabilidade/${usabilidadeId}`)
+            setUsabilidaded(response.data)
+        } catch (error) {
+            console.log(undefined)
+        }
+    }
+
     console.log(usabilidade)
+
+    useEffect(() => {
+        carregarUsabilidade()
+    }, [])
+
+    const handleFecharClick = () => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
+    };
+
+    const handleEdit = async () => {
+        try {
+            await api.patch(`v1/usabilidade/${usabilidadeId}`, usabilidade);
+            setOpen(true);
+        } catch (error) {
+            if (error.response && error.response.status === 400) {
+                setOpenErro400(true);
+            } else if (error.response && error.response.status === 500) {
+                setOpenErro500(true);
+            }
+        }
+    }
 
     const [open, setOpen] = useState(false);
     const [openErro400, setOpenErro400] = useState(false);
@@ -57,7 +89,7 @@ function AdicionarUsabilidade() {
     }
 
     const handleClickOpen = () => {
-        // handleSalvarApi();
+        handleEdit();
     }
 
     const handleClose = () => {
@@ -66,10 +98,6 @@ function AdicionarUsabilidade() {
 
     const handleSalvar = () => {
         setOpen(false);
-        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
-    }
-
-    const handleFecharClick = () => {
         navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
@@ -95,6 +123,7 @@ function AdicionarUsabilidade() {
                                             row
                                             aria-labelledby="demo-row-radio-buttons-group-label"
                                             name="row-radio-buttons-group"
+                                            defaultValue={usabilidade.p1}
                                         >
                                             <FormControlLabel
                                                 value={1}
@@ -117,7 +146,7 @@ function AdicionarUsabilidade() {
                                 {usabilidade.p1 === 1 && (
                                     <div className="LabelInput">
                                         <label><strong>Qual?</strong></label>
-                                        <input value={usabilidade.p1_0} onChange={(e) => setUsabilidaded({
+                                        <input defaultValue={usabilidade.p1_0} onChange={(e) => setUsabilidaded({
                                             ...usabilidade,
                                             p1_0: e.target.value })} type="text"/>
                                     </div>
@@ -131,6 +160,7 @@ function AdicionarUsabilidade() {
                                     <FormGroup>
                                         <FormControlLabel
                                             value={usabilidade.p1_1_1}
+                                            checked={usabilidade.p1_1_1 === 1}
                                             onChange={(e) => setUsabilidaded( {
                                                 ...usabilidade,
                                                 p1_1_1: e.target.checked ? 1 : 0 })}
@@ -139,6 +169,7 @@ function AdicionarUsabilidade() {
                                         />
                                         <FormControlLabel
                                             value={usabilidade.p1_1_2}
+                                            checked={usabilidade.p1_1_2 === 1}
                                             onChange={(e) => setUsabilidaded( {
                                                 ...usabilidade,
                                                 p1_1_2: e.target.checked ? 1 : 0 })}
@@ -147,6 +178,7 @@ function AdicionarUsabilidade() {
                                         />
                                         <FormControlLabel
                                             value={usabilidade.p1_1_3}
+                                            checked={usabilidade.p1_1_3 === 1}
                                             onChange={(e) => setUsabilidaded( {
                                                 ...usabilidade,
                                                 p1_1_3: e.target.checked ? 1 : 0 })}
@@ -155,6 +187,7 @@ function AdicionarUsabilidade() {
                                         />
                                         <FormControlLabel
                                             value={usabilidade.p1_1_4}
+                                            checked={usabilidade.p1_1_4 === 1}
                                             onChange={(e) => setUsabilidaded( {
                                                 ...usabilidade,
                                                 p1_1_4: e.target.checked ? 1 : 0 })}
@@ -163,6 +196,7 @@ function AdicionarUsabilidade() {
                                         />
                                         <FormControlLabel
                                             value={usabilidade.p1_1_5}
+                                            checked={usabilidade.p1_1_5 === 1}
                                             onChange={(e) => setUsabilidaded( {
                                                 ...usabilidade,
                                                 p1_1_5: e.target.checked ? 1 : 0 })}
@@ -182,6 +216,7 @@ function AdicionarUsabilidade() {
                                             row
                                             aria-labelledby="demo-row-radio-buttons-group-label"
                                             name="row-radio-buttons-group"
+                                            defaultValue={usabilidade.p1_2}
                                         >
                                             <FormControlLabel
                                                 value={0}
@@ -222,10 +257,9 @@ function AdicionarUsabilidade() {
                                 <label><strong>1.3. Qual o seu grau de experiência/ tempo com este tipo de
                                     dispositivo/relógio?
                                     Anos ou meses</strong></label>
-                                <input value={usabilidade.p1_3}
-                                       onChange={(e) => setUsabilidaded({
-                                           ...usabilidade,
-                                           p1_3: e.target.value})} type="text"/>
+                                <input defaultValue={usabilidade.p1_3} onChange={(e) => setUsabilidaded( {
+                                    ...usabilidade,
+                                    p1_3: e.target.value })} type="text"/>
                             </div>
                         </td>
                     </tr>
@@ -245,6 +279,7 @@ function AdicionarUsabilidade() {
                                             row
                                             aria-labelledby="demo-row-radio-buttons-group-label"
                                             name="row-radio-buttons-group"
+                                            defaultValue={usabilidade.p2_1}
                                         >
                                             <FormControlLabel
                                                 value={0}
@@ -290,6 +325,7 @@ function AdicionarUsabilidade() {
                                             row
                                             aria-labelledby="demo-row-radio-buttons-group-label"
                                             name="row-radio-buttons-group"
+                                            defaultValue={usabilidade.p2_2}
                                         >
                                             <FormControlLabel
                                                 value={0}
@@ -344,6 +380,7 @@ function AdicionarUsabilidade() {
                                             row
                                             aria-labelledby="demo-row-radio-buttons-group-label"
                                             name="row-radio-buttons-group"
+                                            defaultValue={usabilidade.p3_1}
                                         >
                                             <FormControlLabel
                                                 value={1}
@@ -365,7 +402,7 @@ function AdicionarUsabilidade() {
                                 </div>
                                 <div className="LabelInput">
                                     <label><strong>Comente</strong></label>
-                                    <input value={usabilidade.p3_1_1} onChange={(e) => setUsabilidaded({
+                                    <input defaultValue={usabilidade.p3_1_1} onChange={(e) => setUsabilidaded({
                                         ...usabilidade,
                                         p3_1_1: e.target.value })} type="text"/>
                                 </div>
@@ -380,6 +417,7 @@ function AdicionarUsabilidade() {
                                             row
                                             aria-labelledby="demo-row-radio-buttons-group-label"
                                             name="row-radio-buttons-group"
+                                            defaultValue={usabilidade.p3_2}
                                         >
                                             <FormControlLabel
                                                 value={1}
@@ -401,10 +439,9 @@ function AdicionarUsabilidade() {
                                 </div>
                                 <div className="LabelInput">
                                     <label><strong>Qual tipo de desconforto:</strong></label>
-                                    <input value={usabilidade.p3_2_1}
-                                           onChange={(e) => setUsabilidaded({
-                                               ...usabilidade,
-                                               p3_2_1: e.target.value})} type="text"/>
+                                    <input defaultValue={usabilidade.p3_2_1} onChange={(e) => setUsabilidaded({
+                                        ...usabilidade,
+                                        p3_2_1: e.target.value })} type="text"/>
                                 </div>
                             </div>
                         </td>
@@ -425,6 +462,7 @@ function AdicionarUsabilidade() {
                                             row
                                             aria-labelledby="demo-row-radio-buttons-group-label"
                                             name="row-radio-buttons-group"
+                                            defaultValue={usabilidade.p4_1}
                                         >
                                             <FormControlLabel
                                                 value={0}
@@ -458,7 +496,7 @@ function AdicionarUsabilidade() {
                                                 label="Seguro"
                                             />
                                             <FormControlLabel
-                                                value={4}
+                                                value={3}
                                                 onChange={(e) => setUsabilidaded({
                                                     ...usabilidade,
                                                     p4_1: parseInt(e.target.value) })}
@@ -470,10 +508,9 @@ function AdicionarUsabilidade() {
                                 </div>
                                 <div className="LabelInput">
                                     <label><strong>Porquê?</strong></label>
-                                    <input value={usabilidade.p4_1_1}
-                                           onChange={(e) => setUsabilidaded({
-                                               ...usabilidade,
-                                               p4_1_1: e.target.value})} type="text"/>
+                                    <input defaultValue={usabilidade.p4_1_1} onChange={(e) => setUsabilidaded({
+                                        ...usabilidade,
+                                        p4_1_1: e.target.value })} type="text"/>
                                 </div>
                             </div>
                         </td>
@@ -547,6 +584,7 @@ function AdicionarUsabilidade() {
             </div>
         </div>
     )
+
 }
 
-export default AdicionarUsabilidade;
+export default EditarUsabilidade;

@@ -93,8 +93,8 @@ function ExportDataBase() {
     };
 
     const getDataBase = () => {
-        // fetchDataForExport();
-        fetchDataBase();
+        fetchDataForExport();
+        // fetchDataBase();
     }
 
     const build = (array,field, patient_id) => {
@@ -228,7 +228,7 @@ function ExportDataBase() {
                         :
                         <>
                             <Button onClick={handleClose} variant="outlined" color="success">
-                                <CSVLink style={{textDecoration: 'none', color: 'green'}} data={dataBase}
+                                <CSVLink style={{textDecoration: 'none', color: 'green'}} data={result}
                                          filename="banco-de-dados.csv">
                                     <AiOutlineDownload/> Baixar
                                 </CSVLink>

@@ -33,32 +33,33 @@ function UsabilidadeLinha({ usabilidade, onEditarClick }) {
             <td className="TextosTabela">
                 <div className="Pergunta">
                     1.0. Você já utilizou algum dispositivo igual ou semelhante ao atual?
-                    <strong>{usabilidade.p1 === 0 ? 'Não' : 'Sim'}</strong>
-                    Qual?
-                    <strong>{usabilidade.p1_0}</strong>
+                    <strong> {usabilidade.p1 === 0 ? 'Não' : 'Sim'}</strong>
+                    <br/>
+                     Qual?
+                    <strong> {usabilidade.p1_0}</strong>
                 </div>
                 <div className="Pergunta">
-                    1.1. Caso <strong>NÃO</strong> tenha utilizado, justifique o motivo.
-                    <strong>{usabilidade.p1_1}</strong>
+                    1.1. Caso <strong>NÃO</strong> tenha utilizado, justifique o motivo:
+                    <strong> {usabilidade.p1_1_1}</strong>
                 </div>
                 <div className="Pergunta">
                     1.2. Qual o seu grau de experiência com este tipo de dispositivo/relógio?
-                    <strong>{usabilidade.p1_2}</strong>
+                    <strong> {usabilidade.p1_2}</strong>
                 </div>
                 <div className="Pergunta">
                     1.3. Qual o seu grau de experiência/ tempo com este tipo de dispositivo/relógio?
-                    <strong>{usabilidade.p1_3}</strong>
+                    <strong> {usabilidade.p1_3}</strong>
                 </div>
                 <div className="Pergunta">
                     <strong>2.0. Satisfação do Usuário:</strong>
                 </div>
                 <div className="Pergunta">
                     2.1. Quanto ao manuseio de forma geral deste dispositivo, qual o seu grau de satisfação?
-                    <strong>{usabilidade.p2_1}</strong>
+                    <strong> {usabilidade.p2_1}</strong>
                 </div>
                 <div className="Pergunta">
                     2.2. Com relação ao monitoramento dos seus dados de saúde. Qual seu grau de satisfação?
-                    <strong>{usabilidade.p2_2}</strong>
+                    <strong> {usabilidade.p2_2}</strong>
                 </div>
                 <div className="Pergunta">
                     <strong>3.0. Utilização do Disposto:</strong>
@@ -66,20 +67,21 @@ function UsabilidadeLinha({ usabilidade, onEditarClick }) {
                 <div className="Pergunta">
                     3.1. Quanto a utilização do dispositivo, você sentiu alguma dificuldade? Se sim, justifique o
                     motivo.
-                    <strong>{usabilidade.p3_1}</strong>
+                    <strong> {usabilidade.p3_1}</strong>
                 </div>
                 <div className="Pergunta">
                     3.2. Apresentou algum processo alérgico, como prurido (coceira), vermelhidão, entre outros?
-                    <strong>{usabilidade.p3_2}</strong>
+                    <strong> {usabilidade.p3_2}</strong>
+                    <br/>
                     Qual tipo de desconforto:
-                    <strong>{usabilidade.p3_2_1}</strong>
+                    <strong> {usabilidade.p3_2_1}</strong>
                 </div>
                 <div className="Pergunta">
                     <strong>4.0. Quanto à privacidade:</strong>
                 </div>
                 <div className="Pergunta">
                     4.1. Como você se sentiu com uso do dispositivo
-                    <strong>{usabilidade.p4_1}</strong>
+                    <strong> {usabilidade.p4_1}</strong>
                 </div>
                 <div className="Pergunta">
                     Data de Cadastro:
@@ -128,7 +130,30 @@ function UsabilidadeLinha({ usabilidade, onEditarClick }) {
 }
 
 function TabelaUsabilidade(props) {
-    const [usabilidade, setUsabilidade] = useState([]);
+    const [usabilidade, setUsabilidade] = useState([
+        {
+            id: 0,
+            p1: 'teste',
+            p1_0: 'teste',
+            p1_1_1: 'teste',
+            p1_1_2: 'teste',
+            p1_1_3: 'teste',
+            p1_1_4: 'teste',
+            p1_1_5: 'teste',
+            p1_2: 'teste',
+            p1_3: 'teste',
+            p2_1: 'teste',
+            p2_2: 'teste',
+            p3_1: 'teste',
+            p3_1_1: 'teste',
+            p3_2: 'teste',
+            p3_2_1: 'teste',
+            p4_1: 'teste',
+            p4_1_1: 'teste',
+            created: '2019-05-02T00:58:34.000Z',
+            updated: '2019-05-02T00:58:34.000Z'
+        }
+    ]);
     const currentPage = 1
     const itemsPerPage = props.itemsPerPage;
     const [loading, setLoading] = useState(false);

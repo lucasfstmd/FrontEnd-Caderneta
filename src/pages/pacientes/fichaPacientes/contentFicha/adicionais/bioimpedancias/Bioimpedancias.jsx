@@ -18,7 +18,7 @@ function Bioimpedancias() {
     const [loading, setLoading] = useState(true)
 
     const handleEditarClick = (bioimpedanciaId) => {
-        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=editar&infoId=${diagnosticosId}`);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=editar&infoId=${bioimpedanciaId}`);
     }
 
     const handleAdicionarClick = () => {

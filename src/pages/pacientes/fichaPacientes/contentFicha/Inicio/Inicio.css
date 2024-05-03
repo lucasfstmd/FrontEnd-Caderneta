@@ -1,6 +1,5 @@
 .GraficoPeso {
-    display: flex;
-    width: 55vh;
+    width: auto;
     height: auto;
     justify-content: center;
     align-items: center;
@@ -8,4 +7,6 @@
     border: 1px solid #00000020;
     border-radius: 5px;
     background-color: #fff;
+    flex-grow: 1;
+    flex-basis: 200;
 }

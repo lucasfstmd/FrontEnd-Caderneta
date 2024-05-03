@@ -7,47 +7,145 @@ import api from "../../../../../service/api";
 
 import { Chart } from "react-google-charts";
 import Loading from "../../../../../components/loading/Loading";
+import { useParams } from 'react-router-dom'
+import antropometricos from '../avaliacoes/antropometricos/Antropometricos'
 
 function Inicio(props) {
-    const [pesoPaciente, setPesoPaciente] = useState([]);
-    const [data, setData] = useState([["Ano", "Peso"]]);
-    const [loading, setLoading] = useState(true)
+    const params = useParams()
+    const { id } = params
+    const [antropometricos, setAntropometricos] = useState([]);
+    const [controlePressao, setControlePressao] = useState([]);
+    const [glicemia, setGlicemia] = useState([]);
+    const [dataPeso, setDataPeso] = useState([["Ano", "Peso"]]);
+    const [dataPressao, setDataPressao] = useState([["Data", "Pressão"]]);
+    const [dataGlicemia, setDataGlicemia] = useState([["Data", "Glicemia"]]);
+    const [dataPanturrilha, setDataPanturrilha] = useState([["Data", "Perimetro"]]);
+    const [loadingPeso, setLoadingPeso] = useState(true)
+    const [loadingPressao, setLoadingPressao] = useState(true)
+    const [loadingGlicemia, setLoadingGlicemia] = useState(true)
 
-    async function carregarPeso() {
+    async function carregarAntropometricos() {
         try {
-            const response = await api.get(`v1/pesos/paciente/${props.pacienteId}`);
-            setPesoPaciente(response.data);
-            setLoading(false)
+            const response = await api.get(`v1/antropometricos/paciente/${id}`);
+            setAntropometricos(response.data);
+            setLoadingPeso(false)
         } catch (error) {
-            console.error("Erro ao carregar o peso do paciente:", error);
+            console.error(undefined);
+        }
+    }
+
+    async function carregarPressao() {
+        try {
+            const response = await api.get(
+                `v1/pressao-controles/paciente/${id}`
+            );
+            setControlePressao(response.data);
+            setLoadingPressao(false)
+        } catch (error) {
+            console.log(undefined);
+        }
+    }
+
+    async function carregarGlicemia() {
+        try {
+            const response = await api.get(
+                `v1/glicemia-controles/paciente/${id}`
+            );
+            setGlicemia(response.data);
+            setLoadingGlicemia(false)
+        } catch (error) {
+            console.log(undefined);
         }
     }
 
     useEffect(() => {
-        carregarPeso();
-    }, [props.pacienteId]);
+        carregarAntropometricos();
+        carregarPressao();
+        carregarGlicemia();
+    }, [id]);
 
     useEffect(() => {
-        const dataPoints = pesoPaciente.map((item) => [item.ano.toString(), item.peso]);
-        const dataCopy = [["Ano", "Peso"], ...dataPoints];
-        setData(dataCopy);
-    }, [pesoPaciente]);
+        const dataPointsPeso = antropometricos.map((item) => [item.ano.toString(), item.peso]);
+        const dataCopyPeso = [["Ano", "Peso"], ...dataPointsPeso];
+        const dataPointsPanturrilha = antropometricos.map((item) => [item.ano.toString(), item.perimetro_panturrilha]);
+        const dataCopyPanturrilha = [["Ano", "Perimetro"], ...dataPointsPanturrilha];
+        const dataPointPressao = controlePressao.map((item) => [item.data.toString(), item.pressao])
+        const dataCopyPressao = [["Data", "Pressão"], ...dataPointPressao];
+        const dataPointGlicemia = glicemia.map((item) => [item.data.toString(), item.valor])
+        const dataCopyGlicemia = [["Data", "Glicemia"], ...dataPointGlicemia];
+        setDataPeso(dataCopyPeso);
+        setDataPressao(dataCopyPressao)
+        setDataGlicemia(dataCopyGlicemia)
+        setDataPanturrilha(dataCopyPanturrilha)
+    }, [antropometricos, controlePressao, glicemia]);
 
 
-    const options = {
+    const optionsPeso = {
         chart: {
             title: "Medições de Peso",
             subtitle: "Pesos por ano",
         },
     }
+    const optionsPressao = {
+        chart: {
+            title: "Controle de Pressão",
+            subtitle: "Medições de Pressão",
+        },
+    }
+    const optionsGlicemia = {
+        chart: {
+            title: "Controle de Glicemia",
+            subtitle: "Medições de Glicemia",
+        },
+    }
+    const optionsPanturrilha = {
+        chart: {
+            title: "Perimetro da Panturrilha",
+            subtitle: "Medições de Panturrilha",
+        },
+    }
+
 
     return (
         <div className="Inicio">
             <PainelFicha titulo="Inicio" botaoNew={false}>
-                <div className="GraficoPeso">
-                    <Loading loading={loading}>
-                        <Chart chartType="Bar" data={data} options={options} width="50vh" height="400px" />
-                    </Loading>
+                <div style={{
+                    display: 'flex',
+                    flexWrap: 'wrap'
+                }}>
+                    {antropometricos !== 0 && (
+                        <>
+                            <div className="GraficoPeso">
+                                <Loading loading={loadingPeso}>
+                                    <Chart chartType="Bar" data={dataPeso} options={optionsPeso} width="50vh"
+                                           height="400px"/>
+                                </Loading>
+                            </div>
+                            <div className="GraficoPeso">
+                                <Loading loading={loadingPeso}>
+                                    <Chart chartType="Bar" data={dataPanturrilha} options={optionsPanturrilha}
+                                           width="50vh"
+                                           height="400px"/>
+                                </Loading>
+                            </div>
+                        </>
+                    )}
+                    {glicemia.length !== 0 && (
+                        <div className="GraficoPeso">
+                            <Loading loading={loadingGlicemia}>
+                                <Chart chartType="Bar" data={dataGlicemia} options={optionsGlicemia} width="50vh"
+                                       height="400px"/>
+                            </Loading>
+                        </div>
+                    )}
+                    {controlePressao.length !== 0 && (
+                        <div className="GraficoPeso">
+                            <Loading loading={loadingPressao}>
+                                <Chart chartType="Bar" data={dataPressao} options={optionsPressao} width="50vh"
+                                       height="400px"/>
+                            </Loading>
+                        </div>
+                    )}
                 </div>
             </PainelFicha>
         </div>
