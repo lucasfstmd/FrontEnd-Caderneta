@@ -36,7 +36,7 @@ function EditarPressao() {
     }, []);
 
     const Pressao = {
-        paciente_id: id,
+        paciente_id: parseInt(id),
         data,
         pressao,
     }

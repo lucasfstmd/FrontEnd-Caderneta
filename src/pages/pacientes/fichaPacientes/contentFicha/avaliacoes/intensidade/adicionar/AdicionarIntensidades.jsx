@@ -20,7 +20,7 @@ function AdicionarIntensidades() {
     const [intensidade, setIntensidade] = useState(0);
 
     const Intensidade = {
-        paciente_id: id,
+        paciente_id: parseInt(id),
         data,
         local_dor,
         intensidade,

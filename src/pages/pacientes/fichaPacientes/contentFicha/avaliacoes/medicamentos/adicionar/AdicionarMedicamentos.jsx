@@ -23,7 +23,7 @@ function AdicionarMedicamentos() {
     const [suspensao_motivo, setSuspensao_motivo] = useState('');
 
     const Avaliacao = {
-        paciente_id: id,
+        paciente_id: parseInt(id),
         nome_medicamento,
         dose,
         data_inicio,

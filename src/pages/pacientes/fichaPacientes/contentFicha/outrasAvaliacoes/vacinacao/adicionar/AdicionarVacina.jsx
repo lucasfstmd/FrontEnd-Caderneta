@@ -23,7 +23,7 @@ function AdicionarVacina() {
     const [outra, setOutra] = useState("");
 
     const Vacina = {
-        paciente_id: id,
+        paciente_id: parseInt(id),
         data,
         nome,
         tipo,

@@ -22,7 +22,7 @@ function AdicionarExame() {
     const [profissional, setProfissional] = useState("");
 
     const Exame = {
-        paciente_id: id,
+        paciente_id: parseInt(id),
         data,
         hora,
         local,

@@ -30,7 +30,7 @@ function AdicionarFamiliares() {
     const [p12, setP12] = useState();
 
     const Familiar = {
-        paciente_id: id,
+        paciente_id: parseInt(id),
         ano,
         p1,
         p2,

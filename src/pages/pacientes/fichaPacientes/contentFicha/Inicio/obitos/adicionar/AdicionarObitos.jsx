@@ -20,7 +20,7 @@ function AdicionarObitos() {
     const [motivo, setMotivo] = useState('');
 
     const Obito = {
-        paciente_id: id,
+        paciente_id: parseInt(id),
         obito,
         quando,
         motivo,

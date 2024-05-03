@@ -44,7 +44,7 @@ function EditarMedicamentos() {
     }, []);
 
     const Avaliacao = {
-        paciente_id: id,
+        paciente_id: parseInt(id),
         nome_medicamento,
         dose,
         data_inicio,

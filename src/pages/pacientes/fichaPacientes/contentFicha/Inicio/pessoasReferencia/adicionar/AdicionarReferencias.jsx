@@ -25,7 +25,7 @@ function AdicionarReferencias() {
     const [data_informacao, setData_informacao] = useState('');
 
     const Referencia = {
-        paciente_id: id,
+        paciente_id: parseInt(id),
         nome,
         data_nascimento,
         vinculo,

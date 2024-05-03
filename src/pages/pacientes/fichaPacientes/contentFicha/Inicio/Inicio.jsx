@@ -30,7 +30,7 @@ function Inicio(props) {
             setAntropometricos(response.data);
             setLoadingPeso(false)
         } catch (error) {
-            console.error(undefined);
+            console.log(undefined);
         }
     }
 
@@ -65,18 +65,24 @@ function Inicio(props) {
     }, [id]);
 
     useEffect(() => {
-        const dataPointsPeso = antropometricos.map((item) => [item.ano.toString(), item.peso]);
-        const dataCopyPeso = [["Ano", "Peso"], ...dataPointsPeso];
-        const dataPointsPanturrilha = antropometricos.map((item) => [item.ano.toString(), item.perimetro_panturrilha]);
-        const dataCopyPanturrilha = [["Ano", "Perimetro"], ...dataPointsPanturrilha];
-        const dataPointPressao = controlePressao.map((item) => [item.data.toString(), item.pressao])
-        const dataCopyPressao = [["Data", "Pressão"], ...dataPointPressao];
-        const dataPointGlicemia = glicemia.map((item) => [item.data.toString(), item.valor])
-        const dataCopyGlicemia = [["Data", "Glicemia"], ...dataPointGlicemia];
-        setDataPeso(dataCopyPeso);
-        setDataPressao(dataCopyPressao)
-        setDataGlicemia(dataCopyGlicemia)
-        setDataPanturrilha(dataCopyPanturrilha)
+        if (antropometricos.length !== 0) {
+            const dataPointsPeso = antropometricos.map((item) => [item.ano, item.peso]);
+            const dataPointsPanturrilha = antropometricos.map((item) => [item.ano, item.perimetro_panturrilha]);
+            const dataCopyPanturrilha = [["Ano", "Perimetro"], ...dataPointsPanturrilha];
+            const dataCopyPeso = [["Ano", "Peso"], ...dataPointsPeso];
+            setDataPeso(dataCopyPeso);
+            setDataPanturrilha(dataCopyPanturrilha)
+        }
+        if (controlePressao.length !== 0) {
+            const dataPointPressao = controlePressao.map((item) => [item.data, item.pressao])
+            const dataCopyPressao = [["Data", "Pressão"], ...dataPointPressao];
+            setDataPressao(dataCopyPressao)
+        }
+        if (glicemia.length !== 0) {
+            const dataPointGlicemia = glicemia.map((item) => [item.data, item.valor])
+            const dataCopyGlicemia = [["Data", "Glicemia"], ...dataPointGlicemia];
+            setDataGlicemia(dataCopyGlicemia)
+        }
     }, [antropometricos, controlePressao, glicemia]);
 
 

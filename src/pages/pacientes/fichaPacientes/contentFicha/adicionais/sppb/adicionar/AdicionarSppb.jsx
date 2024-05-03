@@ -31,7 +31,7 @@ function AdicionarSppb() {
     const [p14, setP14] = useState("");
 
     const Sppb = {
-        paciente_id: id,
+        paciente_id: parseInt(id),
         p1,
         p2,
         p3,

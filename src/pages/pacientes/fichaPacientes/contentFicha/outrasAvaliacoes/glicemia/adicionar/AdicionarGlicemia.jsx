@@ -20,7 +20,7 @@ function AdicionarGlicemia() {
     const [valor, setValor] = useState(null);
 
     const Glicemia = {
-        paciente_id: id,
+        paciente_id: parseInt(id),
         data,
         tipo,
         valor,

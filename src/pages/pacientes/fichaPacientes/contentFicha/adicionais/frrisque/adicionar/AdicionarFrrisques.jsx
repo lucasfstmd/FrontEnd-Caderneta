@@ -27,7 +27,7 @@ function AdicionarFrrisques() {
     const [p10, setP10] = useState(null);
 
     const Frrisque = {
-        paciente_id: id,
+        paciente_id: parseInt(id),
         p1,
         p2,
         p3,

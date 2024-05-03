@@ -6,15 +6,22 @@ import DialogTitle from "@mui/material/DialogTitle";
 import {DialogContent, DialogContentText} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
+import { useNavigate, useParams } from 'react-router-dom'
+import { useQuery } from '../../../ContentFicha'
 
-function AdicionarForcaPreensao(props) {
+function AdicionarForcaPreensao() {
+    const params = useParams();
+    const { id } = params
+    const query = useQuery();
+    const navigate = useNavigate();
+
     const [medida_1, setMedida1] = useState(0);
     const [medida_2, setMedida2] = useState(0);
     const [medida_3, setMedida3] = useState(0);
     const [membro_dominante, setMembro] = useState("");
 
     const PreensaoForca = {
-        paciente_id: props.pacienteId,
+        paciente_id: parseInt(id),
         medida_1,
         medida_2,
         medida_3,
@@ -54,13 +61,13 @@ function AdicionarForcaPreensao(props) {
         setOpen(false);
     }
 
-    const handleSalvar = (preensaoId) => {
+    const handleSalvar = () => {
         setOpen(false);
-        props.onClose(preensaoId);
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
-    const handleFecharClick = (preensaoId) => {
-        props.onClose(preensaoId);
+    const handleFecharClick = () => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
     return (

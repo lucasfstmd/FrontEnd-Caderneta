@@ -38,7 +38,7 @@ function EditarCirurgias(props) {
     }, []);
 
     const Cirurgia = {
-        paciente_id: id,
+        paciente_id: parseInt(id),
         cirurgia,
         ano,
         observacao,

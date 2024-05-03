@@ -86,7 +86,7 @@ function EditarFragilidades() {
     }, []);
 
     const Fragilidade = {
-        paciente_id: id,
+        paciente_id: parseInt(id),
         p1,
         p2_1,
         p2_2,

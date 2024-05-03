@@ -41,6 +41,9 @@ import RequestAuth from "../../../../service/auth/RequestAuth";
 import Fragilidades from "./adicionais/fragilidades/Fragilidades";
 import Usabilidade from './saudeMental/usabilidade/Usabilidade'
 import { useLocation } from 'react-router-dom'
+import Ipaq from './saudeMental/ipaq/Ipaq'
+import AutorrelatoNocturia from './saudeMental/autorrelato/AutorrelatoNocturia'
+import Psqi from './saudeMental/psqi/Psqi'
 
 export function useQuery() {
     const { search } = useLocation();
@@ -54,84 +57,90 @@ export default function ContentFia(props) {
 
     const renderContent = () => {
         if (selectedItem === "inicio") {
-            return <RequestAuth><Inicio pacienteId={props.pacienteId}/></RequestAuth>;
+            return <RequestAuth><Inicio/></RequestAuth>;
         } else if (selectedItem === "editar-dados") {
-            return <RequestAuth><EditarInformacoes pacienteId={props.pacienteId} /></RequestAuth>;
+            return <RequestAuth><EditarInformacoes /></RequestAuth>;
         } else if (selectedItem === "sociais") {
-            return <RequestAuth><InformacoesSociaisFamiliares pacienteId={props.pacienteId}/></RequestAuth>;
+            return <RequestAuth><InformacoesSociaisFamiliares/></RequestAuth>;
         } else if (selectedItem === "pessoas-referencias") {
-            return <RequestAuth><PessoasReferencias pacienteId={props.pacienteId}/></RequestAuth>;
+            return <RequestAuth><PessoasReferencias/></RequestAuth>;
         } else if (selectedItem === "obitos") {
-            return <RequestAuth><InformacoesObitos pacienteId={props.pacienteId}/></RequestAuth>;
+            return <RequestAuth><InformacoesObitos/></RequestAuth>;
         } else if (selectedItem === "medicamentos") {
-            return <RequestAuth><Medicamentos pacienteId={props.pacienteId}/></RequestAuth>;
+            return <RequestAuth><Medicamentos/></RequestAuth>;
         } else if (selectedItem === "polifarmacia") {
-            return <RequestAuth><Polifarmacia pacienteId={props.pacienteId}/></RequestAuth>;
+            return <RequestAuth><Polifarmacia/></RequestAuth>;
         } else if (selectedItem === "diagnosticos") {
-            return <RequestAuth><Diagnosticos pacienteId={props.pacienteId}/></RequestAuth>;
+            return <RequestAuth><Diagnosticos/></RequestAuth>;
         } else if (selectedItem === "cirurgias") {
-            return <RequestAuth><Cirurgias pacienteId={props.pacienteId}/></RequestAuth>;
+            return <RequestAuth><Cirurgias/></RequestAuth>;
         } else if (selectedItem === "reacoes") {
-            return <RequestAuth><Reacoes pacienteId={props.pacienteId}/></RequestAuth>;
+            return <RequestAuth><Reacoes/></RequestAuth>;
         } else if (selectedItem === "antropometricos") {
-            return <RequestAuth><Antropometricos pacienteId={props.pacienteId}/></RequestAuth>;
+            return <RequestAuth><Antropometricos/></RequestAuth>;
         } else if (selectedItem === "perca-peso") {
-            return <RequestAuth><PercaPeso pacienteId={props.pacienteId}/></RequestAuth>;
+            return <RequestAuth><PercaPeso/></RequestAuth>;
         } else if (selectedItem === "controle-peso") {
-            return <RequestAuth><ControlePeso pacienteId={props.pacienteId}/></RequestAuth>;
+            return <RequestAuth><ControlePeso/></RequestAuth>;
         } else if (selectedItem === "protocolo-identificacao") {
-            return <RequestAuth><Vulnerabilidades pacienteId={props.pacienteId}/></RequestAuth>;
+            return <RequestAuth><Vulnerabilidades/></RequestAuth>;
         } else if (selectedItem === "complementares") {
-            return <RequestAuth><Complementares pacienteId={props.pacienteId}/></RequestAuth>;
+            return <RequestAuth><Complementares/></RequestAuth>;
         } else if (selectedItem === "ambientais") {
-            return <RequestAuth><Ambientais pacienteId={props.pacienteId}/></RequestAuth>;
+            return <RequestAuth><Ambientais/></RequestAuth>;
         } else if (selectedItem === "quedas") {
-            return <RequestAuth><Quedas pacienteId={props.pacienteId}/></RequestAuth>;
+            return <RequestAuth><Quedas/></RequestAuth>;
         } else if (selectedItem === "cronicas") {
-            return <RequestAuth><Cronicas pacienteId={props.pacienteId}/></RequestAuth>;
+            return <RequestAuth><Cronicas/></RequestAuth>;
         } else if (selectedItem === "intensidade") {
-            return <RequestAuth><Intensidade pacienteId={props.pacienteId}/></RequestAuth>;
+            return <RequestAuth><Intensidade/></RequestAuth>;
         } else if (selectedItem === "habitos") {
-            return <RequestAuth><Habitos pacienteId={props.pacienteId}/></RequestAuth>;
+            return <RequestAuth><Habitos/></RequestAuth>;
         } else if (selectedItem === "pressao") {
-            return <RequestAuth><Pressao pacienteId={props.pacienteId}/></RequestAuth>
+            return <RequestAuth><Pressao/></RequestAuth>
         } else if (selectedItem === "glicemia") {
-            return <RequestAuth><Glicemia pacienteId={props.pacienteId}/></RequestAuth>;
+            return <RequestAuth><Glicemia/></RequestAuth>;
         } else if (selectedItem === "vacinacao") {
-            return <RequestAuth><Vacinacao pacienteId={props.pacienteId}/></RequestAuth>;
+            return <RequestAuth><Vacinacao/></RequestAuth>;
         } else if (selectedItem === "saude-buca") {
-            return <RequestAuth><SaudeBuca pacienteId={props.pacienteId}/></RequestAuth>;
+            return <RequestAuth><SaudeBuca/></RequestAuth>;
         } else if (selectedItem === "exames") {
-            return <RequestAuth><Exames pacienteId={props.pacienteId}/></RequestAuth>;
+            return <RequestAuth><Exames/></RequestAuth>;
         } else if (selectedItem === "atualizacoes") {
-            return <RequestAuth><Atualizacoes pacienteId={props.pacienteId}/></RequestAuth>;
+            return <RequestAuth><Atualizacoes/></RequestAuth>;
         } else if (selectedItem === "identificacao") {
-            return <RequestAuth><Identificacao pacienteId={props.pacienteId}/></RequestAuth>;
+            return <RequestAuth><Identificacao/></RequestAuth>;
         } else if (selectedItem === "pcl") {
-            return <RequestAuth><Pcl pacienteId={props.pacienteId}/></RequestAuth>;
+            return <RequestAuth><Pcl/></RequestAuth>;
         } else if (selectedItem === "forca-preensao") {
-            return <RequestAuth><ForcaPreensao pacienteId={props.pacienteId}/></RequestAuth>;
+            return <RequestAuth><ForcaPreensao/></RequestAuth>;
         } else if (selectedItem === "sppb") {
-            return <RequestAuth><Sppb pacienteId={props.pacienteId}/></RequestAuth>;
+            return <RequestAuth><Sppb/></RequestAuth>;
         } else if (selectedItem === "ivcf") {
-            return <RequestAuth><Ivcf pacienteId={props.pacienteId}/></RequestAuth>;
+            return <RequestAuth>/></RequestAuth>;
         } else if (selectedItem === "bioimpedancias") {
-            return <RequestAuth><Bioimpedancias pacienteId={props.pacienteId}/></RequestAuth>;
+            return <RequestAuth><Bioimpedancias/></RequestAuth>;
         } else if (selectedItem === "exames-laboratoriais") {
-            return <RequestAuth><ExamesLaborariais pacienteId={props.pacienteId}/></RequestAuth>;
+            return <RequestAuth><ExamesLaborariais/></RequestAuth>;
         } else if (selectedItem === "frrisque") {
-            return <RequestAuth><Frrisque pacienteId={props.pacienteId}/></RequestAuth>;
+            return <RequestAuth><Frrisque/></RequestAuth>;
         } else if (selectedItem === "fragilidades") {
-            return <RequestAuth><Fragilidades pacienteId={props.pacienteId}/></RequestAuth>
+            return <RequestAuth><Fragilidades/></RequestAuth>
         }else if (selectedItem === "infancia") {
-            return <RequestAuth><Infancia pacienteId={props.pacienteId}/></RequestAuth>;
+            return <RequestAuth><Infancia/></RequestAuth>;
         } else if (selectedItem === "sarcf-f") {
-            return <RequestAuth><Sarcf pacienteId={props.pacienteId}/></RequestAuth>;
+            return <RequestAuth><Sarcf/></RequestAuth>;
         } else if (selectedItem === "usabilidade")  {
-            return <RequestAuth><Usabilidade pacientId={props.pacienteId}/></RequestAuth>
+            return <RequestAuth><Usabilidade/></RequestAuth>
+        } else if (selectedItem === "ipaq")  {
+            return <RequestAuth><Ipaq/></RequestAuth>
+        } else if (selectedItem === "autorrelato-nocturia")  {
+            return <RequestAuth><AutorrelatoNocturia/></RequestAuth>
+        } else if (selectedItem === "psqi")  {
+            return <RequestAuth><Psqi/></RequestAuth>
         }
         else {
-            return <RequestAuth><Inicio pacienteId={props.pacienteId}/></RequestAuth>;
+            return <RequestAuth><Inicio/></RequestAuth>;
         }
     }
 

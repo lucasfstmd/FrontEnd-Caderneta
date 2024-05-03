@@ -128,7 +128,7 @@ function EditarVulnerabilidades() {
     };
 
     const Vulnerabilidade = {
-        paciente_id: id,
+        paciente_id: parseInt(id),
         ano,
         idade,
         autopercepcao,

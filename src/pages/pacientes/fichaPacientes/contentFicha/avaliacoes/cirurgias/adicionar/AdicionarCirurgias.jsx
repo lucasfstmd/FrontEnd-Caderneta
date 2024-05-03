@@ -20,7 +20,7 @@ function AdicionarCirurgias() {
     const [observacao, setObservacao] = useState('');
 
     const Cirurgia = {
-        paciente_id: id,
+        paciente_id: parseInt(id),
         cirurgia,
         ano,
         observacao,

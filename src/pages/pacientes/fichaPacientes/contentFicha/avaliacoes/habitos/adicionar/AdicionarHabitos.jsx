@@ -37,7 +37,7 @@ function AdicionarHabitos() {
     const [p19, setP19] = useState(null);
 
     const Habito = {
-        paciente_id: id,
+        paciente_id: parseInt(id),
         ano,
         p1,
         p2,

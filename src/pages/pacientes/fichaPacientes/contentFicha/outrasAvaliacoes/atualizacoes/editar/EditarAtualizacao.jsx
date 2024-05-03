@@ -41,7 +41,7 @@ function EditarAtualizacao() {
 
 
     const Atualizacao = {
-        paciente_id: id,
+        paciente_id: parseInt(id),
         data,
         responsavel,
     }

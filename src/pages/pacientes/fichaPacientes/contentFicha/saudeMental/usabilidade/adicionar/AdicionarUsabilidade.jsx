@@ -23,6 +23,7 @@ function AdicionarUsabilidade() {
     const navigate = useNavigate();
 
     const [usabilidade, setUsabilidaded] = useState({
+        paciente_id: parseInt(id),
         p1: null,
         p1_0: '',
         p1_1_1: null,

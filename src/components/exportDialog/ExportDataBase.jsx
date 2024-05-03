@@ -11,7 +11,7 @@ import {AiFillCloseCircle, AiOutlineDownload} from "react-icons/ai";
 import {Link} from "react-router-dom";
 
 function ExportDataBase() {
-    const [pacientes, setPacientes] = useState([]);
+    /*const [pacientes, setPacientes] = useState([]);
     const [familiares, setFamiliares] = useState([]);
     const [obitos, setObitos] = useState([]);
     const [medicamentos, setMedicamentos] = useState([]);
@@ -39,15 +39,15 @@ function ExportDataBase() {
     const [examesLabo, setExameLabo] = useState([]);
     const [fragilidades, setFragilidades] = useState([]);
     const [frrisques, setFrrisques] = useState([]);
-    const [sarcfs, setSarcfs] = useState([]);
+    const [sarcfs, setSarcfs] = useState([]);*/
     const [dataBase, setDataBase] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    const fetchData = async (url, setData) => {
+    /*const fetchData = async (url, setData) => {
         const response = await fetch(url);
         const data = await response.json();
         setData(data);
-    }
+    }*/
 
     const url = 'http://localhost:8080/api'
 
@@ -58,7 +58,7 @@ function ExportDataBase() {
         setLoading(false);
     }
 
-    const fetchDataForExport = async () => {
+    /*const fetchDataForExport = async () => {
         await fetchData(`${url}/v1/pacientes`, setPacientes);
         await fetchData(`${url}/v1/familiares`, setFamiliares);
         await fetchData(`${url}/v1/obitos`, setObitos);
@@ -92,9 +92,8 @@ function ExportDataBase() {
 
     };
 
-    const getDataBase = () => {
-        fetchDataForExport();
-        // fetchDataBase();
+    /*const getDataBase = () => {
+        // fetchDataForExport();
     }
 
     const build = (array,field, patient_id) => {
@@ -180,13 +179,13 @@ function ExportDataBase() {
             ...frrisque,
             ...sarcf
         }
-    })
+    })*/
 
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
         setOpen(true);
-        getDataBase();
+        fetchDataBase();
     };
 
     const handleClose = () => {
@@ -195,7 +194,7 @@ function ExportDataBase() {
 
     return (
         <div>
-            <Link onClick={handleClickOpen}
+            <Link to={'#'} onClick={handleClickOpen}
                   style={{ textDecoration: 'none', color: '#1E90FF', margin: "2vh" }}
             >
                 <strong>Banco de Dados</strong>
@@ -228,7 +227,7 @@ function ExportDataBase() {
                         :
                         <>
                             <Button onClick={handleClose} variant="outlined" color="success">
-                                <CSVLink style={{textDecoration: 'none', color: 'green'}} data={result}
+                                <CSVLink style={{textDecoration: 'none', color: 'green'}} data={dataBase}
                                          filename="banco-de-dados.csv">
                                     <AiOutlineDownload/> Baixar
                                 </CSVLink>

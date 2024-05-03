@@ -40,7 +40,7 @@ function EditarForcaPreensao() {
     }, []);
 
     const PreensaoForca = {
-        paciente_id: id,
+        paciente_id: parseInt(id),
         medida_1,
         medida_2,
         medida_3,

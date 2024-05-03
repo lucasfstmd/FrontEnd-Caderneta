@@ -19,7 +19,7 @@ function AdicionarPercaPeso() {
     const [perda_peso, setPerdaPeso] = useState(0);
 
     const PesoPerca = {
-        paciente_id: id,
+        paciente_id: parseInt(id),
         ano,
         perda_peso,
     }

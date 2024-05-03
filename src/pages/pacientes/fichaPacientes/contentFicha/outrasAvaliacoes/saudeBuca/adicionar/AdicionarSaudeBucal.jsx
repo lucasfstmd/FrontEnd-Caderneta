@@ -50,7 +50,7 @@ function AdicionarSaudeBucal() {
     const [p32, setP32] = useState("");
 
     const BucalSaude = {
-        paciente_id: id,
+        paciente_id: parseInt(id),
         ano,
         p1,
         p2,

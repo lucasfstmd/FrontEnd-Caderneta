@@ -19,7 +19,7 @@ function AdicionarAtualizacao() {
     const [responsavel, setResponsavel] = useState("");
 
     const Atualizacao = {
-        paciente_id: id,
+        paciente_id: parseInt(id),
         data,
         responsavel,
     }

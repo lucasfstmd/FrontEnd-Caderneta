@@ -44,7 +44,7 @@ function AdicionarFragilidades() {
     const [classificacao_da_fragilidade, setClassificacao_da_fragilidade] = useState("");
 
     const Fragilidade = {
-        paciente_id: id,
+        paciente_id: parseInt(id),
         p1,
         p2_1,
         p2_2,

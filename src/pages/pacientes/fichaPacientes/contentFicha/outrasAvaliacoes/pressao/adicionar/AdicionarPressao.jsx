@@ -20,7 +20,7 @@ function AdicionarPressao() {
     const [pressao, setPressao] = useState("");
 
     const Pressao = {
-        paciente_id: id,
+        paciente_id: parseInt(id),
         data,
         pressao,
     }

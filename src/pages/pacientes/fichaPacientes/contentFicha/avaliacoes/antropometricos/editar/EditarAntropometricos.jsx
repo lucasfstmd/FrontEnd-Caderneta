@@ -45,7 +45,7 @@ function EditarAntropometricos() {
     const Imc = isNaN(pesoFloat) || isNaN(alturaFloat) ? 0 : parseFloat((pesoFloat / (alturaFloat * alturaFloat)).toFixed(2));
 
     const Antropometrico = {
-        paciente_id: id,
+        paciente_id: parseInt(id),
         ano,
         peso: !isNaN(pesoFloat) ? pesoFloat : 0,
         altura: !isNaN(alturaFloat) ? alturaFloat : 0,

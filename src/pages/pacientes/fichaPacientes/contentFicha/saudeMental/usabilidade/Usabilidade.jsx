@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import PainelFicha from '../../../../../../components/painelFicha/PainelFicha'
 import TabelaUsabilidade from './tabela/TabelaUsabilidade'
 import AdicionarUsabilidade from './adicionar/AdicionarUsabilidade'
@@ -6,7 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useQuery } from '../../ContentFicha'
 import EditarUsabilidade from './editar/EditarUsabilidade'
 
-function Usabilidade(props) {
+function Usabilidade() {
     const itemsPerPage = 20;
     const currentPage = 1;
     const navigate = useNavigate()

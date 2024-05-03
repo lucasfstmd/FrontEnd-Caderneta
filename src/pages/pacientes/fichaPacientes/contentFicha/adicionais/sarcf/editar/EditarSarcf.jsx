@@ -40,7 +40,7 @@ function EditarSarcf() {
     }, []);
 
     const Sarcf = {
-        paciente_id: id,
+        paciente_id: parseInt(id),
         p1,
         p2,
         p3,

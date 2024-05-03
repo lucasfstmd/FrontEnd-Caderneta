@@ -46,7 +46,7 @@ function EditarQueda() {
     }, []);
 
     const Queda = {
-        paciente_id: id,
+        paciente_id: parseInt(id),
         queda,
         data_mes,
         data_ano,

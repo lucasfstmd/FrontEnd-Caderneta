@@ -72,7 +72,7 @@ function AdicionarExameLab() {
     const [leucograma_monocitos, setLeucogramaMonocitos] = useState("");
 
     const ExameLabo = {
-        paciente_id: id,
+        paciente_id: parseInt(id),
         hemograma,
         plaquetas,
         contagem,

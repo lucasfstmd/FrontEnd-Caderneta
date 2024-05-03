@@ -38,7 +38,7 @@ function EditarReacoes() {
     }, []);
 
     const Reacao = {
-        paciente_id: id,
+        paciente_id: parseInt(id),
         medicamento,
         data,
         reacoes_adversas_ou_alergicas,

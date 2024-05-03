@@ -29,7 +29,7 @@ function AdicionarAmbientais() {
     const [p11, setP11] = useState();
 
     const Ambiental = {
-        paciente_id: id,
+        paciente_id: parseInt(id),
         ano,
         p1,
         p2,

@@ -22,7 +22,7 @@ function AdicionarSarcf() {
     const [p5, setP5] = useState("");
 
     const Sarcf = {
-        paciente_id: id,
+        paciente_id: parseInt(id),
         p1,
         p2,
         p3,

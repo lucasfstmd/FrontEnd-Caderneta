@@ -36,7 +36,7 @@ function EditarPercaPeso() {
     }, []);
 
     const PesoPerca = {
-        paciente_id: id,
+        paciente_id: parseInt(id),
         ano,
         perda_peso,
     }

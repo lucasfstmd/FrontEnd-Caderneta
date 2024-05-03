@@ -22,7 +22,7 @@ function AdicionarDiagnosticos() {
     const [tempo_internacao, setTempo_internacao] = useState('');
 
     const Diagnostico = {
-        paciente_id: id,
+        paciente_id: parseInt(id),
         tipo,
         tipo_outro,
         ano_diagnostico,

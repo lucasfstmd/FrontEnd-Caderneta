@@ -40,7 +40,7 @@ function AdicionarInfancias() {
     const [b6, setB6] = useState("");
 
     const Infancia = {
-        paciente_id: id,
+        paciente_id: parseInt(id),
         a1,
         a2_a,
         a2_b,

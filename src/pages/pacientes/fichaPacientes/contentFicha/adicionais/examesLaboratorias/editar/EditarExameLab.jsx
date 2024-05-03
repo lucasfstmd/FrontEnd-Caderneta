@@ -143,7 +143,7 @@ function EditarExameLab() {
 
 
     const ExameLabo = {
-        paciente_id: id,
+        paciente_id: parseInt(id),
         hemograma,
         plaquetas,
         contagem,

@@ -37,7 +37,7 @@ function EditarControlePeso() {
     }, []);
 
     const ControlePeso = {
-        paciente_id: id,
+        paciente_id: parseInt(id),
         ano,
         peso,
     }

@@ -32,7 +32,7 @@ function EditarPolifarmacia() {
     }, []);
 
     const Polifarmacia = {
-        paciente_id: id,
+        paciente_id: parseInt(id),
         uso_concomitante,
     }
 

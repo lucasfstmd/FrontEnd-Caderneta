@@ -22,7 +22,7 @@ function AdicionarCronicas() {
     const [p4, setP4] = useState(null);
 
     const Cronica = {
-        paciente_id: id,
+        paciente_id: parseInt(id),
         ano,
         p1,
         p2,

@@ -18,7 +18,7 @@ function AdicionarPolifarmacia() {
     const [uso_concomitante, setUso_concomitante] = useState(-1);
 
     const Polifarmacia = {
-        paciente_id: id,
+        paciente_id: parseInt(id),
         uso_concomitante,
     }
 

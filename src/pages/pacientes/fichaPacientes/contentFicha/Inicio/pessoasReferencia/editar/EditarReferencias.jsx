@@ -48,7 +48,7 @@ function EditarReferencias() {
     }, []);
 
     const Referencia = {
-        paciente_id: id,
+        paciente_id: parseInt(id),
         nome,
         data_nascimento,
         vinculo,

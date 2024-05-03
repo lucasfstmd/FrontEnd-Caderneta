@@ -98,7 +98,7 @@ function EditarSaudeBucal() {
     }, []);
 
     const BucalSaude = {
-        paciente_id: id,
+        paciente_id: parseInt(id),
         ano,
         p1,
         p2,
