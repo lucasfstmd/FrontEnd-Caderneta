@@ -1,11 +1,11 @@
 import PainelFicha from '../../../../../../components/painelFicha/PainelFicha'
-import TabelaIpaq from './tabela/TabelaIpaq'
-import AdicionarIpaq from './adicionar/AdicionarIpaq'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useQuery } from '../../ContentFicha'
-import EditarIpaq from './editar/EditarIpaq'
+import TabelaEse from './tabela/TabelaEse'
+import AdicionarEse from './adicionar/AdicionarEse'
+import EditarEse from './editar/EditarEse'
 
-function Ipaq() {
+function Ese() {
     const itemsPerPage = 20;
     const currentPage = 1;
     const navigate = useNavigate()
@@ -24,24 +24,24 @@ function Ipaq() {
     return (
         <div className="Ipaq">
             <PainelFicha
-                titulo='5.1 Questionário Internacional de Atividade Física (IPAQ) - Versão Curta'
+                titulo='5.5 Escala de Sonolência de Epworth (ESE) Para Avaliação de Sono'
                 botaoNew={true}
                 onAdicionarClick={handleAdicionarClick}
             >
                 <div className="Conteudo">
                     {query.get('view') === 'tabela' && (
-                        <TabelaIpaq
+                        <TabelaEse
                             itemsPerPage={itemsPerPage}
                             currentPage={currentPage}
                             onEditarClick={handleEditarClick}
                         />
                     )}
                     {query.get('view') === 'adicionar' && (
-                        <AdicionarIpaq/>
+                        <AdicionarEse/>
                     )}
 
                     {query.get('view') === 'editar' && (
-                        <EditarIpaq/>
+                        <EditarEse/>
                     )}
                 </div>
             </PainelFicha>
@@ -49,4 +49,4 @@ function Ipaq() {
     )
 }
 
-export default Ipaq;
+export default Ese;

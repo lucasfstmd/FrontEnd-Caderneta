@@ -28,7 +28,7 @@ function Infancia(props) {
     async function carregarInfancias() {
         try {
             const response = await api.get(
-                `v1/infancias/paciente/${props.pacienteId}`
+                `v1/infancias/paciente/${id}`
             );
             setInfancias(response.data);
             setLoading(false);

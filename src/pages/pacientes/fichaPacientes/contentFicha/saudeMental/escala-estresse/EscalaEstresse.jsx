@@ -1,42 +1,32 @@
 import PainelFicha from '../../../../../../components/painelFicha/PainelFicha'
-import TabelaPsqi from './tabela/TabelaPsqi'
-import AdicionarPsqi from './adicionar/AdicionarPsqi'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useQuery } from '../../ContentFicha'
 import React, { useEffect, useState } from 'react'
-import EditarPsqi from './editar/EditarPsqi'
+import api from '../../../../../../service/api'
+import AdicionarEscalaEstresse from './adicionar/AdicionarEscalaEstresse'
+import TabelaEscalaEstresse from './tabela/TabelaEscalaEstresse'
+import EditarEscalaEstresse from './editar/EditarEscalaEstresse'
 
-function Psqi() {
-    const itemsPerPage = 2;
+function EscalaEstresse() {
+    const itemsPerPage = 20;
     const [currentPage, setCurrentPage] = useState(1);
-    const [psqi, setPsqi] = useState([
+    const [escEstress, setEscEstress] = useState([
         {
             id: 0,
-            p1: 'teste',
-            p2: 'teste',
-            p3: 'teste',
-            p4: 'teste',
-            p5_a: 0,
-            p5_b: 0,
-            p5_c: 0,
-            p5_d: 0,
-            p5_e: 0,
-            p5_f: 0,
-            p5_g: 0,
-            p5_h: 0,
-            p5_i: 'teste',
-            p5_j: 0,
-            p6: 0,
+            p1: 1,
+            p2: 3,
+            p3: 0,
+            p4: 2,
+            p5: 1,
+            p6: 2,
             p7: 0,
-            p8: 0,
-            p9: 0,
-            p10: 0,
-            p10_a: 0,
-            p10_b: 0,
-            p10_c: 0,
-            p10_d: 0,
-            p10_e_1: 'teste',
-            p10_e_2: 0,
+            p8: 3,
+            p9: 3,
+            p10: 2,
+            p12: 2,
+            p13: 1,
+            p14: 0,
+            score: 22,
             created: '2019-05-02T00:58:34.000Z',
             updated: '2019-05-02T00:58:34.000Z'
         }
@@ -45,47 +35,50 @@ function Psqi() {
     const query = useQuery()
     const params = useParams()
     const { id } = params
-    const [loading, setLaoding] = useState(false)
+    const [loading, setLoading] = useState(false)
 
-    const handleEditarClick = (psqiId) => {
-        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=editar&infoId=${psqiId}`);
+    const handleEditarClick = (estressId) => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=editar&infoId=${estressId}`);
     }
 
     const handleAdicionarClick = () => {
         navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=adicionar`);
     }
 
-/*    async function carregarPsqi() {
+    async function carregarEscalaDepre() {
         try {
-            const response = await api.get(`v1/psqi/paciente/${id}`)
-            setPsqi(response.data)
-            setLaoding(false)
-        } catch (err) {
-            console.log(undefined)
+            const response = await api.get(
+                `v1/escala-estresse/paciente/${id}`
+            );
+            setEscEstress(response.data);
+            setLoading(false)
+        } catch (error) {
+            console.log(undefined);
         }
     }
 
     useEffect(() => {
-        carregarPsqi()
-    }, [])*/
+        carregarEscalaDepre();
+    }, []);
 
-    const totalPages = Math.ceil((psqi.length || 0) / itemsPerPage);
+    const totalPages = Math.ceil((escEstress?.length || 0) / itemsPerPage);
     const pagesPerGroup = 10;
-    const currentPageGroup = Math.ceil(currentPage / pagesPerGroup)
+    const currentPageGroup = Math.ceil(currentPage / pagesPerGroup);
 
     const handlePageChange = (pageNumber) => {
-        setCurrentPage(pageNumber)
-    }
+        setCurrentPage(pageNumber);
+    };
 
-    const getPsqiPagAtual = () => {
-        const inicio = ( currentPage - 1 ) * itemsPerPage
-        const fim = inicio + itemsPerPage
-        return psqi.slice(inicio, fim) || []
+    const getBioimpedanciasPagAtual = () => {
+        const inicio = (currentPage - 1) * itemsPerPage;
+        const fim = inicio + itemsPerPage;
+        return escEstress?.slice(inicio, fim) || [];
     }
 
     const renderGroups = () => {
         const groups = [];
 
+        // Primeira página
         groups.push(
             <button
                 key={1000}
@@ -94,21 +87,21 @@ function Psqi() {
             >
                 Anterior
             </button>
-        )
+        );
 
-        const startGroup = (currentPageGroup - 1) * pagesPerGroup + 1
-        const endGroup = Math.min(startGroup + pagesPerGroup - 1, totalPages)
+        const startGroup = (currentPageGroup - 1) * pagesPerGroup + 1;
+        const endGroup = Math.min(startGroup + pagesPerGroup - 1, totalPages);
 
         for (let i = startGroup; i <= endGroup; i++) {
             groups.push(
                 <button
                     key={i}
                     onClick={() => handlePageChange(i)}
-                    className={currentPage === 1 ? 'PaginaAtiva' : 'PaginaInativa'}
+                    className={currentPage === i ? "PaginaAtiva" : "PaginaInativa"}
                 >
                     {i}
                 </button>
-            )
+            );
         }
 
         groups.push(
@@ -119,27 +112,27 @@ function Psqi() {
             >
                 Próxima
             </button>
-        )
+        );
 
-        return groups
-    }
+        return groups;
+    };
 
     return (
-        <div className="Usabilidade">
+        <div className="Ipaq">
             <PainelFicha
-                titulo='5.4 Índice de Qualidade de Sono de Pittsburgh em Português (PSQUI-BR)'
+                titulo='5.7 Escala de Estresse Percebido'
                 botaoNew={true}
                 onAdicionarClick={handleAdicionarClick}
             >
                 <div className="Conteudo">
                     {query.get('view') === 'tabela' && (
                         <>
-                            <TabelaPsqi
+                            <TabelaEscalaEstresse
                                 itemsPerPage={itemsPerPage}
                                 currentPage={currentPage}
-                                data={getPsqiPagAtual()}
-                                loading={loading}
                                 onEditarClick={handleEditarClick}
+                                data={getBioimpedanciasPagAtual()}
+                                loading={loading}
                             />
                             <div className="Paginacao">
                                 <button
@@ -161,11 +154,11 @@ function Psqi() {
                         </>
                     )}
                     {query.get('view') === 'adicionar' && (
-                        <AdicionarPsqi/>
+                        <AdicionarEscalaEstresse/>
                     )}
 
                     {query.get('view') === 'editar' && (
-                        <EditarPsqi/>
+                        <EditarEscalaEstresse/>
                     )}
                 </div>
             </PainelFicha>
@@ -173,4 +166,4 @@ function Psqi() {
     )
 }
 
-export default Psqi;
+export default EscalaEstresse;

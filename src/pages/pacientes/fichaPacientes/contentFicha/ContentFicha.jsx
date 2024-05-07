@@ -40,10 +40,14 @@ import Sarcf from "./adicionais/sarcf/Sarcf";
 import RequestAuth from "../../../../service/auth/RequestAuth";
 import Fragilidades from "./adicionais/fragilidades/Fragilidades";
 import Usabilidade from './saudeMental/usabilidade/Usabilidade'
-import { useLocation } from 'react-router-dom'
 import Ipaq from './saudeMental/ipaq/Ipaq'
 import AutorrelatoNocturia from './saudeMental/autorrelato/AutorrelatoNocturia'
 import Psqi from './saudeMental/psqi/Psqi'
+import Ese from './saudeMental/ese/Ese'
+import EscalaDepressao from './saudeMental/escala-depressao/EscalaDepressao'
+import EscalaEstresse from './saudeMental/escala-estresse/EscalaEstresse'
+import Ansiedade from './saudeMental/ansiedade/Ansiedade'
+import { useLocation } from 'react-router-dom'
 
 export function useQuery() {
     const { search } = useLocation();
@@ -117,7 +121,7 @@ export default function ContentFia(props) {
         } else if (selectedItem === "sppb") {
             return <RequestAuth><Sppb/></RequestAuth>;
         } else if (selectedItem === "ivcf") {
-            return <RequestAuth>/></RequestAuth>;
+            return <RequestAuth><Ivcf/>></RequestAuth>;
         } else if (selectedItem === "bioimpedancias") {
             return <RequestAuth><Bioimpedancias/></RequestAuth>;
         } else if (selectedItem === "exames-laboratoriais") {
@@ -138,8 +142,15 @@ export default function ContentFia(props) {
             return <RequestAuth><AutorrelatoNocturia/></RequestAuth>
         } else if (selectedItem === "psqi")  {
             return <RequestAuth><Psqi/></RequestAuth>
-        }
-        else {
+        } else if (selectedItem === "ese")  {
+            return <RequestAuth><Ese/></RequestAuth>
+        } else if (selectedItem === "escala-depressao")  {
+            return <RequestAuth><EscalaDepressao/></RequestAuth>
+        } else if (selectedItem === "escala-estresse")  {
+            return <RequestAuth><EscalaEstresse/></RequestAuth>
+        } else if (selectedItem === "gai")  {
+            return <RequestAuth><Ansiedade/></RequestAuth>
+        } else {
             return <RequestAuth><Inicio/></RequestAuth>;
         }
     }

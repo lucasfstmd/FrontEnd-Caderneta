@@ -1,4 +1,7 @@
-import React, { useState } from 'react'
+import { useQuery } from '../../../ContentFicha'
+import { useNavigate, useParams } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import api from '../../../../../../../service/api'
 import {
     Checkbox,
     DialogContent,
@@ -13,31 +16,59 @@ import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
 import DialogActions from '@mui/material/DialogActions'
 import Button from '@mui/material/Button'
-import { useNavigate, useParams } from 'react-router-dom'
-import { useQuery } from '../../../ContentFicha'
 
-function AdicionarIpaq() {
+function EditarIpaq() {
+    const query = useQuery();
+    const ipaqId = query.get('infoId')
     const params = useParams();
     const { id } = params
-    const query = useQuery();
-    const navigate = useNavigate();
+    const navigate = useNavigate()
 
     const [ipaq, setIpaq] = useState({
-        p1_a: null,
-        p1_b_h: null,
-        p1_b_m: null,
-        p2_a: null,
-        p2_b_h: null,
-        p2_b_m: null,
-        p3_a: null,
-        p3_b_h: null,
-        p3_b_m: null,
-        p4_a_h: null,
-        p4_a_m: null,
-        p4_b_h: null,
-        p4_b_m: null,
+        p1_a: 'teste',
+        p1_b_h: 'teste',
+        p1_b_m: 'teste',
+        p2_a: 'Nenhum',
+        p2_b_h: 'teste',
+        p2_b_m: 'teste',
+        p3_a: 'teste',
+        p3_b_h: 'teste',
+        p3_b_m: 'teste',
+        p4_a_h: 'teste',
+        p4_a_m: 'teste',
+        p4_b_h: 'teste',
+        p4_b_m: 'teste',
     })
 
+    async function carregarPsqi() {
+        try {
+            const response = await api.get(`v1/pesqi/${ipaqId}`)
+            setIpaq(response.data)
+        } catch (error) {
+            console.log(undefined)
+        }
+    }
+
+    useEffect(() => {
+        carregarPsqi()
+    }, [])
+
+    const handleFecharClick = () => {
+        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
+    };
+
+    const handleEdit = async () => {
+        try {
+            await api.patch(`v1/ipaq/${ipaqId}`, ipaq);
+            setOpen(true);
+        } catch (error) {
+            if (error.response && error.response.status === 400) {
+                setOpenErro400(true);
+            } else if (error.response && error.response.status === 500) {
+                setOpenErro500(true);
+            }
+        }
+    }
 
     const [open, setOpen] = useState(false);
     const [openErro400, setOpenErro400] = useState(false);
@@ -52,7 +83,7 @@ function AdicionarIpaq() {
     }
 
     const handleClickOpen = () => {
-        // handleSalvarApi();
+        handleEdit();
     }
 
     const handleClose = () => {
@@ -64,16 +95,10 @@ function AdicionarIpaq() {
         navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
     }
 
-    const handleFecharClick = () => {
-        navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
-    }
-
     return (
-        <div style={{
-            padding: '10px'
-        }}
-        className="AdicionarIvcf"
-        >
+        <div className="AdicionarIvcf" style={{
+            padding: '5vh'
+        }}>
             <div className="LabelForm" style={{borderBottom: "1px solid gray", marginBottom: "0.2vh"}}>
                 <label className="Titulo"><strong>Para responder as perguntas pense somente nas atividades que você realiza por pelo menos 10 minutos contínuos de cada vez.</strong></label>
                 <label style={{padding: "1vh", width: "20vh"}}>
@@ -83,7 +108,7 @@ function AdicionarIpaq() {
                 </label>
                 <div className="LabelInput">
                     <label><strong>Dias por semana</strong></label>
-                    <input value={ipaq.p1_a} onChange={(e) => setIpaq({
+                    <input defaultValue={ipaq.p1_a} onChange={(e) => setIpaq({
                         ...ipaq,
                         p1_a: e.target.value })} type="text"/>
                 </div>
@@ -102,12 +127,12 @@ function AdicionarIpaq() {
                 </label>
                 <div className="LabelInput">
                     <label><strong>Horas?</strong></label>
-                    <input value={ipaq.p1_b_h} onChange={(e) => setIpaq({
+                    <input defaultValue={ipaq.p1_b_h} onChange={(e) => setIpaq({
                         ...ipaq,
                         p1_b_h: e.target.value })} type="text"/>
                 </div>
                 <label><strong>Minutos?</strong></label>
-                <input value={ipaq.p1_b_m} onChange={(e) => setIpaq({
+                <input defaultValue={ipaq.p1_b_m} onChange={(e) => setIpaq({
                     ...ipaq,
                     p1_b_m: e.target.value })} type="text"/>
             </div>
@@ -123,6 +148,7 @@ function AdicionarIpaq() {
                 </div>
                 <FormControlLabel
                     value={ipaq.p2_a}
+                    checked={ipaq.p2_a === 'Nenhum'}
                     onChange={(e) => setIpaq( {
                         ...ipaq,
                         p2_a: e.target.checked ? 'Nenhum' : '' })}
@@ -136,12 +162,12 @@ function AdicionarIpaq() {
                 </label>
                 <div className="LabelInput">
                     <label><strong>Horas?</strong></label>
-                    <input value={ipaq.p2_b_h} onChange={(e) => setIpaq({
+                    <input defaultValue={ipaq.p2_b_h} onChange={(e) => setIpaq({
                         ...ipaq,
                         p2_b_h: e.target.value })} type="text"/>
                 </div>
                 <label><strong>Minutos?</strong></label>
-                <input value={ipaq.p2_b_m} onChange={(e) => setIpaq({
+                <input defaultValue={ipaq.p2_b_m} onChange={(e) => setIpaq({
                     ...ipaq,
                     p2_b_m: e.target.value })} type="text"/>
             </div>
@@ -151,12 +177,13 @@ function AdicionarIpaq() {
                 </label>
                 <div className="LabelInput">
                     <label><strong>Dias por semana</strong></label>
-                    <input value={ipaq.p3_a} onChange={(e) => setIpaq({
+                    <input defaultValue={ipaq.p3_a} onChange={(e) => setIpaq({
                         ...ipaq,
                         p3_a: e.target.value })} type="text"/>
                 </div>
                 <FormControlLabel
                     value={ipaq.p3_a}
+                    checked={ipaq.p3_a === 'Nenhum'}
                     onChange={(e) => setIpaq( {
                         ...ipaq,
                         p3_a: e.target.checked ? 'Nenhum' : '' })}
@@ -170,16 +197,17 @@ function AdicionarIpaq() {
                 </label>
                 <div className="LabelInput">
                     <label><strong>Horas?</strong></label>
-                    <input value={ipaq.p3_b} onChange={(e) => setIpaq({
+                    <input defaultValue={ipaq.p3_b} onChange={(e) => setIpaq({
                         ...ipaq,
                         p3_b_h: e.target.value })} type="text"/>
                 </div>
                 <label><strong>Minutos?</strong></label>
-                <input value={ipaq.p3_b} onChange={(e) => setIpaq({
+                <input defaultValue={ipaq.p3_b} onChange={(e) => setIpaq({
                     ...ipaq,
                     p3_b_m: e.target.value })} type="text"/>
             </div>
-            <label className="Legenda"><strong>Estas últimas questões são sobre o tempo que você permanece sentado todo dia, o trabalho, na igreja ou faculdade, em casa e durante seu tempo livre. Isto inclui o tempo sentado estudando, sentado enquanto descansa, fazendo lição de casa, visitando um amigo, lendo sentado ou deitado assistindo TV. Não inclua o tempo gasto sentado durante o transporte em ônibus, trem, metrô ou carro.</strong></label>
+            <label className="Legenda" style={{
+            }}><strong>Estas últimas questões são sobre o tempo que você permanece sentado todo dia, o trabalho, na igreja ou faculdade, em casa e durante seu tempo livre. Isto inclui o tempo sentado estudando, sentado enquanto descansa, fazendo lição de casa, visitando um amigo, lendo sentado ou deitado assistindo TV. Não inclua o tempo gasto sentado durante o transporte em ônibus, trem, metrô ou carro.</strong></label>
             <hr/>
             <div className="LabelForm" style={{borderBottom: '1px solid gray', marginBottom: '0.2vh'}}>
                 <label style={{padding: '1vh', width: '20vh'}}>
@@ -187,12 +215,12 @@ function AdicionarIpaq() {
                 </label>
                 <div className="LabelInput">
                     <label><strong>Horas?</strong></label>
-                    <input value={ipaq.p4_a_h} onChange={(e) => setIpaq({
+                    <input defaultValue={ipaq.p4_a_h} onChange={(e) => setIpaq({
                         ...ipaq,
                         p4_a_h: e.target.value })} type="text"/>
                 </div>
                 <label><strong>Minutos?</strong></label>
-                <input value={ipaq.p4_a_m} onChange={(e) => setIpaq({
+                <input defaultValue={ipaq.p4_a_m} onChange={(e) => setIpaq({
                     ...ipaq,
                     p4_a_m: e.target.value })} type="text"/>
             </div>
@@ -202,12 +230,12 @@ function AdicionarIpaq() {
                 </label>
                 <div className="LabelInput">
                     <label><strong>Horas?</strong></label>
-                    <input value={ipaq.p4_b_h} onChange={(e) => setIpaq({
+                    <input defaultValue={ipaq.p4_b_h} onChange={(e) => setIpaq({
                         ...ipaq,
                         p4_b_h: e.target.value })} type="text"/>
                 </div>
                 <label><strong>Minutos?</strong></label>
-                <input value={ipaq.p4_b_m} onChange={(e) => setIpaq({
+                <input defaultValue={ipaq.p4_b_m} onChange={(e) => setIpaq({
                     ...ipaq,
                     p4_b_m: e.target.value })} type="text"/>
             </div>
@@ -279,6 +307,7 @@ function AdicionarIpaq() {
             </div>
         </div>
     )
+
 }
 
-export default AdicionarIpaq;
+export default EditarIpaq;

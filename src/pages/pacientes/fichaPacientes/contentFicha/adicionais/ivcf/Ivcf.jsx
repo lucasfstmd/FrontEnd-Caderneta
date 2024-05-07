@@ -100,7 +100,8 @@ function Ivcf() {
 
     return (
         <div className="Ivcf">
-            <PainelFicha titulo="4.5 Índice de Vulnerabilidade Clínico-Funcional-20 (IVCF-20)" botaoNew={true} onAdicionarClick={handleAdicionarClick}>
+            <PainelFicha titulo="4.5 Índice de Vulnerabilidade Clínico-Funcional-20 (IVCF-20)"
+                         botaoNew={true} onAdicionarClick={handleAdicionarClick}>
                 <div className="Conteudo">
                     {query.get('view') === 'tabela' && (
                         <>
