@@ -152,7 +152,7 @@ function EditarEscalaEstresse() {
                                         p1: parseInt(e.target.value) })}
                                     control={<Radio/>}
                                     labelPlacement="rigth"
-                                    label="Quase nunca"
+                                    label="As vezes"
                                 />
                                 <FormControlLabel
                                     value={2}
@@ -161,10 +161,19 @@ function EditarEscalaEstresse() {
                                         p1: parseInt(e.target.value) })}
                                     control={<Radio/>}
                                     labelPlacement="rigth"
-                                    label="Pouco Frequente"
+                                    label="Quase nunca"
                                 />
                                 <FormControlLabel
                                     value={3}
+                                    onChange={(e) => setEscEstress({
+                                        ...escEstress,
+                                        p1: parseInt(e.target.value) })}
+                                    control={<Radio/>}
+                                    labelPlacement="rigth"
+                                    label="Pouco Frequente"
+                                />
+                                <FormControlLabel
+                                    value={4}
                                     onChange={(e) => setEscEstress({
                                         ...escEstress,
                                         p1: parseInt(e.target.value) })}
@@ -209,7 +218,7 @@ function EditarEscalaEstresse() {
                                         p2: parseInt(e.target.value) })}
                                     control={<Radio/>}
                                     labelPlacement="rigth"
-                                    label="Quase nunca"
+                                    label="As vezes"
                                 />
                                 <FormControlLabel
                                     value={2}
@@ -218,10 +227,19 @@ function EditarEscalaEstresse() {
                                         p2: parseInt(e.target.value) })}
                                     control={<Radio/>}
                                     labelPlacement="rigth"
-                                    label="Pouco Frequente"
+                                    label="Quase nunca"
                                 />
                                 <FormControlLabel
                                     value={3}
+                                    onChange={(e) => setEscEstress({
+                                        ...escEstress,
+                                        p2: parseInt(e.target.value) })}
+                                    control={<Radio/>}
+                                    labelPlacement="rigth"
+                                    label="Pouco Frequente"
+                                />
+                                <FormControlLabel
+                                    value={4}
                                     onChange={(e) => setEscEstress({
                                         ...escEstress,
                                         p2: parseInt(e.target.value) })}
@@ -266,7 +284,7 @@ function EditarEscalaEstresse() {
                                         p3: parseInt(e.target.value) })}
                                     control={<Radio/>}
                                     labelPlacement="rigth"
-                                    label="Quase nunca"
+                                    label="As vezes"
                                 />
                                 <FormControlLabel
                                     value={2}
@@ -275,10 +293,19 @@ function EditarEscalaEstresse() {
                                         p3: parseInt(e.target.value) })}
                                     control={<Radio/>}
                                     labelPlacement="rigth"
-                                    label="Pouco Frequente"
+                                    label="Quase nunca"
                                 />
                                 <FormControlLabel
                                     value={3}
+                                    onChange={(e) => setEscEstress({
+                                        ...escEstress,
+                                        p3: parseInt(e.target.value) })}
+                                    control={<Radio/>}
+                                    labelPlacement="rigth"
+                                    label="Pouco Frequente"
+                                />
+                                <FormControlLabel
+                                    value={4}
                                     onChange={(e) => setEscEstress({
                                         ...escEstress,
                                         p3: parseInt(e.target.value) })}
@@ -323,7 +350,7 @@ function EditarEscalaEstresse() {
                                         p4: parseInt(e.target.value) })}
                                     control={<Radio/>}
                                     labelPlacement="rigth"
-                                    label="Quase nunca"
+                                    label="As vezes"
                                 />
                                 <FormControlLabel
                                     value={2}
@@ -332,10 +359,19 @@ function EditarEscalaEstresse() {
                                         p4: parseInt(e.target.value) })}
                                     control={<Radio/>}
                                     labelPlacement="rigth"
-                                    label="Pouco Frequente"
+                                    label="Quase nunca"
                                 />
                                 <FormControlLabel
                                     value={3}
+                                    onChange={(e) => setEscEstress({
+                                        ...escEstress,
+                                        p4: parseInt(e.target.value) })}
+                                    control={<Radio/>}
+                                    labelPlacement="rigth"
+                                    label="Pouco Frequente"
+                                />
+                                <FormControlLabel
+                                    value={4}
                                     onChange={(e) => setEscEstress({
                                         ...escEstress,
                                         p4: parseInt(e.target.value) })}
@@ -380,7 +416,7 @@ function EditarEscalaEstresse() {
                                         p5: parseInt(e.target.value) })}
                                     control={<Radio/>}
                                     labelPlacement="rigth"
-                                    label="Quase nunca"
+                                    label="As vezes"
                                 />
                                 <FormControlLabel
                                     value={2}
@@ -389,10 +425,19 @@ function EditarEscalaEstresse() {
                                         p5: parseInt(e.target.value) })}
                                     control={<Radio/>}
                                     labelPlacement="rigth"
-                                    label="Pouco Frequente"
+                                    label="Quase nunca"
                                 />
                                 <FormControlLabel
                                     value={3}
+                                    onChange={(e) => setEscEstress({
+                                        ...escEstress,
+                                        p5: parseInt(e.target.value) })}
+                                    control={<Radio/>}
+                                    labelPlacement="rigth"
+                                    label="Pouco Frequente"
+                                />
+                                <FormControlLabel
+                                    value={4}
                                     onChange={(e) => setEscEstress({
                                         ...escEstress,
                                         p5: parseInt(e.target.value) })}
@@ -437,7 +482,7 @@ function EditarEscalaEstresse() {
                                         p6: parseInt(e.target.value) })}
                                     control={<Radio/>}
                                     labelPlacement="rigth"
-                                    label="Quase nunca"
+                                    label="As vezes"
                                 />
                                 <FormControlLabel
                                     value={2}
@@ -446,10 +491,19 @@ function EditarEscalaEstresse() {
                                         p6: parseInt(e.target.value) })}
                                     control={<Radio/>}
                                     labelPlacement="rigth"
-                                    label="Pouco Frequente"
+                                    label="Quase nunca"
                                 />
                                 <FormControlLabel
                                     value={3}
+                                    onChange={(e) => setEscEstress({
+                                        ...escEstress,
+                                        p6: parseInt(e.target.value) })}
+                                    control={<Radio/>}
+                                    labelPlacement="rigth"
+                                    label="Pouco Frequente"
+                                />
+                                <FormControlLabel
+                                    value={4}
                                     onChange={(e) => setEscEstress({
                                         ...escEstress,
                                         p6: parseInt(e.target.value) })}
@@ -494,7 +548,7 @@ function EditarEscalaEstresse() {
                                         p7: parseInt(e.target.value) })}
                                     control={<Radio/>}
                                     labelPlacement="rigth"
-                                    label="Quase nunca"
+                                    label="As vezes"
                                 />
                                 <FormControlLabel
                                     value={2}
@@ -503,10 +557,19 @@ function EditarEscalaEstresse() {
                                         p7: parseInt(e.target.value) })}
                                     control={<Radio/>}
                                     labelPlacement="rigth"
-                                    label="Pouco Frequente"
+                                    label="Quase nunca"
                                 />
                                 <FormControlLabel
                                     value={3}
+                                    onChange={(e) => setEscEstress({
+                                        ...escEstress,
+                                        p7: parseInt(e.target.value) })}
+                                    control={<Radio/>}
+                                    labelPlacement="rigth"
+                                    label="Pouco Frequente"
+                                />
+                                <FormControlLabel
+                                    value={4}
                                     onChange={(e) => setEscEstress({
                                         ...escEstress,
                                         p7: parseInt(e.target.value) })}
@@ -551,7 +614,7 @@ function EditarEscalaEstresse() {
                                         p8: parseInt(e.target.value) })}
                                     control={<Radio/>}
                                     labelPlacement="rigth"
-                                    label="Quase nunca"
+                                    label="As vezes"
                                 />
                                 <FormControlLabel
                                     value={2}
@@ -560,10 +623,19 @@ function EditarEscalaEstresse() {
                                         p8: parseInt(e.target.value) })}
                                     control={<Radio/>}
                                     labelPlacement="rigth"
-                                    label="Pouco Frequente"
+                                    label="Quase nunca"
                                 />
                                 <FormControlLabel
                                     value={3}
+                                    onChange={(e) => setEscEstress({
+                                        ...escEstress,
+                                        p8: parseInt(e.target.value) })}
+                                    control={<Radio/>}
+                                    labelPlacement="rigth"
+                                    label="Pouco Frequente"
+                                />
+                                <FormControlLabel
+                                    value={4}
                                     onChange={(e) => setEscEstress({
                                         ...escEstress,
                                         p8: parseInt(e.target.value) })}
@@ -608,7 +680,7 @@ function EditarEscalaEstresse() {
                                         p9: parseInt(e.target.value) })}
                                     control={<Radio/>}
                                     labelPlacement="rigth"
-                                    label="Quase nunca"
+                                    label="As vezes"
                                 />
                                 <FormControlLabel
                                     value={2}
@@ -617,10 +689,19 @@ function EditarEscalaEstresse() {
                                         p9: parseInt(e.target.value) })}
                                     control={<Radio/>}
                                     labelPlacement="rigth"
-                                    label="Pouco Frequente"
+                                    label="Quase nunca"
                                 />
                                 <FormControlLabel
                                     value={3}
+                                    onChange={(e) => setEscEstress({
+                                        ...escEstress,
+                                        p9: parseInt(e.target.value) })}
+                                    control={<Radio/>}
+                                    labelPlacement="rigth"
+                                    label="Pouco Frequente"
+                                />
+                                <FormControlLabel
+                                    value={4}
                                     onChange={(e) => setEscEstress({
                                         ...escEstress,
                                         p9: parseInt(e.target.value) })}
@@ -665,7 +746,7 @@ function EditarEscalaEstresse() {
                                         p10: parseInt(e.target.value) })}
                                     control={<Radio/>}
                                     labelPlacement="rigth"
-                                    label="Quase nunca"
+                                    label="As vezes"
                                 />
                                 <FormControlLabel
                                     value={2}
@@ -674,10 +755,19 @@ function EditarEscalaEstresse() {
                                         p10: parseInt(e.target.value) })}
                                     control={<Radio/>}
                                     labelPlacement="rigth"
-                                    label="Pouco Frequente"
+                                    label="Quase nunca"
                                 />
                                 <FormControlLabel
                                     value={3}
+                                    onChange={(e) => setEscEstress({
+                                        ...escEstress,
+                                        p10: parseInt(e.target.value) })}
+                                    control={<Radio/>}
+                                    labelPlacement="rigth"
+                                    label="Pouco Frequente"
+                                />
+                                <FormControlLabel
+                                    value={4}
                                     onChange={(e) => setEscEstress({
                                         ...escEstress,
                                         p10: parseInt(e.target.value) })}
@@ -722,7 +812,7 @@ function EditarEscalaEstresse() {
                                         p11: parseInt(e.target.value) })}
                                     control={<Radio/>}
                                     labelPlacement="rigth"
-                                    label="Quase nunca"
+                                    label="As vezes"
                                 />
                                 <FormControlLabel
                                     value={2}
@@ -731,10 +821,19 @@ function EditarEscalaEstresse() {
                                         p11: parseInt(e.target.value) })}
                                     control={<Radio/>}
                                     labelPlacement="rigth"
-                                    label="Pouco Frequente"
+                                    label="Quase nunca"
                                 />
                                 <FormControlLabel
                                     value={3}
+                                    onChange={(e) => setEscEstress({
+                                        ...escEstress,
+                                        p11: parseInt(e.target.value) })}
+                                    control={<Radio/>}
+                                    labelPlacement="rigth"
+                                    label="Pouco Frequente"
+                                />
+                                <FormControlLabel
+                                    value={4}
                                     onChange={(e) => setEscEstress({
                                         ...escEstress,
                                         p11: parseInt(e.target.value) })}
@@ -779,7 +878,7 @@ function EditarEscalaEstresse() {
                                         p12: parseInt(e.target.value) })}
                                     control={<Radio/>}
                                     labelPlacement="rigth"
-                                    label="Quase nunca"
+                                    label="As vezes"
                                 />
                                 <FormControlLabel
                                     value={2}
@@ -788,10 +887,19 @@ function EditarEscalaEstresse() {
                                         p12: parseInt(e.target.value) })}
                                     control={<Radio/>}
                                     labelPlacement="rigth"
-                                    label="Pouco Frequente"
+                                    label="Quase nunca"
                                 />
                                 <FormControlLabel
                                     value={3}
+                                    onChange={(e) => setEscEstress({
+                                        ...escEstress,
+                                        p12: parseInt(e.target.value) })}
+                                    control={<Radio/>}
+                                    labelPlacement="rigth"
+                                    label="Pouco Frequente"
+                                />
+                                <FormControlLabel
+                                    value={4}
                                     onChange={(e) => setEscEstress({
                                         ...escEstress,
                                         p12: parseInt(e.target.value) })}
@@ -836,7 +944,7 @@ function EditarEscalaEstresse() {
                                         p13: parseInt(e.target.value) })}
                                     control={<Radio/>}
                                     labelPlacement="rigth"
-                                    label="Quase nunca"
+                                    label="As vezes"
                                 />
                                 <FormControlLabel
                                     value={2}
@@ -845,10 +953,19 @@ function EditarEscalaEstresse() {
                                         p13: parseInt(e.target.value) })}
                                     control={<Radio/>}
                                     labelPlacement="rigth"
-                                    label="Pouco Frequente"
+                                    label="Quase nunca"
                                 />
                                 <FormControlLabel
                                     value={3}
+                                    onChange={(e) => setEscEstress({
+                                        ...escEstress,
+                                        p13: parseInt(e.target.value) })}
+                                    control={<Radio/>}
+                                    labelPlacement="rigth"
+                                    label="Pouco Frequente"
+                                />
+                                <FormControlLabel
+                                    value={4}
                                     onChange={(e) => setEscEstress({
                                         ...escEstress,
                                         p13: parseInt(e.target.value) })}
@@ -893,7 +1010,7 @@ function EditarEscalaEstresse() {
                                         p14: parseInt(e.target.value) })}
                                     control={<Radio/>}
                                     labelPlacement="rigth"
-                                    label="Quase nunca"
+                                    label="As vezes"
                                 />
                                 <FormControlLabel
                                     value={2}
@@ -902,7 +1019,7 @@ function EditarEscalaEstresse() {
                                         p14: parseInt(e.target.value) })}
                                     control={<Radio/>}
                                     labelPlacement="rigth"
-                                    label="Pouco Frequente"
+                                    label="Quase nunca"
                                 />
                                 <FormControlLabel
                                     value={3}
@@ -911,8 +1028,17 @@ function EditarEscalaEstresse() {
                                         p14: parseInt(e.target.value) })}
                                     control={<Radio/>}
                                     labelPlacement="rigth"
-                                    label="Muito frequente"
+                                    label="Pouco Frequente"
                                 />
+                                <FormControlLabel
+                                    value={4}
+                                    onChange={(e) => setEscEstress({
+                                        ...escEstress,
+                                        p14: parseInt(e.target.value) })}
+                                    control={<Radio/>}
+                                    labelPlacement="rigth"
+                                    label="Muito frequente"
+                                />4
                             </RadioGroup>
                         </FormControl>
                     </div>

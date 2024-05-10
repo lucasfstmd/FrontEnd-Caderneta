@@ -136,7 +136,7 @@ function MenuFicha() {
                 </div>
                 <div className="Adicionais">
                     <div className="Titulo">
-                        <strong>5. Saúde Mental</strong>
+                        <strong>5. Saúde Física, Mental e Sono</strong>
                     </div>
                     <Link to={'?form=usabilidade&view=tabela'} className="OpcaoFicha">
                         5.1 Questionário de Usabilidade
