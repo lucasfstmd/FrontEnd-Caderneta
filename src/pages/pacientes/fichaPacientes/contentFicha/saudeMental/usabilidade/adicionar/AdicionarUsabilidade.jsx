@@ -15,6 +15,7 @@ import DialogActions from '@mui/material/DialogActions'
 import Button from '@mui/material/Button'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useQuery } from '../../../ContentFicha'
+import api from '../../../../../../../service/api'
 
 function AdicionarUsabilidade() {
     const params = useParams();
@@ -43,7 +44,19 @@ function AdicionarUsabilidade() {
         p4_1_1: null,
     })
 
-    console.log(usabilidade)
+
+    async function handleSalvarApi() {
+        try {
+            await api.post("v1/usabilidade", usabilidade);
+            setOpen(true);
+        } catch (error) {
+            if (error.response && error.response.status === 400) {
+                setOpenErro400(true);
+            } else if (error.response && error.response.status === 500) {
+                setOpenErro500(true);
+            }
+        }
+    }
 
     const [open, setOpen] = useState(false);
     const [openErro400, setOpenErro400] = useState(false);
@@ -58,7 +71,7 @@ function AdicionarUsabilidade() {
     }
 
     const handleClickOpen = () => {
-        // handleSalvarApi();
+        handleSalvarApi();
     }
 
     const handleClose = () => {

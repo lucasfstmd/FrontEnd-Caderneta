@@ -1,5 +1,5 @@
 import { format } from 'date-fns'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { AiOutlineEdit } from 'react-icons/ai'
 import { IoMdRemoveCircleOutline } from 'react-icons/io'
 import Dialog from '@mui/material/Dialog'
@@ -9,6 +9,7 @@ import DialogActions from '@mui/material/DialogActions'
 import Button from '@mui/material/Button'
 import Loading from '../../../../../../../components/loading/Loading'
 import { useParams } from 'react-router-dom'
+import api from '../../../../../../../service/api'
 
 function UsabilidadeLinha({ usabilidade, onEditarClick }) {
     const [open, setOpen] = useState(false);
@@ -130,36 +131,46 @@ function UsabilidadeLinha({ usabilidade, onEditarClick }) {
 }
 
 function TabelaUsabilidade(props) {
-    const [usabilidade, setUsabilidade] = useState([
-        {
-            id: 0,
-            p1: 'teste',
-            p1_0: 'teste',
-            p1_1_1: 'teste',
-            p1_1_2: 'teste',
-            p1_1_3: 'teste',
-            p1_1_4: 'teste',
-            p1_1_5: 'teste',
-            p1_2: 'teste',
-            p1_3: 'teste',
-            p2_1: 'teste',
-            p2_2: 'teste',
-            p3_1: 'teste',
-            p3_1_1: 'teste',
-            p3_2: 'teste',
-            p3_2_1: 'teste',
-            p4_1: 'teste',
-            p4_1_1: 'teste',
-            created: '2019-05-02T00:58:34.000Z',
-            updated: '2019-05-02T00:58:34.000Z'
-        }
-    ]);
+    const [usabilidade, setUsabilidade] = useState({
+        paciente_id: parseInt(id),
+        p1: null,
+        p1_0: '',
+        p1_1_1: null,
+        p1_1_2: null,
+        p1_1_3: null,
+        p1_1_4: null,
+        p1_1_5: null,
+        p1_2: null,
+        p1_3: null,
+        p2_1: null,
+        p2_2: null,
+        p3_1: null,
+        p3_1_1: null,
+        p3_2: null,
+        p3_2_1: null,
+        p4_1: null,
+        p4_1_1: null,
+    })
     const currentPage = 1
     const itemsPerPage = props.itemsPerPage;
     const [loading, setLoading] = useState(false);
     const params = useParams();
     const { id } = params
     const totalPages = Math.ceil((usabilidade?.length || 0) / itemsPerPage);
+
+    async function carregarDados() {
+        try {
+            const response = await api.get(`v1/usabilidade/paciente/${id}`);
+            setUsabilidade(response.data);
+            setLoading(false)
+        } catch (error) {
+            console.log(undefined);
+        }
+    }
+
+    useEffect(() => {
+        carregarDados();
+    }, []);
 
     const getUsabilidadesPagAtual = () => {
         const inicio = (currentPage - 1) * itemsPerPage;
