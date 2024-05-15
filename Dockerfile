@@ -16,8 +16,7 @@ RUN npm install ;\
     rm -rf node_modules/ src/ ;\
     npm install -g serve
 
-ENTRYPOINT sed -i -e "s@REACT_APP_API_GATEWAY@${REACT_APP_API_GATEWAY}@g" \
-            export NODE_OPTIONS="--max-old-space-size=2560" \
+ENTRYPOINT sed -i -e "s@REACT_APP_API_GATEWAY@${REACT_APP_API_GATEWAY}@g" build/static/js/*.js build/index.html ;\
             if test -f "$SSL_CERT_PATH" && test -f "$SSL_KEY_PATH";\
             then serve -s -n -l 443 --ssl-cert $SSL_CERT_PATH --ssl-key $SSL_KEY_PATH build;\
             else serve -s -n -l 80 build;fi;
