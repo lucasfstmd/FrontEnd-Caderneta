@@ -1,5 +1,5 @@
 import { format } from 'date-fns'
-import React, { useState } from 'react'
+import React, {useEffect, useState} from 'react'
 import { AiOutlineEdit } from 'react-icons/ai'
 import { IoMdRemoveCircleOutline } from 'react-icons/io'
 import Dialog from '@mui/material/Dialog'
@@ -9,12 +9,21 @@ import DialogActions from '@mui/material/DialogActions'
 import Button from '@mui/material/Button'
 import Loading from '../../../../../../../components/loading/Loading'
 import { useParams } from 'react-router-dom'
+import api from "../../../../../../../service/api";
 
 function IpaqLinha({ ipaq, onEditarClick }) {
     const [open, setOpen] = useState(false);
 
     const formattedDateCreated = format(new Date(ipaq.created), "dd/MM/yyyy");
     const formattedDateUpdated = format(new Date(ipaq.updated), "dd/MM/yyyy");
+
+    async function handleDelet() {
+        try {
+            await api.delete(`v1/ipaq/${ipaq.id}`);
+        } catch (error) {
+            console.log(undefined)
+        }
+    }
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -26,6 +35,7 @@ function IpaqLinha({ ipaq, onEditarClick }) {
 
     const handleSalvar = () => {
         setOpen(false);
+        handleDelet();
     }
 
     return (
@@ -110,27 +120,29 @@ function IpaqLinha({ ipaq, onEditarClick }) {
 }
 
 function TabelaIpaq(props) {
-    const [ipaq, setIpaq] = useState([
-        {
-            id: 0,
-            p1_a: 'teste',
-            p1_b: 'teste',
-            p2_a: 'teste',
-            p2_b: 'teste',
-            p3_a: 'teste',
-            p3_b: 'teste',
-            p4_a: 'teste',
-            p4_b: 'teste',
-            created: '2019-05-02T00:58:34.000Z',
-            updated: '2019-05-02T00:58:34.000Z'
-        }
-    ]);
+    const [ipaq, setIpaq] = useState([]);
     const currentPage = 1
     const itemsPerPage = props.itemsPerPage;
     const [loading, setLoading] = useState(false);
     const params = useParams();
     const { id } = params
     const totalPages = Math.ceil((ipaq?.length || 0) / itemsPerPage);
+
+    async function carregarDado() {
+        try {
+            const response = await api.get(
+                `v1/ipaq/paciente/${id}`
+            );
+            setIpaq(response.data);
+            setLoading(false)
+        } catch (error) {
+            console.log(undefined);
+        }
+    }
+
+    useEffect(() => {
+        carregarDado();
+    }, []);
 
     const getIpaqPagAtual = () => {
         const inicio = (currentPage - 1) * itemsPerPage;

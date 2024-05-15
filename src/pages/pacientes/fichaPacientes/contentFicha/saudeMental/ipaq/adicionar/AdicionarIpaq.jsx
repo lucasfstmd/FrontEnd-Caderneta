@@ -15,6 +15,7 @@ import DialogActions from '@mui/material/DialogActions'
 import Button from '@mui/material/Button'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useQuery } from '../../../ContentFicha'
+import api from "../../../../../../../service/api";
 
 function AdicionarIpaq() {
     const params = useParams();
@@ -23,6 +24,7 @@ function AdicionarIpaq() {
     const navigate = useNavigate();
 
     const [ipaq, setIpaq] = useState({
+        paciente_id: parseInt(id),
         p1_a: null,
         p1_b_h: null,
         p1_b_m: null,
@@ -38,6 +40,18 @@ function AdicionarIpaq() {
         p4_b_m: null,
     })
 
+    async function handleSalvarApi() {
+        try {
+            await api.post("v1/ipaq", ipaq);
+            setOpen(true);
+        } catch (error) {
+            if (error.response && error.response.status === 400) {
+                setOpenErro400(true);
+            } else if (error.response && error.response.status === 500) {
+                setOpenErro500(true);
+            }
+        }
+    }
 
     const [open, setOpen] = useState(false);
     const [openErro400, setOpenErro400] = useState(false);
@@ -52,7 +66,7 @@ function AdicionarIpaq() {
     }
 
     const handleClickOpen = () => {
-        // handleSalvarApi();
+        handleSalvarApi();
     }
 
     const handleClose = () => {

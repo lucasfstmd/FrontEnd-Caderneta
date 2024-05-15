@@ -15,6 +15,7 @@ import DialogActions from '@mui/material/DialogActions'
 import Button from '@mui/material/Button'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useQuery } from '../../../ContentFicha'
+import api from "../../../../../../../service/api";
 
 function AdicionarEscalaDepressao() {
     const params = useParams();
@@ -24,7 +25,7 @@ function AdicionarEscalaDepressao() {
 
     const [escDepre, setEscDepre] = useState([
         {
-            id: null,
+            paciente_id: parseInt(id),
             p1: null,
             p2: null,
             p3: null,
@@ -43,35 +44,45 @@ function AdicionarEscalaDepressao() {
             p17: null,
             p18: null,
             p19: null,
-            p20: null,
-            created: '2019-05-02T00:58:34.000Z',
-            updated: '2019-05-02T00:58:34.000Z'
+            p20: null
         }
     ]);
 
-    console.log({
-        ...escDepre,
-        score: (escDepre.p1 +
-            escDepre.p2 +
-            escDepre.p3 +
-            escDepre.p4 +
-            escDepre.p5 +
-            escDepre.p6 +
-            escDepre.p7 +
-            escDepre.p8 +
-            escDepre.p9 +
-            escDepre.p10 +
-            escDepre.p11 +
-            escDepre.p12 +
-            escDepre.p13 +
-            escDepre.p14 +
-            escDepre.p15 +
-            escDepre.p16 +
-            escDepre.p17 +
-            escDepre.p18 +
-            escDepre.p19 +
-            escDepre.p20
-        )})
+
+    async function handleSalvarApi() {
+        try {
+            await api.post("v1/escala-depressao", {
+                ...escDepre,
+                score: (escDepre.p1 +
+                    escDepre.p2 +
+                    escDepre.p3 +
+                    escDepre.p4 +
+                    escDepre.p5 +
+                    escDepre.p6 +
+                    escDepre.p7 +
+                    escDepre.p8 +
+                    escDepre.p9 +
+                    escDepre.p10 +
+                    escDepre.p11 +
+                    escDepre.p12 +
+                    escDepre.p13 +
+                    escDepre.p14 +
+                    escDepre.p15 +
+                    escDepre.p16 +
+                    escDepre.p17 +
+                    escDepre.p18 +
+                    escDepre.p19 +
+                    escDepre.p20)
+            });
+            setOpen(true);
+        } catch (error) {
+            if (error.response && error.response.status === 400) {
+                setOpenErro400(true);
+            } else if (error.response && error.response.status === 500) {
+                setOpenErro500(true);
+            }
+        }
+    }
 
     const [open, setOpen] = useState(false);
     const [openErro400, setOpenErro400] = useState(false);
@@ -86,7 +97,7 @@ function AdicionarEscalaDepressao() {
     }
 
     const handleClickOpen = () => {
-        // handleSalvarApi();
+        handleSalvarApi();
     }
 
     const handleClose = () => {

@@ -10,33 +10,7 @@ import EditarEscalaDepressao from './editar/EditarEscalaDepressao'
 function EscalaDepressao() {
     const itemsPerPage = 20;
     const [currentPage, setCurrentPage] = useState(1);
-    const [escDepre, setEscDepre] = useState([
-        {
-            id: 0,
-            p1: 1,
-            p2: 3,
-            p3: 0,
-            p4: 2,
-            p5: 1,
-            p6: 2,
-            p7: 0,
-            p8: 3,
-            p9: 3,
-            p10: 2,
-            p12: 2,
-            p13: 1,
-            p14: 0,
-            p15: 2,
-            p16: 3,
-            p17: 1,
-            p18: 2,
-            p19: 0,
-            p20: 3,
-            score: 22,
-            created: '2019-05-02T00:58:34.000Z',
-            updated: '2019-05-02T00:58:34.000Z'
-        }
-    ]);
+    const [escDepre, setEscDepre] = useState([]);
     const navigate = useNavigate()
     const query = useQuery()
     const params = useParams()

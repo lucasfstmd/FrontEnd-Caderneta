@@ -13,6 +13,7 @@ import DialogActions from '@mui/material/DialogActions'
 import Button from '@mui/material/Button'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useQuery } from '../../../ContentFicha'
+import api from "../../../../../../../service/api";
 
 function AdicionarEscalaEstresse() {
     const params = useParams();
@@ -22,7 +23,7 @@ function AdicionarEscalaEstresse() {
 
     const [escEstress, setEscEstress] = useState([
         {
-            id: null,
+            paciente_id: parseInt(id),
             p1: null,
             p2: null,
             p3: null,
@@ -35,12 +36,38 @@ function AdicionarEscalaEstresse() {
             p10: null,
             p12: null,
             p13: null,
-            p14: null,
-            created: '2019-05-02T00:58:34.000Z',
-            updated: '2019-05-02T00:58:34.000Z'
+            p14: null
         }
     ]);
 
+    async function handleSalvarApi() {
+        try {
+            await api.post("v1/escala-estresse", {
+                ...escEstress,
+                score: (escEstress.p1 +
+                    escEstress.p2 +
+                    escEstress.p3 +
+                    escEstress.p4 +
+                    escEstress.p5 +
+                    escEstress.p6 +
+                    escEstress.p7 +
+                    escEstress.p8 +
+                    escEstress.p9 +
+                    escEstress.p10 +
+                    escEstress.p11 +
+                    escEstress.p12 +
+                    escEstress.p13 +
+                    escEstress.p14)
+            });
+            setOpen(true);
+        } catch (error) {
+            if (error.response && error.response.status === 400) {
+                setOpenErro400(true);
+            } else if (error.response && error.response.status === 500) {
+                setOpenErro500(true);
+            }
+        }
+    }
 
     const [open, setOpen] = useState(false);
     const [openErro400, setOpenErro400] = useState(false);
@@ -55,7 +82,7 @@ function AdicionarEscalaEstresse() {
     }
 
     const handleClickOpen = () => {
-        // handleSalvarApi();
+        handleSalvarApi();
     }
 
     const handleClose = () => {

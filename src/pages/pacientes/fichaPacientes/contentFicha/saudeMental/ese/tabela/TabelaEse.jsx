@@ -1,5 +1,5 @@
 import { format } from 'date-fns'
-import React, { useState } from 'react'
+import React, {useEffect, useState} from 'react'
 import { AiOutlineEdit } from 'react-icons/ai'
 import { IoMdRemoveCircleOutline } from 'react-icons/io'
 import Dialog from '@mui/material/Dialog'
@@ -9,12 +9,21 @@ import DialogActions from '@mui/material/DialogActions'
 import Button from '@mui/material/Button'
 import Loading from '../../../../../../../components/loading/Loading'
 import { useParams } from 'react-router-dom'
+import api from "../../../../../../../service/api";
 
 function Linha({ data, onEditarClick }) {
     const [open, setOpen] = useState(false);
 
     const formattedDateCreated = format(new Date(data.created), "dd/MM/yyyy");
     const formattedDateUpdated = format(new Date(data.updated), "dd/MM/yyyy");
+
+    async function handleDelet() {
+        try {
+            await api.delete(`v1/ese/${data.id}`);
+        } catch (error) {
+            console.log(undefined)
+        }
+    }
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -26,6 +35,7 @@ function Linha({ data, onEditarClick }) {
 
     const handleSalvar = () => {
         setOpen(false);
+        handleDelet()
     }
 
     return (
@@ -113,27 +123,29 @@ function Linha({ data, onEditarClick }) {
 }
 
 function TabelaEse(props) {
-    const [ese, setEse] = useState([
-        {
-            id: 0,
-            p1: 0,
-            p2: 0,
-            p3: 0,
-            p4: 0,
-            p5: 0,
-            p6: 0,
-            p7: 0,
-            p8: 0,
-            created: '2019-05-02T00:58:34.000Z',
-            updated: '2019-05-02T00:58:34.000Z'
-        }
-    ]);
+    const [ese, setEse] = useState([]);
     const currentPage = 1
     const itemsPerPage = props.itemsPerPage;
     const [loading, setLoading] = useState(false);
     const params = useParams();
     const { id } = params
     const totalPages = Math.ceil((ese?.length || 0) / itemsPerPage);
+
+    async function carregarEse() {
+        try {
+            const response = await api.get(
+                `v1/ese/paciente/${id}`
+            );
+            setEse(response.data);
+            setLoading(false)
+        } catch (error) {
+            console.log(undefined);
+        }
+    }
+
+    useEffect(() => {
+        carregarEse();
+    }, []);
 
     const getDataPagAtual = () => {
         const inicio = (currentPage - 1) * itemsPerPage;

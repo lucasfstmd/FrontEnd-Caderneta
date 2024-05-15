@@ -55,7 +55,7 @@ function EditarPsqi() {
 
     async function carregarPsqi() {
         try {
-            const response = await api.get(`v1/pesqi/${psqiId}`)
+            const response = await api.get(`v1/psqi/${psqiId}`)
             setPsqi(response.data)
         } catch (error) {
             console.log(undefined)
@@ -72,7 +72,7 @@ function EditarPsqi() {
 
     const handleEdit = async () => {
         try {
-            await api.patch(`v1/ipaq/${psqiId}`, psqi);
+            await api.patch(`v1/psqi/${psqiId}`, psqi);
             setOpen(true);
         } catch (error) {
             if (error.response && error.response.status === 400) {
@@ -191,7 +191,7 @@ function EditarPsqi() {
                             column
                             aria-labelledby="demo-row-radio-buttons-group-label"
                             name="row-radio-buttons-group"
-                            defaultValue={psqi.p5_a}
+                            defaultChecked={psqi.p5_a}
                         >
                             <FormControlLabel
                                 value={0}

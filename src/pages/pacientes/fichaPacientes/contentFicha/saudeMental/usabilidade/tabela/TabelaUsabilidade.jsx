@@ -17,6 +17,14 @@ function UsabilidadeLinha({ usabilidade, onEditarClick }) {
     const formattedDateCreated = format(new Date(usabilidade.created), "dd/MM/yyyy");
     const formattedDateUpdated = format(new Date(usabilidade.updated), "dd/MM/yyyy");
 
+    async function handleDelete() {
+        try {
+            await api.delete(`v1/usabilidades/${usabilidade.id}`)
+        } catch (error) {
+            console.log(undefined);
+        }
+    }
+
     const handleClickOpen = () => {
         setOpen(true);
     }
@@ -27,6 +35,7 @@ function UsabilidadeLinha({ usabilidade, onEditarClick }) {
 
     const handleSalvar = () => {
         setOpen(false);
+        handleDelete()
     }
 
     return (
@@ -131,31 +140,12 @@ function UsabilidadeLinha({ usabilidade, onEditarClick }) {
 }
 
 function TabelaUsabilidade(props) {
-    const [usabilidade, setUsabilidade] = useState({
-        paciente_id: parseInt(id),
-        p1: null,
-        p1_0: '',
-        p1_1_1: null,
-        p1_1_2: null,
-        p1_1_3: null,
-        p1_1_4: null,
-        p1_1_5: null,
-        p1_2: null,
-        p1_3: null,
-        p2_1: null,
-        p2_2: null,
-        p3_1: null,
-        p3_1_1: null,
-        p3_2: null,
-        p3_2_1: null,
-        p4_1: null,
-        p4_1_1: null,
-    })
+    const params = useParams()
+    const { id } = params
+    const [usabilidade, setUsabilidade] = useState([])
     const currentPage = 1
     const itemsPerPage = props.itemsPerPage;
     const [loading, setLoading] = useState(false);
-    const params = useParams();
-    const { id } = params
     const totalPages = Math.ceil((usabilidade?.length || 0) / itemsPerPage);
 
     async function carregarDados() {

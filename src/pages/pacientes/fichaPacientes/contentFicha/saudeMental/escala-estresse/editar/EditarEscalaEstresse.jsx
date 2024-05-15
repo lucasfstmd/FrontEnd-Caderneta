@@ -26,19 +26,19 @@ function EditarEscalaEstresse() {
 
     const [escEstress, setEscEstress] = useState({
         paciente_id: parseInt(id),
-        p1: 0,
-        p2: 1,
-        p3: 3,
-        p4: 2,
-        p5: 1,
-        p6: 0,
-        p7: 2,
-        p8: 3,
-        p9: 1,
-        p10: 2,
-        p12: 3,
-        p13: 1,
-        p14: 2
+        p1: null,
+        p2: null,
+        p3: null,
+        p4: null,
+        p5: null,
+        p6: null,
+        p7: null,
+        p8: null,
+        p9: null,
+        p10: null,
+        p12: null,
+        p13: null,
+        p14: null
     })
 
     async function carregarEse() {

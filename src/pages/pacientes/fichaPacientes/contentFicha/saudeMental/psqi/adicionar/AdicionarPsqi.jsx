@@ -15,6 +15,7 @@ import DialogActions from '@mui/material/DialogActions'
 import Button from '@mui/material/Button'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useQuery } from '../../../ContentFicha'
+import api from "../../../../../../../service/api";
 
 function AdicionarPsqi() {
     const params = useParams();
@@ -51,6 +52,18 @@ function AdicionarPsqi() {
         p10_e_2: null,
     })
 
+    async function handleSalvarApi() {
+        try {
+            await api.post("v1/psqi", psqi);
+            setOpen(true);
+        } catch (error) {
+            if (error.response && error.response.status === 400) {
+                setOpenErro400(true);
+            } else if (error.response && error.response.status === 500) {
+                setOpenErro500(true);
+            }
+        }
+    }
 
     const [open, setOpen] = useState(false);
     const [openErro400, setOpenErro400] = useState(false);
@@ -65,7 +78,7 @@ function AdicionarPsqi() {
     }
 
     const handleClickOpen = () => {
-        // handleSalvarApi();
+        handleSalvarApi();
     }
 
     const handleClose = () => {

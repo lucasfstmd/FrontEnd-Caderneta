@@ -1,5 +1,5 @@
 import { format } from 'date-fns'
-import React, { useState } from 'react'
+import React, {useEffect, useState} from 'react'
 import { AiOutlineEdit } from 'react-icons/ai'
 import { IoMdRemoveCircleOutline } from 'react-icons/io'
 import Dialog from '@mui/material/Dialog'
@@ -9,12 +9,21 @@ import DialogActions from '@mui/material/DialogActions'
 import Button from '@mui/material/Button'
 import Loading from '../../../../../../../components/loading/Loading'
 import { useParams } from 'react-router-dom'
+import api from "../../../../../../../service/api";
 
 function Linha({ autorrelato, onEditarClick }) {
     const [open, setOpen] = useState(false);
 
     const formattedDateCreated = format(new Date(autorrelato.created), "dd/MM/yyyy");
     const formattedDateUpdated = format(new Date(autorrelato.updated), "dd/MM/yyyy");
+
+    async function handleDelet() {
+        try {
+            await api.delete(`v1/autorrelato/${autorrelato.id}`);
+        } catch (error) {
+            console.log(undefined)
+        }
+    }
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -26,6 +35,7 @@ function Linha({ autorrelato, onEditarClick }) {
 
     const handleSalvar = () => {
         setOpen(false);
+        handleDelet()
     }
 
     let p1 = ''
@@ -94,20 +104,29 @@ function Linha({ autorrelato, onEditarClick }) {
 }
 
 function TabelaAutorrelato(props) {
-    const [autorrelato, setAutorrelato] = useState([
-        {
-            id: 0,
-            p1: 3,
-            created: '2019-05-02T00:58:34.000Z',
-            updated: '2019-05-02T00:58:34.000Z'
-        }
-    ]);
+    const [autorrelato, setAutorrelato] = useState([]);
     const currentPage = 1
     const itemsPerPage = props.itemsPerPage;
     const [loading, setLoading] = useState(false);
     const params = useParams();
     const { id } = params
     const totalPages = Math.ceil((autorrelato?.length || 0) / itemsPerPage);
+
+    async function carregarDado() {
+        try {
+            const response = await api.get(
+                `v1/autorrelato/paciente/${id}`
+            );
+            setAutorrelato(response.data);
+            setLoading(false)
+        } catch (error) {
+            console.log(undefined);
+        }
+    }
+
+    useEffect(() => {
+        carregarDado();
+    }, []);
 
     const getInfoPagAtual = () => {
         const inicio = (currentPage - 1) * itemsPerPage;

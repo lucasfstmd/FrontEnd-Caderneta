@@ -8,13 +8,21 @@ import { DialogContent, DialogContentText } from '@mui/material'
 import DialogActions from '@mui/material/DialogActions'
 import Button from '@mui/material/Button'
 import Loading from '../../../../../../../components/loading/Loading'
-import { useParams } from 'react-router-dom'
+import api from "../../../../../../../service/api";
 
 function Linha({ psqi, onEditarClick }) {
     const [open, setOpen] = useState(false);
 
     const formattedDateCreated = format(new Date(psqi.created), "dd/MM/yyyy");
     const formattedDateUpdated = format(new Date(psqi.updated), "dd/MM/yyyy");
+
+    async function handleDelet() {
+        try {
+            await api.delete(`v1/psqi/${psqi.id}`);
+        } catch (error) {
+            console.log(undefined)
+        }
+    }
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -26,6 +34,7 @@ function Linha({ psqi, onEditarClick }) {
 
     const handleSalvar = () => {
         setOpen(false);
+        handleDelet();
     }
 
     const returnResponse = (value) => {

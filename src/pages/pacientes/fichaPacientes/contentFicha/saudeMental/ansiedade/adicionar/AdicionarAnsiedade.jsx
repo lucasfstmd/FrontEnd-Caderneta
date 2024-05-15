@@ -15,6 +15,7 @@ import DialogActions from '@mui/material/DialogActions'
 import Button from '@mui/material/Button'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useQuery } from '../../../ContentFicha'
+import api from "../../../../../../../service/api";
 
 function AdicionarAnsiedade() {
     const params = useParams();
@@ -24,7 +25,7 @@ function AdicionarAnsiedade() {
 
     const [ansiedade, setAnsiedade] = useState([
         {
-            id: null,
+            paciente_id: parseInt(id),
             p1: null,
             p2: null,
             p3: null,
@@ -47,29 +48,40 @@ function AdicionarAnsiedade() {
         }
     ]);
 
-    console.log({
-        ...ansiedade,
-        score: (ansiedade.p1 +
-            ansiedade.p2 +
-            ansiedade.p3 +
-            ansiedade.p4 +
-            ansiedade.p5 +
-            ansiedade.p6 +
-            ansiedade.p7 +
-            ansiedade.p8 +
-            ansiedade.p9 +
-            ansiedade.p10 +
-            ansiedade.p11 +
-            ansiedade.p12 +
-            ansiedade.p13 +
-            ansiedade.p14 +
-            ansiedade.p15 +
-            ansiedade.p16 +
-            ansiedade.p17 +
-            ansiedade.p18 +
-            ansiedade.p19 +
-            ansiedade.p20
-        )})
+    async function handleSalvarApi() {
+        try {
+            await api.post("v1/ansiedade", {
+                ...ansiedade,
+                score: (ansiedade.p1 +
+                    ansiedade.p2 +
+                    ansiedade.p3 +
+                    ansiedade.p4 +
+                    ansiedade.p5 +
+                    ansiedade.p6 +
+                    ansiedade.p7 +
+                    ansiedade.p8 +
+                    ansiedade.p9 +
+                    ansiedade.p10 +
+                    ansiedade.p11 +
+                    ansiedade.p12 +
+                    ansiedade.p13 +
+                    ansiedade.p14 +
+                    ansiedade.p15 +
+                    ansiedade.p16 +
+                    ansiedade.p17 +
+                    ansiedade.p18 +
+                    ansiedade.p19 +
+                    ansiedade.p20)
+            });
+            setOpen(true);
+        } catch (error) {
+            if (error.response && error.response.status === 400) {
+                setOpenErro400(true);
+            } else if (error.response && error.response.status === 500) {
+                setOpenErro500(true);
+            }
+        }
+    }
 
     const [open, setOpen] = useState(false);
     const [openErro400, setOpenErro400] = useState(false);
@@ -84,7 +96,7 @@ function AdicionarAnsiedade() {
     }
 
     const handleClickOpen = () => {
-        // handleSalvarApi();
+        handleSalvarApi();
     }
 
     const handleClose = () => {

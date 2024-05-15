@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
 import {
-    Checkbox,
     DialogContent,
     DialogContentText,
     FormControl,
     FormControlLabel,
-    FormGroup,
     Radio,
     RadioGroup
 } from '@mui/material'
@@ -15,6 +13,7 @@ import DialogActions from '@mui/material/DialogActions'
 import Button from '@mui/material/Button'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useQuery } from '../../../ContentFicha'
+import api from "../../../../../../../service/api";
 
 function AdicionarEse() {
     const params = useParams();
@@ -23,6 +22,7 @@ function AdicionarEse() {
     const navigate = useNavigate();
 
     const [ese, setEse] = useState({
+        paciente_id: parseInt(id),
         p1: null,
         p2: null,
         p3: null,
@@ -33,6 +33,18 @@ function AdicionarEse() {
         p8: null,
     })
 
+    async function handleSalvarApi() {
+        try {
+            await api.post("v1/ese", ese);
+            setOpen(true);
+        } catch (error) {
+            if (error.response && error.response.status === 400) {
+                setOpenErro400(true);
+            } else if (error.response && error.response.status === 500) {
+                setOpenErro500(true);
+            }
+        }
+    }
 
     const [open, setOpen] = useState(false);
     const [openErro400, setOpenErro400] = useState(false);
@@ -47,7 +59,7 @@ function AdicionarEse() {
     }
 
     const handleClickOpen = () => {
-        // handleSalvarApi();
+        handleSalvarApi();
     }
 
     const handleClose = () => {

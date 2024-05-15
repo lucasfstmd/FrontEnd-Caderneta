@@ -10,33 +10,7 @@ import AdicionarAnsiedade from './adicionar/AdicionarAnsiedade'
 function Ansiedade() {
     const itemsPerPage = 20;
     const [currentPage, setCurrentPage] = useState(1);
-    const [ansiedade, setAnsiedade] = useState([
-        {
-            id: 0,
-            p1: 1,
-            p2: 1,
-            p3: 0,
-            p4: 1,
-            p5: 1,
-            p6: 1,
-            p7: 0,
-            p8: 0,
-            p9: 1,
-            p10: 0,
-            p12: 0,
-            p13: 1,
-            p14: 0,
-            p15: 0,
-            p16: 1,
-            p17: 1,
-            p18: 0,
-            p19: 0,
-            p20: 1,
-            score: 22,
-            created: '2019-05-02T00:58:34.000Z',
-            updated: '2019-05-02T00:58:34.000Z'
-        }
-    ]);
+    const [ansiedade, setAnsiedade] = useState([]);
     const navigate = useNavigate()
     const query = useQuery()
     const params = useParams()
@@ -51,10 +25,10 @@ function Ansiedade() {
         navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=adicionar`);
     }
 
-    async function carregarEscalaDepre() {
+    async function carregarAnsiedade() {
         try {
             const response = await api.get(
-                `v1/escala-depressao/paciente/${id}`
+                `v1/ansiedade/paciente/${id}`
             );
             setAnsiedade(response.data);
             setLoading(false)
@@ -64,7 +38,7 @@ function Ansiedade() {
     }
 
     useEffect(() => {
-        carregarEscalaDepre();
+        carregarAnsiedade();
     }, []);
 
     const totalPages = Math.ceil((ansiedade?.length || 0) / itemsPerPage);

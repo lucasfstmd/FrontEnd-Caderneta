@@ -25,24 +25,25 @@ function EditarIpaq() {
     const navigate = useNavigate()
 
     const [ipaq, setIpaq] = useState({
-        p1_a: 'teste',
-        p1_b_h: 'teste',
-        p1_b_m: 'teste',
-        p2_a: 'Nenhum',
-        p2_b_h: 'teste',
-        p2_b_m: 'teste',
-        p3_a: 'teste',
-        p3_b_h: 'teste',
-        p3_b_m: 'teste',
-        p4_a_h: 'teste',
-        p4_a_m: 'teste',
-        p4_b_h: 'teste',
-        p4_b_m: 'teste',
+        paciente_id: parseInt(id),
+        p1_a: null,
+        p1_b_h: null,
+        p1_b_m: null,
+        p2_a: null,
+        p2_b_h: null,
+        p2_b_m: null,
+        p3_a: null,
+        p3_b_h: null,
+        p3_b_m: null,
+        p4_a_h: null,
+        p4_a_m: null,
+        p4_b_h: null,
+        p4_b_m: null,
     })
 
-    async function carregarPsqi() {
+    async function carregarIpaq() {
         try {
-            const response = await api.get(`v1/pesqi/${ipaqId}`)
+            const response = await api.get(`v1/ipaq/${ipaqId}`)
             setIpaq(response.data)
         } catch (error) {
             console.log(undefined)
@@ -50,7 +51,7 @@ function EditarIpaq() {
     }
 
     useEffect(() => {
-        carregarPsqi()
+        carregarIpaq()
     }, [])
 
     const handleFecharClick = () => {

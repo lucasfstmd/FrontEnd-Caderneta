@@ -3,12 +3,10 @@ import { useNavigate, useParams } from 'react-router-dom'
 import React, { useEffect, useState } from 'react'
 import api from '../../../../../../../service/api'
 import {
-    Checkbox,
     DialogContent,
     DialogContentText,
     FormControl,
     FormControlLabel,
-    FormGroup,
     Radio,
     RadioGroup
 } from '@mui/material'
@@ -26,19 +24,19 @@ function EditarEse() {
 
     const [ese, setEse] = useState({
         paciente_id: parseInt(id),
-        p1: 0,
-        p2: 1,
-        p3: 3,
-        p4: 2,
-        p5: 1,
-        p6: 0,
-        p7: 2,
-        p8: 3,
+        p1: null,
+        p2: null,
+        p3: null,
+        p4: null,
+        p5: null,
+        p6: null,
+        p7: null,
+        p8: null,
     })
 
     async function carregarEse() {
         try {
-            const response = await api.get(`v1/pesqi/${eseId}`)
+            const response = await api.get(`v1/ese/${eseId}`)
             setEse(response.data)
         } catch (error) {
             console.log(undefined)
@@ -55,7 +53,7 @@ function EditarEse() {
 
     const handleEdit = async () => {
         try {
-            await api.patch(`v1/ipaq/${eseId}`, ese);
+            await api.patch(`v1/ese/${eseId}`, ese);
             setOpen(true);
         } catch (error) {
             if (error.response && error.response.status === 400) {
