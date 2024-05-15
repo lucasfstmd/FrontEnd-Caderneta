@@ -19,7 +19,7 @@ function UsabilidadeLinha({ usabilidade, onEditarClick }) {
 
     async function handleDelete() {
         try {
-            await api.delete(`v1/usabilidades/${usabilidade.id}`)
+            await api.delete(`v1/usabilidade/${usabilidade.id}`)
         } catch (error) {
             console.log(undefined);
         }

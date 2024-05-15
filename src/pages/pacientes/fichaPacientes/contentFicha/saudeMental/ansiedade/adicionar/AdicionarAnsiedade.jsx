@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
 import {
-    Checkbox,
     DialogContent,
     DialogContentText,
     FormControl,
     FormControlLabel,
-    FormGroup,
     Radio,
     RadioGroup
 } from '@mui/material'
@@ -23,30 +21,28 @@ function AdicionarAnsiedade() {
     const query = useQuery();
     const navigate = useNavigate();
 
-    const [ansiedade, setAnsiedade] = useState([
-        {
-            paciente_id: parseInt(id),
-            p1: null,
-            p2: null,
-            p3: null,
-            p4: null,
-            p5: null,
-            p6: null,
-            p7: null,
-            p8: null,
-            p9: null,
-            p10: null,
-            p12: null,
-            p13: null,
-            p14: null,
-            p15: null,
-            p16: null,
-            p17: null,
-            p18: null,
-            p19: null,
-            p20: null,
-        }
-    ]);
+    const [ansiedade, setAnsiedade] = useState({
+        paciente_id: parseInt(id),
+        p1: null,
+        p2: null,
+        p3: null,
+        p4: null,
+        p5: null,
+        p6: null,
+        p7: null,
+        p8: null,
+        p9: null,
+        p10: null,
+        p12: null,
+        p13: null,
+        p14: null,
+        p15: null,
+        p16: null,
+        p17: null,
+        p18: null,
+        p19: null,
+        p20: null,
+    });
 
     async function handleSalvarApi() {
         try {

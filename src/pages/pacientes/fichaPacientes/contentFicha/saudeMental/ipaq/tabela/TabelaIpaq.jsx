@@ -47,7 +47,7 @@ function IpaqLinha({ ipaq, onEditarClick }) {
                 </div>
                 <div className="Pergunta">
                     1. b)
-                    <strong> {ipaq.p1_b}</strong>
+                    <strong> {ipaq.p1_b_h === '' ? ipaq.p1_b_m : ipaq.p1_b_h}</strong>
                 </div>
                 <div className="Pergunta">
                     2. a)
@@ -55,7 +55,7 @@ function IpaqLinha({ ipaq, onEditarClick }) {
                 </div>
                 <div className="Pergunta">
                     2. b)
-                    <strong> {ipaq.p2_b}</strong>
+                    <strong> {ipaq.p2_b_h === '' ? ipaq.p2_b_m : ipaq.p2_b_h}</strong>
                 </div>
                 <div className="Pergunta">
                     3. a)
@@ -63,15 +63,15 @@ function IpaqLinha({ ipaq, onEditarClick }) {
                 </div>
                 <div className="Pergunta">
                     3. b)
-                    <strong> {ipaq.p3_b}</strong>
+                    <strong> {ipaq.p3_b_h === '' ? ipaq.p3_b_m : ipaq.p3_b_h}</strong>
                 </div>
                 <div className="Pergunta">
                     4. a)
-                    <strong> {ipaq.p4_a}</strong>
+                    <strong> {ipaq.p4_a_h === '' ? ipaq.p4_a_m : ipaq.p4_a_h}</strong>
                 </div>
                 <div className="Pergunta">
                     4. b)
-                    <strong> {ipaq.p4_b}</strong>
+                    <strong> {ipaq.p4_b_h === '' ? ipaq.p4_b_m : ipaq.p4_b_h}</strong>
                 </div>
                 <div className="Pergunta">
                     Data de Cadastro:

@@ -7,6 +7,8 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import {DialogContent, DialogContentText} from "@mui/material";
+import { useQuery } from '../../ContentFicha'
+import { useNavigate, useParams } from 'react-router-dom'
 
 function EditarInformacoes(props) {
     const [paciente, setPaciente] = useState();
@@ -45,13 +47,13 @@ function EditarInformacoes(props) {
     const [municipio, setMunicipio] = useState('');
     const [uf, setUf] = useState('');
     const [email, setEmail] = useState('');
-    const [qual_etnia, setQualEtnia] = useState('');
     const [data_nascimento, setDataNascimento] = useState('');
     const [possui_internet, setPossuiInternet] = useState(false);
     const [telefone, setTelefone] = useState('');
     const [celular, setCelular] = useState('');
     const [cep, setCep] = useState('');
-
+    const params = useParams();
+    const { id } = params
 
     useEffect(() => {
         async function carregarUbs() {
@@ -64,7 +66,7 @@ function EditarInformacoes(props) {
 
     async function carregarPaciente() {
         try {
-            const response = await api.get(`v1/pacientes/${props.pacienteId}`);
+            const response = await api.get(`v1/pacientes/${id}`);
             setPaciente(response.data);
             setNome(response.data.nome);
             setUbsSelecionadaValueEditar(response.data.ubs);
@@ -82,7 +84,6 @@ function EditarInformacoes(props) {
             setSabeLerEscrever(response.data.sabe_ler_escrever);
             setEscolaridade(response.data.escolaridade);
             setRacaCor(response.data.raca_cor);
-            setQualEtnia(response.data.qual_etnia);
             setReligiao(response.data.religiao);
             setReligiaoQual(response.data.religiao_qual);
             setOcupacao(response.data.ocupacao);
@@ -218,7 +219,6 @@ function EditarInformacoes(props) {
         telefone,
         celular,
         email,
-        qual_etnia,
         data_nascimento,
         possui_internet,
         numero_identificacao: '',
@@ -226,7 +226,7 @@ function EditarInformacoes(props) {
 
     const handleEdit = async () => {
         try {
-            await api.patch(`v1/pacientes/${props.pacienteId}`, Paciente)
+            await api.patch(`v1/pacientes/${id}`, Paciente)
         } catch (error) {
             if (error.response && error.response.status === 400) {
                 setOpenErro400(true);
@@ -264,7 +264,7 @@ function EditarInformacoes(props) {
     return (
         <div className="EditarInformacoes">
             <PainelFicha titulo="1.1 Editar Dados Pessoais">
-                <form>
+                <div>
                     <div className="LabelInput">
                         <label><strong>UBS: </strong></label>
                         <select
@@ -395,10 +395,6 @@ function EditarInformacoes(props) {
                             <option value="indigina">Indigina</option>
                             <option value="nao-declarada">Não Declarada</option>
                         </select>
-                    </div>
-                    <div className="LabelInput">
-                        <label><strong>Qual Etnia?: </strong></label>
-                        <input defaultValue={paciente ? paciente.qual_etnia: ''} type="text" onChange={(e) => setQualEtnia(e.target.value)} className="etniaQual"/>
                     </div>
                     <div className="LabelInput">
                         <label><strong>Religião: </strong></label>
@@ -625,7 +621,7 @@ function EditarInformacoes(props) {
                             </DialogActions>
                         </Dialog>
                     </div>
-                </form>
+                </div>
             </PainelFicha>
         </div>
     )

@@ -26,6 +26,9 @@ function AdicionarAutorrelato() {
         p1: null
     })
 
+    console.log(autorrelato)
+
+
     async function handleSalvarApi() {
         try {
             await api.post("v1/autorrelato", autorrelato);
@@ -87,36 +90,48 @@ function AdicionarAutorrelato() {
                         >
                             <FormControlLabel
                                 value={0}
-                                onChange={(e) => setAutorrelato({ p1: parseInt(e.target.value) })}
+                                onChange={(e) => setAutorrelato({
+                                    ...autorrelato,
+                                    p1: parseInt(e.target.value) })}
                                 control={<Radio/>}
                                 label="Nunca"/>
                             <FormControlLabel
                                 value={1}
-                                onChange={(e) => setAutorrelato({ p1: parseInt(e.target.value) })}
+                                onChange={(e) => setAutorrelato({
+                                    ...autorrelato,
+                                    p1: parseInt(e.target.value) })}
                                 control={<Radio/>}
                                 label="Menos de uma vez por semana"
                             />
                             <FormControlLabel
                                 value={2}
-                                onChange={(e) => setAutorrelato({ p1: parseInt(e.target.value) })}
+                                onChange={(e) => setAutorrelato({
+                                    ...autorrelato,
+                                    p1: parseInt(e.target.value) })}
                                 control={<Radio/>}
                                 label="Uma a duas vezes por semana"
                             />
                             <FormControlLabel
                                 value={3}
-                                onChange={(e) => setAutorrelato({ p1: parseInt(e.target.value) })}
+                                onChange={(e) => setAutorrelato({
+                                    ...autorrelato,
+                                    p1: parseInt(e.target.value) })}
                                 control={<Radio/>}
                                 label="Trez a quatro vezes por semana"
                             />
                             <FormControlLabel
                                 value={4}
-                                onChange={(e) => setAutorrelato({ p1: parseInt(e.target.value) })}
+                                onChange={(e) => setAutorrelato({
+                                    ...autorrelato,
+                                    p1: parseInt(e.target.value) })}
                                 control={<Radio/>}
                                 label="Cinco a sete vezes por semana"
                             />
                             <FormControlLabel
                                 value={5}
-                                onChange={(e) => setAutorrelato({ p1: parseInt(e.target.value) })}
+                                onChange={(e) => setAutorrelato({
+                                    ...autorrelato,
+                                    p1: parseInt(e.target.value) })}
                                 control={<Radio/>}
                                 label="Não sei"
                             />

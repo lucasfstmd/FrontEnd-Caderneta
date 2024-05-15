@@ -3,12 +3,10 @@ import { useNavigate, useParams } from 'react-router-dom'
 import React, { useEffect, useState } from 'react'
 import api from '../../../../../../../service/api'
 import {
-    Checkbox,
     DialogContent,
     DialogContentText,
     FormControl,
     FormControlLabel,
-    FormGroup,
     Radio,
     RadioGroup
 } from '@mui/material'
@@ -50,7 +48,11 @@ function EditarEscalaDepressao() {
     async function carregarEse() {
         try {
             const response = await api.get(`v1/escala-depressao/${escDepreId}`)
-            setEscDepre(response.data)
+            const responseData = { ...response.data }
+            delete responseData.id
+            delete responseData.created
+            delete responseData.updated
+            setEscDepre(responseData)
         } catch (error) {
             console.log(undefined)
         }
@@ -147,7 +149,7 @@ function EditarEscalaDepressao() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={escDepre.p1}
+                                value={escDepre.p1}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -204,7 +206,7 @@ function EditarEscalaDepressao() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={escDepre.p2}
+                                value={escDepre.p2}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -261,7 +263,7 @@ function EditarEscalaDepressao() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={escDepre.p3}
+                                value={escDepre.p3}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -318,7 +320,7 @@ function EditarEscalaDepressao() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={escDepre.p4}
+                                value={escDepre.p4}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -375,7 +377,7 @@ function EditarEscalaDepressao() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={escDepre.p5}
+                                value={escDepre.p5}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -432,7 +434,7 @@ function EditarEscalaDepressao() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={escDepre.p6}
+                                value={escDepre.p6}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -489,7 +491,7 @@ function EditarEscalaDepressao() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={escDepre.p7}
+                                value={escDepre.p7}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -546,7 +548,7 @@ function EditarEscalaDepressao() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={escDepre.p8}
+                                value={escDepre.p8}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -603,7 +605,7 @@ function EditarEscalaDepressao() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={escDepre.p9}
+                                value={escDepre.p9}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -660,7 +662,7 @@ function EditarEscalaDepressao() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={escDepre.p10}
+                                value={escDepre.p10}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -717,7 +719,7 @@ function EditarEscalaDepressao() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={escDepre.p11}
+                                value={escDepre.p11}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -774,7 +776,7 @@ function EditarEscalaDepressao() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={escDepre.p12}
+                                value={escDepre.p12}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -831,7 +833,7 @@ function EditarEscalaDepressao() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={escDepre.p13}
+                                value={escDepre.p13}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -888,7 +890,7 @@ function EditarEscalaDepressao() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={escDepre.p14}
+                                value={escDepre.p14}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -945,7 +947,7 @@ function EditarEscalaDepressao() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={escDepre.p15}
+                                value={escDepre.p15}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -1002,7 +1004,7 @@ function EditarEscalaDepressao() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={escDepre.p16}
+                                value={escDepre.p16}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -1059,7 +1061,7 @@ function EditarEscalaDepressao() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={escDepre.p17}
+                                value={escDepre.p17}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -1116,7 +1118,7 @@ function EditarEscalaDepressao() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={escDepre.p18}
+                                value={escDepre.p18}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -1173,7 +1175,7 @@ function EditarEscalaDepressao() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={escDepre.p19}
+                                value={escDepre.p19}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -1230,7 +1232,7 @@ function EditarEscalaDepressao() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={escDepre.p20}
+                                value={escDepre.p20}
                             >
                                 <FormControlLabel
                                     value={0}

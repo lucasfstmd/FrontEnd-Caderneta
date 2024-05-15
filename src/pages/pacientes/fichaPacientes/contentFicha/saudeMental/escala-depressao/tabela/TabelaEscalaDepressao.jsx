@@ -9,12 +9,21 @@ import DialogActions from '@mui/material/DialogActions'
 import Button from '@mui/material/Button'
 import Loading from '../../../../../../../components/loading/Loading'
 import { useParams } from 'react-router-dom'
+import api from '../../../../../../../service/api'
 
 function Linha({ data, onEditarClick }) {
     const [open, setOpen] = useState(false);
 
     const formattedDateCreated = format(new Date(data.created), "dd/MM/yyyy");
     const formattedDateUpdated = format(new Date(data.updated), "dd/MM/yyyy");
+
+    async function handleDelet() {
+        try {
+            await api.delete(`v1/escala-depressao/${data.id}`);
+        } catch (error) {
+            console.log(undefined)
+        }
+    }
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -26,6 +35,7 @@ function Linha({ data, onEditarClick }) {
 
     const handleSalvar = () => {
         setOpen(false);
+        handleDelet()
     }
 
     const returnResponse = (response) => {

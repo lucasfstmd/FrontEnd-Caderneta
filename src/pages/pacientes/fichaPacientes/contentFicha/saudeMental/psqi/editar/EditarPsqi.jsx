@@ -3,12 +3,10 @@ import { useNavigate, useParams } from 'react-router-dom'
 import React, { useEffect, useState } from 'react'
 import api from '../../../../../../../service/api'
 import {
-    Checkbox,
     DialogContent,
     DialogContentText,
     FormControl,
     FormControlLabel,
-    FormGroup,
     Radio,
     RadioGroup
 } from '@mui/material'
@@ -56,7 +54,11 @@ function EditarPsqi() {
     async function carregarPsqi() {
         try {
             const response = await api.get(`v1/psqi/${psqiId}`)
-            setPsqi(response.data)
+            const responseData = { ...response.data }
+            delete responseData.id
+            delete responseData.created
+            delete responseData.updated
+            setPsqi(responseData)
         } catch (error) {
             console.log(undefined)
         }
@@ -191,7 +193,7 @@ function EditarPsqi() {
                             column
                             aria-labelledby="demo-row-radio-buttons-group-label"
                             name="row-radio-buttons-group"
-                            defaultChecked={psqi.p5_a}
+                            value={psqi.p5_a}
                         >
                             <FormControlLabel
                                 value={0}
@@ -240,7 +242,7 @@ function EditarPsqi() {
                             column
                             aria-labelledby="demo-row-radio-buttons-group-label"
                             name="row-radio-buttons-group"
-                            defaultValue={psqi.p5_b}
+                            value={psqi.p5_b}
                         >
                             <FormControlLabel
                                 value={0}
@@ -289,7 +291,7 @@ function EditarPsqi() {
                             column
                             aria-labelledby="demo-row-radio-buttons-group-label"
                             name="row-radio-buttons-group"
-                            defaultValue={psqi.p5_c}
+                            value={psqi.p5_c}
                         >
                             <FormControlLabel
                                 value={0}
@@ -338,7 +340,7 @@ function EditarPsqi() {
                             column
                             aria-labelledby="demo-row-radio-buttons-group-label"
                             name="row-radio-buttons-group"
-                            defaultValue={psqi.p5_d}
+                            value={psqi.p5_d}
                         >
                             <FormControlLabel
                                 value={0}
@@ -387,7 +389,7 @@ function EditarPsqi() {
                             column
                             aria-labelledby="demo-row-radio-buttons-group-label"
                             name="row-radio-buttons-group"
-                            defaultValue={psqi.p5_e}
+                            value={psqi.p5_e}
                         >
                             <FormControlLabel
                                 value={0}
@@ -436,7 +438,7 @@ function EditarPsqi() {
                             column
                             aria-labelledby="demo-row-radio-buttons-group-label"
                             name="row-radio-buttons-group"
-                            defaultValue={psqi.p5_f}
+                            value={psqi.p5_f}
                         >
                             <FormControlLabel
                                 value={0}
@@ -485,7 +487,7 @@ function EditarPsqi() {
                             column
                             aria-labelledby="demo-row-radio-buttons-group-label"
                             name="row-radio-buttons-group"
-                            defaultValue={psqi.p5_g}
+                            value={psqi.p5_g}
                         >
                             <FormControlLabel
                                 value={0}
@@ -534,7 +536,7 @@ function EditarPsqi() {
                             column
                             aria-labelledby="demo-row-radio-buttons-group-label"
                             name="row-radio-buttons-group"
-                            defaultValue={psqi.p5_h}
+                            value={psqi.p5_h}
                         >
                             <FormControlLabel
                                 value={0}
@@ -589,7 +591,7 @@ function EditarPsqi() {
                             column
                             aria-labelledby="demo-row-radio-buttons-group-label"
                             name="row-radio-buttons-group"
-                            defaultValue={psqi.p5_j}
+                            value={psqi.p5_j}
                         >
                             <FormControlLabel
                                 value={0}
@@ -637,7 +639,7 @@ function EditarPsqi() {
                                 column
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={psqi.p6}
+                                value={psqi.p6}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -685,7 +687,7 @@ function EditarPsqi() {
                                 column
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={psqi.p7}
+                                value={psqi.p7}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -734,7 +736,7 @@ function EditarPsqi() {
                                 column
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={psqi.p8}
+                                value={psqi.p8}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -783,7 +785,7 @@ function EditarPsqi() {
                                 column
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={psqi.p9}
+                                value={psqi.p9}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -832,7 +834,7 @@ function EditarPsqi() {
                                 column
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={psqi.p10}
+                                value={psqi.p10}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -888,7 +890,7 @@ function EditarPsqi() {
                                 column
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={psqi.p10_a}
+                                value={psqi.p10_a}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -937,7 +939,7 @@ function EditarPsqi() {
                                 column
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={psqi.p10_b}
+                                value={psqi.p10_b}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -986,7 +988,7 @@ function EditarPsqi() {
                                 column
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={psqi.p10_c}
+                                value={psqi.p10_c}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -1035,7 +1037,7 @@ function EditarPsqi() {
                                 column
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={psqi.p10_d}
+                                value={psqi.p10_d}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -1086,7 +1088,7 @@ function EditarPsqi() {
                             column
                             aria-labelledby="demo-row-radio-buttons-group-label"
                             name="row-radio-buttons-group"
-                            defaultValue={psqi.p10_e_2}
+                            value={psqi.p10_e_2}
                         >
                             <FormControlLabel
                                 value={0}

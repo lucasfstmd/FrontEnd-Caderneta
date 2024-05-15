@@ -50,7 +50,11 @@ function EditarAnsiedade() {
     async function carregarEse() {
         try {
             const response = await api.get(`v1/ansiedade/${ansiedadeId}`)
-            setAnsiedade(response.data)
+            const responseData = { ...response.data }
+            delete responseData.id
+            delete responseData.created
+            delete responseData.updated
+            setAnsiedade(responseData)
         } catch (error) {
             console.log(undefined)
         }
@@ -147,7 +151,7 @@ function EditarAnsiedade() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={ansiedade.p1}
+                                value={ansiedade.p1}
                             >
                                 <FormControlLabel
                                     value={1}
@@ -186,7 +190,7 @@ function EditarAnsiedade() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={ansiedade.p2}
+                                value={ansiedade.p2}
                             >
                                 <FormControlLabel
                                     value={1}
@@ -225,7 +229,7 @@ function EditarAnsiedade() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={ansiedade.p3}
+                                value={ansiedade.p3}
                             >
                                 <FormControlLabel
                                     value={1}
@@ -264,7 +268,7 @@ function EditarAnsiedade() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={ansiedade.p4}
+                                value={ansiedade.p4}
                             >
                                 <FormControlLabel
                                     value={1}
@@ -303,7 +307,7 @@ function EditarAnsiedade() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={ansiedade.p5}
+                                value={ansiedade.p5}
                             >
                                 <FormControlLabel
                                     value={1}
@@ -342,7 +346,7 @@ function EditarAnsiedade() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={ansiedade.p6}
+                                value={ansiedade.p6}
                             >
                                 <FormControlLabel
                                     value={1}
@@ -381,7 +385,7 @@ function EditarAnsiedade() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={ansiedade.p7}
+                                value={ansiedade.p7}
                             >
                                 <FormControlLabel
                                     value={1}
@@ -420,7 +424,7 @@ function EditarAnsiedade() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={ansiedade.p8}
+                                value={ansiedade.p8}
                             >
                                 <FormControlLabel
                                     value={1}
@@ -459,7 +463,7 @@ function EditarAnsiedade() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={ansiedade.p9}
+                                value={ansiedade.p9}
                             >
                                 <FormControlLabel
                                     value={1}
@@ -498,7 +502,7 @@ function EditarAnsiedade() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={ansiedade.p10}
+                                value={ansiedade.p10}
                             >
                                 <FormControlLabel
                                     value={1}
@@ -537,7 +541,7 @@ function EditarAnsiedade() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={ansiedade.p11}
+                                value={ansiedade.p11}
                             >
                                 <FormControlLabel
                                     value={1}
@@ -576,7 +580,7 @@ function EditarAnsiedade() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={ansiedade.p12}
+                                value={ansiedade.p12}
                             >
                                 <FormControlLabel
                                     value={1}
@@ -615,7 +619,7 @@ function EditarAnsiedade() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={ansiedade.p13}
+                                value={ansiedade.p13}
                             >
                                 <FormControlLabel
                                     value={1}
@@ -654,7 +658,7 @@ function EditarAnsiedade() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={ansiedade.p14}
+                                value={ansiedade.p14}
                             >
                                 <FormControlLabel
                                     value={1}
@@ -693,7 +697,7 @@ function EditarAnsiedade() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={ansiedade.p15}
+                                value={ansiedade.p15}
                             >
                                 <FormControlLabel
                                     value={1}
@@ -732,7 +736,7 @@ function EditarAnsiedade() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={ansiedade.p16}
+                                value={ansiedade.p16}
                             >
                                 <FormControlLabel
                                     value={1}
@@ -771,7 +775,7 @@ function EditarAnsiedade() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={ansiedade.p17}
+                                value={ansiedade.p17}
                             >
                                 <FormControlLabel
                                     value={1}
@@ -810,7 +814,7 @@ function EditarAnsiedade() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={ansiedade.p18}
+                                value={ansiedade.p18}
                             >
                                 <FormControlLabel
                                     value={1}
@@ -849,7 +853,7 @@ function EditarAnsiedade() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={ansiedade.p19}
+                                value={ansiedade.p19}
                             >
                                 <FormControlLabel
                                     value={1}
@@ -888,7 +892,7 @@ function EditarAnsiedade() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={ansiedade.p20}
+                                value={ansiedade.p20}
                             >
                                 <FormControlLabel
                                     value={1}

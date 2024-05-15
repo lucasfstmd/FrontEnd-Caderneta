@@ -6,11 +6,7 @@ import {
     Checkbox,
     DialogContent,
     DialogContentText,
-    FormControl,
-    FormControlLabel,
-    FormGroup,
-    Radio,
-    RadioGroup
+    FormControlLabel
 } from '@mui/material'
 import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
@@ -26,25 +22,29 @@ function EditarIpaq() {
 
     const [ipaq, setIpaq] = useState({
         paciente_id: parseInt(id),
-        p1_a: null,
-        p1_b_h: null,
-        p1_b_m: null,
-        p2_a: null,
-        p2_b_h: null,
-        p2_b_m: null,
-        p3_a: null,
-        p3_b_h: null,
-        p3_b_m: null,
-        p4_a_h: null,
-        p4_a_m: null,
-        p4_b_h: null,
-        p4_b_m: null,
+        p1_a: '',
+        p1_b_h: '',
+        p1_b_m: '',
+        p2_a: '',
+        p2_b_h: '',
+        p2_b_m: '',
+        p3_a: '',
+        p3_b_h: '',
+        p3_b_m: '',
+        p4_a_h: '',
+        p4_a_m: '',
+        p4_b_h: '',
+        p4_b_m: '',
     })
 
     async function carregarIpaq() {
         try {
             const response = await api.get(`v1/ipaq/${ipaqId}`)
-            setIpaq(response.data)
+            const responseData = { ...response.data }
+            delete responseData.id
+            delete responseData.created
+            delete responseData.updated
+            setIpaq(responseData)
         } catch (error) {
             console.log(undefined)
         }

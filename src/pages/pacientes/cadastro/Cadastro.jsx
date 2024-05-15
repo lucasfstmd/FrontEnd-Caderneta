@@ -47,7 +47,6 @@ function Cadastro() {
     const [municipio, setMunicipio] = useState("");
     const [uf, setUf] = useState("");
     const [email, setEmail] = useState("");
-    const [qual_etnia, setQualEtnia] = useState("");
     const [data_nascimento, setDataNascimento] = useState("1900-01-01");
     const [possui_internet, setPossuiInternet] = useState(0);
     const [telefone, setTelefone] = useState("");
@@ -175,7 +174,6 @@ function Cadastro() {
         telefone,
         celular,
         email,
-        qual_etnia,
         data_nascimento,
         possui_internet,
         numero_identificacao: "",
@@ -363,10 +361,6 @@ function Cadastro() {
                             <option value="indigina">Indigina</option>
                             <option value="nao-declarada">Não Declarada</option>
                         </select>
-                    </div>
-                    <div className="LabelInput">
-                        <label><strong>Qual Etnia?: </strong></label>
-                        <input value={qual_etnia} type="text" onChange={(e) => setQualEtnia(e.target.value)} className="etniaQual"/>
                     </div>
                     <div className="LabelInput">
                         <label><strong>Religião: </strong></label>

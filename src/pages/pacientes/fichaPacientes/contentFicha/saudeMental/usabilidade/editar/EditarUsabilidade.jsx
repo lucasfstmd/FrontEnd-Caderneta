@@ -26,39 +26,41 @@ function EditarUsabilidade() {
 
     const [usabilidade, setUsabilidaded] = useState({
         paciente_id: parseInt(id),
-        p1: null,
-        p1_0: '',
-        p1_1_1: null,
-        p1_1_2: null,
-        p1_1_3: null,
-        p1_1_4: null,
-        p1_1_5: null,
-        p1_2: null,
-        p1_3: null,
-        p2_1: null,
-        p2_2: null,
-        p3_1: null,
-        p3_1_1: null,
-        p3_2: null,
-        p3_2_1: null,
-        p4_1: null,
-        p4_1_1: null,
+        p1: 0,
+        p1_0: 0,
+        p1_1_1: 0,
+        p1_1_2: 0,
+        p1_1_3: 0,
+        p1_1_4: 0,
+        p1_1_5: 0,
+        p1_2: 0,
+        p1_3: '',
+        p2_1: 0,
+        p2_2: 0,
+        p3_1: 0,
+        p3_1_1: '',
+        p3_2: 0,
+        p3_2_1: '',
+        p4_1: 0,
+        p4_1_1: '',
     })
 
     async function carregarUsabilidade() {
         try {
             const response = await api.get(`v1/usabilidade/${usabilidadeId}`)
-            setUsabilidaded(response.data)
+            const responseData = { ...response.data }
+            delete responseData.id
+            delete responseData.created
+            delete responseData.updated
+            setUsabilidaded(responseData)
         } catch (error) {
             console.log(undefined)
         }
     }
 
-    console.log(usabilidade)
-
     useEffect(() => {
         carregarUsabilidade()
-    }, [])
+    })
 
     const handleFecharClick = () => {
         navigate(`/caderneta/pacientes/ficha/${id}?form=${query.get('form')}&view=tabela`);
@@ -124,7 +126,7 @@ function EditarUsabilidade() {
                                             row
                                             aria-labelledby="demo-row-radio-buttons-group-label"
                                             name="row-radio-buttons-group"
-                                            defaultValue={usabilidade.p1}
+                                            value={usabilidade.p1}
                                         >
                                             <FormControlLabel
                                                 value={1}

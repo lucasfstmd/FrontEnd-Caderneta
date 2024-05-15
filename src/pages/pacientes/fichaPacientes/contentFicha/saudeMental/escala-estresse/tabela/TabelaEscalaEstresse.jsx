@@ -18,7 +18,7 @@ function Linha({ data, onEditarClick }) {
 
     async function handleDelet() {
         try {
-            await api.delete(`v1/pressao-controles/${data.id}`);
+            await api.delete(`v1/escala-estresse/${data.id}`);
         } catch (error) {
             console.log(undefined)
         }

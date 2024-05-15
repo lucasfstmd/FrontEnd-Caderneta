@@ -30,7 +30,11 @@ function EditarAutorrelato() {
     async function carregarAutorrelato() {
         try {
             const response = await api.get(`v1/autorrelato/${autorrelatoId}`)
-            setAutorrelato(response.data)
+            const responseData = { ...response.data }
+            delete responseData.id
+            delete responseData.created
+            delete responseData.updated
+            setAutorrelato(responseData)
         } catch (error) {
             console.log(undefined)
         }
@@ -98,40 +102,52 @@ function EditarAutorrelato() {
                             column
                             aria-labelledby="demo-row-radio-buttons-group-label"
                             name="row-radio-buttons-group"
-                            defaultValue={autorrelato.p1}
+                            value={autorrelato.p1}
                         >
                             <FormControlLabel
                                 value={0}
-                                onChange={(e) => setAutorrelato({ p1: parseInt(e.target.value) })}
+                                onChange={(e) => setAutorrelato({
+                                    ...autorrelato,
+                                    p1: parseInt(e.target.value) })}
                                 control={<Radio/>}
                                 label="Nunca"/>
                             <FormControlLabel
                                 value={1}
-                                onChange={(e) => setAutorrelato({ p1: parseInt(e.target.value) })}
+                                onChange={(e) => setAutorrelato({
+                                    ...autorrelato,
+                                    p1: parseInt(e.target.value) })}
                                 control={<Radio/>}
                                 label="Menos de uma vez por semana"
                             />
                             <FormControlLabel
                                 value={2}
-                                onChange={(e) => setAutorrelato({ p1: parseInt(e.target.value) })}
+                                onChange={(e) => setAutorrelato({
+                                    ...autorrelato,
+                                    p1: parseInt(e.target.value) })}
                                 control={<Radio/>}
                                 label="Uma a duas vezes por semana"
                             />
                             <FormControlLabel
                                 value={3}
-                                onChange={(e) => setAutorrelato({ p1: parseInt(e.target.value) })}
+                                onChange={(e) => setAutorrelato({
+                                    ...autorrelato,
+                                    p1: parseInt(e.target.value) })}
                                 control={<Radio/>}
                                 label="Trez a quatro vezes por semana"
                             />
                             <FormControlLabel
                                 value={4}
-                                onChange={(e) => setAutorrelato({ p1: parseInt(e.target.value) })}
+                                onChange={(e) => setAutorrelato({
+                                    ...autorrelato,
+                                    p1: parseInt(e.target.value) })}
                                 control={<Radio/>}
                                 label="Cinco a sete vezes por semana"
                             />
                             <FormControlLabel
                                 value={5}
-                                onChange={(e) => setAutorrelato({ p1: parseInt(e.target.value) })}
+                                onChange={(e) => setAutorrelato({
+                                    ...autorrelato,
+                                    p1: parseInt(e.target.value) })}
                                 control={<Radio/>}
                                 label="Não sei"
                             />

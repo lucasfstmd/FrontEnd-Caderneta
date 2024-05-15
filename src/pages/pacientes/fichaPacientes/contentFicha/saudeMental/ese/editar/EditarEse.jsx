@@ -37,7 +37,11 @@ function EditarEse() {
     async function carregarEse() {
         try {
             const response = await api.get(`v1/ese/${eseId}`)
-            setEse(response.data)
+            const responseData = { ...response.data }
+            delete responseData.id
+            delete responseData.created
+            delete responseData.updated
+            setEse(responseData)
         } catch (error) {
             console.log(undefined)
         }
@@ -112,7 +116,7 @@ function EditarEse() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={ese.p1}
+                                value={ese.p1}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -167,7 +171,7 @@ function EditarEse() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={ese.p2}
+                                value={ese.p2}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -222,7 +226,7 @@ function EditarEse() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={ese.p3}
+                                value={ese.p3}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -277,7 +281,7 @@ function EditarEse() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={ese.p4}
+                                value={ese.p4}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -332,7 +336,7 @@ function EditarEse() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={ese.p5}
+                                value={ese.p5}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -387,7 +391,7 @@ function EditarEse() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={ese.p6}
+                                value={ese.p6}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -442,7 +446,7 @@ function EditarEse() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={ese.p7}
+                                value={ese.p7}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -497,7 +501,7 @@ function EditarEse() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={ese.p8}
+                                value={ese.p8}
                             >
                                 <FormControlLabel
                                     value={0}

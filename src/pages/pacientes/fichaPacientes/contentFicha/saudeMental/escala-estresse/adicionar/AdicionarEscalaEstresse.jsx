@@ -21,24 +21,22 @@ function AdicionarEscalaEstresse() {
     const query = useQuery();
     const navigate = useNavigate();
 
-    const [escEstress, setEscEstress] = useState([
-        {
-            paciente_id: parseInt(id),
-            p1: null,
-            p2: null,
-            p3: null,
-            p4: null,
-            p5: null,
-            p6: null,
-            p7: null,
-            p8: null,
-            p9: null,
-            p10: null,
-            p12: null,
-            p13: null,
-            p14: null
-        }
-    ]);
+    const [escEstress, setEscEstress] = useState({
+        paciente_id: parseInt(id),
+        p1: null,
+        p2: null,
+        p3: null,
+        p4: null,
+        p5: null,
+        p6: null,
+        p7: null,
+        p8: null,
+        p9: null,
+        p10: null,
+        p12: null,
+        p13: null,
+        p14: null
+    } );
 
     async function handleSalvarApi() {
         try {

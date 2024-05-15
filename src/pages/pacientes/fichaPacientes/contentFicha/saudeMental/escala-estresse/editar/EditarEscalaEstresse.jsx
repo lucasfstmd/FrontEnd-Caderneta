@@ -3,12 +3,10 @@ import { useNavigate, useParams } from 'react-router-dom'
 import React, { useEffect, useState } from 'react'
 import api from '../../../../../../../service/api'
 import {
-    Checkbox,
     DialogContent,
     DialogContentText,
     FormControl,
     FormControlLabel,
-    FormGroup,
     Radio,
     RadioGroup
 } from '@mui/material'
@@ -44,7 +42,11 @@ function EditarEscalaEstresse() {
     async function carregarEse() {
         try {
             const response = await api.get(`v1/escala-estresse/${escEstressId}`)
-            setEscEstress(response.data)
+            const responseData = { ...response.data }
+            delete responseData.id
+            delete responseData.created
+            delete responseData.updated
+            setEscEstress(responseData)
         } catch (error) {
             console.log(undefined)
         }
@@ -135,7 +137,7 @@ function EditarEscalaEstresse() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={escEstress.p1}
+                                value={escEstress.p1}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -201,7 +203,7 @@ function EditarEscalaEstresse() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={escEstress.p2}
+                                value={escEstress.p2}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -267,7 +269,7 @@ function EditarEscalaEstresse() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={escEstress.p3}
+                                value={escEstress.p3}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -333,7 +335,7 @@ function EditarEscalaEstresse() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={escEstress.p4}
+                                value={escEstress.p4}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -399,7 +401,7 @@ function EditarEscalaEstresse() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={escEstress.p5}
+                                value={escEstress.p5}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -465,7 +467,7 @@ function EditarEscalaEstresse() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={escEstress.p6}
+                                value={escEstress.p6}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -531,7 +533,7 @@ function EditarEscalaEstresse() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={escEstress.p7}
+                                value={escEstress.p7}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -597,7 +599,7 @@ function EditarEscalaEstresse() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={escEstress.p8}
+                                value={escEstress.p8}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -663,7 +665,7 @@ function EditarEscalaEstresse() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={escEstress.p9}
+                                value={escEstress.p9}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -729,7 +731,7 @@ function EditarEscalaEstresse() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={escEstress.p10}
+                                value={escEstress.p10}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -795,7 +797,7 @@ function EditarEscalaEstresse() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={escEstress.p11}
+                                value={escEstress.p11}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -861,7 +863,7 @@ function EditarEscalaEstresse() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={escEstress.p12}
+                                value={escEstress.p12}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -927,7 +929,7 @@ function EditarEscalaEstresse() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={escEstress.p13}
+                                value={escEstress.p13}
                             >
                                 <FormControlLabel
                                     value={0}
@@ -993,7 +995,7 @@ function EditarEscalaEstresse() {
                                 row
                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                 name="row-radio-buttons-group"
-                                defaultValue={escEstress.p14}
+                                value={escEstress.p14}
                             >
                                 <FormControlLabel
                                     value={0}
