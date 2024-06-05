@@ -49,7 +49,7 @@ function ExportDataBase() {
         setData(data);
     }*/
 
-    const url = 'http://localhost:8080/api'
+    const url = 'https://proeva-caderneta.ccs.ufrn.br:8080/api'
 
     const fetchDataBase = async () => {
         const response = await fetch(`${url}/v1/database`)
