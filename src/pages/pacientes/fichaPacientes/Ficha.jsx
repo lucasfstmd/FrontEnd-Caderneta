@@ -49,9 +49,7 @@ const Ficha = () => {
                 </div>
                 <div className="ConteudoFicha">
                     <MenuFicha />
-                    <ContentFicha
-                        pacienteId={paciente.id}
-                    />
+                    <ContentFicha/>
                 </div>
             </div>
         </RequestAuth>

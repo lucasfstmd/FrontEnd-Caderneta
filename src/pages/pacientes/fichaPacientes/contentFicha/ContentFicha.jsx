@@ -55,7 +55,7 @@ export function useQuery() {
     return useMemo(() => new URLSearchParams(search), [search]);
 }
 
-export default function ContentFia(props) {
+export default function ContentFia() {
     const query = useQuery();
     const selectedItem = query.get('form');
 
@@ -121,7 +121,7 @@ export default function ContentFia(props) {
         } else if (selectedItem === "sppb") {
             return <RequestAuth><Sppb/></RequestAuth>;
         } else if (selectedItem === "ivcf") {
-            return <RequestAuth><Ivcf/>></RequestAuth>;
+            return <RequestAuth><Ivcf/></RequestAuth>;
         } else if (selectedItem === "bioimpedancias") {
             return <RequestAuth><Bioimpedancias/></RequestAuth>;
         } else if (selectedItem === "exames-laboratoriais") {
