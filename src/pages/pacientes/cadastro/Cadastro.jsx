@@ -48,7 +48,7 @@ function Cadastro() {
     const [uf, setUf] = useState("");
     const [email, setEmail] = useState("");
     const [data_nascimento, setDataNascimento] = useState("1900-01-01");
-    const [possui_internet, setPossuiInternet] = useState(0);
+    const [possui_internet, setPossuiInternet] = useState(false);
     const [telefone, setTelefone] = useState("");
     const [celular, setCelular] = useState("");
     const [cep, setCep] = useState("");
@@ -440,7 +440,7 @@ function Cadastro() {
                     </div>
                     <div className="LabelInput">
                         <label><strong>Possui Internet?: </strong></label>
-                        <select value={possui_internet} name="possuiInternt" onChange={(e) => setPossuiInternet(parseInt(e.target.value))}>
+                        <select value={possui_internet} name="possuiInternt" onChange={(e) => setPossuiInternet(e.target.value)}>
                             <option value={null}>Selecionar</option>
                             <option value={0}>Não</option>
                             <option value={1}>Sim</option>
